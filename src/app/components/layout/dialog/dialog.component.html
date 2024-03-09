@@ -1,0 +1,15 @@
+<h2 dir="auto" class="text-center" mat-dialog-title>{{data.title}}</h2>
+<mat-dialog-content>
+    <div class="d-flex justify-content-center">
+        <img class="shadow" [src]="data.img" alt="">
+    </div>
+    @for (list of data.messages; track $index) {
+    <ul dir="auto">
+        @for (item of list; track $index) {
+        <li>
+            <span>{{item}}</span>
+        </li>
+        }
+    </ul>
+    }
+</mat-dialog-content>

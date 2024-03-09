@@ -1,0 +1,49 @@
+<div class="p-2 sidebar">
+  <p-accordion [activeIndex]="sportId" styleClass="w-100 z-9">
+    <div class="w-100 mb-1">
+      <button [routerLink]="['home']" *ngIf="_authHelper.isLoggedIn | async" pButton
+      (click)="clicked.emit()"
+        class="d-flex text-black fw-bold w-100">
+        <i class="pi pi-home fw-bold"></i>
+        <span>Home</span>
+      </button>
+    </div>
+    @for (tab of tabs; track $index) {
+    <p-accordionTab [header]="tab.name">
+      <ul>
+        @for(types of requiredLoop(tab.id); track $index){
+          @for (type of types; track $index) {
+            <li class="mb-3">
+              <a class="transition" (click)="clicked.emit()" style="background: unset" routerLink="home/team/{{ tab.id }}/{{allTournamentTypes.indexOf(type)}}"
+                routerLinkActive="fw-bold fs-5">{{type}}</a>
+            </li>
+          }
+        }
+      </ul>
+    </p-accordionTab>
+    }
+  </p-accordion>
+
+  <div class="w-100 mt-1">
+    <button pButton class="d-flex text-black fw-bold w-100" [routerLink]="['about-us']" (click)="clicked.emit()">
+      <i class="pi pi-briefcase fw-bold"></i>
+      <span>About Us</span>
+    </button>
+  </div>
+  <div class="w-100 mt-1">
+    <button pButton class="d-flex text-black fw-bold w-100" [routerLink]="['contact-us']" (click)="clicked.emit()">
+      <i class="pi pi-phone fw-bold"></i>
+      <span>Contact Us</span>
+    </button>
+  </div>
+  <div class="w-100 mt-1">
+    <button *ngIf="_authHelper.isLoggedIn | async" pButton class="d-flex text-black fw-bold w-100" (click)="logout()" (click)="clicked.emit()">
+      <i class="pi pi-sign-out fw-bold"></i>
+      <span>Logout</span>
+    </button>
+    <button *ngIf="!(_authHelper.isLoggedIn | async)" pButton class="d-flex text-black fw-bold w-100" (click)="login()" (click)="clicked.emit()">
+      <i class="pi pi-sign-in fw-bold"></i>
+      <span>Login</span>
+    </button>
+  </div>
+</div>

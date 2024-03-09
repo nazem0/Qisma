@@ -1,0 +1,58 @@
+<div class="login-container">
+  <form [formGroup]="form" class="d-flex flex-column gap-3">
+    <h1>Welcome back!</h1>
+    <div>
+      <div class="p-input-icon-left w-100">
+        <i class="pi pi-envelope"></i>
+        <input
+          type="email"
+          placeholder="Email"
+          pInputText
+          formControlName="email"
+        />
+      </div>
+      <small
+        *ngIf="helper.formControlInvalid(form,'email')"
+        class="my-2 text-danger"
+        >Valid email is required</small
+      >
+    </div>
+
+    <div>
+      <div class="w-100 p-input-icon-left p-input-icon-right">
+        <i class="pi pi-lock"></i>
+        <input
+          [type]="hidePassword ? 'password' : 'text'"
+          placeholder="Password"
+          pInputText
+          formControlName="password"
+        />
+        <i class="pointer pi pi-eye" (click)="toggleHidePassword()"></i>
+      </div>
+      <small
+        *ngIf="helper.formControlInvalid(form, 'password')"
+        class="my-2 text-danger"
+        >Password is required</small
+      >
+    </div>
+
+    <div class="w-100 d-flex justify-content-center">
+      <p-button
+        label="Login"
+        [rounded]="false"
+        [raised]="true"
+        (onClick)="login()"
+      ></p-button>
+    </div>
+
+    <div>
+      <p>
+        Don't have an account?
+        <a class="purple" routerLink="/register">Register</a>
+      </p>
+      <a class="purple" routerLink="/forgot-password">
+        Forgot Password?
+      </a>
+    </div>
+  </form>
+</div>

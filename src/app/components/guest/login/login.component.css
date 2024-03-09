@@ -1,0 +1,11 @@
+/* *{
+    border: unset;
+    outline: none;
+} */
+.login-container {
+    text-align: center;
+    /* background-image: url("/assets/png/cover.png"); */
+    /* background-position: center;
+    background-size: cover; */
+    /* height: 100vh; */
+}

@@ -1,0 +1,11 @@
+.register-container {
+    text-align: center;
+}
+
+div[role="progressbar"] {
+    display: none;
+}
+
+.upload-files-container button{
+    margin-top: 1rem;
+}

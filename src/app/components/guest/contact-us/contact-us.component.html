@@ -1,0 +1,11 @@
+@for (item of content; track $index) {
+<div class="d-flex flex-column align-items-center">
+    <p class="border border-3 border-primary p-1 w-100 text-center bg-primary text-black">{{item.title}}</p>
+    @for (content of item.content; track $index) {
+    <div class="w-100 mb-3 d-flex align-content-center justify-content-between">
+        <i class="pi" [ngClass]="{'pi-phone':item.type === 'phone','pi-envelope':item.type === 'email'}"></i>
+        <a [href]="item.href+content">{{content}}</a>
+    </div>
+    }
+</div>
+}

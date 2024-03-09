@@ -1,0 +1,196 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+    /* --purple : rgb(140,25,235);
+    --blue : rgb(45,10,240); */
+    --mat-stepper-container-color: unset;
+    --navbar-container-height: 60px;
+    --footer-container-height: 100px;
+    --logo-height: 40px;
+    --nav-logo-height:40px;
+}
+body::before {    
+    content: "";
+    background-image: url("assets/png/master.png");
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.5;
+    filter: blur(0.7px);
+}
+body {
+    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #fff;
+    background-color: black;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.bg-none {
+    background-color: unset;
+}
+
+.purple {
+    color: var(--primary-600);
+}
+
+/* .purple-btn{
+    background: linear-gradient(270deg, var(--blue) 0%, var(--purble) 100%);
+    font-weight: bold;
+} */
+
+/* .p-checkbox .p-checkbox-box {
+    background-color: unset;
+} */
+
+/* path{
+    fill: var(--primary-500);
+} */
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.p-fileupload .p-fileupload-buttonbar {
+    background-color: rgba(30, 30, 30, 1);
+}
+
+.p-fileupload .p-fileupload-content {
+    background-color: rgba(10, 10, 10, 1);
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.mat-horizontal-content-container {
+    overflow: hidden;
+    padding: 0 24px !important;
+}
+
+.transition {
+    transition: all 0.8s ease;
+}
+
+.w-0 {
+    width: 0;
+}
+
+a {
+    color: unset;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.bg-primary {
+    background: var(--primary-600) !important;
+}
+
+.border-primary {
+    border-color: var(--primary-700) !important;
+}
+
+.text-gray {
+    color: var(--gray-300);
+}
+
+.input-w-icon {
+    position: relative;
+    display: inline-block;
+}
+
+.input-w-icon>:nth-child(1) {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray-500);
+    z-index: 3;
+}
+
+.input-w-icon input {
+    padding-left: 2.5rem;
+}
+
+
+input,
+.p-inputNumber,
+.p-inputMask,
+.p-calendar {
+    width: 100%;
+}
+
+.image-preview-container {
+    max-width: 300px;
+}
+
+.image-preview {
+    max-width: 200px;
+}
+
+.mdc-list-item__primary-text {
+    color: white !important;
+}
+
+.bottom-10 {
+    bottom: 10%;
+}
+
+
+
+
+
+/* Toaster */
+
+.p-message.p-message-info {
+    background: rgba(219, 234, 254, 1);
+}
+
+.p-message.p-message-success {
+    background: rgba(228, 248, 240, 1);
+}
+
+.p-message.p-message-warn {
+    background: rgba(255, 242, 226, 1);
+}
+
+.p-message.p-message-error {
+    background: rgba(255, 231, 230, 1);
+
+}
+
+.small-text{
+    font-size: 8.65px;
+}
+
+.p-accordion a {
+    border: var(--primary-700);
+    background: var(--primary-600);
+}
+
+.p-accordion * {
+    color: black;
+}
+
+
+.p-accordion .p-accordion-content {
+    border: var(--primary-600);
+
+    background: var(--primary-500);
+
+}
+
+

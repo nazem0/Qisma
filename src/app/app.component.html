@@ -1,0 +1,18 @@
+<ngx-loading-bar
+[includeSpinner]="false"
+[includeBar]="true"
+height="5px"
+color="#8e76d5"
+></ngx-loading-bar>
+
+
+<div class="container-fluid position-fixed bottom-50 messages-container">
+    <p-messages [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'300ms'"></p-messages>
+</div>
+
+<div class="position-relative">
+    <div class="router">
+        <router-outlet></router-outlet>
+    </div>
+
+</div>
