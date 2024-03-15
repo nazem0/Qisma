@@ -1,0 +1,15 @@
+<div class="px-md-5">
+    <div class=" container-sm d-flex flex-column gap-4 py-5 px-md-5">
+        <div class="text-center">
+            <h2>Invest in fractions of rental properties across America</h2>
+            <p>All without leaving your living room. No experience, connections, or down payments required.</p>
+        </div>
+    </div>
+    <div class="container-sm mx-auto row row-cols-md-3 g-3">
+        <app-property-card *ngFor="let item of [].constructor(3)"></app-property-card>
+    </div>
+
+    <div class="d-flex justify-content-center py-5">
+        <p-button [raised]="true" [rounded]="true" styleClass="px-5 py-3">View Properties</p-button>
+    </div>
+</div>

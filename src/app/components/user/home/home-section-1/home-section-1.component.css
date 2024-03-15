@@ -1,0 +1,18 @@
+.journey-image-1 {
+    height: 100px;
+    background-image: url("https://assets-global.website-files.com/5eb83629a119283a8908371b/638f4f1848ccb41aecd30b2b_Journey%20Image%202.png");
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: auto;
+  }
+  
+  .journey-image-2 {
+    height: 100px;
+    background-image: url("https://assets-global.website-files.com/5eb83629a119283a8908371b/638f4ee9b6ba54c7ac6ac669_Journey%20Image%201.png");
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: auto;
+    margin-top: -20px;
+    margin-bottom: -40px;
+  }
+  

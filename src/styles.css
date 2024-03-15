@@ -1,3 +1,15 @@
+@import "bootstrap/dist/css/bootstrap-utilities.min.css" layer(bootstrap-utilities);
+@import "bootstrap/dist/css/bootstrap-grid.min.css" layer(bootstrap-grid);  
+body{
+    font-size: clamp(0.6em, 4vw, 1.2em);
+}
+h1 { font-size: clamp(3em, 5vw, 5em); }
+h2 { font-size: clamp(2em, 4vw, 2.4em) !important;  }
+p  { font-size: clamp(0.6em, 4vw, 1.2em); }
+
+img{
+    max-width: 100%;
+}
 /* You can add global styles to this file, and also import other style files */
 :root {
     /* --purple : rgb(140,25,235);
@@ -10,11 +22,11 @@
 }
 body::before {    
     content: "";
-    background-image: url("assets/png/master.png");
-    background-size: cover;
+    /* background-image: url("assets/png/master.png"); */
+    /* background-size: cover;
     background-position: right;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: fixed; */
     position: fixed;
     top: 0px;
     right: 0px;
@@ -28,12 +40,15 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #fff;
-    background-color: black;
+    background-color: #F3F2FF;
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
+body *{
+    color: #08165d;
 
+    /* transition: all 600ms ease; */
+}
 .bg-none {
     background-color: unset;
 }
@@ -89,14 +104,21 @@ body {
     width: 0;
 }
 
-a {
-    color: unset;
+a,.p-menuitem-text {
     text-decoration: none;
     cursor: pointer;
 }
 
+a:hover,.p-menuitem-text:hover{
+    color: #9286FD;
+}
+
 .bg-primary {
     background: var(--primary-600) !important;
+}
+
+.bg-dark-blue{
+    background-color: #05093E;
 }
 
 .border-primary {
@@ -182,7 +204,7 @@ input,
 }
 
 .p-accordion * {
-    color: black;
+    color: white;
 }
 
 
@@ -194,3 +216,31 @@ input,
 }
 
 
+
+/* Cloned Globals */
+.h1 {
+    color: rgba(51, 51, 51, 0);
+    letter-spacing: -2px;
+    margin-bottom: 0;
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    line-height: 110%;
+}
+
+.gradient-background {
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(131deg, #9383ff 2%, #08165d 89%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.text-white{
+    color: white;
+    *{
+        color :white;
+    }
+}
+
+button{
+    color: white;
+}

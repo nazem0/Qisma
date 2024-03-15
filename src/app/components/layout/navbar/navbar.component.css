@@ -6,6 +6,9 @@
     overflow-x: scroll;
 }
 
-.navbar{
-    height: var(--navbar-container-height);
+.p-menubar>:first-child{
+    margin-right: auto;
+}
+.p-menubar>:last-child{
+    display: none;
 }

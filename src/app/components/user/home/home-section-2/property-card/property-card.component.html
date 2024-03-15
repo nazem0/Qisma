@@ -1,0 +1,16 @@
+<div class="property-card rounded-4 shadow overflow-hidden">
+    <div class="img-container">
+        <img class="w-100" [src]="property.image" [alt]="property.address">
+    </div>
+    <div class="row row-cols-2 mx-0 p-3 align-items-center">
+        <div class="d-flex flex-column">
+            <small class="fw-semibold">{{property.address}}</small>
+            <small class="mat-small">{{property.city}}</small>
+        </div>
+        <div class="d-flex flex-column text-end">
+            <small class="fw-semibold">{{property.estimatedAnnualReturn}}%</small>
+            <small class="mat-small">Est. Annual Return</small>
+        </div>
+    </div>
+
+</div>

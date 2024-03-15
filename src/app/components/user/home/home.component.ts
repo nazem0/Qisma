@@ -4,7 +4,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
-  encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent {
 }

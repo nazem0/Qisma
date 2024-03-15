@@ -23,6 +23,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { TreeTableModule } from 'primeng/treetable';
+import { MenubarModule } from 'primeng/menubar';
+import { MenuModule } from 'primeng/menu';
+import { RippleModule } from 'primeng/ripple';
+
 
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -40,7 +44,6 @@ import { ForgotPasswordComponent } from './components/guest/forgot-password/forg
 import { AuthHelper } from './services/auth-helper';
 import { ContactUsComponent } from './components/guest/contact-us/contact-us.component';
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
-import { FooterComponent } from './components/layout/footer/footer.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { SidebarComponent } from './components/layout/sidebar/sidebar.component';
 import { UserAuthGuard } from './guards/user.guard';
@@ -54,6 +57,11 @@ import { DevComponent } from './components/guest/dev/dev.component';
 import { AboutUsComponent } from './components/guest/about-us/about-us.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AppConfirmComponent } from './components/layout/app-confirm/app-confirm.component';
+import { HeroSectionComponent } from './components/user/home/hero-section/hero-section.component';
+import { HomeSection1Component } from './components/user/home/home-section-1/home-section-1.component';
+import { HomeSection2Component } from './components/user/home/home-section-2/home-section-2.component';
+import { PropertyCardComponent } from './components/user/home/home-section-2/property-card/property-card.component';
+import { HomeSection3Component } from './components/user/home/home-section-3/home-section-3.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +73,6 @@ import { AppConfirmComponent } from './components/layout/app-confirm/app-confirm
     SidebarComponent,
     ContactUsComponent,
     NavbarComponent,
-    FooterComponent,
     LayoutComponent,
     DialogComponent,
     PaymentComponent,
@@ -75,6 +82,11 @@ import { AppConfirmComponent } from './components/layout/app-confirm/app-confirm
     AboutUsComponent,
     PageNotFoundComponent,
     AppConfirmComponent,
+    HeroSectionComponent,
+    HomeSection1Component,
+    HomeSection2Component,
+    PropertyCardComponent,
+    HomeSection3Component,
   ],
   imports: [
     BrowserModule,
@@ -99,6 +111,9 @@ import { AppConfirmComponent } from './components/layout/app-confirm/app-confirm
     InputGroupModule,
     InputGroupAddonModule,
     TreeTableModule,
+    MenubarModule,
+    MenuModule,
+    RippleModule,
     // Angular Material Modules
     MatStepperModule,
     MatFormFieldModule,

@@ -13,7 +13,7 @@ import { DevComponent } from './components/guest/dev/dev.component';
 import { AboutUsComponent } from './components/guest/about-us/about-us.component';
 
 const routes: Routes = [
-  {path:"", redirectTo:"login", pathMatch:"full"},
+  {path:"", redirectTo:"home", pathMatch:"full"},
   {
     path: "", component: LayoutComponent, children: [
       { path: "login", component: LoginComponent, title: "Login" },

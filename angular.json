@@ -35,12 +35,10 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/purple-green.css",
-              "node_modules/bootstrap/dist/css/bootstrap-utilities.min.css",
-              "node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
-              "node_modules/primeng/resources/themes/lara-dark-purple/theme.css",
+              "node_modules/primeng/resources/themes/md-light-indigo/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "primeicons/primeicons.css",
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -100,12 +98,10 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/purple-green.css",
-              "node_modules/bootstrap/dist/css/bootstrap-utilities.min.css",
-              "node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
-              "node_modules/primeng/resources/themes/lara-dark-purple/theme.css",
+              "node_modules/primeng/resources/themes/md-light-indigo/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "primeicons/primeicons.css",
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
             "scripts": []
