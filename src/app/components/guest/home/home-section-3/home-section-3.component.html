@@ -1,0 +1,24 @@
+<div class="px-md-5 ">
+    <div class="text-center contained">
+        <h1>You don’t have to be a pro to invest like one</h1>
+        <p>Get instant access to great property deals, in-depth analysis, and a community of wealth builders from
+            around the world.</p>
+    </div>
+    <div>
+        <div class="row row-cols-md-2 g-4">
+            @for (item of contentSections; track $index) {
+                <div>
+                    <div class="row card shadow flex-wrap-reverse rounded-4 h-100 m-0">
+                        <div class="col-lg-8 col-12">
+                            <p class="title">{{item.title}}</p>
+                            <span class="description">{{item.description}}</span>
+                        </div>
+                        <div class="col d-flex justify-content-end align-items-end">
+                            <img class="sec-image" [src]="item.img" alt="">
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

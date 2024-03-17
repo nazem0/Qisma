@@ -1,4 +1,4 @@
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/guest/login/login.component';
@@ -7,10 +7,11 @@ import { ForgotPasswordComponent } from './components/guest/forgot-password/forg
 import { ContactUsComponent } from './components/guest/contact-us/contact-us.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { UserAuthGuard } from './guards/user.guard';
-import { HomeComponent } from './components/user/home/home.component';
 import { ResetPasswordComponent } from './components/guest/reset-password/reset-password.component';
 import { DevComponent } from './components/guest/dev/dev.component';
 import { AboutUsComponent } from './components/guest/about-us/about-us.component';
+import { HomeComponent } from './components/guest/home/home.component';
+import { MarketplaceComponent } from './components/guest/marketplace/marketplace.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"home", pathMatch:"full"},
@@ -23,12 +24,8 @@ const routes: Routes = [
       { path: "contact-us", component: ContactUsComponent, title: "Contact Us" },
       { path: "about-us", component: AboutUsComponent, title: "About Us" },
       { path: "dev", component: DevComponent, title: "Nazem" },
-      {
-        path: "home", children: [
-          { path: "", component: HomeComponent, title: "Home" },
-        ],
-        // canActivate: [UserAuthGuard]
-      },
+      {path: "home", component:HomeComponent, title:"Home" },
+      {path: "marketplace", component:MarketplaceComponent, title:"Marketplace" },
       { path: '**', component: PageNotFoundComponent }
     ]
   }

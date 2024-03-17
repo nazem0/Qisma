@@ -14,14 +14,14 @@ export class NavbarComponent {
 
   constructor() {
     this.items = [
-      { label: 'Staking', routerLink: 'Staking', routerLinkActiveOptions:{class:'text-danger'} },
-      { label: 'Marketplace', routerLink: 'Marketplace', routerLinkActiveOptions:{class:'text-danger'} },
-      { label: 'About Us', routerLink: 'About-Us', routerLinkActiveOptions:{class:'text-danger'} },
-      { label: 'Learn', routerLink: 'Learn', routerLinkActiveOptions:{class:'text-danger'} },
-      { label: 'Blog', routerLink: 'Blog', routerLinkActiveOptions:{class:'text-danger'} },
-      { label: 'List Property', routerLink: 'List-Property', routerLinkActiveOptions:{class:'text-danger'} },
-      { label: 'Log In', routerLink: 'Log-In', routerLinkActiveOptions:{class:'text-danger'} },
-      { label: 'Sign Up', styleClass: 'signup-button', command: () => this.signUp(), routerLinkActiveOptions:{class:'text-danger'} }
+      { label: 'Staking', routerLink: 'staking' },
+      { label: 'Marketplace', routerLink: 'marketplace' },
+      { label: 'About Us', routerLink: 'about-Us' },
+      { label: 'Learn', routerLink: 'learn' },
+      { label: 'Blog', routerLink: 'blog' },
+      { label: 'List Property', routerLink: 'list-Property' },
+      { label: 'Log In', routerLink: 'login' },
+      { label: 'Sign Up', routerLink: 'register'}
     ];
   }
   signUp() {

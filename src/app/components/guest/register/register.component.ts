@@ -5,7 +5,7 @@ import { FileUploadHandlerEvent } from 'primeng/fileupload';
 import { Helper } from '../../../services/helper';
 import { AuthHelper } from '../../../services/auth-helper';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../../layout/dialog/dialog.component';
+import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { DialogService } from '../../../services/dialog.service';
 
 @Component({

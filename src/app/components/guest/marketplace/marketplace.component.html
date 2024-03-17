@@ -1,0 +1,14 @@
+<div class="d-flex flex-column gap-5 container-sm">
+    <div class="d-flex">
+        <div class="w-75">
+            <h1 class="gradient-background-dark d-none d-md-block">Fractional Real Estate Marketplace</h1>
+            <p>Invest in fractions of rental properties listed by third party sellers.</p>
+        </div>
+        <img class="w-25" src="/assets/page-resources/marketplace.png" alt="">
+    </div>
+    <div class="row row-cols-md-4 g-3 mx-auto">
+        <div  *ngFor="let item of [].constructor(8)">
+            <app-property-card-2></app-property-card-2>
+        </div>
+    </div>
+</div>

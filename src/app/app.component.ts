@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { MenuItem, MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { MenuItem, MessageService } from 'primeng/api';
   encapsulation:ViewEncapsulation.None
 })
 export class AppComponent {
-  title = 'Sports Fest';
+  title = 'Lofty';
   constructor(
     public messageService: MessageService
   ) {

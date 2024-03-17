@@ -25,7 +25,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { TreeTableModule } from 'primeng/treetable';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuModule } from 'primeng/menu';
-import { RippleModule } from 'primeng/ripple';
+import { RatingModule } from 'primeng/rating';
 
 
 import { MatStepperModule } from '@angular/material/stepper';
@@ -47,21 +47,27 @@ import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { SidebarComponent } from './components/layout/sidebar/sidebar.component';
 import { UserAuthGuard } from './guards/user.guard';
-import { DialogComponent } from './components/layout/dialog/dialog.component';
+import { DialogComponent } from './components/shared/dialog/dialog.component';
 import { Helper } from './services/helper';
 import { PaymentComponent } from './components/guest/payment/payment.component';
-import { HomeComponent } from './components/user/home/home.component';
 import { ResetPasswordComponent } from './components/guest/reset-password/reset-password.component';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { DevComponent } from './components/guest/dev/dev.component';
 import { AboutUsComponent } from './components/guest/about-us/about-us.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { AppConfirmComponent } from './components/layout/app-confirm/app-confirm.component';
-import { HeroSectionComponent } from './components/user/home/hero-section/hero-section.component';
-import { HomeSection1Component } from './components/user/home/home-section-1/home-section-1.component';
-import { HomeSection2Component } from './components/user/home/home-section-2/home-section-2.component';
-import { PropertyCardComponent } from './components/user/home/home-section-2/property-card/property-card.component';
-import { HomeSection3Component } from './components/user/home/home-section-3/home-section-3.component';
+import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
+import { ConfirmComponent } from './components/shared/confirm/confirm.component';
+import { HomeComponent } from './components/guest/home/home.component';
+import { HeroSectionComponent } from './components/guest/home/hero-section/hero-section.component';
+import { HomeSection1Component } from './components/guest/home/home-section-1/home-section-1.component';
+import { PropertyCardComponent } from './components/guest/home/home-section-2/property-card/property-card.component';
+import { HomeSection2Component } from './components/guest/home/home-section-2/home-section-2.component';
+import { HomeSection3Component } from './components/guest/home/home-section-3/home-section-3.component';
+import { HomeSection4Component } from './components/guest/home/home-section-4/home-section-4.component';
+import { HomeSection5Component } from './components/guest/home/home-section-5/home-section-5.component';
+import { HomeSection6Component } from './components/guest/home/home-section-6/home-section-6.component';
+import { MarketplaceComponent } from './components/guest/marketplace/marketplace.component';
+import { PropertyCard2Component } from './components/guest/marketplace/property-card-2/property-card-2.component';
 
 @NgModule({
   declarations: [
@@ -81,12 +87,18 @@ import { HomeSection3Component } from './components/user/home/home-section-3/hom
     DevComponent,
     AboutUsComponent,
     PageNotFoundComponent,
-    AppConfirmComponent,
+    ConfirmComponent,
     HeroSectionComponent,
     HomeSection1Component,
     HomeSection2Component,
     PropertyCardComponent,
     HomeSection3Component,
+    HomeSection4Component,
+    HomeSection5Component,
+    HomeSection6Component,
+    FooterComponent,
+    MarketplaceComponent,
+    PropertyCard2Component,
   ],
   imports: [
     BrowserModule,
@@ -113,7 +125,7 @@ import { HomeSection3Component } from './components/user/home/home-section-3/hom
     TreeTableModule,
     MenubarModule,
     MenuModule,
-    RippleModule,
+    RatingModule,
     // Angular Material Modules
     MatStepperModule,
     MatFormFieldModule,

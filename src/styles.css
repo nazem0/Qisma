@@ -1,15 +1,31 @@
 @import "bootstrap/dist/css/bootstrap-utilities.min.css" layer(bootstrap-utilities);
-@import "bootstrap/dist/css/bootstrap-grid.min.css" layer(bootstrap-grid);  
-body{
-    font-size: clamp(0.6em, 4vw, 1.2em);
-}
-h1 { font-size: clamp(3em, 5vw, 5em); }
-h2 { font-size: clamp(2em, 4vw, 2.4em) !important;  }
-p  { font-size: clamp(0.6em, 4vw, 1.2em); }
+@import "bootstrap/dist/css/bootstrap-grid.min.css" layer(bootstrap-grid);
 
-img{
+/* Set a base font size for the body */
+body {
+    font-size: clamp(1rem, 2vw, 1.2rem); /* Adjusted the maximum value to 2vw for better readability */
+}
+
+/* Set a range for h1 font size */
+h1 {
+    font-size: clamp(2rem, 4vw, 3.6rem); /* Adjusted the maximum value to 3.6rem for better readability */
+}
+
+/* Set a range for h2 font size */
+h2 {
+    font-size: clamp(1.8rem, 3vw, 2.4rem); /* Adjusted the minimum and maximum values for better hierarchy and readability */
+}
+
+/* Set a range for paragraph font size */
+p {
+    font-size: clamp(1rem, 2vw, 1.2rem); /* Adjusted the maximum value to 2vw for better readability */
+}
+
+
+img {
     max-width: 100%;
 }
+
 /* You can add global styles to this file, and also import other style files */
 :root {
     /* --purple : rgb(140,25,235);
@@ -18,9 +34,16 @@ img{
     --navbar-container-height: 60px;
     --footer-container-height: 100px;
     --logo-height: 40px;
-    --nav-logo-height:40px;
+    --nav-logo-height: 40px;
+
+    --bs-primary: var(--primary-600);
+    --bs-primary-rgb: 54, 69, 154;
+    --bs-primary-text-emphasis: var(--primary-700);
+    --bs-primary-bg-subtle: var(--primary-400);
+    --bs-primary-border-subtle: var(--primary-500);
 }
-body::before {    
+
+body::before {
     content: "";
     /* background-image: url("assets/png/master.png"); */
     /* background-size: cover;
@@ -35,8 +58,9 @@ body::before {
     opacity: 0.5;
     filter: blur(0.7px);
 }
+
 body {
-    
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -44,11 +68,13 @@ body {
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
-body *{
+
+body * {
     color: #08165d;
 
     /* transition: all 600ms ease; */
 }
+
 .bg-none {
     background-color: unset;
 }
@@ -104,20 +130,23 @@ body {
     width: 0;
 }
 
-a,.p-menuitem-text {
+a,
+.p-menuitem-text {
     text-decoration: none;
     cursor: pointer;
 }
 
-a:hover,.p-menuitem-text:hover{
-    color: #9286FD;
+a:hover,
+.p-menuitem-text:hover,
+.purble-link:hover {
+    color: #9286FD !important;
 }
 
 .bg-primary {
     background: var(--primary-600) !important;
 }
 
-.bg-dark-blue{
+.bg-dark-blue {
     background-color: #05093E;
 }
 
@@ -194,7 +223,7 @@ input,
 
 }
 
-.small-text{
+.small-text {
     font-size: 8.65px;
 }
 
@@ -227,20 +256,57 @@ input,
     line-height: 110%;
 }
 
-.gradient-background {
+.gradient-background-dark {
     -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(131deg, #9383ff 2%, #08165d 89%);
+    background-image: linear-gradient(131deg, #9383ff 25%, #08165d 66%);
     -webkit-background-clip: text;
     background-clip: text;
-}
+  }
 
-.text-white{
+.gradient-background-light {
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(110deg, #9383ff, #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+.text-white {
     color: white;
-    *{
-        color :white;
+
+    * {
+        color: white;
     }
 }
 
-button{
+button {
     color: white;
+}
+
+.multi-line-paragraph {
+    white-space: pre-line;
+}
+
+.contained{
+    width: 75%;
+    min-width: 16rem;
+    margin: 0 auto;
+}
+
+/* .icon-circle{
+    width: 40px;
+    height: 40px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+} */
+
+.text-primary-subtle{
+    color: var(--primary-400) !important;
+    *{
+        color: var(--primary-400) !important;
+
+    }
 }

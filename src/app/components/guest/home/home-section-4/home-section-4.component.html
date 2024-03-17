@@ -1,0 +1,34 @@
+<div class="px-md-5 ">
+    <div class="text-center contained">
+        <h1>Everyone deserves to own something real</h1>
+        <p>Learn from our community building wealth for themselves and their families.</p>
+    </div>
+    <div>
+        <div class="row row-cols-md-3 g-4">
+            @for (item of contentSections; track $index) {
+            <div>
+                <div class="shadow p-3 rounded-4">
+                    <p-rating [ngModel]="item.rate" [readonly]="true" [cancel]="false"></p-rating>
+                <p class="multi-line-paragraph">“{{item.review}}”</p>
+                <div class="d-flex justify-content-between w-100">
+                    <div>
+                        <p class="m-0">{{item.reviewer.name}}</p>
+                        @if(item.reviewer.ref){
+                            <a [href]="item.reviewer.ref.url">
+                                <small>{{item.reviewer.ref.title}}</small>
+                            </a>
+                        }
+                    </div>
+                        <img class="reviewer-img" [src]="item.reviewer.img" [alt]="item.reviewer.name">
+                </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+    <div class="mt-5 d-flex justify-content-center">
+        <p-button [raised]="true" [rounded]="true" styleClass="bg-secondary-subtle purple">
+            Reviews & Press
+        </p-button>
+    </div>
+</div>
