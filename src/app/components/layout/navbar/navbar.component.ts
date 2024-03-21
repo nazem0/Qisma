@@ -16,10 +16,10 @@ export class NavbarComponent {
     this.items = [
       { label: 'Staking', routerLink: 'staking' },
       { label: 'Marketplace', routerLink: 'marketplace' },
-      { label: 'About Us', routerLink: 'about-Us' },
+      { label: 'About Us', routerLink: 'about-us' },
       { label: 'Learn', routerLink: 'learn' },
       { label: 'Blog', routerLink: 'blog' },
-      { label: 'List Property', routerLink: 'list-Property' },
+      { label: 'List Property', routerLink: 'list-property' },
       { label: 'Log In', routerLink: 'login' },
       { label: 'Sign Up', routerLink: 'register'}
     ];
