@@ -1,0 +1,49 @@
+<!-- property-details.component.html -->
+<div class="property-details">
+    <header>
+        <span class="border border-2 px-3 py-1 rounded-4 border-success-subtle text-success">Active</span>
+        <h1 class="mb-0">{{ property.assetName }}</h1>
+        <span>{{ property.address }}</span>
+    </header>
+
+    <div class="property-info">
+        <div class="info-section">
+            <h2>Property Details</h2>
+            <p>{{ property.description }}</p>
+            <ul>
+                <li>Property Type: {{ property.property_type }}</li>
+                <li>Beds: {{ property.beds }}</li>
+                <li>Baths: {{ property.baths }}</li>
+                <li>Year Built: {{ property.year_built }}</li>
+                <li>Square Feet: {{ property.sqft }}</li>
+            </ul>
+        </div>
+
+        <div class="info-section">
+            <h2>Financial Details</h2>
+            <ul>
+                <li>Sale Price: ${{ property.sale_price }}</li>
+                <li>Monthly Rent: ${{ property.monthly_rent }}</li>
+                <li>Projected Annual Cash Flow: ${{ property.projected_annual_cash_flow }}</li>
+                <li>Projected Rental Yield: {{ property.projected_rental_yield }}%</li>
+                <li>Projected Annual Return: {{ property.projected_annual_return }}%</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="gallery">
+        <h2>Property Gallery</h2>
+        <div class="image-grid">
+            <img *ngFor="let image of property.images" [src]="image" alt="Property Image">
+        </div>
+    </div>
+
+    <div class="documents">
+        <h2>Documents</h2>
+        <ul>
+            <li *ngFor="let doc of property.documents">
+                <a [href]="doc.targetUrl" target="_blank">{{ doc.title }}</a>
+            </li>
+        </ul>
+    </div>
+</div>

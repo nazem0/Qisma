@@ -12,6 +12,7 @@ import { DevComponent } from './components/guest/dev/dev.component';
 import { AboutUsComponent } from './components/guest/about-us/about-us.component';
 import { HomeComponent } from './components/guest/home/home.component';
 import { MarketplaceComponent } from './components/guest/marketplace/marketplace.component';
+import { PropertyDetailsComponent } from './components/guest/property-details/property-details.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"home", pathMatch:"full"},
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: "dev", component: DevComponent, title: "Nazem" },
       {path: "home", component:HomeComponent, title:"Home" },
       {path: "marketplace", component:MarketplaceComponent, title:"Marketplace" },
+      {path: "property-details", component:PropertyDetailsComponent, title:"Property Details" },
       { path: '**', component: PageNotFoundComponent }
     ]
   }

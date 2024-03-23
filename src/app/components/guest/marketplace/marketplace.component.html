@@ -8,8 +8,8 @@
         <img class="w-25 d-md-block d-none" src="/assets/page-resources/marketplace.png" alt="">
     </div>
     <div class="row row-cols-md-4 g-3 mx-auto">
-        <div  *ngFor="let item of [].constructor(8)">
+        <a [routerLink]="['/property-details']" *ngFor="let item of [].constructor(8)">
             <app-property-card-2></app-property-card-2>
-        </div>
+        </a>
     </div>
 </div>
