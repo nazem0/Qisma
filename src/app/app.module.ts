@@ -26,6 +26,7 @@ import { TreeTableModule } from 'primeng/treetable';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuModule } from 'primeng/menu';
 import { RatingModule } from 'primeng/rating';
+import { ChartModule } from 'primeng/chart';
 
 
 import { MatStepperModule } from '@angular/material/stepper';
@@ -68,6 +69,7 @@ import { HomeSection5Component } from './components/guest/home/home-section-5/ho
 import { HomeSection6Component } from './components/guest/home/home-section-6/home-section-6.component';
 import { MarketplaceComponent } from './components/guest/marketplace/marketplace.component';
 import { PropertyCard2Component } from './components/guest/marketplace/property-card-2/property-card-2.component';
+import { PropertyDetailsComponent } from './components/guest/property-details/property-details.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +101,7 @@ import { PropertyCard2Component } from './components/guest/marketplace/property-
     FooterComponent,
     MarketplaceComponent,
     PropertyCard2Component,
+    PropertyDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -126,6 +129,7 @@ import { PropertyCard2Component } from './components/guest/marketplace/property-
     MenubarModule,
     MenuModule,
     RatingModule,
+    ChartModule,
     // Angular Material Modules
     MatStepperModule,
     MatFormFieldModule,

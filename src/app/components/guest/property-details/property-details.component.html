@@ -1,11 +1,14 @@
-<!-- property-details.component.html -->
+<div class="row row-cols-2 mx-0">
+    <!-- property-details.component.html -->
 <div class="property-details">
     <header>
         <span class="border border-2 px-3 py-1 rounded-4 border-success-subtle text-success">Active</span>
-        <h1 class="mb-0">{{ property.assetName }}</h1>
+        <h1 class="my-0">{{ property.assetName }}</h1>
         <span>{{ property.address }}</span>
     </header>
-
+    <div class="statistics">
+        <p-chart type="line" [data]="data" [options]="options"></p-chart>
+    </div>
     <div class="property-info">
         <div class="info-section">
             <h2>Property Details</h2>
@@ -46,4 +49,5 @@
             </li>
         </ul>
     </div>
+</div>
 </div>
