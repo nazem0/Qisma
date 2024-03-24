@@ -27,6 +27,9 @@ import { MenubarModule } from 'primeng/menubar';
 import { MenuModule } from 'primeng/menu';
 import { RatingModule } from 'primeng/rating';
 import { ChartModule } from 'primeng/chart';
+import { TabViewModule } from 'primeng/tabview';
+import { CarouselModule } from 'primeng/carousel';
+import { GalleriaModule } from 'primeng/galleria';
 
 
 import { MatStepperModule } from '@angular/material/stepper';
@@ -130,6 +133,9 @@ import { PropertyDetailsComponent } from './components/guest/property-details/pr
     MenuModule,
     RatingModule,
     ChartModule,
+    TabViewModule,
+    CarouselModule,
+    GalleriaModule,
     // Angular Material Modules
     MatStepperModule,
     MatFormFieldModule,

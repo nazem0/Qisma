@@ -3,22 +3,26 @@
 
 /* Set a base font size for the body */
 body {
-    font-size: clamp(1rem, 2vw, 1.2rem); /* Adjusted the maximum value to 2vw for better readability */
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    /* Adjusted the maximum value to 2vw for better readability */
 }
 
 /* Set a range for h1 font size */
 h1 {
-    font-size: clamp(2rem, 4vw, 3.6rem); /* Adjusted the maximum value to 3.6rem for better readability */
+    font-size: clamp(2rem, 4vw, 3.6rem);
+    /* Adjusted the maximum value to 3.6rem for better readability */
 }
 
 /* Set a range for h2 font size */
 h2 {
-    font-size: clamp(1.8rem, 3vw, 2.4rem); /* Adjusted the minimum and maximum values for better hierarchy and readability */
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    /* Adjusted the minimum and maximum values for better hierarchy and readability */
 }
 
 /* Set a range for paragraph font size */
 p {
-    font-size: clamp(1rem, 2vw, 1.2rem); /* Adjusted the maximum value to 2vw for better readability */
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    /* Adjusted the maximum value to 2vw for better readability */
 }
 
 
@@ -69,8 +73,18 @@ body {
     scroll-behavior: smooth;
 }
 
-body * {
-    color: #08165d;
+body {
+
+    p,
+    span,
+    h1,
+    h2,
+    h3,
+    label,
+    a,
+    small {
+        color: #08165d;
+    }
 
     /* transition: all 600ms ease; */
 }
@@ -261,14 +275,14 @@ input,
     background-image: linear-gradient(131deg, #9383ff 25%, #08165d 66%);
     -webkit-background-clip: text;
     background-clip: text;
-  }
+}
 
 .gradient-background-light {
     -webkit-text-fill-color: transparent;
     background-image: linear-gradient(110deg, #9383ff, #fff);
     -webkit-background-clip: text;
     background-clip: text;
-  }
+}
 
 .text-white {
     color: white;
@@ -286,7 +300,7 @@ button {
     white-space: pre-line;
 }
 
-.contained{
+.contained {
     width: 75%;
     min-width: 16rem;
     margin: 0 auto;
@@ -303,9 +317,10 @@ button {
     overflow: hidden;
 } */
 
-.text-primary-subtle{
+.text-primary-subtle {
     color: var(--primary-400) !important;
-    *{
+
+    * {
         color: var(--primary-400) !important;
 
     }

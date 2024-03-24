@@ -6,9 +6,39 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrl: './property-details.component.css'
 })
 export class PropertyDetailsComponent implements OnInit {
-  data: any;
-
-  options: any;
+  displayGalleria=false;
+  currentIndex = 0;
+  activeIndex = 0;
+  // data: any;
+  // options: any;
+  responsiveOptions: any[] | undefined;
+  images=[
+    "https://picsum.photos/900/700",
+    "https://picsum.photos/901/700",
+    "https://picsum.photos/900/701",
+    "https://picsum.photos/902/700",
+    "https://picsum.photos/900/702",
+  ]
+  financialDetails = {
+    financials: {
+      unitPrice: 1000,
+      maintenanceCost: {
+        amount: 200,
+        percentage: 5,
+      },
+      adminFees: 50,
+      numberOfShares: 100,
+      pricePerShare: 10,
+    },
+    paymentPlan: {
+      downpayment: 5000,
+      monthlyInstallment: 200,
+      numberOfYears: 5,
+      maintenanceInstallment: 100,
+      deliveryInstallment: 1000,
+    },
+    projectedAnnualReturn: 0.08, // 8%
+  };
   property = {
 
     "assetName": "Beautiful House on Maple Street",
@@ -45,66 +75,76 @@ export class PropertyDetailsComponent implements OnInit {
     ]
   }
   ngOnInit(): void {
-    this.initChart();
-
-  }
-  initChart() {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue('--text-color');
-    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
-    this.data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [
-        {
-          label: 'First Dataset',
-          data: [65, 59, 80, 81, 56, 55, 40],
-          fill: false,
-          borderColor: documentStyle.getPropertyValue('--blue-500'),
-          tension: 0.4
-        },
-        {
-          label: 'Second Dataset',
-          data: [28, 48, 40, 19, 86, 27, 90],
-          fill: false,
-          borderColor: documentStyle.getPropertyValue('--pink-500'),
-          tension: 0.4
-        }
-      ]
-    };
-
-    this.options = {
-      maintainAspectRatio: false,
-      aspectRatio: 1,
-      plugins: {
-        legend: {
-          labels: {
-            color: textColor
-          }
-        }
+    // this.initChart();
+    
+    this.responsiveOptions = [
+      {
+          breakpoint: '1400px',
+          numVisible: 3,
+          numScroll: 3
       },
-      scales: {
-        x: {
-          ticks: {
-            color: textColorSecondary
-          },
-          grid: {
-            color: surfaceBorder,
-            drawBorder: false
-          }
-        },
-        y: {
-          ticks: {
-            color: textColorSecondary
-          },
-          grid: {
-            color: surfaceBorder,
-            drawBorder: false
-          }
-        }
+      {
+          breakpoint: '1220px',
+          numVisible: 2,
+          numScroll: 2
+      },
+      {
+          breakpoint: '1100px',
+          numVisible: 1,
+          numScroll: 1
       }
-    };
+  ];
   }
+  // initChart() {
+  //   const documentStyle = getComputedStyle(document.documentElement);
+  //   const textColor = documentStyle.getPropertyValue('--text-color');
+  //   const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+  //   const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+
+  //   this.data = {
+  //     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  //     datasets: [
+  //       {
+  //         label: 'Price Per Token',
+  //         data: [65, 59, 80, 81, 56, 55, 40],
+  //         fill: false,
+  //         borderColor: documentStyle.getPropertyValue('--primary-600'),
+  //         tension: 0
+  //       }
+  //     ]
+  //   };
+
+  //   this.options = {
+  //     maintainAspectRatio: false,
+  //     aspectRatio: 1,
+  //     plugins: {
+  //       legend: {
+  //         labels: {
+  //           color: textColor
+  //         }
+  //       }
+  //     },
+  //     scales: {
+  //       x: {
+  //         ticks: {
+  //           color: textColorSecondary
+  //         },
+  //         grid: {
+  //           color: surfaceBorder,
+  //           drawBorder: false
+  //         }
+  //       },
+  //       y: {
+  //         ticks: {
+  //           color: textColorSecondary
+  //         },
+  //         grid: {
+  //           color: surfaceBorder,
+  //           drawBorder: false
+  //         }
+  //       }
+  //     }
+  //   };
+  // }
 }
 
