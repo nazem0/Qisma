@@ -135,5 +135,49 @@
                 </div>
             </p-tabPanel>
         </p-tabView>
+        <div class="rounded-4 shadow px-5 py-3">
+            <h5>Projected returns per token</h5>
+            <div>
+                <div class="d-flex justify-content-between">
+                    <p>Tokens Purchased</p>
+                    <p>
+                        <span>{{estimationData.tokensPurchased}}</span>
+                        /
+                        <span>{{(financialDetails.financials.pricePerShare * estimationData.tokensPurchased)|currency}}</span>
+                    </p>
+                </div>
+                <p-slider [(ngModel)]="estimationData.tokensPurchased"  (ngModelChange)="initChart()"  [min]="1" [max]="financialDetails.financials.numberOfShares"></p-slider>
+                <div class="d-flex justify-content-between">
+                    <p>1</p>
+                    <p>{{financialDetails.financials.numberOfShares}}</p>
+                </div>
+            </div>
+            <div>
+                <div class="d-flex justify-content-between">
+                    <p>Rental Yield</p>
+                    <p>{{estimationData.appreciation}}%</p>
+                </div>
+                <p-slider [(ngModel)]="estimationData.appreciation"  (ngModelChange)="initChart()"  [min]="1" [max]="100"></p-slider>
+                <div class="d-flex justify-content-between">
+                    <p>1</p>
+                    <p>100</p>
+                </div>
+            </div>
+            <div>
+                <div class="d-flex justify-content-between">
+                    <p>Rental Yield</p>
+                    <p>{{estimationData.rentalYield}}%</p>
+                </div>
+                <p-slider [(ngModel)]="estimationData.rentalYield"  (ngModelChange)="initChart()"  [min]="1" [max]="100"></p-slider>
+                <div class="d-flex justify-content-between">
+                    <p>1</p>
+                    <p>100</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h5>Est. Investment Value over time based on above assumptions</h5>
+            <p-chart type="bar" [data]="chart.data" [options]="chart.options"></p-chart>
+        </div>
     </div>
 </div>

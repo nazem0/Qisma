@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Helper } from '../../../services/helper';
+import { UIChart } from 'primeng/chart';
 
 @Component({
   selector: 'app-property-details',
@@ -6,13 +8,27 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrl: './property-details.component.css'
 })
 export class PropertyDetailsComponent implements OnInit {
-  displayGalleria=false;
+  constructor(private cdr: ChangeDetectorRef) { }
+  @ViewChild("chartElement") chartElement!: UIChart;
+  chart: {
+    data: any,
+    options: any
+  } = {
+      data: undefined,
+      options: undefined
+    }
+  estimationData = {
+    tokensPurchased:1,
+    rentalYield:1,
+    appreciation:1,
+  }
+  displayGalleria = false;
   currentIndex = 0;
   activeIndex = 0;
   // data: any;
   // options: any;
   responsiveOptions: any[] | undefined;
-  images=[
+  images = [
     "https://picsum.photos/900/700",
     "https://picsum.photos/901/700",
     "https://picsum.photos/900/701",
@@ -27,7 +43,7 @@ export class PropertyDetailsComponent implements OnInit {
         percentage: 5,
       },
       adminFees: 50,
-      numberOfShares: 100,
+      numberOfShares: 30,
       pricePerShare: 10,
     },
     paymentPlan: {
@@ -75,25 +91,26 @@ export class PropertyDetailsComponent implements OnInit {
     ]
   }
   ngOnInit(): void {
-    // this.initChart();
-    
+
+
     this.responsiveOptions = [
       {
-          breakpoint: '1400px',
-          numVisible: 3,
-          numScroll: 3
+        breakpoint: '1400px',
+        numVisible: 3,
+        numScroll: 3
       },
       {
-          breakpoint: '1220px',
-          numVisible: 2,
-          numScroll: 2
+        breakpoint: '1220px',
+        numVisible: 2,
+        numScroll: 2
       },
       {
-          breakpoint: '1100px',
-          numVisible: 1,
-          numScroll: 1
+        breakpoint: '1100px',
+        numVisible: 1,
+        numScroll: 1
       }
-  ];
+    ];
+        this.initChart();
   }
   // initChart() {
   //   const documentStyle = getComputedStyle(document.documentElement);
@@ -146,5 +163,77 @@ export class PropertyDetailsComponent implements OnInit {
   //     }
   //   };
   // }
+
+
+  initChart() {
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
+    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+
+    this.chart.data = {
+      labels: Helper.ascendingNumbersArray({ n: 30, step: 1 }),
+      datasets: [
+        {
+          type: 'bar',
+          label: 'Rental Yield',
+          backgroundColor: documentStyle.getPropertyValue('--blue-300'),
+          data: Helper.randomNumbersArray()
+        },
+        {
+          type: 'bar',
+          label: 'Appreciation',
+          backgroundColor: documentStyle.getPropertyValue('--blue-500'),
+          data: Helper.randomNumbersArray()
+        },
+        {
+          type: 'bar',
+          label: 'Your Investment',
+          backgroundColor: documentStyle.getPropertyValue('--green-300'),
+          data: Helper.ascendingNumbersArray({ fixedNumber: this.estimationData.tokensPurchased * this.financialDetails.financials.pricePerShare })
+        }
+      ]
+    };
+
+    this.chart.options = {
+      maintainAspectRatio: false,
+      aspectRatio: 0.8,
+      plugins: {
+        tooltip: {
+          mode: 'index',
+          intersect: false
+        },
+        legend: {
+          labels: {
+            color: textColor,
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          ticks: {
+            color: textColorSecondary
+          },
+          grid: {
+            color: surfaceBorder,
+            drawBorder: false
+          }
+        },
+        y: {
+          stacked: true,
+          ticks: {
+            color: textColorSecondary
+          },
+          grid: {
+            color: surfaceBorder,
+            drawBorder: false
+          }
+        }
+      }
+    };
+  }
+
 }
+
 

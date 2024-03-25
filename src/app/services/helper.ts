@@ -4,13 +4,13 @@ import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
 @Injectable()
 export class Helper {
-    constructor(private dialog:DialogService){}
+    constructor(private dialog: DialogService) { }
     public static onFileUpload(file: File, formControl: FormControl | AbstractControl): void {
         formControl.setValue(file);
     }
 
-    public static processFileUrl(fileUrl?:string|null){
-        return fileUrl? `${environment.staticFiles}/${fileUrl}` : "";
+    public static processFileUrl(fileUrl?: string | null) {
+        return fileUrl ? `${environment.staticFiles}/${fileUrl}` : "";
     }
 
     public static readonly passwordRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
@@ -45,13 +45,31 @@ export class Helper {
         return Math.abs(ageDate.getUTCFullYear() - 1970) >= 16;
     }
 
-    public openImagePreview(image: string,external:boolean=false) {
-        this.dialog.open("Image Preview", [], external?Helper.processFileUrl(image):image)
+    public openImagePreview(image: string, external: boolean = false) {
+        this.dialog.open("Image Preview", [], external ? Helper.processFileUrl(image) : image)
     }
 
     public static handleChange(event: Event) {
         const target = event.target as HTMLInputElement;
         const value = target.value;
         return value;
-      }
+    }
+    public static ascendingNumbersArray(param:ascendingNumbersArrayParams) {
+        let array: number[] = [];
+        for (let i = 0; i < (param.n??30); i++) {
+            array.push(param.fixedNumber ?? (i + (param.step??1)));
+        }
+        return array;
+    }
+
+    public static randomNumbersArray(n = 30) {
+        let array: number[] = [];
+        for (let i = 0; i < n; i++) {
+            array.push(Math.random() * 100);
+        }
+        return array;
+    }
 }
+
+interface ascendingNumbersArrayParams {n?:number, fixedNumber?:number, step?:number} 
+

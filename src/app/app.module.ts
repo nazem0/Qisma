@@ -30,6 +30,7 @@ import { ChartModule } from 'primeng/chart';
 import { TabViewModule } from 'primeng/tabview';
 import { CarouselModule } from 'primeng/carousel';
 import { GalleriaModule } from 'primeng/galleria';
+import { SliderModule } from 'primeng/slider';
 
 
 import { MatStepperModule } from '@angular/material/stepper';
@@ -136,6 +137,7 @@ import { PropertyDetailsComponent } from './components/guest/property-details/pr
     TabViewModule,
     CarouselModule,
     GalleriaModule,
+    SliderModule,
     // Angular Material Modules
     MatStepperModule,
     MatFormFieldModule,
