@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Helper } from '../../../../services/helper';
+import { PropertyViewModelInListViewForUser } from './../../../../api/models/property-view-model-in-list-view-for-user';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-property-card-2',
@@ -6,14 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './property-card-2.component.css'
 })
 export class PropertyCard2Component {
-  property: { address: string, city: string, estimatedAnnualReturn: number,estimatedRentalYield:number, image: string };
-  constructor() {
-    this.property = {
-      image: "/assets/page-resources/dummy-property.webp",
-      address: "621 E Le Claire Rd",
-      city: "Eldridge, IA 52748",
-      estimatedAnnualReturn: 8.6,
-      estimatedRentalYield:6.0
-    }
-  }
+  @Input() property!: PropertyViewModelInListViewForUser;
+  helper=Helper
 }

@@ -1,0 +1,222 @@
+/* tslint:disable */
+/* eslint-disable */
+import { HttpClient, HttpContext } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { BaseService } from '../base-service';
+import { ApiConfiguration } from '../api-configuration';
+import { StrictHttpResponse } from '../strict-http-response';
+
+import { apiDashboardFacilityAddPost$Json } from '../fn/property-for-admin/api-dashboard-facility-add-post-json';
+import { ApiDashboardFacilityAddPost$Json$Params } from '../fn/property-for-admin/api-dashboard-facility-add-post-json';
+import { apiDashboardFacilityAddPost$Plain } from '../fn/property-for-admin/api-dashboard-facility-add-post-plain';
+import { ApiDashboardFacilityAddPost$Plain$Params } from '../fn/property-for-admin/api-dashboard-facility-add-post-plain';
+import { apiDashboardPropertyAddPost$Json } from '../fn/property-for-admin/api-dashboard-property-add-post-json';
+import { ApiDashboardPropertyAddPost$Json$Params } from '../fn/property-for-admin/api-dashboard-property-add-post-json';
+import { apiDashboardPropertyAddPost$Plain } from '../fn/property-for-admin/api-dashboard-property-add-post-plain';
+import { ApiDashboardPropertyAddPost$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-add-post-plain';
+import { apiDashboardPropertyImagesAddPost$Json } from '../fn/property-for-admin/api-dashboard-property-images-add-post-json';
+import { ApiDashboardPropertyImagesAddPost$Json$Params } from '../fn/property-for-admin/api-dashboard-property-images-add-post-json';
+import { apiDashboardPropertyImagesAddPost$Plain } from '../fn/property-for-admin/api-dashboard-property-images-add-post-plain';
+import { ApiDashboardPropertyImagesAddPost$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-images-add-post-plain';
+import { Int32ApiResult } from '../models/int-32-api-result';
+import { StringApiResult } from '../models/string-api-result';
+
+@Injectable({ providedIn: 'root' })
+export class PropertyForAdminService extends BaseService {
+  constructor(config: ApiConfiguration, http: HttpClient) {
+    super(config, http);
+  }
+
+  /** Path part for operation `apiDashboardPropertyAddPost()` */
+  static readonly ApiDashboardPropertyAddPostPath = '/api/Dashboard/Property/Add';
+
+  /**
+   * Add new property ==> Type 1- resedintial 2- commercial.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyAddPost$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiDashboardPropertyAddPost$Plain$Response(params?: ApiDashboardPropertyAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<Int32ApiResult>> {
+    return apiDashboardPropertyAddPost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Add new property ==> Type 1- resedintial 2- commercial.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyAddPost$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiDashboardPropertyAddPost$Plain(params?: ApiDashboardPropertyAddPost$Plain$Params, context?: HttpContext): Observable<Int32ApiResult> {
+    return this.apiDashboardPropertyAddPost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Int32ApiResult>): Int32ApiResult => r.body)
+    );
+  }
+
+  /**
+   * Add new property ==> Type 1- resedintial 2- commercial.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyAddPost$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiDashboardPropertyAddPost$Json$Response(params?: ApiDashboardPropertyAddPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<Int32ApiResult>> {
+    return apiDashboardPropertyAddPost$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Add new property ==> Type 1- resedintial 2- commercial.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyAddPost$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiDashboardPropertyAddPost$Json(params?: ApiDashboardPropertyAddPost$Json$Params, context?: HttpContext): Observable<Int32ApiResult> {
+    return this.apiDashboardPropertyAddPost$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Int32ApiResult>): Int32ApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiDashboardFacilityAddPost()` */
+  static readonly ApiDashboardFacilityAddPostPath = '/api/Dashboard/Facility/Add';
+
+  /**
+   * Add new facility.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardFacilityAddPost$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardFacilityAddPost$Plain$Response(params: ApiDashboardFacilityAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardFacilityAddPost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Add new facility.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardFacilityAddPost$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardFacilityAddPost$Plain(params: ApiDashboardFacilityAddPost$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardFacilityAddPost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /**
+   * Add new facility.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardFacilityAddPost$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardFacilityAddPost$Json$Response(params: ApiDashboardFacilityAddPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardFacilityAddPost$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Add new facility.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardFacilityAddPost$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardFacilityAddPost$Json(params: ApiDashboardFacilityAddPost$Json$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardFacilityAddPost$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiDashboardPropertyImagesAddPost()` */
+  static readonly ApiDashboardPropertyImagesAddPostPath = '/api/Dashboard/PropertyImages/Add';
+
+  /**
+   * Add property images.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyImagesAddPost$Plain()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiDashboardPropertyImagesAddPost$Plain$Response(params?: ApiDashboardPropertyImagesAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardPropertyImagesAddPost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Add property images.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyImagesAddPost$Plain$Response()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiDashboardPropertyImagesAddPost$Plain(params?: ApiDashboardPropertyImagesAddPost$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardPropertyImagesAddPost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /**
+   * Add property images.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyImagesAddPost$Json()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiDashboardPropertyImagesAddPost$Json$Response(params?: ApiDashboardPropertyImagesAddPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardPropertyImagesAddPost$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Add property images.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyImagesAddPost$Json$Response()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiDashboardPropertyImagesAddPost$Json(params?: ApiDashboardPropertyImagesAddPost$Json$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardPropertyImagesAddPost$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+}

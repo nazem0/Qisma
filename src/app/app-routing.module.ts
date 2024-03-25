@@ -27,7 +27,7 @@ const routes: Routes = [
       { path: "dev", component: DevComponent, title: "Nazem" },
       {path: "home", component:HomeComponent, title:"Home" },
       {path: "marketplace", component:MarketplaceComponent, title:"Marketplace" },
-      {path: "property-details", component:PropertyDetailsComponent, title:"Property Details" },
+      {path: "property-details/:id", component:PropertyDetailsComponent, title:"Property Details" },
       { path: '**', component: PageNotFoundComponent }
     ]
   }

@@ -3,7 +3,7 @@
         <div class="img-container">
             <div class="position-absolute badge badge-top text-white"><span>Featured</span></div>
             <div class="position-absolute badge badge-bottom"><small class="mat-small">New Listing</small></div>
-            <img class="w-100" [src]="property.image" [alt]="property.address">
+            <img class="w-100" [src]="helper.processFileUrl(property.imageUrl)" [alt]="property.address">
         </div>
         <div class="p-3">
             <div class="d-flex flex-column">
@@ -11,11 +11,11 @@
                 <small class="mat-small text-muted">{{property.city}}</small>
             </div>
             <div class="d-flex gap-2 text-primary-subtle">
-                <small class="fw-semibold">{{property.estimatedRentalYield.toFixed(1)}}%</small>
+                <small class="fw-semibold">{{property.projectedRentalYield?.toFixed(1)}}%</small>
                 <small class="mat-small fw-semibold">Projected Rental Yield</small>
             </div>
             <div class="d-flex gap-2">
-                <small class="fw-semibold">{{property.estimatedAnnualReturn.toFixed(1)}}%</small>
+                <small class="fw-semibold">{{property.projectedAnnualReturn?.toFixed(1)}}%</small>
                 <small class="mat-small">Projected Annual Return</small>
             </div>
         </div>

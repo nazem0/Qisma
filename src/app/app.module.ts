@@ -38,6 +38,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogTitle, MatDialogContent, } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 import { RegisterComponent } from './components/guest/register/register.component';
@@ -74,6 +75,8 @@ import { HomeSection6Component } from './components/guest/home/home-section-6/ho
 import { MarketplaceComponent } from './components/guest/marketplace/marketplace.component';
 import { PropertyCard2Component } from './components/guest/marketplace/property-card-2/property-card-2.component';
 import { PropertyDetailsComponent } from './components/guest/property-details/property-details.component';
+import { ApiModule } from './api/api.module';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -145,8 +148,13 @@ import { PropertyDetailsComponent } from './components/guest/property-details/pr
     MatDialogTitle,
     MatDialogContent,
     MatSnackBarModule,
+    ScrollingModule,
     // for HttpClient use:
     LoadingBarHttpClientModule,
+    // Api Module,
+    ApiModule.forRoot({
+      rootUrl: environment.api,
+    }),
   ],
   providers: [
     provideAnimationsAsync(),
