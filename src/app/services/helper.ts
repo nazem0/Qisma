@@ -54,22 +54,31 @@ export class Helper {
         const value = target.value;
         return value;
     }
-    public static ascendingNumbersArray(param:ascendingNumbersArrayParams) {
-        let array: number[] = [];
-        for (let i = 0; i < (param.n??30); i++) {
-            array.push(param.fixedNumber ?? (i + (param.step??1)));
+    public static ascendingNumbersArray(param: ascendingNumbersArrayParams) {
+        let array: number[] = new Array(param.n ?? 30)
+        for (let i = 0; i < (param.n ?? 30); i++) {
+            array[i] = (param.fixedNumber ?? (i + (param.step ?? 1)));
         }
         return array;
     }
 
     public static randomNumbersArray(n = 30) {
-        let array: number[] = [];
+        let array: number[] = new Array(n)
         for (let i = 0; i < n; i++) {
-            array.push(Math.random() * 100);
+            array[i] = (Math.random() * 100);
+        }
+        return array;
+    }
+
+    public static increasingArray(n = 30, start = 0, step = 0) {
+        let array: number[] = new Array(n)
+        for (let i = 0; i < n; i++) {
+            array[i] = start + (i ? step : 0)
+            start+=step;
         }
         return array;
     }
 }
 
-interface ascendingNumbersArrayParams {n?:number, fixedNumber?:number, step?:number} 
+interface ascendingNumbersArrayParams { n?: number, fixedNumber?: number, step?: number }
 

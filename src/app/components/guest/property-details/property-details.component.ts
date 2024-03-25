@@ -18,9 +18,9 @@ export class PropertyDetailsComponent implements OnInit {
       options: undefined
     }
   estimationData = {
-    tokensPurchased:1,
-    rentalYield:1,
-    appreciation:1,
+    tokensPurchased: 1,
+    rentalYield: 1,
+    appreciation: 1,
   }
   displayGalleria = false;
   currentIndex = 0;
@@ -110,7 +110,7 @@ export class PropertyDetailsComponent implements OnInit {
         numScroll: 1
       }
     ];
-        this.initChart();
+    this.initChart();
   }
   // initChart() {
   //   const documentStyle = getComputedStyle(document.documentElement);
@@ -170,7 +170,9 @@ export class PropertyDetailsComponent implements OnInit {
     const textColor = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
+    let rental = (this.estimationData.rentalYield * 0.01) * this.financialDetails.financials.pricePerShare;
+    let appreciation = (this.estimationData.appreciation * 0.01) * this.financialDetails.financials.pricePerShare;
+    let tokensPurchased = this.estimationData.tokensPurchased * this.financialDetails.financials.pricePerShare;
     this.chart.data = {
       labels: Helper.ascendingNumbersArray({ n: 30, step: 1 }),
       datasets: [
@@ -178,19 +180,19 @@ export class PropertyDetailsComponent implements OnInit {
           type: 'bar',
           label: 'Rental Yield',
           backgroundColor: documentStyle.getPropertyValue('--blue-300'),
-          data: Helper.randomNumbersArray()
+          data: Helper.increasingArray(30, rental, rental)
         },
         {
           type: 'bar',
           label: 'Appreciation',
           backgroundColor: documentStyle.getPropertyValue('--blue-500'),
-          data: Helper.randomNumbersArray()
+          data: Helper.increasingArray(30, appreciation, appreciation)
         },
         {
           type: 'bar',
           label: 'Your Investment',
           backgroundColor: documentStyle.getPropertyValue('--green-300'),
-          data: Helper.ascendingNumbersArray({ fixedNumber: this.estimationData.tokensPurchased * this.financialDetails.financials.pricePerShare })
+          data: Helper.ascendingNumbersArray({ fixedNumber:  tokensPurchased})
         }
       ]
     };
