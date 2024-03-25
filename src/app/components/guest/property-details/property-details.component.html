@@ -14,170 +14,176 @@
         </ng-template>
     </p-galleria>
 </div>
-<div class="row row-cols-2 mx-0">
-    <div class="property-details">
-        <header class="my-5">
-            <span class="border border-2 px-3 py-1 rounded-4 border-success-subtle text-success">Active</span>
-            <h2 class="mb-0">{{ property.assetName }}</h2>
-            <span>{{ property.address }}</span>
-        </header>
-        <p-tabView [(activeIndex)]="activeIndex">
-            <p-tabPanel header="Details">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-            </p-tabPanel>
-            <p-tabPanel header="Financials">
-                <div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="field">
-                                <label>Unit Price:</label>
-                                <span>
-                                    {{ financialDetails.financials.unitPrice | currency }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Maintenance Cost:</label>
-                                <span>
-                                    {{
-                                    financialDetails.financials.maintenanceCost.amount
-                                    | currency
-                                    }}
-                                    +
-                                    {{
-                                    financialDetails.financials.maintenanceCost.percentage
-                                    }}%</span>
-                            </div>
-                            <div class="field">
-                                <label>Admin Fees:</label>
-                                <span>
-                                    {{ financialDetails.financials.adminFees | currency }}</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="field">
-                                <label>Number of Shares:</label>
-                                <span> {{ financialDetails.financials.numberOfShares }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Price per Share:</label>
-                                <span>
-                                    {{
-                                    financialDetails.financials.pricePerShare | currency
-                                    }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="financial-section">
-                    <h3>Payment Plan</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="field">
-                                <label>Downpayment:</label>
-                                <span>
-                                    {{
-                                    financialDetails.paymentPlan.downpayment | currency
-                                    }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Monthly Installment:</label>
-                                <span>
-                                    {{
-                                    financialDetails.paymentPlan.monthlyInstallment | currency
-                                    }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Number of Years:</label>
-                                <span> {{ financialDetails.paymentPlan.numberOfYears }}</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="field">
-                                <label>Maintenance Installment:</label>
-                                <span>
-                                    {{
-                                    financialDetails.paymentPlan.maintenanceInstallment
-                                    | currency
-                                    }}</span>
-                            </div>
-                            <div class="field">
-                                <label>Delivery Installment:</label>
-                                <span>
-                                    {{
-                                    financialDetails.paymentPlan.deliveryInstallment | currency
-                                    }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="financial-section">
-                    <h3>Projected Annual Return</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="field">
-                                <label>Projected Annual Return:</label>
-                                <span>
-                                    {{
-                                    financialDetails.projectedAnnualReturn | percent : "1.2-2"
-                                    }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </p-tabPanel>
-        </p-tabView>
-        <div class="rounded-4 shadow px-5 py-3">
-            <h5>Projected returns per token</h5>
-            <div>
-                <div class="d-flex justify-content-between">
-                    <p>Tokens Purchased</p>
+<div class="container-lg">
+    <div class="row row-cols-lg-2 mx-0">
+        <div class="property-details">
+            <header class="my-5">
+                <span class="border border-2 px-3 py-1 rounded-4 border-success-subtle text-success">Active</span>
+                <h2 class="mb-0 mt-3">{{ property.assetName }}</h2>
+                <span>{{ property.address }}</span>
+            </header>
+            <p-tabView [(activeIndex)]="activeIndex">
+                <p-tabPanel header="Details">
                     <p>
-                        <span>{{estimationData.tokensPurchased}}</span>
-                        /
-                        <span>{{(financialDetails.financials.pricePerShare * estimationData.tokensPurchased)|currency}}</span>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                        minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat. Duis aute irure dolor in
+                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                        culpa qui officia deserunt mollit anim id est laborum.
                     </p>
+                </p-tabPanel>
+                <p-tabPanel header="Financials">
+                    <div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="field">
+                                    <label>Unit Price:</label>
+                                    <span>
+                                        {{ financialDetails.financials.unitPrice | currency }}</span>
+                                </div>
+                                <div class="field">
+                                    <label>Maintenance Cost:</label>
+                                    <span>
+                                        {{
+                                        financialDetails.financials.maintenanceCost.amount
+                                        | currency
+                                        }}
+                                        +
+                                        {{
+                                        financialDetails.financials.maintenanceCost.percentage
+                                        }}%</span>
+                                </div>
+                                <div class="field">
+                                    <label>Admin Fees:</label>
+                                    <span>
+                                        {{ financialDetails.financials.adminFees | currency }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="field">
+                                    <label>Number of Shares:</label>
+                                    <span> {{ financialDetails.financials.numberOfShares }}</span>
+                                </div>
+                                <div class="field">
+                                    <label>Price per Share:</label>
+                                    <span>
+                                        {{
+                                        financialDetails.financials.pricePerShare | currency
+                                        }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="financial-section">
+                        <h3>Payment Plan</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="field">
+                                    <label>Downpayment:</label>
+                                    <span>
+                                        {{
+                                        financialDetails.paymentPlan.downpayment | currency
+                                        }}</span>
+                                </div>
+                                <div class="field">
+                                    <label>Monthly Installment:</label>
+                                    <span>
+                                        {{
+                                        financialDetails.paymentPlan.monthlyInstallment | currency
+                                        }}</span>
+                                </div>
+                                <div class="field">
+                                    <label>Number of Years:</label>
+                                    <span> {{ financialDetails.paymentPlan.numberOfYears }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="field">
+                                    <label>Maintenance Installment:</label>
+                                    <span>
+                                        {{
+                                        financialDetails.paymentPlan.maintenanceInstallment
+                                        | currency
+                                        }}</span>
+                                </div>
+                                <div class="field">
+                                    <label>Delivery Installment:</label>
+                                    <span>
+                                        {{
+                                        financialDetails.paymentPlan.deliveryInstallment | currency
+                                        }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="financial-section">
+                        <h3>Projected Annual Return</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="field">
+                                    <label>Projected Annual Return:</label>
+                                    <span>
+                                        {{
+                                        financialDetails.projectedAnnualReturn | percent : "1.2-2"
+                                        }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p-tabPanel>
+            </p-tabView>
+            <div class="rounded-4 shadow px-5 py-3">
+                <h5>Projected returns per token</h5>
+                <div>
+                    <div class="d-flex justify-content-between">
+                        <p>Tokens Purchased</p>
+                        <p>
+                            <span>{{estimationData.tokensPurchased}}</span>
+                            /
+                            <span>{{(financialDetails.financials.pricePerShare *
+                                estimationData.tokensPurchased)|currency}}</span>
+                        </p>
+                    </div>
+                    <p-slider [(ngModel)]="estimationData.tokensPurchased" (ngModelChange)="initChart()" [min]="1"
+                        [max]="financialDetails.financials.numberOfShares"></p-slider>
+                    <div class="d-flex justify-content-between">
+                        <p>1</p>
+                        <p>{{financialDetails.financials.numberOfShares}}</p>
+                    </div>
                 </div>
-                <p-slider [(ngModel)]="estimationData.tokensPurchased"  (ngModelChange)="initChart()"  [min]="1" [max]="financialDetails.financials.numberOfShares"></p-slider>
-                <div class="d-flex justify-content-between">
-                    <p>1</p>
-                    <p>{{financialDetails.financials.numberOfShares}}</p>
+                <div>
+                    <div class="d-flex justify-content-between">
+                        <p>Appreciation</p>
+                        <p>{{estimationData.appreciation}}%</p>
+                    </div>
+                    <p-slider [(ngModel)]="estimationData.appreciation" (ngModelChange)="initChart()" [min]="1"
+                        [max]="100"></p-slider>
+                    <div class="d-flex justify-content-between">
+                        <p>1</p>
+                        <p>100</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex justify-content-between">
+                        <p>Rental Yield</p>
+                        <p>{{estimationData.rentalYield}}%</p>
+                    </div>
+                    <p-slider [(ngModel)]="estimationData.rentalYield" (ngModelChange)="initChart()" [min]="1"
+                        [max]="100"></p-slider>
+                    <div class="d-flex justify-content-between">
+                        <p>1</p>
+                        <p>100</p>
+                    </div>
                 </div>
             </div>
             <div>
-                <div class="d-flex justify-content-between">
-                    <p>Appreciation</p>
-                    <p>{{estimationData.appreciation}}%</p>
-                </div>
-                <p-slider [(ngModel)]="estimationData.appreciation"  (ngModelChange)="initChart()"  [min]="1" [max]="100"></p-slider>
-                <div class="d-flex justify-content-between">
-                    <p>1</p>
-                    <p>100</p>
-                </div>
+                <h5>Est. Investment Value over time based on above assumptions</h5>
+                <p-chart type="bar" [data]="chart.data" [options]="chart.options"></p-chart>
             </div>
-            <div>
-                <div class="d-flex justify-content-between">
-                    <p>Rental Yield</p>
-                    <p>{{estimationData.rentalYield}}%</p>
-                </div>
-                <p-slider [(ngModel)]="estimationData.rentalYield"  (ngModelChange)="initChart()"  [min]="1" [max]="100"></p-slider>
-                <div class="d-flex justify-content-between">
-                    <p>1</p>
-                    <p>100</p>
-                </div>
-            </div>
-        </div>
-        <div>
-            <h5>Est. Investment Value over time based on above assumptions</h5>
-            <p-chart type="bar" [data]="chart.data" [options]="chart.options"></p-chart>
         </div>
     </div>
 </div>
