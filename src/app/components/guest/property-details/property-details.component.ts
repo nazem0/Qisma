@@ -203,7 +203,8 @@ export class PropertyDetailsComponent implements OnInit {
       plugins: {
         tooltip: {
           mode: 'index',
-          intersect: false
+          intersect: false,
+          
         },
         legend: {
           labels: {
@@ -225,7 +226,10 @@ export class PropertyDetailsComponent implements OnInit {
         y: {
           stacked: true,
           ticks: {
-            color: textColorSecondary
+            color: textColorSecondary,
+            callback: function(value:number) {
+              return '$' + value;
+            }
           },
           grid: {
             color: surfaceBorder,
