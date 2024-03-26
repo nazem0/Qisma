@@ -64,16 +64,13 @@ body::before {
 }
 
 body {
-
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     background-color: #F3F2FF;
     overflow-x: hidden;
     scroll-behavior: smooth;
-}
-
-body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 
     p,
     span,
@@ -88,8 +85,9 @@ body {
     small {
         color: #08165d;
     }
-
-    /* transition: all 600ms ease; */
+    *{
+        box-sizing: border-box;
+    }
 }
 
 .bg-none {
@@ -115,11 +113,6 @@ body {
 html,
 body {
     height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .p-fileupload .p-fileupload-buttonbar {

@@ -7,11 +7,23 @@
         </div>
         <img class="w-25 d-md-block d-none" src="/assets/page-resources/marketplace.png" alt="">
     </div>
-    <div class="filters row gap-2">
+    <div class="filters row justify-content-center">
+        <div class="col">
+            <small class="mat-small d-block mt-1 mb-3">Location</small>
+            <div>
+                <p-dropdown placeholder="All Markets" styleClass="w-100"></p-dropdown>
+            </div>
+        </div>
+        <div class="col">
+            <small class="mat-small d-block mt-1 mb-3">Property type</small>
+            <div>
+                <p-dropdown placeholder="All Properties" styleClass="w-100"></p-dropdown>
+            </div>
+        </div>
         <div class="col">
             <small class="mat-small">Projected Rental Yield</small>
-            <div class="py-2 px-4 border border-1 rounded-3">
-                <p class="my-1 text-end mat-small">current Value</p>
+            <div>
+                <p class="mb-1 text-end mat-small">current Value</p>
 
                 <p-slider [animate]="true"></p-slider>
                 <div class="mt-1 d-flex justify-content-between">
@@ -22,8 +34,8 @@
         </div>
         <div class="col">
             <small class="mat-small">Projected Annual Return</small>
-            <div class="py-2 px-4 border border-1 rounded-3">
-                <p class="my-1 text-end mat-small">current Value</p>
+            <div>
+                <p class="mb-1 text-end mat-small">current Value</p>
                 <p-slider [animate]="true"></p-slider>
                 <div class="mt-1 d-flex justify-content-between">
                     <span class="mat-small">min</span>
