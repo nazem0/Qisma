@@ -12,6 +12,7 @@ export class MarketplaceComponent implements OnInit {
   governorates: GovernorateAndCityViewModel[] = [];
   cities: GovernorateAndCityViewModel[] = [];
   properties: PropertyViewModelInListViewForUser[] = [];
+  math=Math;
   propertyTypes = [
     {
       id: 1,
@@ -22,16 +23,20 @@ export class MarketplaceComponent implements OnInit {
       name: "Commercial",
     }
   ]
-  filters?: {
+  filters: {
     propertyType?: number,
     governorateId?: number,
+    propertyPriceRange:number[]
+    sharePriceRange:number[]
+  }={
+    propertyPriceRange : [1*Math.pow(10,6),100*Math.pow(10,6)],
+    sharePriceRange:[500*Math.pow(10,3),20000*Math.pow(10,6)]
   }
   selectedGov?: GovernorateAndCityViewModel
   constructor(
     private propertyService: PropertyService,
     private governorateAndCityService: GovernorateAndCityService
   ) { }
-  public math = Math;
   pagination = {
     index: 0,
     size: 9,
