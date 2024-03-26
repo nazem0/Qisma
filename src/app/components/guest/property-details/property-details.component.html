@@ -15,7 +15,7 @@
     </p-galleria>
 </div>
 <div class="container-lg">
-    <div class="row flex-wrap-reverse mx-0">
+    <div class="row flex-wrap-reverse mx-0 position-relative">
         <div class="property-details col-lg-8 col-12">
             <header class="my-5">
                 <span class="border border-2 px-3 py-1 rounded-4 border-success-subtle text-success">Active</span>
@@ -189,45 +189,47 @@
             </div>
         </div>
         <div class="col-lg-4 col-12">
-            <div class="d-flex justify-content-between align-items-center w-100">
-                <span class="fs-3 fw-bold"
-                    pTooltip="This is the lowest current price per token availiable for this property."
-                    [tooltipPosition]="'left'">
-                    Estimated Price
-                </span>
-                <p>
-                    {{financialDetails.financials.pricePerShare | currency}}
-                </p>
-            </div>
-            <div class="d-flex justify-content-between align-items-center w-100">
-                <span
-                    pTooltip="This is the lowest current price per token availiable for this property."
-                    [tooltipPosition]="'left'">
-                    Projected Annual Return
-                </span>
-                <p>
-                    {{financialDetails.financials.pricePerShare | percent}}
-                </p>
-            </div>
-            <div class="d-flex justify-content-between align-items-center w-100">
-                <span
-                    pTooltip="This is the lowest current price per token availiable for this property."
-                    [tooltipPosition]="'left'">
-                    Projected Rental Yield
-                </span>
-                <p>
-                    {{financialDetails.financials.pricePerShare | percent}}
-                </p>
-            </div>
-            <div class="d-flex justify-content-between align-items-center w-100">
-                <span
-                    pTooltip="This is the lowest current price per token availiable for this property."
-                    [tooltipPosition]="'left'">
-                    Rental Yield
-                </span>
-                <p>
-                    {{financialDetails.financials.pricePerShare | percent}}
-                </p>
+            <div class="shadow-sm p-3 position-sticky sticky-card">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <span class="fs-3 fw-bold"
+                        pTooltip="This is the lowest current price per token availiable for this property."
+                        [tooltipPosition]="'left'">
+                        Estimated Price
+                    </span>
+                    <p>
+                        {{financialDetails.financials.pricePerShare | currency}}
+                    </p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <span
+                        pTooltip="This is the lowest current price per token availiable for this property."
+                        [tooltipPosition]="'left'">
+                        Projected Annual Return
+                    </span>
+                    <p>
+                        {{financialDetails.financials.pricePerShare | percent}}
+                    </p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <span
+                        pTooltip="This is the lowest current price per token availiable for this property."
+                        [tooltipPosition]="'left'">
+                        Projected Rental Yield
+                    </span>
+                    <p>
+                        {{financialDetails.financials.pricePerShare | percent}}
+                    </p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <span
+                        pTooltip="This is the lowest current price per token availiable for this property."
+                        [tooltipPosition]="'left'">
+                        Rental Yield
+                    </span>
+                    <p>
+                        {{financialDetails.financials.pricePerShare | percent}}
+                    </p>
+                </div>
             </div>
         </div>
     </div>
