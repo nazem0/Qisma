@@ -69,14 +69,6 @@ export class Helper {
         }
         return array;
     }
-
-    public static increasingArray(n = 30, start = 0, step = 0) {
-        let array: number[] = new Array(n)
-        for (let i = 0; i < n; i++) {
-            array[i] = start+= i ? step : 0
-        }
-        return array;
-    }
 }
 
 interface ascendingNumbersArrayParams { n?: number, fixedNumber?: number, step?: number }

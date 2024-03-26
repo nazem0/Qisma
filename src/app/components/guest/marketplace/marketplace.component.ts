@@ -9,6 +9,7 @@ import { PropertyViewModelInListViewForUser } from '../../../api/models';
 })
 export class MarketplaceComponent implements OnInit {
   properties: PropertyViewModelInListViewForUser[] = [];
+  public math = Math;
   pagination = {
     index: 0,
     size: 9,
@@ -22,7 +23,7 @@ export class MarketplaceComponent implements OnInit {
       }
     ).subscribe({
       next: next => {
-        this.properties = next.data?.itemsList??[]
+        this.properties = next.data?.itemsList ?? []
       }
     })
   }

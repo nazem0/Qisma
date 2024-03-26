@@ -7,12 +7,32 @@
         </div>
         <img class="w-25 d-md-block d-none" src="/assets/page-resources/marketplace.png" alt="">
     </div>
-    <div class="row row-cols-md-4 g-3 mx-auto">
-        <!-- <cdk-virtual-scroll-viewport [itemSize]="pagination.size" class="example-viewport">
-            <div *cdkVirtualFor="let item of properties" [routerLink]="['/property-details']" class="example-item">
-                <app-property-card-2 [property]="item"></app-property-card-2>
+    <div class="filters row gap-2">
+        <div class="col">
+            <small class="mat-small">Projected Rental Yield</small>
+            <div class="py-2 px-4 border border-1 rounded-3">
+                <p class="my-1 text-end mat-small">current Value</p>
+
+                <p-slider [animate]="true"></p-slider>
+                <div class="mt-1 d-flex justify-content-between">
+                    <span class="mat-small">min</span>
+                    <span class="mat-small">max</span>
+                </div>
             </div>
-        </cdk-virtual-scroll-viewport> -->
+        </div>
+        <div class="col">
+            <small class="mat-small">Projected Annual Return</small>
+            <div class="py-2 px-4 border border-1 rounded-3">
+                <p class="my-1 text-end mat-small">current Value</p>
+                <p-slider [animate]="true"></p-slider>
+                <div class="mt-1 d-flex justify-content-between">
+                    <span class="mat-small">min</span>
+                    <span class="mat-small">max</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-md-4 g-3 mx-auto">
         @for (item of properties; track $index) {
             <a [routerLink]="['/property-details/'+item.propertyId]">
                 <app-property-card-2 [property]="item"></app-property-card-2>

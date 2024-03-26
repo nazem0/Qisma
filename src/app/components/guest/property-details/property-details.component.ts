@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Helper } from '../../../services/helper';
 import { UIChart } from 'primeng/chart';
+import { PropertyService } from '../../../api/services';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-property-details',
@@ -8,8 +10,12 @@ import { UIChart } from 'primeng/chart';
   styleUrl: './property-details.component.css'
 })
 export class PropertyDetailsComponent implements OnInit {
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(
+    private propertyService: PropertyService,
+    private route: ActivatedRoute
+  ) { }
   @ViewChild("chartElement") chartElement!: UIChart;
+  propertyId?: number;
   chart: {
     data: any,
     options: any
@@ -44,7 +50,7 @@ export class PropertyDetailsComponent implements OnInit {
       },
       adminFees: 50,
       numberOfShares: 30,
-      pricePerShare: 10,
+      pricePerShare: 50,
     },
     paymentPlan: {
       downpayment: 5000,
@@ -92,7 +98,11 @@ export class PropertyDetailsComponent implements OnInit {
   }
   ngOnInit(): void {
 
-
+    // this.propertyService.apiPropertyGetByIdGet$Json({ "PropertyId": this.propertyId! })
+    // .subscribe({
+    //   next:next=>{
+    //   }
+    // })
     this.responsiveOptions = [
       {
         breakpoint: '1400px',
@@ -110,61 +120,9 @@ export class PropertyDetailsComponent implements OnInit {
         numScroll: 1
       }
     ];
+
     this.initChart();
   }
-  // initChart() {
-  //   const documentStyle = getComputedStyle(document.documentElement);
-  //   const textColor = documentStyle.getPropertyValue('--text-color');
-  //   const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-  //   const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
-  //   this.data = {
-  //     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  //     datasets: [
-  //       {
-  //         label: 'Price Per Token',
-  //         data: [65, 59, 80, 81, 56, 55, 40],
-  //         fill: false,
-  //         borderColor: documentStyle.getPropertyValue('--primary-600'),
-  //         tension: 0
-  //       }
-  //     ]
-  //   };
-
-  //   this.options = {
-  //     maintainAspectRatio: false,
-  //     aspectRatio: 1,
-  //     plugins: {
-  //       legend: {
-  //         labels: {
-  //           color: textColor
-  //         }
-  //       }
-  //     },
-  //     scales: {
-  //       x: {
-  //         ticks: {
-  //           color: textColorSecondary
-  //         },
-  //         grid: {
-  //           color: surfaceBorder,
-  //           drawBorder: false
-  //         }
-  //       },
-  //       y: {
-  //         ticks: {
-  //           color: textColorSecondary
-  //         },
-  //         grid: {
-  //           color: surfaceBorder,
-  //           drawBorder: false
-  //         }
-  //       }
-  //     }
-  //   };
-  // }
-
-
   initChart() {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
@@ -180,19 +138,19 @@ export class PropertyDetailsComponent implements OnInit {
           type: 'bar',
           label: 'Rental Yield',
           backgroundColor: documentStyle.getPropertyValue('--blue-300'),
-          data: Helper.increasingArray(30, rental, rental)
+          data: this.increasingArray(30, rental, rental)
         },
         {
           type: 'bar',
           label: 'Appreciation',
           backgroundColor: documentStyle.getPropertyValue('--blue-500'),
-          data: Helper.increasingArray(30, appreciation, appreciation)
+          data: this.increasingArray(30, appreciation, appreciation)
         },
         {
           type: 'bar',
           label: 'Your Investment',
           backgroundColor: documentStyle.getPropertyValue('--green-300'),
-          data: Helper.ascendingNumbersArray({ fixedNumber:  tokensPurchased})
+          data: Helper.ascendingNumbersArray({ fixedNumber: tokensPurchased })
         }
       ]
     };
@@ -204,12 +162,13 @@ export class PropertyDetailsComponent implements OnInit {
         tooltip: {
           mode: 'index',
           intersect: false,
-          
+
         },
         legend: {
           labels: {
             color: textColor,
-          }
+          },
+          position: "bottom"
         }
       },
       scales: {
@@ -227,7 +186,7 @@ export class PropertyDetailsComponent implements OnInit {
           stacked: true,
           ticks: {
             color: textColorSecondary,
-            callback: function(value:number) {
+            callback: function (value: number) {
               return '$' + value;
             }
           },
@@ -239,7 +198,21 @@ export class PropertyDetailsComponent implements OnInit {
       }
     };
   }
+  public increasingArray(n = 30, start = 0, step = 0) {
+    let array: number[] = new Array(n)
+    for (let i = 0; i < n; i++) {
+      array[i] = start += i ? step : 0
+    }
+    return array;
+  }
 
+  initParams() {
+    this.route.params.subscribe({
+      next: next => {
+        this.propertyId = next['id']
+      }
+    })
+  }
 }
 
 
