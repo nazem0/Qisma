@@ -1,6 +1,7 @@
+import { GovernorateAndCityService } from './../../../api/services/governorate-and-city.service';
 import { Component, OnInit } from '@angular/core';
 import { PropertyService } from '../../../api/services';
-import { PropertyViewModelInListViewForUser } from '../../../api/models';
+import { GovernorateAndCityViewModel, PropertyViewModelInListViewForUser } from '../../../api/models';
 
 @Component({
   selector: 'app-marketplace',
@@ -8,14 +9,35 @@ import { PropertyViewModelInListViewForUser } from '../../../api/models';
   styleUrl: './marketplace.component.css'
 })
 export class MarketplaceComponent implements OnInit {
+  governorates: GovernorateAndCityViewModel[] = [];
+  cities: GovernorateAndCityViewModel[] = [];
   properties: PropertyViewModelInListViewForUser[] = [];
+  propertyTypes = [
+    {
+      id: 1,
+      name: "Residential",
+    },
+    {
+      id: 2,
+      name: "Commercial",
+    }
+  ]
+  filters?: {
+    propertyType?: number,
+    governorateId?: number,
+  }
+  selectedGov?: GovernorateAndCityViewModel
+  constructor(
+    private propertyService: PropertyService,
+    private governorateAndCityService: GovernorateAndCityService
+  ) { }
   public math = Math;
   pagination = {
     index: 0,
     size: 9,
   }
-  constructor(private propertyService: PropertyService) { }
   ngOnInit(): void {
+    this.initGovs();
     this.propertyService.apiPropertyGetAllGet$Json(
       {
         PageNumber: this.pagination.index,
@@ -27,4 +49,27 @@ export class MarketplaceComponent implements OnInit {
       }
     })
   }
+
+  initGovs() {
+    this
+    .governorateAndCityService
+      .apiGovernorateGetAllGet$Json()
+      .subscribe({
+        next: next => {
+          this.governorates = next.data ?? []
+        }
+      })
+  }
+  initCity() {
+    this
+      .governorateAndCityService
+      .apiCitiesGetByGovernorateIdGet$Json({ "GovernorateId": this.selectedGov?.id })
+      .subscribe({
+        next: next => {
+          this.cities = next.data ?? []
+        }
+      })
+
+  }
+
 }
