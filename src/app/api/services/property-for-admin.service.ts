@@ -13,6 +13,10 @@ import { apiDashboardFacilityAddPost$Json } from '../fn/property-for-admin/api-d
 import { ApiDashboardFacilityAddPost$Json$Params } from '../fn/property-for-admin/api-dashboard-facility-add-post-json';
 import { apiDashboardFacilityAddPost$Plain } from '../fn/property-for-admin/api-dashboard-facility-add-post-plain';
 import { ApiDashboardFacilityAddPost$Plain$Params } from '../fn/property-for-admin/api-dashboard-facility-add-post-plain';
+import { apiDashboardFacilityGetAllGet$Json } from '../fn/property-for-admin/api-dashboard-facility-get-all-get-json';
+import { ApiDashboardFacilityGetAllGet$Json$Params } from '../fn/property-for-admin/api-dashboard-facility-get-all-get-json';
+import { apiDashboardFacilityGetAllGet$Plain } from '../fn/property-for-admin/api-dashboard-facility-get-all-get-plain';
+import { ApiDashboardFacilityGetAllGet$Plain$Params } from '../fn/property-for-admin/api-dashboard-facility-get-all-get-plain';
 import { apiDashboardPropertyAddPost$Json } from '../fn/property-for-admin/api-dashboard-property-add-post-json';
 import { ApiDashboardPropertyAddPost$Json$Params } from '../fn/property-for-admin/api-dashboard-property-add-post-json';
 import { apiDashboardPropertyAddPost$Plain } from '../fn/property-for-admin/api-dashboard-property-add-post-plain';
@@ -21,6 +25,7 @@ import { apiDashboardPropertyImagesAddPost$Json } from '../fn/property-for-admin
 import { ApiDashboardPropertyImagesAddPost$Json$Params } from '../fn/property-for-admin/api-dashboard-property-images-add-post-json';
 import { apiDashboardPropertyImagesAddPost$Plain } from '../fn/property-for-admin/api-dashboard-property-images-add-post-plain';
 import { ApiDashboardPropertyImagesAddPost$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-images-add-post-plain';
+import { FacilityViewModelForAdminListApiResult } from '../models/facility-view-model-for-admin-list-api-result';
 import { Int32ApiResult } from '../models/int-32-api-result';
 import { StringApiResult } from '../models/string-api-result';
 
@@ -104,9 +109,9 @@ export class PropertyForAdminService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiDashboardFacilityAddPost$Plain()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  apiDashboardFacilityAddPost$Plain$Response(params: ApiDashboardFacilityAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  apiDashboardFacilityAddPost$Plain$Response(params?: ApiDashboardFacilityAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
     return apiDashboardFacilityAddPost$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -118,9 +123,9 @@ export class PropertyForAdminService extends BaseService {
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiDashboardFacilityAddPost$Plain$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  apiDashboardFacilityAddPost$Plain(params: ApiDashboardFacilityAddPost$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
+  apiDashboardFacilityAddPost$Plain(params?: ApiDashboardFacilityAddPost$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
     return this.apiDashboardFacilityAddPost$Plain$Response(params, context).pipe(
       map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
     );
@@ -134,9 +139,9 @@ export class PropertyForAdminService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiDashboardFacilityAddPost$Json()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  apiDashboardFacilityAddPost$Json$Response(params: ApiDashboardFacilityAddPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  apiDashboardFacilityAddPost$Json$Response(params?: ApiDashboardFacilityAddPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
     return apiDashboardFacilityAddPost$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -148,9 +153,9 @@ export class PropertyForAdminService extends BaseService {
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiDashboardFacilityAddPost$Json$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  apiDashboardFacilityAddPost$Json(params: ApiDashboardFacilityAddPost$Json$Params, context?: HttpContext): Observable<StringApiResult> {
+  apiDashboardFacilityAddPost$Json(params?: ApiDashboardFacilityAddPost$Json$Params, context?: HttpContext): Observable<StringApiResult> {
     return this.apiDashboardFacilityAddPost$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
     );
@@ -216,6 +221,69 @@ export class PropertyForAdminService extends BaseService {
   apiDashboardPropertyImagesAddPost$Json(params?: ApiDashboardPropertyImagesAddPost$Json$Params, context?: HttpContext): Observable<StringApiResult> {
     return this.apiDashboardPropertyImagesAddPost$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiDashboardFacilityGetAllGet()` */
+  static readonly ApiDashboardFacilityGetAllGetPath = '/api/Dashboard/Facility/GetAll';
+
+  /**
+   * Get all facilities.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardFacilityGetAllGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardFacilityGetAllGet$Plain$Response(params?: ApiDashboardFacilityGetAllGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<FacilityViewModelForAdminListApiResult>> {
+    return apiDashboardFacilityGetAllGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Get all facilities.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardFacilityGetAllGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardFacilityGetAllGet$Plain(params?: ApiDashboardFacilityGetAllGet$Plain$Params, context?: HttpContext): Observable<FacilityViewModelForAdminListApiResult> {
+    return this.apiDashboardFacilityGetAllGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<FacilityViewModelForAdminListApiResult>): FacilityViewModelForAdminListApiResult => r.body)
+    );
+  }
+
+  /**
+   * Get all facilities.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardFacilityGetAllGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardFacilityGetAllGet$Json$Response(params?: ApiDashboardFacilityGetAllGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<FacilityViewModelForAdminListApiResult>> {
+    return apiDashboardFacilityGetAllGet$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Get all facilities.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardFacilityGetAllGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardFacilityGetAllGet$Json(params?: ApiDashboardFacilityGetAllGet$Json$Params, context?: HttpContext): Observable<FacilityViewModelForAdminListApiResult> {
+    return this.apiDashboardFacilityGetAllGet$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<FacilityViewModelForAdminListApiResult>): FacilityViewModelForAdminListApiResult => r.body)
     );
   }
 

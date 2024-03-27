@@ -9,15 +9,22 @@ import { RequestBuilder } from '../../request-builder';
 import { StringApiResult } from '../../models/string-api-result';
 
 export interface ApiDashboardFacilityAddPost$Json$Params {
-  Name: string;
-  SVG: string;
+      body?: {
+'ContentType'?: string;
+'ContentDisposition'?: string;
+'Headers'?: {
+[key: string]: Array<string>;
+};
+'Length'?: number;
+'Name'?: string;
+'FileName'?: string;
+}
 }
 
-export function apiDashboardFacilityAddPost$Json(http: HttpClient, rootUrl: string, params: ApiDashboardFacilityAddPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+export function apiDashboardFacilityAddPost$Json(http: HttpClient, rootUrl: string, params?: ApiDashboardFacilityAddPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
   const rb = new RequestBuilder(rootUrl, apiDashboardFacilityAddPost$Json.PATH, 'post');
   if (params) {
-    rb.query('Name', params.Name, {"style":"form"});
-    rb.query('SVG', params.SVG, {"style":"form"});
+    rb.body(params.body, 'multipart/form-data');
   }
 
   return http.request(

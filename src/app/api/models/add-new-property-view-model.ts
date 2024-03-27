@@ -4,7 +4,6 @@ import { AddPropertyFacilityViewModel } from '../models/add-property-facility-vi
 import { DescriptionDetailsViewModel } from '../models/description-details-view-model';
 import { Type } from '../models/type';
 export interface AddNewPropertyViewModel {
-  adminFees?: number | null;
   annualPriceAppreciation: number;
   annualRentalYield: number;
   cityId: number;
@@ -20,6 +19,7 @@ export interface AddNewPropertyViewModel {
   numberOfShares: number;
   numberOfYears?: number | null;
   sharePrice: number;
-  totalPrice: number;
+  transactionFees?: number | null;
   type: Type;
+  unitPrice: number;
 }

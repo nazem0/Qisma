@@ -4,7 +4,6 @@ import { DescriptionDetailsViewModel } from '../models/description-details-view-
 import { PropertyFacilityViewModelForUser } from '../models/property-facility-view-model-for-user';
 import { Type } from '../models/type';
 export interface PropertyDetailsViewModelForUser {
-  adminFees?: number | null;
   annualPriceAppreciation?: number;
   annualRentalYield?: number;
   availableShares?: number;
@@ -15,7 +14,8 @@ export interface PropertyDetailsViewModelForUser {
   governorate?: string | null;
   location?: string | null;
   maintenaceInstallment?: number | null;
-  maintenanceCost?: number | null;
+  maintenanceCostNumerical?: number | null;
+  maintenanceCostPercentage?: number | null;
   monthlyInstallment?: number | null;
   numberOfShares?: number;
   numberOfYears?: number | null;
@@ -23,7 +23,9 @@ export interface PropertyDetailsViewModelForUser {
   propertyFacilities?: Array<PropertyFacilityViewModelForUser> | null;
   propertyImages?: Array<string> | null;
   sharePrice?: number;
-  totalPrice?: number;
+  transactionFeesNumerical?: number | null;
+  transactionFeesPercentage?: number | null;
   type?: Type;
+  unitPrice?: number;
   usedShares?: number;
 }
