@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { PropertyService } from '../../../api/services';
 import { GovernorateAndCityViewModel, PropertyViewModelInListViewForUser } from '../../../api/models';
 import { BusinessHelper } from '../../../services/business-helper';
-import { PaginatorState } from 'primeng/paginator';
 
 @Component({
   selector: 'app-marketplace',
@@ -13,7 +12,7 @@ import { PaginatorState } from 'primeng/paginator';
 export class MarketplaceComponent implements OnInit {
   governorates: GovernorateAndCityViewModel[] = [];
   cities: GovernorateAndCityViewModel[] = [];
-  properties: PropertyViewModelInListViewForUser[] = [];
+  properties?: PropertyViewModelInListViewForUser[] | null;
   math=Math;
   propertyTypes = BusinessHelper.propertyTypes
   filters: {
@@ -31,11 +30,13 @@ export class MarketplaceComponent implements OnInit {
     private governorateAndCityService: GovernorateAndCityService
   ) { }
   pagination = {
-    index: 1,
-    size: 9,
+    index: 0,
+    size: 5,
+    total:0
   }
   ngOnInit(): void {
     this.initGovs();
+    this.getProperties();
     
   }
 
@@ -73,13 +74,13 @@ export class MarketplaceComponent implements OnInit {
       PropertyType:this.filters.propertyType,
     }).subscribe({
       next: next => {
-        this.properties = next.data?.itemsList ?? []
+        this.properties = next.data?.itemsList
+        this.pagination.total = next.data?.totalItemsNumber!
       }
     })
   }
-  onPageChange($event:PaginatorState){
-    console.log($event);
-    
-    // this.getProperties($event.page!, $event.rows!)
+  getPage(page:number){    
+    this.pagination.index = page;
+    this.getProperties();
   }
 }

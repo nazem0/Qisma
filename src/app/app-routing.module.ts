@@ -19,12 +19,12 @@ const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   {
     path: "", component: LayoutComponent, children: [
-      { path: "login", component: LoginComponent, title: "Login" },
-      { path: "register", component: RegisterComponent, title: "Create Account" },
-      { path: "forgot-password", component: ForgotPasswordComponent, title: "Forgot Password" },
-      { path: "reset-password", component: ResetPasswordComponent, title: "Reset Password" },
-      { path: "contact-us", component: ContactUsComponent, title: "Contact Us" },
-      { path: "about-us", component: AboutUsComponent, title: "About Us" },
+      // { path: "login", component: LoginComponent, title: "Login" },
+      // { path: "register", component: RegisterComponent, title: "Create Account" },
+      // { path: "forgot-password", component: ForgotPasswordComponent, title: "Forgot Password" },
+      // { path: "reset-password", component: ResetPasswordComponent, title: "Reset Password" },
+      // { path: "contact-us", component: ContactUsComponent, title: "Contact Us" },
+      // { path: "about-us", component: AboutUsComponent, title: "About Us" },
       { path: "dev", component: DevComponent, title: "Nazem" },
       { path: "home", component: HomeComponent, title: "Home" },
       { path: "marketplace", component: MarketplaceComponent, title: "Marketplace" },

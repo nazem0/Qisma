@@ -42,6 +42,15 @@
               </p-dropdown>
             </p-inputGroup>
           </div>
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <i class="pi pi-shield"></i>
+              </p-inputGroupAddon>
+              <p-dropdown styleClass="w-100" [options]="facilities"></p-dropdown>
+            </p-inputGroup>
+            
+          </div>
         </div>
         <div class="flex py-4">
           <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
@@ -205,7 +214,7 @@
         </div>
         <div class="row row-cols-sm-2 g-2 mt-3">
           <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
-          <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
+          <p-button [raised]="true" styleClass="text-white w-100" label="Add Property" (onClick)="nextCallback.emit()" />
         </div>
       </ng-template>
     </p-stepperPanel>

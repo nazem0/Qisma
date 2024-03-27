@@ -1,6 +1,5 @@
 /* tslint:disable */
 /* eslint-disable */
-import { DescriptionDetailsViewModel } from '../models/description-details-view-model';
 import { PropertyFacilityViewModelForUser } from '../models/property-facility-view-model-for-user';
 import { Type } from '../models/type';
 export interface PropertyDetailsViewModelForUser {
@@ -9,7 +8,7 @@ export interface PropertyDetailsViewModelForUser {
   availableShares?: number;
   city?: string | null;
   deliveryInstallment?: number | null;
-  descriptionDetails?: Array<DescriptionDetailsViewModel> | null;
+  description?: string | null;
   downPayment?: number | null;
   governorate?: string | null;
   location?: string | null;

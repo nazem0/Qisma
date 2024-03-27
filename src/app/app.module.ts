@@ -32,7 +32,6 @@ import { CarouselModule } from 'primeng/carousel';
 import { GalleriaModule } from 'primeng/galleria';
 import { SliderModule } from 'primeng/slider';
 import { EditorModule } from 'primeng/editor';
-import { PaginatorModule } from 'primeng/paginator';
 import { StepperModule } from 'primeng/stepper';
 
 
@@ -81,6 +80,7 @@ import { PropertyDetailsComponent } from './components/guest/property-details/pr
 import { ApiModule } from './api/api.module';
 import { environment } from '../environments/environment';
 import { PropertyActionsComponent } from './components/admin/property-actions/property-actions.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -147,8 +147,8 @@ import { PropertyActionsComponent } from './components/admin/property-actions/pr
     GalleriaModule,
     SliderModule,
     EditorModule,
-    PaginatorModule,
     StepperModule,
+    NgxPaginationModule,
     // Angular Material Modules
     MatStepperModule,
     MatFormFieldModule,

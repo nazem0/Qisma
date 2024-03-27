@@ -2,7 +2,6 @@
 /* eslint-disable */
 export { AddNewPropertyViewModel } from './models/add-new-property-view-model';
 export { AddPropertyFacilityViewModel } from './models/add-property-facility-view-model';
-export { DescriptionDetailsViewModel } from './models/description-details-view-model';
 export { FacilityViewModelForAdmin } from './models/facility-view-model-for-admin';
 export { FacilityViewModelForAdminListApiResult } from './models/facility-view-model-for-admin-list-api-result';
 export { GovernorateAndCityViewModel } from './models/governorate-and-city-view-model';

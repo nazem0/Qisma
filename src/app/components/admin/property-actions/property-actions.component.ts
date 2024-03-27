@@ -1,8 +1,8 @@
 import { GovernorateAndCityService } from './../../../api/services/governorate-and-city.service';
 import { PropertyForAdminService } from './../../../api/services/property-for-admin.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { GovernorateAndCityViewModel, PropertyDetailsViewModelForUser } from '../../../api/models';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FacilityViewModelForAdmin, GovernorateAndCityViewModel, PropertyDetailsViewModelForUser } from '../../../api/models';
 import { BusinessHelper } from '../../../services/business-helper';
 
 @Component({
@@ -11,7 +11,7 @@ import { BusinessHelper } from '../../../services/business-helper';
   styleUrl: './property-actions.component.css'
 })
 export class PropertyActionsComponent implements OnInit {
-  @Input() data!: PropertyDetailsViewModelForUser; // Input data object containing all properties\
+  propertyForm!: FormGroup;
   propertyTypes = BusinessHelper.propertyTypes
   text:string=`
   <h1>Title 1</h1>
@@ -27,42 +27,44 @@ export class PropertyActionsComponent implements OnInit {
     <li>element 2</li>
     <li>element 3</li>
   </ol>
-  `
-  propertyForm!: FormGroup;
+  `;
+
+  facilities:FacilityViewModelForAdmin[]=[];
   governorates: GovernorateAndCityViewModel[] = [];
   cities: GovernorateAndCityViewModel[] = [];
   selectedGov?: GovernorateAndCityViewModel;
   selectedCity?: GovernorateAndCityViewModel;
   constructor(
-    private formBuilder:FormBuilder,
+    private fb:FormBuilder,
     private propertyForAdminService:PropertyForAdminService,
     private governorateAndCityService:GovernorateAndCityService
-  ){}
+  ){
+    this.initPropertyForm();
+  }
   ngOnInit(): void {
     this.initGovs()
-    this.initPropertyForm();
     // this.propertyForAdminService.apiDashboardPropertyAddPost$Json({body:{}})
   }
   initPropertyForm(){
-    this.propertyForm = this.formBuilder.group({
-      adminFees: [null, [Validators.min(0)]],
-    annualPriceAppreciation: [null, [Validators.required, Validators.min(0)]],
-    annualRentalYield: [null, [Validators.required, Validators.min(0)]],
-    cityId: [null, [Validators.required, Validators.min(1)]],
-    deliveryInstallment: [null, [Validators.min(0)]],
-    // descriptionDetails: this.fb.array([]), // Assuming DescriptionDetailsViewModel is an array
-    downPayment: [null, [Validators.min(0)]],
-    // facilities: this.fb.array([]), // Assuming AddPropertyFacilityViewModel is an array
-    governorateId: [null, [Validators.required, Validators.min(1)]],
-    location: ['', Validators.required],
-    maintenaceInstallment: [null, [Validators.min(0)]],
-    maintenanceCost: [null, [Validators.min(0)]],
-    monthlyInstallment: [null, [Validators.min(0)]],
-    numberOfShares: [null, [Validators.required, Validators.min(1)]],
-    numberOfYears: [null, [Validators.min(1)]],
-    sharePrice: [null, [Validators.required, Validators.min(0)]],
-    totalPrice: [null, [Validators.required, Validators.min(0)]],
-    type: [null, Validators.required]
+    this.propertyForm = this.fb.group({
+      location: '',
+      governorateId: 0,
+      cityId: 0,
+      unitPrice: 0,
+      description: '',
+      maintenanceCost: 0,
+      transactionFees: 0,
+      numberOfShares: 0,
+      sharePrice: 0,
+      annualRentalYield: 0,
+      annualPriceAppreciation: 0,
+      downPayment: 0,
+      monthlyInstallment: 0,
+      numberOfYears: 0,
+      maintenaceInstallment: 0,
+      deliveryInstallment: 0,
+      type: 1,
+      facilities: this.fb.array([])
     });
   }
   check(){
@@ -90,5 +92,30 @@ export class PropertyActionsComponent implements OnInit {
         }
       })
 
+  }
+  initFacilities(){
+    this
+    .propertyForAdminService
+    .apiDashboardFacilityGetAllGet$Json()
+    .subscribe({
+      next:next=>{
+        this.facilities=next.data??[]
+      }
+    })
+  }
+  get facilitiesFormArray() {
+    return this.propertyForm.get('facilities') as FormArray;
+  }
+  createFacility(): FormGroup {
+    return this.fb.group({
+      facilityId: [0],
+      description: ['', Validators.required]
+    });
+  }
+  addFacility(): void {
+    this.facilitiesFormArray.push(this.createFacility());
+  }
+  removeFacility(index: number): void {
+    this.facilitiesFormArray.removeAt(index);
   }
 }

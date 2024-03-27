@@ -26,16 +26,7 @@
             <p-tabView [(activeIndex)]="activeIndex">
                 <p-tabPanel header="Details">
                     <h3>About the Property</h3>
-                    @for (item of property.descriptionDetails; track $index) {
-                    <div class="text-black">
-                        <h4 class="text-black"><u>{{item.title}}</u></h4>
-                        <ul>
-                            @for (value of item.values; track $index) {
-                            <li [innerHTML]="value"></li>
-                            }
-                        </ul>
-                    </div>
-                    }
+                    <p [innerHTML]="property.description"></p>
                 </p-tabPanel>
                 <p-tabPanel header="Financials">
                     <div>
