@@ -13,9 +13,10 @@ import { AboutUsComponent } from './components/guest/about-us/about-us.component
 import { HomeComponent } from './components/guest/home/home.component';
 import { MarketplaceComponent } from './components/guest/marketplace/marketplace.component';
 import { PropertyDetailsComponent } from './components/guest/property-details/property-details.component';
+import { PropertyActionsComponent } from './components/admin/property-actions/property-actions.component';
 
 const routes: Routes = [
-  {path:"", redirectTo:"home", pathMatch:"full"},
+  { path: "", redirectTo: "home", pathMatch: "full" },
   {
     path: "", component: LayoutComponent, children: [
       { path: "login", component: LoginComponent, title: "Login" },
@@ -25,16 +26,18 @@ const routes: Routes = [
       { path: "contact-us", component: ContactUsComponent, title: "Contact Us" },
       { path: "about-us", component: AboutUsComponent, title: "About Us" },
       { path: "dev", component: DevComponent, title: "Nazem" },
-      {path: "home", component:HomeComponent, title:"Home" },
-      {path: "marketplace", component:MarketplaceComponent, title:"Marketplace" },
-      {path: "property-details/:id", component:PropertyDetailsComponent, title:"Property Details" },
+      { path: "home", component: HomeComponent, title: "Home" },
+      { path: "marketplace", component: MarketplaceComponent, title: "Marketplace" },
+      { path: "property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
+      { path:"property-actions", component:PropertyActionsComponent, title:"Property Actions"},
+      { path:"property-actions/:id", component:PropertyActionsComponent, title:"Property Actions"},
       { path: '**', component: PageNotFoundComponent }
     ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration:"enabled"})],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: "enabled" })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

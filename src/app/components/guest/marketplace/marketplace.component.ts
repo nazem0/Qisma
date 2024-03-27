@@ -2,6 +2,7 @@ import { GovernorateAndCityService } from './../../../api/services/governorate-a
 import { Component, OnInit } from '@angular/core';
 import { PropertyService } from '../../../api/services';
 import { GovernorateAndCityViewModel, PropertyViewModelInListViewForUser } from '../../../api/models';
+import { BusinessHelper } from '../../../services/business-helper';
 
 @Component({
   selector: 'app-marketplace',
@@ -13,16 +14,7 @@ export class MarketplaceComponent implements OnInit {
   cities: GovernorateAndCityViewModel[] = [];
   properties: PropertyViewModelInListViewForUser[] = [];
   math=Math;
-  propertyTypes = [
-    {
-      id: 1,
-      name: "Residential",
-    },
-    {
-      id: 2,
-      name: "Commercial",
-    }
-  ]
+  propertyTypes = BusinessHelper.propertyTypes
   filters: {
     propertyType?: number,
     governorateId?: number,

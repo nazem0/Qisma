@@ -17,6 +17,7 @@ import { apiPropertyGetByIdGet$Json } from '../fn/property/api-property-get-by-i
 import { ApiPropertyGetByIdGet$Json$Params } from '../fn/property/api-property-get-by-id-get-json';
 import { apiPropertyGetByIdGet$Plain } from '../fn/property/api-property-get-by-id-get-plain';
 import { ApiPropertyGetByIdGet$Plain$Params } from '../fn/property/api-property-get-by-id-get-plain';
+import { PropertyDetailsViewModelForUserApiResult } from '../models/property-details-view-model-for-user-api-result';
 import { PropertyViewModelInListViewForUserPaginationViewModelApiResult } from '../models/property-view-model-in-list-view-for-user-pagination-view-model-api-result';
 
 @Injectable({ providedIn: 'root' })
@@ -101,7 +102,7 @@ export class PropertyService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiPropertyGetByIdGet$Plain$Response(params: ApiPropertyGetByIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyViewModelInListViewForUserPaginationViewModelApiResult>> {
+  apiPropertyGetByIdGet$Plain$Response(params: ApiPropertyGetByIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyDetailsViewModelForUserApiResult>> {
     return apiPropertyGetByIdGet$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -115,9 +116,9 @@ export class PropertyService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiPropertyGetByIdGet$Plain(params: ApiPropertyGetByIdGet$Plain$Params, context?: HttpContext): Observable<PropertyViewModelInListViewForUserPaginationViewModelApiResult> {
+  apiPropertyGetByIdGet$Plain(params: ApiPropertyGetByIdGet$Plain$Params, context?: HttpContext): Observable<PropertyDetailsViewModelForUserApiResult> {
     return this.apiPropertyGetByIdGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<PropertyViewModelInListViewForUserPaginationViewModelApiResult>): PropertyViewModelInListViewForUserPaginationViewModelApiResult => r.body)
+      map((r: StrictHttpResponse<PropertyDetailsViewModelForUserApiResult>): PropertyDetailsViewModelForUserApiResult => r.body)
     );
   }
 
@@ -131,7 +132,7 @@ export class PropertyService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiPropertyGetByIdGet$Json$Response(params: ApiPropertyGetByIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyViewModelInListViewForUserPaginationViewModelApiResult>> {
+  apiPropertyGetByIdGet$Json$Response(params: ApiPropertyGetByIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyDetailsViewModelForUserApiResult>> {
     return apiPropertyGetByIdGet$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -145,9 +146,9 @@ export class PropertyService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiPropertyGetByIdGet$Json(params: ApiPropertyGetByIdGet$Json$Params, context?: HttpContext): Observable<PropertyViewModelInListViewForUserPaginationViewModelApiResult> {
+  apiPropertyGetByIdGet$Json(params: ApiPropertyGetByIdGet$Json$Params, context?: HttpContext): Observable<PropertyDetailsViewModelForUserApiResult> {
     return this.apiPropertyGetByIdGet$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<PropertyViewModelInListViewForUserPaginationViewModelApiResult>): PropertyViewModelInListViewForUserPaginationViewModelApiResult => r.body)
+      map((r: StrictHttpResponse<PropertyDetailsViewModelForUserApiResult>): PropertyDetailsViewModelForUserApiResult => r.body)
     );
   }
 

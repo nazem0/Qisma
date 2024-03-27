@@ -6,13 +6,13 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { PropertyViewModelInListViewForUserPaginationViewModelApiResult } from '../../models/property-view-model-in-list-view-for-user-pagination-view-model-api-result';
+import { PropertyDetailsViewModelForUserApiResult } from '../../models/property-details-view-model-for-user-api-result';
 
 export interface ApiPropertyGetByIdGet$Plain$Params {
   PropertyId: number;
 }
 
-export function apiPropertyGetByIdGet$Plain(http: HttpClient, rootUrl: string, params: ApiPropertyGetByIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyViewModelInListViewForUserPaginationViewModelApiResult>> {
+export function apiPropertyGetByIdGet$Plain(http: HttpClient, rootUrl: string, params: ApiPropertyGetByIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyDetailsViewModelForUserApiResult>> {
   const rb = new RequestBuilder(rootUrl, apiPropertyGetByIdGet$Plain.PATH, 'get');
   if (params) {
     rb.query('PropertyId', params.PropertyId, {"style":"form"});
@@ -23,7 +23,7 @@ export function apiPropertyGetByIdGet$Plain(http: HttpClient, rootUrl: string, p
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<PropertyViewModelInListViewForUserPaginationViewModelApiResult>;
+      return r as StrictHttpResponse<PropertyDetailsViewModelForUserApiResult>;
     })
   );
 }

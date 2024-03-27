@@ -31,6 +31,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { CarouselModule } from 'primeng/carousel';
 import { GalleriaModule } from 'primeng/galleria';
 import { SliderModule } from 'primeng/slider';
+import { EditorModule } from 'primeng/editor';
 
 
 import { MatStepperModule } from '@angular/material/stepper';
@@ -77,6 +78,7 @@ import { PropertyCard2Component } from './components/guest/marketplace/property-
 import { PropertyDetailsComponent } from './components/guest/property-details/property-details.component';
 import { ApiModule } from './api/api.module';
 import { environment } from '../environments/environment';
+import { PropertyActionsComponent } from './components/admin/property-actions/property-actions.component';
 
 @NgModule({
   declarations: [
@@ -109,6 +111,7 @@ import { environment } from '../environments/environment';
     MarketplaceComponent,
     PropertyCard2Component,
     PropertyDetailsComponent,
+    PropertyActionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -141,6 +144,7 @@ import { environment } from '../environments/environment';
     CarouselModule,
     GalleriaModule,
     SliderModule,
+    EditorModule,
     // Angular Material Modules
     MatStepperModule,
     MatFormFieldModule,

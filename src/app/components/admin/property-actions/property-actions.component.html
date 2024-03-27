@@ -1,0 +1,98 @@
+<div class="property-input container-lg">
+    <form [formGroup]="propertyForm">
+      <div class="p-field">
+        <label for="adminFees">Admin Fees</label>
+        <p-inputNumber id="adminFees" formControlName="adminFees" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+      </div>
+  
+      <div class="p-field">
+        <label for="annualPriceAppreciation">Annual Price Appreciation</label>
+        <p-inputNumber id="annualPriceAppreciation" formControlName="annualPriceAppreciation" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+      </div>
+  
+      <div class="p-field">
+        <label for="annualRentalYield">Annual Rental Yield</label>
+        <p-inputNumber id="annualRentalYield" formControlName="annualRentalYield" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+      </div>
+  
+      <div class="p-field">
+        <label for="cityId">City ID</label>
+        <p-inputNumber id="cityId" formControlName="cityId" [showButtons]="true" [mode]="'decimal'" [locale]="'en-US'"></p-inputNumber>
+      </div>
+  
+      <div class="p-field">
+        <label for="deliveryInstallment">Delivery Installment</label>
+        <p-inputNumber id="deliveryInstallment" formControlName="deliveryInstallment" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+      </div>
+  
+      <!-- Assuming DescriptionDetailsViewModel is a separate component -->
+      <div class="p-field">
+        <label>Description Details</label>
+        <p-button (onClick)="check()">Check</p-button>
+        <p-editor [(ngModel)]="text" [style]="{ height: '320px' }"></p-editor>
+ 
+        <!-- <app-description-details formControlName="descriptionDetails"></app-description-details> -->
+      </div>
+  
+      <div class="p-field">
+        <label for="downPayment">Down Payment</label>
+        <p-inputNumber id="downPayment" formControlName="downPayment" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+      </div>
+  
+      <!-- Assuming AddPropertyFacilityViewModel is a separate component -->
+      <!-- <div class="p-field">
+        <label>Facilities</label>
+        <app-add-property-facility formControlName="facilities"></app-add-property-facility>
+      </div> -->
+  
+      <div class="p-field">
+        <label for="governorateId">Governorate ID</label>
+        <p-inputNumber id="governorateId" formControlName="governorateId" [showButtons]="true" [mode]="'decimal'" [locale]="'en-US'"></p-inputNumber>
+      </div>
+  
+      <div class="p-field">
+        <label for="location">Location</label>
+        <input id="location" pInputText formControlName="location" />
+      </div>
+  
+      <div class="p-field">
+        <label for="maintenaceInstallment">Maintenance Installment</label>
+        <p-inputNumber id="maintenaceInstallment" formControlName="maintenaceInstallment" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+      </div>
+  
+      <div class="p-field">
+        <label for="maintenanceCost">Maintenance Cost</label>
+        <p-inputNumber id="maintenanceCost" formControlName="maintenanceCost" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+      </div>
+  
+      <div class="p-field">
+        <label for="monthlyInstallment">Monthly Installment</label>
+        <p-inputNumber id="monthlyInstallment" formControlName="monthlyInstallment" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+      </div>
+  
+      <div class="p-field">
+        <label for="numberOfShares">Number of Shares</label>
+        <p-inputNumber id="numberOfShares" formControlName="numberOfShares" [showButtons]="true" [mode]="'decimal'" [locale]="'en-US'"></p-inputNumber>
+      </div>
+  
+      <div class="p-field">
+        <label for="numberOfYears">Number of Years</label>
+        <p-inputNumber id="numberOfYears" formControlName="numberOfYears" [showButtons]="true" [mode]="'decimal'" [locale]="'en-US'"></p-inputNumber>
+      </div>
+  
+      <div class="p-field">
+        <label for="sharePrice">Share Price</label>
+        <p-inputNumber id="sharePrice" formControlName="sharePrice" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+      </div>
+  
+      <div class="p-field">
+        <label for="totalPrice">Total Price</label>
+        <p-inputNumber id="totalPrice" formControlName="totalPrice" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+      </div>
+  
+      <div class="p-field">
+        <label for="type">Type</label>
+        <p-dropdown id="type" formControlName="type" [options]="propertyTypes"></p-dropdown>
+      </div>
+    </form>
+  </div>
