@@ -32,6 +32,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { GalleriaModule } from 'primeng/galleria';
 import { SliderModule } from 'primeng/slider';
 import { EditorModule } from 'primeng/editor';
+import { PaginatorModule } from 'primeng/paginator';
 
 
 import { MatStepperModule } from '@angular/material/stepper';
@@ -145,6 +146,7 @@ import { PropertyActionsComponent } from './components/admin/property-actions/pr
     GalleriaModule,
     SliderModule,
     EditorModule,
+    PaginatorModule,
     // Angular Material Modules
     MatStepperModule,
     MatFormFieldModule,

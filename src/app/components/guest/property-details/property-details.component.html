@@ -43,15 +43,15 @@
                             <div class="col-md-6">
                                 <div class="field">
                                     <label>Unit Price:</label>
-                                    <span> {{ property.totalPrice | currency }}</span>
+                                    <span> {{ property.unitPrice | currency }}</span>
                                 </div>
                                 <div class="field">
                                     <label>Maintenance Cost:</label>
-                                    <span>{{ property.maintenanceCost | currency }}</span>
+                                    <span>{{ property.maintenanceCostNumerical | currency }}</span>
                                 </div>
                                 <div class="field">
-                                    <label>Admin Fees:</label>
-                                    <span> {{ property.adminFees | currency }}</span>
+                                    <label>Transaction Fees:</label>
+                                    <span> {{ property.transactionFeesNumerical| currency }}</span>
                                 </div>
                             </div>
                             <div class="col-md-6">

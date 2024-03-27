@@ -82,7 +82,8 @@ body {
     h6,
     label,
     a,
-    small {
+    small,
+    button {
         color: #08165d;
     }
     *{

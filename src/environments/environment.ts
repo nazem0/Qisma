@@ -1,4 +1,4 @@
 export const environment = {
-    api:"https://www.capital.somee.com",
-    staticFiles:"https://www.capital.somee.com/Content/Images"
+    api:"https://qisma.runasp.net",
+    staticFiles:"hhttps://qisma.runasp.net/Content/Images"
 }

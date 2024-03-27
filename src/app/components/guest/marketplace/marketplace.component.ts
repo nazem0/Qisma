@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PropertyService } from '../../../api/services';
 import { GovernorateAndCityViewModel, PropertyViewModelInListViewForUser } from '../../../api/models';
 import { BusinessHelper } from '../../../services/business-helper';
+import { PaginatorState } from 'primeng/paginator';
 
 @Component({
   selector: 'app-marketplace',
@@ -35,16 +36,7 @@ export class MarketplaceComponent implements OnInit {
   }
   ngOnInit(): void {
     this.initGovs();
-    this.propertyService.apiPropertyGetAllGet$Json(
-      {
-        PageNumber: this.pagination.index,
-        PageSize: this.pagination.size
-      }
-    ).subscribe({
-      next: next => {
-        this.properties = next.data?.itemsList ?? []
-      }
-    })
+    
   }
 
   initGovs() {
@@ -68,5 +60,19 @@ export class MarketplaceComponent implements OnInit {
       })
 
   }
-
+  getProperties(pageNumber:number, pageSize:number){
+    this.propertyService.apiPropertyGetAllGet$Json({
+      PageNumber:pageNumber,
+      PageSize:pageSize
+    }).subscribe({
+      next: next => {
+        this.properties = next.data?.itemsList ?? []
+      }
+    })
+  }
+  onPageChange($event:PaginatorState){
+    console.log($event);
+    
+    // this.getProperties($event.page!, $event.rows!)
+  }
 }
