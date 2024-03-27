@@ -1,7 +1,8 @@
+import { GovernorateAndCityService } from './../../../api/services/governorate-and-city.service';
 import { PropertyForAdminService } from './../../../api/services/property-for-admin.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { PropertyDetailsViewModelForUser } from '../../../api/models';
+import { GovernorateAndCityViewModel, PropertyDetailsViewModelForUser } from '../../../api/models';
 import { BusinessHelper } from '../../../services/business-helper';
 
 @Component({
@@ -12,13 +13,33 @@ import { BusinessHelper } from '../../../services/business-helper';
 export class PropertyActionsComponent implements OnInit {
   @Input() data!: PropertyDetailsViewModelForUser; // Input data object containing all properties\
   propertyTypes = BusinessHelper.propertyTypes
-  text:string=""
+  text:string=`
+  <h1>Title 1</h1>
+  <ol>
+    <li>element 1</li>
+    <li>element 2</li>
+    <li>element 3</li>
+  </ol>
+  <p><br></p>
+  <h1>Title 2</h1>
+  <ol>
+    <li>element 1</li>
+    <li>element 2</li>
+    <li>element 3</li>
+  </ol>
+  `
   propertyForm!: FormGroup;
+  governorates: GovernorateAndCityViewModel[] = [];
+  cities: GovernorateAndCityViewModel[] = [];
+  selectedGov?: GovernorateAndCityViewModel;
+  selectedCity?: GovernorateAndCityViewModel;
   constructor(
     private formBuilder:FormBuilder,
-    private propertyForAdminService:PropertyForAdminService
+    private propertyForAdminService:PropertyForAdminService,
+    private governorateAndCityService:GovernorateAndCityService
   ){}
   ngOnInit(): void {
+    this.initGovs()
     this.initPropertyForm();
     // this.propertyForAdminService.apiDashboardPropertyAddPost$Json({body:{}})
   }
@@ -47,5 +68,27 @@ export class PropertyActionsComponent implements OnInit {
   check(){
     console.log(this.text);
     
+  }
+
+  initGovs() {
+    this
+    .governorateAndCityService
+      .apiGovernorateGetAllGet$Json()
+      .subscribe({
+        next: next => {
+          this.governorates = next.data ?? []
+        }
+      })
+  }
+  initCity() {
+    this
+      .governorateAndCityService
+      .apiCitiesGetByGovernorateIdGet$Json({ "GovernorateId": this.selectedGov?.id })
+      .subscribe({
+        next: next => {
+          this.cities = next.data ?? []
+        }
+      })
+
   }
 }

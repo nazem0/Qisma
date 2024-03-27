@@ -18,20 +18,20 @@ export class MarketplaceComponent implements OnInit {
   propertyTypes = BusinessHelper.propertyTypes
   filters: {
     propertyType?: number,
-    governorateId?: number,
     propertyPriceRange:number[]
     sharePriceRange:number[]
   }={
     propertyPriceRange : [1*Math.pow(10,6),100*Math.pow(10,6)],
-    sharePriceRange:[500*Math.pow(10,3),20000*Math.pow(10,6)]
+    sharePriceRange:[500*Math.pow(10,3),20*Math.pow(10,6)]
   }
   selectedGov?: GovernorateAndCityViewModel
+  selectedCity?: GovernorateAndCityViewModel
   constructor(
     private propertyService: PropertyService,
     private governorateAndCityService: GovernorateAndCityService
   ) { }
   pagination = {
-    index: 0,
+    index: 1,
     size: 9,
   }
   ngOnInit(): void {
@@ -60,10 +60,17 @@ export class MarketplaceComponent implements OnInit {
       })
 
   }
-  getProperties(pageNumber:number, pageSize:number){
+  getProperties(){
     this.propertyService.apiPropertyGetAllGet$Json({
-      PageNumber:pageNumber,
-      PageSize:pageSize
+      PageNumber:this.pagination.index,
+      PageSize:this.pagination.size,
+      GovernorateId:this.selectedGov?.id,
+      CityId:this.selectedCity?.id,
+      MinSharePrice:this.filters.sharePriceRange[0],
+      MaxSharePrice:this.filters.sharePriceRange[1],
+      MinUnitPrice:this.filters.propertyPriceRange[0],
+      MaxUnitPrice:this.filters.propertyPriceRange[1],
+      PropertyType:this.filters.propertyType,
     }).subscribe({
       next: next => {
         this.properties = next.data?.itemsList ?? []

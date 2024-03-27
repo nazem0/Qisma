@@ -1,98 +1,214 @@
-<div class="property-input container-lg">
-    <form [formGroup]="propertyForm">
-      <div class="p-field">
-        <label for="adminFees">Admin Fees</label>
-        <p-inputNumber id="adminFees" formControlName="adminFees" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
-      </div>
-  
-      <div class="p-field">
-        <label for="annualPriceAppreciation">Annual Price Appreciation</label>
-        <p-inputNumber id="annualPriceAppreciation" formControlName="annualPriceAppreciation" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
-      </div>
-  
-      <div class="p-field">
-        <label for="annualRentalYield">Annual Rental Yield</label>
-        <p-inputNumber id="annualRentalYield" formControlName="annualRentalYield" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
-      </div>
-  
-      <div class="p-field">
-        <label for="cityId">City ID</label>
-        <p-inputNumber id="cityId" formControlName="cityId" [showButtons]="true" [mode]="'decimal'" [locale]="'en-US'"></p-inputNumber>
-      </div>
-  
-      <div class="p-field">
-        <label for="deliveryInstallment">Delivery Installment</label>
-        <p-inputNumber id="deliveryInstallment" formControlName="deliveryInstallment" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
-      </div>
-  
-      <!-- Assuming DescriptionDetailsViewModel is a separate component -->
-      <div class="p-field">
-        <label>Description Details</label>
-        <p-button (onClick)="check()">Check</p-button>
-        <p-editor [(ngModel)]="text" [style]="{ height: '320px' }"></p-editor>
- 
-        <!-- <app-description-details formControlName="descriptionDetails"></app-description-details> -->
-      </div>
-  
-      <div class="p-field">
-        <label for="downPayment">Down Payment</label>
-        <p-inputNumber id="downPayment" formControlName="downPayment" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
-      </div>
-  
-      <!-- Assuming AddPropertyFacilityViewModel is a separate component -->
-      <!-- <div class="p-field">
-        <label>Facilities</label>
-        <app-add-property-facility formControlName="facilities"></app-add-property-facility>
-      </div> -->
-  
-      <div class="p-field">
-        <label for="governorateId">Governorate ID</label>
-        <p-inputNumber id="governorateId" formControlName="governorateId" [showButtons]="true" [mode]="'decimal'" [locale]="'en-US'"></p-inputNumber>
-      </div>
-  
-      <div class="p-field">
-        <label for="location">Location</label>
-        <input id="location" pInputText formControlName="location" />
-      </div>
-  
-      <div class="p-field">
-        <label for="maintenaceInstallment">Maintenance Installment</label>
-        <p-inputNumber id="maintenaceInstallment" formControlName="maintenaceInstallment" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
-      </div>
-  
-      <div class="p-field">
-        <label for="maintenanceCost">Maintenance Cost</label>
-        <p-inputNumber id="maintenanceCost" formControlName="maintenanceCost" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
-      </div>
-  
-      <div class="p-field">
-        <label for="monthlyInstallment">Monthly Installment</label>
-        <p-inputNumber id="monthlyInstallment" formControlName="monthlyInstallment" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
-      </div>
-  
-      <div class="p-field">
-        <label for="numberOfShares">Number of Shares</label>
-        <p-inputNumber id="numberOfShares" formControlName="numberOfShares" [showButtons]="true" [mode]="'decimal'" [locale]="'en-US'"></p-inputNumber>
-      </div>
-  
-      <div class="p-field">
-        <label for="numberOfYears">Number of Years</label>
-        <p-inputNumber id="numberOfYears" formControlName="numberOfYears" [showButtons]="true" [mode]="'decimal'" [locale]="'en-US'"></p-inputNumber>
-      </div>
-  
-      <div class="p-field">
-        <label for="sharePrice">Share Price</label>
-        <p-inputNumber id="sharePrice" formControlName="sharePrice" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
-      </div>
-  
-      <div class="p-field">
-        <label for="totalPrice">Total Price</label>
-        <p-inputNumber id="totalPrice" formControlName="totalPrice" [showButtons]="true" [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
-      </div>
-  
-      <div class="p-field">
-        <label for="type">Type</label>
-        <p-dropdown id="type" formControlName="type" [options]="propertyTypes"></p-dropdown>
-      </div>
-    </form>
-  </div>
+<div class="container-sm">
+  <p-stepper orientation="vertical">
+    <p-stepperPanel header="Details">
+      <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
+        <div class="d-flex flex-column gap-3">
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <i class="pi pi-compass"></i>
+              </p-inputGroupAddon>
+              <p-dropdown [filter]="true" filterBy="name" [options]="governorates" [optionLabel]="'name'"
+                [showClear]="true" [(ngModel)]="selectedGov" (onChange)="initCity()" placeholder="Governorate"
+                styleClass="w-100">
+              </p-dropdown>
+            </p-inputGroup>
+          </div>
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <i class="pi pi-map-marker"></i>
+              </p-inputGroupAddon>
+              <p-dropdown [filter]="true" filterBy="name" [(ngModel)]="selectedCity" [disabled]="!selectedGov"
+                [options]="cities" [optionLabel]="'name'" [showClear]="true" placeholder="City"
+                styleClass="w-100"></p-dropdown>
+            </p-inputGroup>
+          </div>
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <i class="pi pi-building"></i>
+              </p-inputGroupAddon>
+              <input pInputText placeholder="Location" />
+            </p-inputGroup>
+          </div>
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <i class="pi pi-th-large"></i>
+              </p-inputGroupAddon>
+              <p-dropdown [showClear]="true" placeholder="Property Type" styleClass="w-100" [options]="propertyTypes"
+                optionLabel="name">
+              </p-dropdown>
+            </p-inputGroup>
+          </div>
+        </div>
+        <div class="flex py-4">
+          <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
+        </div>
+      </ng-template>
+    </p-stepperPanel>
+    <p-stepperPanel header="Description">
+      <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+        let-index="index">
+        <div>
+          <p-editor [(ngModel)]="text"></p-editor>
+        </div>
+        <div class="row row-cols-sm-2 g-2">
+          <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
+          <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
+        </div>
+      </ng-template>
+    </p-stepperPanel>
+    <p-stepperPanel header="Financials">
+      <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+        let-index="index">
+        <div class="d-flex flex-column gap-3">
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <span>Unit Price</span>
+              </p-inputGroupAddon>
+              <p-inputNumber mode="currency" currency="EGP"></p-inputNumber>
+            </p-inputGroup>
+          </div>
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <span>Maintenance Cost</span>
+              </p-inputGroupAddon>
+              <p-inputNumber mode="currency" currency="EGP"></p-inputNumber>
+            </p-inputGroup>
+            <div class="d-flex align-items-center gap-3 mt-3">
+              <div class="w-100">
+                <p-slider></p-slider>
+              </div>
+              <div>
+                <p-inputNumber prefix="%"></p-inputNumber>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <span>Transaction Fees</span>
+              </p-inputGroupAddon>
+              <p-inputNumber mode="currency" currency="EGP"></p-inputNumber>
+            </p-inputGroup>
+            <div class="d-flex align-items-center gap-3 mt-3">
+              <div class="w-100">
+                <p-slider></p-slider>
+              </div>
+              <div>
+                <p-inputNumber prefix="%"></p-inputNumber>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <span>Number Of Shares</span>
+              </p-inputGroupAddon>
+              <p-inputNumber></p-inputNumber>
+            </p-inputGroup>
+          </div>
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <span>Share Price</span>
+              </p-inputGroupAddon>
+              <p-inputNumber mode="currency" currency="EGP"></p-inputNumber>
+            </p-inputGroup>
+          </div>
+        </div>
+        <div class="row row-cols-sm-2 g-2 mt-3">
+          <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
+          <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
+        </div>
+      </ng-template>
+    </p-stepperPanel>
+
+
+    <p-stepperPanel header="Payment Plan">
+      <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+        let-index="index">
+        <div class="d-flex flex-column gap-3">
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <span>Down Payment</span>
+              </p-inputGroupAddon>
+              <p-inputNumber mode="currency" currency="EGP"></p-inputNumber>
+            </p-inputGroup>
+          </div>
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <span>Monthly Installment</span>
+              </p-inputGroupAddon>
+              <p-inputNumber mode="currency" currency="EGP"></p-inputNumber>
+            </p-inputGroup>
+          </div>
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <span>Number of Years</span>
+              </p-inputGroupAddon>
+              <!-- Year Or Years based on the entered number -->
+              <p-inputNumber suffix=" Years"></p-inputNumber>
+            </p-inputGroup>
+          </div>
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <span>Maintenance Installment</span>
+              </p-inputGroupAddon>
+              <p-inputNumber mode="currency" currency="EGP"></p-inputNumber>
+            </p-inputGroup>
+          </div>
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <span>Delivery Installment</span>
+              </p-inputGroupAddon>
+              <p-inputNumber mode="currency" currency="EGP"></p-inputNumber>
+            </p-inputGroup>
+          </div>
+        </div>
+        <div class="row row-cols-sm-2 g-2 mt-3">
+          <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
+          <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
+        </div>
+      </ng-template>
+    </p-stepperPanel>
+
+    <p-stepperPanel header="Return">
+      <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+        let-index="index">
+        <div class="d-flex flex-column gap-3">
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <span>Annual Rental Yield</span>
+              </p-inputGroupAddon>
+              <p-inputNumber prefix="%"></p-inputNumber>
+            </p-inputGroup>
+          </div>
+          <div>
+            <p-inputGroup>
+              <p-inputGroupAddon>
+                <span>Annual Price Appreciation</span>
+              </p-inputGroupAddon>
+              <p-inputNumber prefix="%"></p-inputNumber>
+            </p-inputGroup>
+          </div>
+        </div>
+        <div class="row row-cols-sm-2 g-2 mt-3">
+          <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
+          <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
+        </div>
+      </ng-template>
+    </p-stepperPanel>
+
+  </p-stepper>
+</div>
