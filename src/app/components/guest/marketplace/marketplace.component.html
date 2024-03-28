@@ -37,7 +37,7 @@
         <div>
             <small class="mat-small d-block mt-1 mb-3">Property type</small>
             <div>
-                <p-dropdown [showClear]="true" placeholder="All Properties" styleClass="w-100" [options]="propertyTypes"
+                <p-dropdown [(ngModel)]="selectedProperty" [showClear]="true" placeholder="All Properties" styleClass="w-100" [options]="propertyTypes"
                     optionLabel="name">
                     <ng-template let-option pTemplate="item">
                         <div class="flex align-items-center gap-2">
@@ -92,8 +92,8 @@
         </div>
     </div>
     <p-button (onClick)="getProperties()" styleClass="w-100 text-white" label="Filter"></p-button>
-    <div *ngIf="properties" class="row row-cols-md-4 g-3 mx-auto">
-        @for (item of properties | paginate: { id: 'server', itemsPerPage: 10, currentPage: pagination.index, totalItems: pagination.total}; track $index) {
+    <div *ngIf="properties" class="row row-cols-md-4 g-3 justify-content-center">
+        @for (item of properties | paginate: { itemsPerPage: pagination.size, currentPage: pagination.index, totalItems: pagination.total}; track $index) {
         <a [routerLink]="['/property-details/' + item.propertyId]">
             <app-property-card-2 [property]="item"></app-property-card-2>
         </a>

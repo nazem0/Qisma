@@ -16,7 +16,6 @@ export class MarketplaceComponent implements OnInit {
   math=Math;
   propertyTypes = BusinessHelper.propertyTypes
   filters: {
-    propertyType?: number,
     propertyPriceRange:number[]
     sharePriceRange:number[]
   }={
@@ -25,6 +24,7 @@ export class MarketplaceComponent implements OnInit {
   }
   selectedGov?: GovernorateAndCityViewModel
   selectedCity?: GovernorateAndCityViewModel
+  selectedProperty?:{id:number, name:string};
   constructor(
     private propertyService: PropertyService,
     private governorateAndCityService: GovernorateAndCityService
@@ -71,7 +71,7 @@ export class MarketplaceComponent implements OnInit {
       MaxSharePrice:this.filters.sharePriceRange[1],
       MinUnitPrice:this.filters.propertyPriceRange[0],
       MaxUnitPrice:this.filters.propertyPriceRange[1],
-      PropertyType:this.filters.propertyType,
+      PropertyType:this.selectedProperty?.id,
     }).subscribe({
       next: next => {
         this.properties = next.data?.itemsList
