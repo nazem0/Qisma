@@ -12,5 +12,5 @@ img[src$=".svg"] {
 }
 .field>:first-child{
     font-weight: bold;
-    font-size:20px;
+    /* font-size:20px; */
 }

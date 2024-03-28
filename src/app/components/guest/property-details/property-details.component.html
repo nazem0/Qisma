@@ -65,7 +65,7 @@
         <h2 class="mb-0 mt-3">{{ property.location }}</h2>
         <span>{{ property.city }}, {{ property.governorate }}</span>
       </header>
-      <p-tabView [(activeIndex)]="activeIndex">
+      <p-tabView [(activeIndex)]="activeIndex" styleClass="w-100">
         <p-tabPanel header="Details">
           <div class="d-flex gap-2 flex-wrap">
             @for (item of property.propertyFacilities; track $index) {

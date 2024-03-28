@@ -323,7 +323,7 @@ button {
     }
 }
 
-.p-stepper .p-stepper-header .p-stepper-action {
+.p-stepper .p-stepper-header .p-stepper-action, .p-tabview .p-tabview-nav, .p-tabview .p-tabview-panels {
     background-color: unset;
 }
 
@@ -335,3 +335,13 @@ button {
 .p-stepper.p-stepper-vertical .p-stepper-toggleable-content{
     background: unset;
 }
+
+.container-sm{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.p-tabview-panels{
+    padding: 0;
+}
+
