@@ -1,230 +1,300 @@
 @if(property){
 <div class="gallery position-relative">
-    <p-carousel [value]="property.propertyImages!.slice(0, 3)" [numVisible]="3" [responsiveOptions]="responsiveOptions"
-        [showIndicators]="false" [showNavigators]="false">
-        <ng-template let-image pTemplate="item" let-index="image.index">
-            <img class="h-100" (click)="displayGalleria = true" [src]="helper.processFileUrl(image)" alt="" />
-        </ng-template>
-    </p-carousel>
+  <p-carousel
+    [value]="property.propertyImages!.slice(0, 3)"
+    [numVisible]="3"
+    [responsiveOptions]="responsiveOptions"
+    [showIndicators]="false"
+    [showNavigators]="false"
+  >
+    <ng-template let-image pTemplate="item" let-index="image.index">
+      <img class="h-100" [src]="helper.processFileUrl(image)" alt="" />
+    </ng-template>
+  </p-carousel>
 
-    <p-galleria [value]="property.propertyImages!" [(visible)]="displayGalleria" [responsiveOptions]="responsiveOptions"
-        [containerStyle]="{ 'max-width': '850px' }" [numVisible]="7" [circular]="true" [fullScreen]="true"
-        [showItemNavigators]="true" [showThumbnails]="false">
-        <ng-template pTemplate="item" let-item>
-            <img [src]="helper.processFileUrl(item)" style="width: 100%; display: block" />
-        </ng-template>
-    </p-galleria>
-    <div style="right: 5px;" class="position-absolute top-0">
+  <p-galleria
+    [value]="property.propertyImages!"
+    [(visible)]="displayGalleria"
+    [responsiveOptions]="responsiveOptions"
+    [containerStyle]="{ 'max-width': '850px' }"
+    [numVisible]="7"
+    [circular]="true"
+    [fullScreen]="true"
+    [showItemNavigators]="true"
+    [showThumbnails]="false"
+  >
+    <ng-template pTemplate="item" let-item>
+      <img
+        [src]="helper.processFileUrl(item)"
+        style="width: 100%; display: block"
+      />
+    </ng-template>
+  </p-galleria>
+  <div
+    style="right: 5px; top: 5px"
+    class="position-absolute d-flex align-items-center gap-2"
+  >
+    <p-button
+      routerLink="/property-images/{{ propertyId }}"
+      styleClass="p-2"
+      [rounded]="true"
+      [raised]="true"
+    >
+      <i class="pi pi-plus text-white"></i>
+    </p-button>
 
-        <p-button
-        routerLink="/property-images/{{propertyId}}"
-         styleClass="p-2" [rounded]="true" [raised]="true">
-            <i class="pi pi-plus text-white"></i>
-        </p-button>
-    </div>
+    <p-button 
+    (onClick)="displayGalleria = true"
+    [raised]="true" styleClass="bg-white text-primary border-0">
+      <span>
+        <i class="pi pi-images"></i>
+        View All Photos
+      </span>
+    </p-button>
+  </div>
 </div>
 <div class="container-sm">
-    <div class="row flex-wrap-reverse mx-0 position-relative">
-        <div class="property-details col-lg-8 col-12">
-            <header class="my-5">
-                <span class="border border-2 px-3 py-1 rounded-4 border-success-subtle text-success">Active</span>
-                <h2 class="mb-0 mt-3">{{ property.location }}</h2>
-                <span>{{ property.city }}, {{ property.governorate }}</span>
-            </header>
-            <p-tabView [(activeIndex)]="activeIndex">
-                <p-tabPanel header="Details">
-                    <div class="d-flex gap-2 flex-wrap">
-                        @for (item of property.propertyFacilities; track $index) {
-                            <div class="p-2 shadow d-flex flex-column align-items-center justify-content-between rounded-3 border border-2">
-                                <img style="width: 24px;" [src]="helper.processFileUrl(item.svg,true)" alt="">
-                                <span>{{item.describtion}}</span>
-                            </div>
-                        }
-                    </div>
-                    <h2 class="mt-3">About the Property</h2>
-                    <p [innerHTML]="property.description"></p>
-                </p-tabPanel>
-                <p-tabPanel header="Financials">
-                    <div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="field">
-                                    <label>Unit Price:</label>
-                                    <span> {{ property.unitPrice | currency }}</span>
-                                </div>
-                                <div class="field">
-                                    <label>Maintenance Cost:</label>
-                                    <span>{{ property.maintenanceCostNumerical | currency }}</span>
-                                </div>
-                                <div class="field">
-                                    <label>Transaction Fees:</label>
-                                    <span> {{ property.transactionFeesNumerical| currency }}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="field">
-                                    <label>Number of Shares:</label>
-                                    <span> {{ property.numberOfShares }}</span>
-                                </div>
-                                <div class="field">
-                                    <label>Price per Share:</label>
-                                    <span>{{ property.sharePrice | currency }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="financial-section">
-                        <h3>Payment Plan</h3>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="field">
-                                    <label>Downpayment:</label>
-                                    <span>{{ property.downPayment | currency }}</span>
-                                </div>
-                                <div class="field">
-                                    <label>Monthly Installment:</label>
-                                    <span>{{ property.monthlyInstallment | currency }}</span>
-                                </div>
-                                <div class="field">
-                                    <label>Number of Years:</label>
-                                    <span> {{ property.numberOfYears }}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="field">
-                                    <label>Maintenance Installment:</label>
-                                    <span>{{property.maintenaceInstallment| currency}}</span>
-                                </div>
-                                <div class="field">
-                                    <label>Delivery Installment:</label>
-                                    <span>{{property.deliveryInstallment| currency}}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="financial-section">
-                        <h3>Projected Annual Return</h3>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="field">
-                                    <label>Projected Annual Return:</label>
-                                    <span>{{property.projectedAnnualReturn| percent}}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="graph">
-                        <div class="rounded-4 shadow px-5 py-3">
-                            <h5>Projected returns per token</h5>
-                            <div>
-                                <div class="d-flex justify-content-between">
-                                    <p>Tokens Purchased</p>
-                                    <p>
-                                        <span>{{ estimationData.tokensPurchased }}</span>
-                                        /
-                                        <span>{{
-                                            property.sharePrice! *
-                                            estimationData.tokensPurchased | currency
-                                            }}</span>
-                                    </p>
-                                </div>
-                                <p-slider [animate]="true" [(ngModel)]="estimationData.tokensPurchased"
-                                    (ngModelChange)="initChart()" [min]="1"
-                                    [max]="property.availableShares!"></p-slider>
-                                <div class="d-flex justify-content-between">
-                                    <p>1</p>
-                                    <p>{{ property.availableShares }}</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="d-flex justify-content-between">
-                                    <p>Appreciation</p>
-                                    <p>{{ estimationData.appreciation }}%</p>
-                                </div>
-                                <p-slider [animate]="true" [(ngModel)]="estimationData.appreciation"
-                                    (ngModelChange)="initChart()" [min]="1" [max]="100"></p-slider>
-                                <div class="d-flex justify-content-between">
-                                    <p>1</p>
-                                    <p>100</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="d-flex justify-content-between">
-                                    <p>Rental Yield</p>
-                                    <p>{{ estimationData.rentalYield }}%</p>
-                                </div>
-                                <p-slider [animate]="true" [(ngModel)]="estimationData.rentalYield"
-                                    (ngModelChange)="initChart()" [min]="1" [max]="100"></p-slider>
-                                <div class="d-flex justify-content-between">
-                                    <p>1</p>
-                                    <p>100</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h5>Est. Investment Value over time based on above assumptions</h5>
-                            <p-chart type="bar" [data]="chart.data" [options]="chart.options"></p-chart>
-                        </div>
-
-                    </div>
-                </p-tabPanel>
-            </p-tabView>
-        </div>
-        <div class="col-lg-4 col-12">
-            <div class="shadow-sm p-3 position-sticky sticky-card">
-                <div class="d-flex justify-content-between align-items-center w-100">
-                    <span class="fs-3 fw-bold"
-                        pTooltip="This is the lowest current price per token availiable for this property."
-                        [tooltipPosition]="'left'">
-                        Estimated Price
-                    </span>
-                    <p>
-                        {{ property.sharePrice| currency }}
-                    </p>
-                </div>
-                <div class="d-flex justify-content-between align-items-center w-100">
-                    <span pTooltip="This is the lowest current price per token availiable for this property."
-                        [tooltipPosition]="'left'">
-                        Projected Annual Return
-                    </span>
-                    <p>
-                        {{ property.projectedAnnualReturn| percent }}
-                    </p>
-                </div>
-                <div class="d-flex justify-content-between align-items-center w-100">
-                    <span pTooltip="This is the lowest current price per token availiable for this property."
-                        [tooltipPosition]="'left'">
-                        Projected Rental Yield
-                    </span>
-                    <p>
-                        {{ property.annualRentalYield| percent }}
-                    </p>
-                </div>
-                <div class="d-flex justify-content-between align-items-center w-100">
-                    <span pTooltip="This is the lowest current price per token availiable for this property."
-                        [tooltipPosition]="'left'">
-                        Rental Yield
-                    </span>
-                    <p>
-                        {{ property.annualRentalYield| percent }}
-                    </p>
-                </div>
-                <div class="row row-cols-2 justify-content-center">
-                    <div>
-                        <p-button styleClass="w-100">
-                            <span class="mx-auto text-white">Buy</span>
-                        </p-button>
-                    </div>
-                    <div>
-                        <p-button styleClass="w-100 bg-white border border-primary">
-                            <span class="mx-auto">Sell</span>
-                        </p-button>
-                    </div>
-                </div>
+  <div class="row flex-wrap-reverse mx-0 position-relative">
+    <div class="property-details col-lg-8 col-12">
+      <header class="my-5">
+        <span
+          class="border border-2 px-3 py-1 rounded-4 border-success-subtle text-success"
+          >Active</span
+        >
+        <h2 class="mb-0 mt-3">{{ property.location }}</h2>
+        <span>{{ property.city }}, {{ property.governorate }}</span>
+      </header>
+      <p-tabView [(activeIndex)]="activeIndex">
+        <p-tabPanel header="Details">
+          <div class="d-flex gap-2 flex-wrap">
+            @for (item of property.propertyFacilities; track $index) {
+            <div
+              class="p-2 shadow d-flex flex-column align-items-center justify-content-between rounded-3 border border-2"
+            >
+              <img
+                style="width: 24px"
+                [src]="helper.processFileUrl(item.svg, true)"
+                alt=""
+              />
+              <span>{{ item.describtion }}</span>
             </div>
-        </div>
+            }
+          </div>
+          <h2 class="mt-3">About the Property</h2>
+          <p [innerHTML]="property.description"></p>
+        </p-tabPanel>
+        <p-tabPanel header="Financials">
+          <div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="field">
+                  <label>Unit Price:</label>
+                  <span> {{ property.unitPrice | currency }}</span>
+                </div>
+                <div class="field">
+                  <label>Maintenance Cost:</label>
+                  <span>{{
+                    property.maintenanceCostNumerical | currency
+                  }}</span>
+                </div>
+                <div class="field">
+                  <label>Transaction Fees:</label>
+                  <span>
+                    {{ property.transactionFeesNumerical | currency }}</span
+                  >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="field">
+                  <label>Number of Shares:</label>
+                  <span> {{ property.numberOfShares }}</span>
+                </div>
+                <div class="field">
+                  <label>Price per Share:</label>
+                  <span>{{ property.sharePrice | currency }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="financial-section">
+            <h3>Payment Plan</h3>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="field">
+                  <label>Downpayment:</label>
+                  <span>{{ property.downPayment | currency }}</span>
+                </div>
+                <div class="field">
+                  <label>Monthly Installment:</label>
+                  <span>{{ property.monthlyInstallment | currency }}</span>
+                </div>
+                <div class="field">
+                  <label>Number of Years:</label>
+                  <span> {{ property.numberOfYears }}</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="field">
+                  <label>Maintenance Installment:</label>
+                  <span>{{ property.maintenaceInstallment | currency }}</span>
+                </div>
+                <div class="field">
+                  <label>Delivery Installment:</label>
+                  <span>{{ property.deliveryInstallment | currency }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="financial-section">
+            <h3>Projected Annual Return</h3>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="field">
+                  <label>Projected Annual Return:</label>
+                  <span>{{ property.projectedAnnualReturn | percent }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="graph">
+            <div class="rounded-4 shadow px-5 py-3">
+              <h5>Projected returns per token</h5>
+              <div>
+                <div class="d-flex justify-content-between">
+                  <p>Tokens Purchased</p>
+                  <p>
+                    <span>{{ estimationData.tokensPurchased }}</span>
+                    /
+                    <span>{{
+                      property.sharePrice! * estimationData.tokensPurchased
+                        | currency
+                    }}</span>
+                  </p>
+                </div>
+                <p-slider
+                  [animate]="true"
+                  [(ngModel)]="estimationData.tokensPurchased"
+                  (ngModelChange)="initChart()"
+                  [min]="1"
+                  [max]="property.availableShares!"
+                ></p-slider>
+                <div class="d-flex justify-content-between">
+                  <p>1</p>
+                  <p>{{ property.availableShares }}</p>
+                </div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between">
+                  <p>Appreciation</p>
+                  <p>{{ estimationData.appreciation }}%</p>
+                </div>
+                <p-slider
+                  [animate]="true"
+                  [(ngModel)]="estimationData.appreciation"
+                  (ngModelChange)="initChart()"
+                  [min]="1"
+                  [max]="100"
+                ></p-slider>
+                <div class="d-flex justify-content-between">
+                  <p>1</p>
+                  <p>100</p>
+                </div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between">
+                  <p>Rental Yield</p>
+                  <p>{{ estimationData.rentalYield }}%</p>
+                </div>
+                <p-slider
+                  [animate]="true"
+                  [(ngModel)]="estimationData.rentalYield"
+                  (ngModelChange)="initChart()"
+                  [min]="1"
+                  [max]="100"
+                ></p-slider>
+                <div class="d-flex justify-content-between">
+                  <p>1</p>
+                  <p>100</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h5>
+                Est. Investment Value over time based on above assumptions
+              </h5>
+              <p-chart
+                type="bar"
+                [data]="chart.data"
+                [options]="chart.options"
+              ></p-chart>
+            </div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
     </div>
+    <div class="col-lg-4 col-12">
+      <div class="shadow-sm p-3 position-sticky sticky-card">
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <span
+            class="fs-3 fw-bold"
+            pTooltip="This is the lowest current price per token availiable for this property."
+            [tooltipPosition]="'left'"
+          >
+            Estimated Price
+          </span>
+          <p>
+            {{ property.sharePrice | currency }}
+          </p>
+        </div>
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <span
+            pTooltip="This is the lowest current price per token availiable for this property."
+            [tooltipPosition]="'left'"
+          >
+            Projected Annual Return
+          </span>
+          <p>
+            {{ property.projectedAnnualReturn | percent }}
+          </p>
+        </div>
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <span
+            pTooltip="This is the lowest current price per token availiable for this property."
+            [tooltipPosition]="'left'"
+          >
+            Projected Rental Yield
+          </span>
+          <p>
+            {{ property.annualRentalYield | percent }}
+          </p>
+        </div>
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <span
+            pTooltip="This is the lowest current price per token availiable for this property."
+            [tooltipPosition]="'left'"
+          >
+            Rental Yield
+          </span>
+          <p>
+            {{ property.annualRentalYield | percent }}
+          </p>
+        </div>
+        <div class="row row-cols-2 justify-content-center">
+          <div>
+            <p-button styleClass="w-100">
+              <span class="mx-auto text-white">Buy</span>
+            </p-button>
+          </div>
+          <div>
+            <p-button styleClass="w-100 bg-white border border-primary">
+              <span class="mx-auto">Sell</span>
+            </p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 }

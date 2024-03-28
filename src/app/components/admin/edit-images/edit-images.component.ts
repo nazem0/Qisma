@@ -43,7 +43,6 @@ export class EditImagesComponent {
   }
 
   ngAfterViewInit(): void {
-    console.log(this.uploadedFiles);
     let nativeElement = this.uploadedFiles.nativeElement;
     nativeElement.addEventListener("change", () => {
       if (nativeElement.files) {
@@ -96,7 +95,11 @@ export class EditImagesComponent {
       }
     })
   }
-
+  // delete(index:number){
+  //   this.files?.item(index);
+    
+  //   this.inputArray.splice(index,1);
+  // }
   // delete(attachmentId: number | string) {
   //   this.postService.DeleteAttachment(attachmentId).subscribe({
   //     next: () => {
