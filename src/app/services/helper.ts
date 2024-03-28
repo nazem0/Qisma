@@ -9,8 +9,8 @@ export class Helper {
         formControl.setValue(file);
     }
 
-    public static processFileUrl(fileUrl?: string | null) {
-        return fileUrl ? `${environment.staticFiles}/${fileUrl}` : "";
+    public static processFileUrl(fileUrl?: string | null, isFacility=false) {
+        return fileUrl ? `${isFacility ? environment.Facilities : environment.staticFiles}/${fileUrl}` : "";
     }
 
     public static readonly passwordRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;

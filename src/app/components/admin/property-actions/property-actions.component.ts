@@ -4,6 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { FacilityViewModelForAdmin, GovernorateAndCityViewModel, PropertyDetailsViewModelForUser } from '../../../api/models';
 import { BusinessHelper } from '../../../services/business-helper';
+import { Helper } from '../../../services/helper';
 
 @Component({
   selector: 'app-property-actions',
@@ -11,9 +12,10 @@ import { BusinessHelper } from '../../../services/business-helper';
   styleUrl: './property-actions.component.css'
 })
 export class PropertyActionsComponent implements OnInit {
+  helper = Helper;
   propertyForm!: FormGroup;
   propertyTypes = BusinessHelper.propertyTypes
-  text:string=`
+  text: string = `
   <h1>Title 1</h1>
   <ol>
     <li>element 1</li>
@@ -29,23 +31,30 @@ export class PropertyActionsComponent implements OnInit {
   </ol>
   `;
 
-  facilities:FacilityViewModelForAdmin[]=[];
+  facilities: FacilityViewModelForAdmin[] = [];
+  selectedFacility?: FacilityViewModelForAdmin;
+  selectedFacilityValue?: string;
+  addedFacilities: {
+    id: number,
+    value: string
+  }[] = []
   governorates: GovernorateAndCityViewModel[] = [];
   cities: GovernorateAndCityViewModel[] = [];
   selectedGov?: GovernorateAndCityViewModel;
   selectedCity?: GovernorateAndCityViewModel;
   constructor(
-    private fb:FormBuilder,
-    private propertyForAdminService:PropertyForAdminService,
-    private governorateAndCityService:GovernorateAndCityService
-  ){
+    private fb: FormBuilder,
+    private propertyForAdminService: PropertyForAdminService,
+    private governorateAndCityService: GovernorateAndCityService
+  ) {
     this.initPropertyForm();
   }
   ngOnInit(): void {
     this.initGovs()
+    this.initFacilities();
     // this.propertyForAdminService.apiDashboardPropertyAddPost$Json({body:{}})
   }
-  initPropertyForm(){
+  initPropertyForm() {
     this.propertyForm = this.fb.group({
       location: '',
       governorateId: 0,
@@ -67,14 +76,14 @@ export class PropertyActionsComponent implements OnInit {
       facilities: this.fb.array([])
     });
   }
-  check(){
+  check() {
     console.log(this.text);
-    
+
   }
 
   initGovs() {
     this
-    .governorateAndCityService
+      .governorateAndCityService
       .apiGovernorateGetAllGet$Json()
       .subscribe({
         next: next => {
@@ -93,29 +102,31 @@ export class PropertyActionsComponent implements OnInit {
       })
 
   }
-  initFacilities(){
+  initFacilities() {
     this
-    .propertyForAdminService
-    .apiDashboardFacilityGetAllGet$Json()
-    .subscribe({
-      next:next=>{
-        this.facilities=next.data??[]
-      }
-    })
+      .propertyForAdminService
+      .apiDashboardFacilityGetAllGet$Json()
+      .subscribe({
+        next: next => {
+          this.facilities = next.data ?? []
+        }
+      })
   }
   get facilitiesFormArray() {
     return this.propertyForm.get('facilities') as FormArray;
   }
-  createFacility(): FormGroup {
-    return this.fb.group({
-      facilityId: [0],
-      description: ['', Validators.required]
-    });
+  createFacility() {
+    
   }
   addFacility(): void {
-    this.facilitiesFormArray.push(this.createFacility());
+    this.addedFacilities.push({ id: this.selectedFacility!.id!, value: this.selectedFacilityValue! })
+    this.selectedFacility = undefined;
+    this.selectedFacilityValue="";
   }
   removeFacility(index: number): void {
-    this.facilitiesFormArray.removeAt(index);
+    this.addedFacilities.splice(index,1);
+  }
+  fiterFacilities(id:number){
+    return this.facilities.find(e=>e.id == id)
   }
 }
