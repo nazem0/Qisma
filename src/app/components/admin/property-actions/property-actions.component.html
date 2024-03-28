@@ -130,7 +130,7 @@
                 <p-inputGroupAddon>
                   <span>Unit Price</span>
                 </p-inputGroupAddon>
-                <p-inputNumber formControlName="unitPrice" mode="currency" currency="EGP"></p-inputNumber>
+                <p-inputNumber (onInput)="calculateMaintenanceCostPercentage();calculateTransactionFeesPercentage();" formControlName="unitPrice" mode="currency" currency="EGP"></p-inputNumber>
               </p-inputGroup>
             </div>
             <div>
@@ -138,14 +138,11 @@
                 <p-inputGroupAddon>
                   <span>Maintenance Cost</span>
                 </p-inputGroupAddon>
-                <p-inputNumber formControlName="maintenanceCost" mode="currency" currency="EGP"></p-inputNumber>
+                <p-inputNumber (onInput)="calculateMaintenanceCostPercentage()" formControlName="maintenanceCost" mode="currency" currency="EGP"></p-inputNumber>
               </p-inputGroup>
-              <div class="d-flex align-items-center gap-3 mt-3">
-                <div class="w-100">
-                  <p-slider></p-slider>
-                </div>
-                <div>
-                  <p-inputNumber prefix="%"></p-inputNumber>
+              <div>
+                <div class="text-end">
+                  <span>{{maintenanceCostPercentage | percent : "1.0-8"}}</span>
                 </div>
               </div>
             </div>
@@ -154,14 +151,11 @@
                 <p-inputGroupAddon>
                   <span>Transaction Fees</span>
                 </p-inputGroupAddon>
-                <p-inputNumber formControlName="transactionFees" mode="currency" currency="EGP"></p-inputNumber>
+                <p-inputNumber (onInput)="calculateTransactionFeesPercentage()" formControlName="transactionFees" mode="currency" currency="EGP"></p-inputNumber>
               </p-inputGroup>
-              <div class="d-flex align-items-center gap-3 mt-3">
-                <div class="w-100">
-                  <p-slider></p-slider>
-                </div>
-                <div>
-                  <p-inputNumber prefix="%"></p-inputNumber>
+              <div>
+                <div class="text-end">
+                  <span>{{transactionFeesPercentage | percent : "1.0-8"}}</span>
                 </div>
               </div>
             </div>
