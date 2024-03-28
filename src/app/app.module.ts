@@ -40,7 +40,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogTitle, MatDialogContent, } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
@@ -165,7 +165,7 @@ registerLocaleData(en);
     MatDialogTitle,
     MatDialogContent,
     MatSnackBarModule,
-    ScrollingModule,
+    MatDividerModule,
     //NzMaterial Modules
     NzPaginationModule,
     // for HttpClient use:

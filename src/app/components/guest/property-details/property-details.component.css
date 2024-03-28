@@ -5,3 +5,12 @@ img[src$=".svg"] {
     /* Set the fill color */
     fill: #ff0000 !important; /* Red color */
 }
+
+.field{
+    display: flex;
+    justify-content: space-between;
+}
+.field>:first-child{
+    font-weight: bold;
+    font-size:20px;
+}
