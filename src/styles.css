@@ -330,3 +330,8 @@ button {
 .p-galleria-item-nav, .p-galleria-close-icon{
     color: white;
 }
+
+
+.p-stepper.p-stepper-vertical .p-stepper-toggleable-content{
+    background: unset;
+}
