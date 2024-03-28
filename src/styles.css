@@ -322,3 +322,7 @@ button {
 
     }
 }
+
+.p-stepper .p-stepper-header .p-stepper-action {
+    background-color: unset;
+}
