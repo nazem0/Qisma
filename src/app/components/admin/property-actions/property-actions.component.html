@@ -1,6 +1,5 @@
 <div class="container-sm">
   <form [formGroup]="propertyForm">
-    <p-button (onClick)="check()">Check</p-button>
     <p-stepper orientation="vertical">
       <p-stepperPanel header="Details">
         <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
@@ -267,7 +266,6 @@
           <div class="row row-cols-sm-2 g-2 mt-3">
             <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
             <p-button 
-            [disabled]="propertyForm.invalid"
             [raised]="propertyForm.valid" styleClass="text-white w-100" label="Add Property"
               (onClick)="submitForm()" />
           </div>

@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@ang
 import { FacilityViewModelForAdmin, GovernorateAndCityViewModel, PropertyDetailsViewModelForUser } from '../../../api/models';
 import { BusinessHelper } from '../../../services/business-helper';
 import { Helper } from '../../../services/helper';
+import { DialogService } from '../../../services/dialog.service';
 
 @Component({
   selector: 'app-property-actions',
@@ -13,6 +14,7 @@ import { Helper } from '../../../services/helper';
 })
 export class PropertyActionsComponent implements OnInit {
   helper = Helper;
+  validationErros:string[]=[]
   math=Math;
   propertyForm!: FormGroup;
   propertyTypes = BusinessHelper.propertyTypes;
@@ -42,7 +44,8 @@ export class PropertyActionsComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private propertyForAdminService: PropertyForAdminService,
-    private governorateAndCityService: GovernorateAndCityService
+    private governorateAndCityService: GovernorateAndCityService,
+    private dialog: DialogService,
   ) {
     this.initPropertyForm();
   }
@@ -137,9 +140,30 @@ export class PropertyActionsComponent implements OnInit {
   }
 
   submitForm(){
+
+    if(this.checkFormValidity())
+
     this
     .propertyForAdminService
     .apiDashboardPropertyAddPost$Json({body:this.propertyForm.value})
     .subscribe();
+  }
+
+  openErrorsDialog() {
+    this.dialog.open("Property Addition Form Errors", [this.validationErros]);
+  }
+
+  checkFormValidity(){
+    if (this.propertyForm.invalid) {
+      Object.keys(this.propertyForm.controls).forEach(controlName => {
+        const control = this.propertyForm.get(controlName);
+        if (control && control.errors) {
+          this.validationErros.push(`${controlName[0].toUpperCase() + controlName.slice(1)} is invalid`);
+        }
+      });
+      this.openErrorsDialog();
+      return false;
+    }
+    return true;
   }
 }

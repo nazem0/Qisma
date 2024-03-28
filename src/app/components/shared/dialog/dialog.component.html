@@ -4,12 +4,13 @@
         <img class="shadow" [src]="data.img" alt="">
     </div>
     @for (list of data.messages; track $index) {
-    <ul dir="auto">
+    <div>
+
         @for (item of list; track $index) {
-        <li>
-            <span>{{item}}</span>
-        </li>
+            <p>
+                <span>{{item}}</span>
+            </p>
         }
-    </ul>
+    </div>
     }
 </mat-dialog-content>
