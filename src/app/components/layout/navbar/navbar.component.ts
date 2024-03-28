@@ -19,7 +19,7 @@ export class NavbarComponent {
       { label: 'About Us', routerLink: 'about-us' },
       { label: 'Learn', routerLink: 'learn' },
       { label: 'Blog', routerLink: 'blog' },
-      { label: 'List Property', routerLink: 'list-property' },
+      { label: 'List Property', routerLink: 'property-actions' },
       { label: 'Log In', routerLink: 'login' },
       { label: 'Sign Up', routerLink: 'register'}
     ];
