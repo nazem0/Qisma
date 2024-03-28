@@ -1,0 +1,31 @@
+<div class="container-sm pb-3">
+    <h1 class="text-center mt-5 text-primary">Add Property Images</h1>
+    <div class="mb-3 d-flex flex-column align-items-center">
+        <p-button [rounded]="true" [raised]="true">
+            <label for="upload-files">
+                <i class="pi pi-plus text-white"></i>
+            </label>
+        </p-button>
+        <input class="d-none" type="file" id="upload-files" #uploadedFiles accept="image/*" multiple>
+        <ng-container *ngIf="inputArray">
+            <div class="row row-cols-md-3 g-2 justify-content-center">
+                <div *ngFor="let item of inputArray">
+                    <img class="border border-3 h-100 w-100" [src]="item">
+
+                </div>
+            </div>
+        </ng-container>
+        <button type="submit" class="my-2 btn primary-btn" (click)="addAttachmnets()">إضافة</button>
+    </div>
+    <ng-container *ngIf="filesUploaded">
+        <img *ngFor="let item of images" [src]="item || 'http://placehold.it/180'" alt="">
+    </ng-container>
+    <div class="row g-2 row-cols-md-3 justify-content-center">
+        <div class="position-relative" *ngFor="let img of images">
+            <!-- <button class="position-absolute top-0 btn btn-danger" (click)="delete(pic.id)">
+                <i class="fa fa-xmark text-light"></i>
+            </button> -->
+            <img class="border border-3 h-100 w-100" [src]="helper.processFileUrl(img)" alt="ملحقات المنشور">
+        </div>
+    </div>
+</div>

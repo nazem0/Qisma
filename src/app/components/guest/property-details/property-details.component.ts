@@ -11,6 +11,7 @@ import { PropertyDetailsViewModelForUser } from '../../../api/models';
   styleUrl: './property-details.component.css'
 })
 export class PropertyDetailsComponent implements OnInit {
+  helper=Helper;
   constructor(
     private propertyService: PropertyService,
     private route: ActivatedRoute

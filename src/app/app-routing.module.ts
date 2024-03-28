@@ -14,6 +14,7 @@ import { HomeComponent } from './components/guest/home/home.component';
 import { MarketplaceComponent } from './components/guest/marketplace/marketplace.component';
 import { PropertyDetailsComponent } from './components/guest/property-details/property-details.component';
 import { PropertyActionsComponent } from './components/admin/property-actions/property-actions.component';
+import { EditImagesComponent } from './components/admin/edit-images/edit-images.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -31,6 +32,7 @@ const routes: Routes = [
       { path: "property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
       { path:"property-actions", component:PropertyActionsComponent, title:"Property Actions"},
       { path:"property-actions/:id", component:PropertyActionsComponent, title:"Property Actions"},
+      { path:"property-images/:id", component:EditImagesComponent, title:"Property Images"},
       { path: '**', component: PageNotFoundComponent }
     ]
   }

@@ -1,3 +1,7 @@
 .sticky-card{
     top: 25px;
 }
+img[src$=".svg"] {
+    /* Set the fill color */
+    fill: #ff0000 !important; /* Red color */
+}

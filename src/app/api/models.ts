@@ -14,4 +14,5 @@ export { PropertyViewModelInListViewForUser } from './models/property-view-model
 export { PropertyViewModelInListViewForUserPaginationViewModel } from './models/property-view-model-in-list-view-for-user-pagination-view-model';
 export { PropertyViewModelInListViewForUserPaginationViewModelApiResult } from './models/property-view-model-in-list-view-for-user-pagination-view-model-api-result';
 export { StringApiResult } from './models/string-api-result';
+export { StringListApiResult } from './models/string-list-api-result';
 export { Type } from './models/type';

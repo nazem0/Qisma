@@ -25,9 +25,14 @@ import { apiDashboardPropertyImagesAddPost$Json } from '../fn/property-for-admin
 import { ApiDashboardPropertyImagesAddPost$Json$Params } from '../fn/property-for-admin/api-dashboard-property-images-add-post-json';
 import { apiDashboardPropertyImagesAddPost$Plain } from '../fn/property-for-admin/api-dashboard-property-images-add-post-plain';
 import { ApiDashboardPropertyImagesAddPost$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-images-add-post-plain';
+import { apiDashboardPropertyImagesGetAllGet$Json } from '../fn/property-for-admin/api-dashboard-property-images-get-all-get-json';
+import { ApiDashboardPropertyImagesGetAllGet$Json$Params } from '../fn/property-for-admin/api-dashboard-property-images-get-all-get-json';
+import { apiDashboardPropertyImagesGetAllGet$Plain } from '../fn/property-for-admin/api-dashboard-property-images-get-all-get-plain';
+import { ApiDashboardPropertyImagesGetAllGet$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-images-get-all-get-plain';
 import { FacilityViewModelForAdminListApiResult } from '../models/facility-view-model-for-admin-list-api-result';
 import { Int32ApiResult } from '../models/int-32-api-result';
 import { StringApiResult } from '../models/string-api-result';
+import { StringListApiResult } from '../models/string-list-api-result';
 
 @Injectable({ providedIn: 'root' })
 export class PropertyForAdminService extends BaseService {
@@ -221,6 +226,69 @@ export class PropertyForAdminService extends BaseService {
   apiDashboardPropertyImagesAddPost$Json(params?: ApiDashboardPropertyImagesAddPost$Json$Params, context?: HttpContext): Observable<StringApiResult> {
     return this.apiDashboardPropertyImagesAddPost$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiDashboardPropertyImagesGetAllGet()` */
+  static readonly ApiDashboardPropertyImagesGetAllGetPath = '/api/Dashboard/PropertyImages/GetAll';
+
+  /**
+   * Get all property images.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyImagesGetAllGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyImagesGetAllGet$Plain$Response(params: ApiDashboardPropertyImagesGetAllGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringListApiResult>> {
+    return apiDashboardPropertyImagesGetAllGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Get all property images.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyImagesGetAllGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyImagesGetAllGet$Plain(params: ApiDashboardPropertyImagesGetAllGet$Plain$Params, context?: HttpContext): Observable<StringListApiResult> {
+    return this.apiDashboardPropertyImagesGetAllGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringListApiResult>): StringListApiResult => r.body)
+    );
+  }
+
+  /**
+   * Get all property images.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyImagesGetAllGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyImagesGetAllGet$Json$Response(params: ApiDashboardPropertyImagesGetAllGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringListApiResult>> {
+    return apiDashboardPropertyImagesGetAllGet$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Get all property images.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyImagesGetAllGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyImagesGetAllGet$Json(params: ApiDashboardPropertyImagesGetAllGet$Json$Params, context?: HttpContext): Observable<StringListApiResult> {
+    return this.apiDashboardPropertyImagesGetAllGet$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringListApiResult>): StringListApiResult => r.body)
     );
   }
 

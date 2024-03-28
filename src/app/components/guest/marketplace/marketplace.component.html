@@ -53,12 +53,12 @@
                 <p class="mb-1 text-end mat-small">
                     {{
                     filters.propertyPriceRange[0]
-                    | currency : "USD" : "symbol" : "1.0-0"
+                    | currency : "EGP" : "symbol" : "1.0-0"
                     }}
                     -
                     {{
                     filters.propertyPriceRange[1]
-                    | currency : "USD" : "symbol" : "1.0-0"
+                    | currency : "EGP" : "symbol" : "1.0-0"
                     }}
                 </p>
 
@@ -75,11 +75,11 @@
             <div>
                 <p class="mb-1 text-end mat-small">
                     {{
-                    filters.sharePriceRange[0] | currency : "USD" : "symbol" : "1.0-0"
+                    filters.sharePriceRange[0] | currency : "EGP" : "symbol" : "1.0-0"
                     }}
                     -
                     {{
-                    filters.sharePriceRange[1] | currency : "USD" : "symbol" : "1.0-0"
+                    filters.sharePriceRange[1] | currency : "EGP" : "symbol" : "1.0-0"
                     }}
                 </p>
                 <p-slider [min]="500 * math.pow(10, 3)" [max]="20*math.pow(10,6)" [step]="500 * math.pow(10, 3)"
@@ -91,9 +91,11 @@
             </div>
         </div>
     </div>
-    <p-button (onClick)="getProperties()" styleClass="w-100 text-white" label="Filter"></p-button>
+    <p-button (onClick)="getProperties()" styleClass="w-100 text-white">
+        <span class="mx-auto">Filter</span>
+    </p-button>
     <div *ngIf="properties" class="row row-cols-md-4 g-3 justify-content-center">
-        @for (item of properties | paginate: { itemsPerPage: pagination.size, currentPage: pagination.index, totalItems: pagination.total}; track $index) {
+        @for (item of properties; track $index) {
         <a [routerLink]="['/property-details/' + item.propertyId]">
             <app-property-card-2 [property]="item"></app-property-card-2>
         </a>
@@ -103,6 +105,19 @@
     </div>
     <div class="text-center">
         <div class="spinner" [ngClass]="{ 'hidden': !properties }"></div>
-        <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
+        <nz-pagination
+        [nzPageIndex]="2"
+        [nzTotal]="500"
+        nzShowQuickJumper
+        nzShowSizeChanger
+        [nzPageSizeOptions]="[12,18,24]"
+        [nzPageSize]="pagination.size"
+        [nzPageIndex]="pagination.index"
+        [nzTotal]="pagination.total"
+        (nzPageIndexChange)="getPage($event)"
+        [(nzPageSize)]="pagination.size"
+        (nzPageSizeChange)="getProperties()"
+        [nzPageIndex]="pagination.index+1"
+        ></nz-pagination>
     </div>
 </div>

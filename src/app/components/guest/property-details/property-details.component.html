@@ -1,9 +1,9 @@
 @if(property){
-<div class="gallery">
+<div class="gallery position-relative">
     <p-carousel [value]="property.propertyImages!.slice(0, 3)" [numVisible]="3" [responsiveOptions]="responsiveOptions"
         [showIndicators]="false" [showNavigators]="false">
         <ng-template let-image pTemplate="item" let-index="image.index">
-            <img (click)="displayGalleria = true" [src]="image" alt="" />
+            <img class="h-100" (click)="displayGalleria = true" [src]="helper.processFileUrl(image)" alt="" />
         </ng-template>
     </p-carousel>
 
@@ -11,9 +11,17 @@
         [containerStyle]="{ 'max-width': '850px' }" [numVisible]="7" [circular]="true" [fullScreen]="true"
         [showItemNavigators]="true" [showThumbnails]="false">
         <ng-template pTemplate="item" let-item>
-            <img [src]="item" style="width: 100%; display: block" />
+            <img [src]="helper.processFileUrl(item)" style="width: 100%; display: block" />
         </ng-template>
     </p-galleria>
+    <div style="right: 5px;" class="position-absolute top-0">
+
+        <p-button
+        routerLink="/property-images/{{propertyId}}"
+         styleClass="p-2" [rounded]="true" [raised]="true">
+            <i class="pi pi-plus text-white"></i>
+        </p-button>
+    </div>
 </div>
 <div class="container-sm">
     <div class="row flex-wrap-reverse mx-0 position-relative">
@@ -25,7 +33,15 @@
             </header>
             <p-tabView [(activeIndex)]="activeIndex">
                 <p-tabPanel header="Details">
-                    <h3>About the Property</h3>
+                    <div class="d-flex gap-2 flex-wrap">
+                        @for (item of property.propertyFacilities; track $index) {
+                            <div class="p-2 shadow d-flex flex-column align-items-center justify-content-between rounded-3 border border-2">
+                                <img style="width: 24px;" [src]="helper.processFileUrl(item.svg,true)" alt="">
+                                <span>{{item.describtion}}</span>
+                            </div>
+                        }
+                    </div>
+                    <h2 class="mt-3">About the Property</h2>
                     <p [innerHTML]="property.description"></p>
                 </p-tabPanel>
                 <p-tabPanel header="Financials">
@@ -94,7 +110,7 @@
                             <div class="col-md-6">
                                 <div class="field">
                                     <label>Projected Annual Return:</label>
-                                    <span>{{property.projectedAnnualReturn| percent : "1.2-2"}}</span>
+                                    <span>{{property.projectedAnnualReturn| percent}}</span>
                                 </div>
                             </div>
                         </div>

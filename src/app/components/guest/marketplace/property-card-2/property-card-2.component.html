@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="bg-primary p-3 text-center text-white">
-            <small>Available: 10,532 tokens at $50</small>
+            <small>Available: {{property.availableTokens}} tokens at {{property.tokenPrice | currency : "EGP" : "symbol" : "1.0-0"}}</small>
         </div>
     </div>
 </a>

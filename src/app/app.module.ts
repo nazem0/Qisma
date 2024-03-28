@@ -43,8 +43,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+
+
 import { RegisterComponent } from './components/guest/register/register.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MessageService, SharedModule } from 'primeng/api';
 import { Http } from './interceptors/http.interceptor';
@@ -80,7 +83,13 @@ import { PropertyDetailsComponent } from './components/guest/property-details/pr
 import { ApiModule } from './api/api.module';
 import { environment } from '../environments/environment';
 import { PropertyActionsComponent } from './components/admin/property-actions/property-actions.component';
-import { NgxPaginationModule } from 'ngx-pagination';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { EditImagesComponent } from './components/admin/edit-images/edit-images.component';
+
+registerLocaleData(en);
 
 @NgModule({
   declarations: [
@@ -114,6 +123,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     PropertyCard2Component,
     PropertyDetailsComponent,
     PropertyActionsComponent,
+    EditImagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -148,7 +158,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SliderModule,
     EditorModule,
     StepperModule,
-    NgxPaginationModule,
     // Angular Material Modules
     MatStepperModule,
     MatFormFieldModule,
@@ -157,6 +166,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatDialogContent,
     MatSnackBarModule,
     ScrollingModule,
+    //NzMaterial Modules
+    NzPaginationModule,
     // for HttpClient use:
     LoadingBarHttpClientModule,
     // Api Module,
@@ -175,6 +186,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     Helper,
     AuthHelper,
     UserAuthGuard,
+    { provide: NZ_I18N, useValue: en_US },
+    provideHttpClient(),
   ],
   bootstrap: [AppComponent],
 })

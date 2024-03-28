@@ -31,7 +31,7 @@ export class MarketplaceComponent implements OnInit {
   ) { }
   pagination = {
     index: 0,
-    size: 5,
+    size: 12,
     total:0
   }
   ngOnInit(): void {
@@ -79,8 +79,8 @@ export class MarketplaceComponent implements OnInit {
       }
     })
   }
-  getPage(page:number){    
-    this.pagination.index = page;
+  getPage($event:number){
+    this.pagination.index = $event-1;
     this.getProperties();
   }
 }
