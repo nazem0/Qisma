@@ -1,364 +1,276 @@
 <div class="container-sm">
-  <p-stepper orientation="vertical">
-    <p-stepperPanel header="Details">
-      <ng-template
-        pTemplate="content"
-        let-nextCallback="nextCallback"
-        let-index="index"
-      >
-        <div class="d-flex flex-column gap-3">
-          <div>
-            <p-inputGroup>
-              <p-inputGroupAddon>
-                <i class="pi pi-compass"></i>
-              </p-inputGroupAddon>
-              <p-dropdown
-                [filter]="true"
-                filterBy="name"
-                [options]="governorates"
-                [optionLabel]="'name'"
-                [showClear]="true"
-                [(ngModel)]="selectedGov"
-                (onChange)="initCity()"
-                placeholder="Governorate"
-                styleClass="w-100"
-              >
-              </p-dropdown>
-            </p-inputGroup>
+  <form [formGroup]="propertyForm">
+    <p-button (onClick)="check()">Check</p-button>
+    <p-stepper orientation="vertical">
+      <p-stepperPanel header="Details">
+        <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
+          <div class="d-flex flex-column gap-3">
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <i class="pi pi-compass"></i>
+                </p-inputGroupAddon>
+                <p-dropdown [filter]="true" filterBy="name" [options]="governorates" [optionLabel]="'name'"
+                  [showClear]="true" (onChange)="
+                  setControllerValue('governorateId', $event.value?.id);
+                  $event.value?.id ? initCity() : null"
+                  (onClear)="setControllerValue('cityId', undefined); this.propertyForm.controls['cityId'].disable()"
+                  placeholder="Governorate" styleClass="w-100">
+                </p-dropdown>
+              </p-inputGroup>
+            </div>
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <i class="pi pi-map-marker"></i>
+                </p-inputGroupAddon>
+                <p-dropdown [filter]="true" filterBy="name" [options]="cities" [optionLabel]="'name'" [showClear]="true"
+                  (onChange)="
+                  setControllerValue('cityId', $event.value?.id)" placeholder="City" styleClass="w-100"></p-dropdown>
+              </p-inputGroup>
+            </div>
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <i class="pi pi-building"></i>
+                </p-inputGroupAddon>
+                <input formControlName="location" pInputText placeholder="Location" />
+              </p-inputGroup>
+            </div>
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <i class="pi pi-th-large"></i>
+                </p-inputGroupAddon>
+                <p-dropdown [showClear]="true" placeholder="Property Type" styleClass="w-100" [options]="propertyTypes"
+                  optionLabel="name" (onChange)="
+                  setControllerValue('type', $event.value?.id)">
+                </p-dropdown>
+              </p-inputGroup>
+            </div>
           </div>
-          <div>
-            <p-inputGroup>
-              <p-inputGroupAddon>
-                <i class="pi pi-map-marker"></i>
-              </p-inputGroupAddon>
-              <p-dropdown
-                [filter]="true"
-                filterBy="name"
-                [(ngModel)]="selectedCity"
-                [disabled]="!selectedGov"
-                [options]="cities"
-                [optionLabel]="'name'"
-                [showClear]="true"
-                placeholder="City"
-                styleClass="w-100"
-              ></p-dropdown>
-            </p-inputGroup>
+          <div class="flex py-4">
+            <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
           </div>
-          <div>
-            <p-inputGroup>
-              <p-inputGroupAddon>
-                <i class="pi pi-building"></i>
-              </p-inputGroupAddon>
-              <input pInputText placeholder="Location" />
-            </p-inputGroup>
-          </div>
-          <div>
-            <p-inputGroup>
-              <p-inputGroupAddon>
-                <i class="pi pi-th-large"></i>
-              </p-inputGroupAddon>
-              <p-dropdown
-                [showClear]="true"
-                placeholder="Property Type"
-                styleClass="w-100"
-                [options]="propertyTypes"
-                optionLabel="name"
-              >
-              </p-dropdown>
-            </p-inputGroup>
-          </div>
-        </div>
-        <div class="flex py-4">
-          <p-button
-            styleClass="text-white w-100"
-            label="Next"
-            (onClick)="nextCallback.emit()"
-          />
-        </div>
-      </ng-template>
-    </p-stepperPanel>
+        </ng-template>
+      </p-stepperPanel>
 
-    <p-stepperPanel header="Facilities">
-      <ng-template
-        pTemplate="content"
-        let-prevCallback="prevCallback"
-        let-nextCallback="nextCallback"
-        let-index="index"
-      >
-        @for (item of addedFacilities; track $index) {
+      <p-stepperPanel header="Facilities">
+        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+          let-index="index">
+          @for (item of this.facilitiesFormArray.value; track $index) {
           <div class="row g-0 align-items-center mb-2">
             <div class="col-sm-4 d-flex gap-2">
               <i class="pi pi-circle-fill"></i>
-              <img style="height: 16px;" [src]="helper.processFileUrl(fiterFacilities(item.id)?.svg,true)" alt="">
+              <img style="height: 16px" [src]="
+                  helper.processFileUrl(
+                    fiterFacilities(item.facilityId)?.svg,
+                    true
+                  )
+                " alt="" />
             </div>
             <div class="col-sm-8">
               <p-inputGroup>
-                <input [disabled]="true" type="text" pInputText [value]="item.value" />
-                <button class="text-white p-button-danger" (click)="removeFacility($index)" type="button" pButton icon="pi pi-minus"></button>
-            </p-inputGroup>
+                <input [disabled]="true" type="text" pInputText [value]="item.description" />
+                <button class="text-white p-button-danger" (click)="removeFacility($index)" type="button" pButton
+                  icon="pi pi-minus"></button>
+              </p-inputGroup>
             </div>
           </div>
-        }
-        <div class="row g-0 align-items-center">
-          <div class="col-sm-4">
-            <p-dropdown
-                [filter]="true"
-                filterBy="name"
-                [options]="facilities"
-                [optionLabel]="'name'"
-                [showClear]="true"
-                [(ngModel)]="selectedFacility"
-                placeholder="Facility Icon"
-                styleClass="w-100"
-              >
-              <ng-template pTemplate="selectedItem">
-                <div class="d-flex justify-content-center" *ngIf="selectedFacility">
-                  <img style="height: 16px;" [src]="helper.processFileUrl(selectedFacility.svg,true)" alt="">
-                </div>
-            </ng-template>
-              <ng-template let-option pTemplate="item">
-                <div class="d-flex justify-content-center">
-                    <img style="width: 40px;" [src]="helper.processFileUrl(option.svg,true)" alt="">
-                </div>
-            </ng-template>
+          }
+          <div class="row g-0 align-items-center">
+            <div class="col-sm-4">
+              <p-dropdown [filter]="true" filterBy="name" [options]="facilities" [optionLabel]="'name'"
+                [showClear]="true" [(ngModel)]="selectedFacility" placeholder="Facility Icon" styleClass="w-100"
+                [ngModelOptions]="{standalone: true}">
+                <ng-template pTemplate="selectedItem">
+                  <div class="d-flex justify-content-center" *ngIf="selectedFacility">
+                    <img style="height: 16px" [src]="helper.processFileUrl(selectedFacility.svg, true)" alt="" />
+                  </div>
+                </ng-template>
+                <ng-template let-option pTemplate="item">
+                  <div class="d-flex justify-content-center">
+                    <img style="width: 40px" [src]="helper.processFileUrl(option.svg, true)" alt="" />
+                  </div>
+                </ng-template>
               </p-dropdown>
-          </div>
-          <div class="col-sm-8">
-            <p-inputGroup>
-              <input type="text" pInputText placeholder="Keyword" [(ngModel)]="selectedFacilityValue" />
-              <button class="text-white" (click)="addFacility()" type="button" pButton icon="pi pi-plus"></button>
-          </p-inputGroup>
-          </div>
-        </div>
-        <div class="row row-cols-sm-2 g-2 mt-3">
-          <p-button
-            styleClass="text-white w-100"
-            label="Back"
-            severity="secondary"
-            (onClick)="prevCallback.emit()"
-          />
-          <p-button
-            styleClass="text-white w-100"
-            label="Next"
-            (onClick)="nextCallback.emit()"
-          />
-        </div>
-      </ng-template>
-    </p-stepperPanel>
-
-    <p-stepperPanel header="Description">
-      <ng-template
-        pTemplate="content"
-        let-prevCallback="prevCallback"
-        let-nextCallback="nextCallback"
-        let-index="index"
-      >
-        <div>
-          <p-editor [(ngModel)]="text"></p-editor>
-        </div>
-        <div class="row row-cols-sm-2 g-2">
-          <p-button
-            styleClass="text-white w-100"
-            label="Back"
-            severity="secondary"
-            (onClick)="prevCallback.emit()"
-          />
-          <p-button
-            styleClass="text-white w-100"
-            label="Next"
-            (onClick)="nextCallback.emit()"
-          />
-        </div>
-      </ng-template>
-    </p-stepperPanel>
-
-    <p-stepperPanel header="Financials">
-      <ng-template
-        pTemplate="content"
-        let-prevCallback="prevCallback"
-        let-nextCallback="nextCallback"
-        let-index="index"
-      >
-        <div class="d-flex flex-column gap-3">
-          <div>
-            <p-inputGroup>
-              <p-inputGroupAddon>
-                <span>Unit Price</span>
-              </p-inputGroupAddon>
-              <p-inputNumber mode="currency" currency="EGP"></p-inputNumber>
-            </p-inputGroup>
-          </div>
-          <div>
-            <p-inputGroup>
-              <p-inputGroupAddon>
-                <span>Maintenance Cost</span>
-              </p-inputGroupAddon>
-              <p-inputNumber mode="currency" currency="EGP"></p-inputNumber>
-            </p-inputGroup>
-            <div class="d-flex align-items-center gap-3 mt-3">
-              <div class="w-100">
-                <p-slider></p-slider>
-              </div>
-              <div>
-                <p-inputNumber prefix="%"></p-inputNumber>
-              </div>
+            </div>
+            <div class="col-sm-8">
+              <p-inputGroup>
+                <input type="text" pInputText placeholder="Keyword" [(ngModel)]="selectedFacilityValue" [ngModelOptions]="{standalone: true}"/>
+                <button class="text-white" (click)="addFacility()" type="button" pButton icon="pi pi-plus"></button>
+              </p-inputGroup>
             </div>
           </div>
+          <div class="row row-cols-sm-2 g-2 mt-3">
+            <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
+            <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
+          </div>
+        </ng-template>
+      </p-stepperPanel>
+
+      <p-stepperPanel header="Description">
+        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+          let-index="index">
           <div>
-            <p-inputGroup>
-              <p-inputGroupAddon>
-                <span>Transaction Fees</span>
-              </p-inputGroupAddon>
-              <p-inputNumber mode="currency" currency="EGP"></p-inputNumber>
-            </p-inputGroup>
-            <div class="d-flex align-items-center gap-3 mt-3">
-              <div class="w-100">
-                <p-slider></p-slider>
-              </div>
-              <div>
-                <p-inputNumber prefix="%"></p-inputNumber>
+            <p-editor formControlName="description"></p-editor>
+          </div>
+          <div class="row row-cols-sm-2 g-2">
+            <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
+            <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
+          </div>
+        </ng-template>
+      </p-stepperPanel>
+
+      <p-stepperPanel header="Financials">
+        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+          let-index="index">
+          <div class="d-flex flex-column gap-3">
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <span>Unit Price</span>
+                </p-inputGroupAddon>
+                <p-inputNumber formControlName="unitPrice" mode="currency" currency="EGP"></p-inputNumber>
+              </p-inputGroup>
+            </div>
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <span>Maintenance Cost</span>
+                </p-inputGroupAddon>
+                <p-inputNumber formControlName="maintenanceCost" mode="currency" currency="EGP"></p-inputNumber>
+              </p-inputGroup>
+              <div class="d-flex align-items-center gap-3 mt-3">
+                <div class="w-100">
+                  <p-slider></p-slider>
+                </div>
+                <div>
+                  <p-inputNumber prefix="%"></p-inputNumber>
+                </div>
               </div>
             </div>
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <span>Transaction Fees</span>
+                </p-inputGroupAddon>
+                <p-inputNumber formControlName="transactionFees" mode="currency" currency="EGP"></p-inputNumber>
+              </p-inputGroup>
+              <div class="d-flex align-items-center gap-3 mt-3">
+                <div class="w-100">
+                  <p-slider></p-slider>
+                </div>
+                <div>
+                  <p-inputNumber prefix="%"></p-inputNumber>
+                </div>
+              </div>
+            </div>
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <span>Number Of Shares</span>
+                </p-inputGroupAddon>
+                <p-inputNumber formControlName="numberOfShares"></p-inputNumber>
+              </p-inputGroup>
+            </div>
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <span>Share Price</span>
+                </p-inputGroupAddon>
+                <p-inputNumber formControlName="sharePrice" mode="currency" currency="EGP"></p-inputNumber>
+              </p-inputGroup>
+            </div>
           </div>
-          <div>
-            <p-inputGroup>
-              <p-inputGroupAddon>
-                <span>Number Of Shares</span>
-              </p-inputGroupAddon>
-              <p-inputNumber></p-inputNumber>
-            </p-inputGroup>
+          <div class="row row-cols-sm-2 g-2 mt-3">
+            <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
+            <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
           </div>
-          <div>
-            <p-inputGroup>
-              <p-inputGroupAddon>
-                <span>Share Price</span>
-              </p-inputGroupAddon>
-              <p-inputNumber mode="currency" currency="EGP"></p-inputNumber>
-            </p-inputGroup>
-          </div>
-        </div>
-        <div class="row row-cols-sm-2 g-2 mt-3">
-          <p-button
-            styleClass="text-white w-100"
-            label="Back"
-            severity="secondary"
-            (onClick)="prevCallback.emit()"
-          />
-          <p-button
-            styleClass="text-white w-100"
-            label="Next"
-            (onClick)="nextCallback.emit()"
-          />
-        </div>
-      </ng-template>
-    </p-stepperPanel>
+        </ng-template>
+      </p-stepperPanel>
 
-    <p-stepperPanel header="Payment Plan">
-      <ng-template
-        pTemplate="content"
-        let-prevCallback="prevCallback"
-        let-nextCallback="nextCallback"
-        let-index="index"
-      >
-        <div class="d-flex flex-column gap-3">
-          <div>
-            <p-inputGroup>
-              <p-inputGroupAddon>
-                <span>Down Payment</span>
-              </p-inputGroupAddon>
-              <p-inputNumber mode="currency" currency="EGP"></p-inputNumber>
-            </p-inputGroup>
+      <p-stepperPanel header="Payment Plan">
+        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+          let-index="index">
+          <div class="d-flex flex-column gap-3">
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <span>Down Payment</span>
+                </p-inputGroupAddon>
+                <p-inputNumber formControlName="downPayment" mode="currency" currency="EGP"></p-inputNumber>
+              </p-inputGroup>
+            </div>
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <span>Monthly Installment</span>
+                </p-inputGroupAddon>
+                <p-inputNumber formControlName="monthlyInstallment" mode="currency" currency="EGP"></p-inputNumber>
+              </p-inputGroup>
+            </div>
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <span>Number of Years</span>
+                </p-inputGroupAddon>
+                <!-- Year Or Years based on the entered number -->
+                <p-inputNumber formControlName="numberOfYears" suffix=" Years"></p-inputNumber>
+              </p-inputGroup>
+            </div>
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <span>Maintenance Installment</span>
+                </p-inputGroupAddon>
+                <p-inputNumber formControlName="maintenaceInstallment" mode="currency" currency="EGP"></p-inputNumber>
+              </p-inputGroup>
+            </div>
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <span>Delivery Installment</span>
+                </p-inputGroupAddon>
+                <p-inputNumber formControlName="deliveryInstallment" mode="currency" currency="EGP"></p-inputNumber>
+              </p-inputGroup>
+            </div>
           </div>
-          <div>
-            <p-inputGroup>
-              <p-inputGroupAddon>
-                <span>Monthly Installment</span>
-              </p-inputGroupAddon>
-              <p-inputNumber mode="currency" currency="EGP"></p-inputNumber>
-            </p-inputGroup>
+          <div class="row row-cols-sm-2 g-2 mt-3">
+            <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
+            <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
           </div>
-          <div>
-            <p-inputGroup>
-              <p-inputGroupAddon>
-                <span>Number of Years</span>
-              </p-inputGroupAddon>
-              <!-- Year Or Years based on the entered number -->
-              <p-inputNumber suffix=" Years"></p-inputNumber>
-            </p-inputGroup>
-          </div>
-          <div>
-            <p-inputGroup>
-              <p-inputGroupAddon>
-                <span>Maintenance Installment</span>
-              </p-inputGroupAddon>
-              <p-inputNumber mode="currency" currency="EGP"></p-inputNumber>
-            </p-inputGroup>
-          </div>
-          <div>
-            <p-inputGroup>
-              <p-inputGroupAddon>
-                <span>Delivery Installment</span>
-              </p-inputGroupAddon>
-              <p-inputNumber mode="currency" currency="EGP"></p-inputNumber>
-            </p-inputGroup>
-          </div>
-        </div>
-        <div class="row row-cols-sm-2 g-2 mt-3">
-          <p-button
-            styleClass="text-white w-100"
-            label="Back"
-            severity="secondary"
-            (onClick)="prevCallback.emit()"
-          />
-          <p-button
-            styleClass="text-white w-100"
-            label="Next"
-            (onClick)="nextCallback.emit()"
-          />
-        </div>
-      </ng-template>
-    </p-stepperPanel>
+        </ng-template>
+      </p-stepperPanel>
 
-    <p-stepperPanel header="Return">
-      <ng-template
-        pTemplate="content"
-        let-prevCallback="prevCallback"
-        let-nextCallback="nextCallback"
-        let-index="index"
-      >
-        <div class="d-flex flex-column gap-3">
-          <div>
-            <p-inputGroup>
-              <p-inputGroupAddon>
-                <span>Annual Rental Yield</span>
-              </p-inputGroupAddon>
-              <p-inputNumber prefix="%"></p-inputNumber>
-            </p-inputGroup>
+      <p-stepperPanel header="Return">
+        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+          let-index="index">
+          <div class="d-flex flex-column gap-3">
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <span>Annual Rental Yield</span>
+                </p-inputGroupAddon>
+                <p-inputNumber (onInput)="setControllerValue('annualRentalYield', $event.value, true)" prefix="%"></p-inputNumber>
+              </p-inputGroup>
+            </div>
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <span>Annual Price Appreciation</span>
+                </p-inputGroupAddon>
+                <p-inputNumber (onInput)="setControllerValue('annualPriceAppreciation', $event.value, true)" prefix="%"></p-inputNumber>
+              </p-inputGroup>
+            </div>
           </div>
-          <div>
-            <p-inputGroup>
-              <p-inputGroupAddon>
-                <span>Annual Price Appreciation</span>
-              </p-inputGroupAddon>
-              <p-inputNumber prefix="%"></p-inputNumber>
-            </p-inputGroup>
+          <div class="row row-cols-sm-2 g-2 mt-3">
+            <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
+            <p-button [raised]="true" styleClass="text-white w-100" label="Add Property"
+              (onClick)="submitForm()" />
           </div>
-        </div>
-        <div class="row row-cols-sm-2 g-2 mt-3">
-          <p-button
-            styleClass="text-white w-100"
-            label="Back"
-            severity="secondary"
-            (onClick)="prevCallback.emit()"
-          />
-          <p-button
-            [raised]="true"
-            styleClass="text-white w-100"
-            label="Add Property"
-            (onClick)="nextCallback.emit()"
-          />
-        </div>
-      </ng-template>
-    </p-stepperPanel>
-  </p-stepper>
+        </ng-template>
+      </p-stepperPanel>
+    </p-stepper>
+  </form>
 </div>
