@@ -85,21 +85,21 @@
           <p [innerHTML]="property.description"></p>
         </p-tabPanel>
         <p-tabPanel header="Financials">
-          <div class="shadow p-3 rounded-2">
+          <div class="shadow p-3 rounded-2 mb-2">
             <h2>Financials</h2>
             <div class="field">
               <label>Unit Price:</label>
-              <span> {{ property.unitPrice | currency }}</span>
+              <span> {{ property.unitPrice | currency : "EGP" : "symbol" : "1.0-0"}}</span>
             </div>
             <mat-divider></mat-divider>
             <div class="field">
               <label>Maintenance Cost:</label>
-              <span>{{ property.maintenanceCostNumerical | currency }}</span>
+              <span>{{ property.maintenanceCostNumerical | currency : "EGP" : "symbol" : "1.0-0"}}</span>
             </div>
             <mat-divider></mat-divider>
             <div class="field">
               <label>Transaction Fees:</label>
-              <span> {{ property.transactionFeesNumerical | currency }}</span>
+              <span> {{ property.transactionFeesNumerical | currency : "EGP" : "symbol" : "1.0-0"}}</span>
             </div>
             <mat-divider></mat-divider>
             <div class="field">
@@ -109,20 +109,20 @@
             <mat-divider></mat-divider>
             <div class="field">
               <label>Price per Share:</label>
-              <span>{{ property.sharePrice | currency }}</span>
+              <span>{{ property.sharePrice | currency : "EGP" : "symbol" : "1.0-0"}}</span>
             </div>
           </div>
 
-          <div class="shadow p-3 rounded-2">
+          <div class="shadow p-3 rounded-2 mb-2">
             <h2>Payment Plan</h2>
             <div class="field">
               <label>Downpayment:</label>
-              <span>{{ property.downPayment | currency }}</span>
+              <span>{{ property.downPayment | currency : "EGP" : "symbol" : "1.0-0"}}</span>
             </div>
             <mat-divider></mat-divider>
             <div class="field">
               <label>Monthly Installment:</label>
-              <span>{{ property.monthlyInstallment | currency }}</span>
+              <span>{{ property.monthlyInstallment | currency : "EGP" : "symbol" : "1.0-0"}}</span>
             </div>
             <mat-divider></mat-divider>
             <div class="field">
@@ -132,16 +132,16 @@
             <mat-divider></mat-divider>
             <div class="field">
               <label>Maintenance Installment:</label>
-              <span>{{ property.maintenaceInstallment | currency }}</span>
+              <span>{{ property.maintenaceInstallment | currency : "EGP" : "symbol" : "1.0-0"}}</span>
             </div>
             <mat-divider></mat-divider>
             <div class="field">
               <label>Delivery Installment:</label>
-              <span>{{ property.deliveryInstallment | currency }}</span>
+              <span>{{ property.deliveryInstallment | currency : "EGP" : "symbol" : "1.0-0"}}</span>
             </div>
           </div>
 
-          <div class="shadow p-3 rounded-2">
+          <div class="shadow p-3 rounded-2 mb-2">
             <h2>Projected Annual Return</h2>
             <div class="field">
               <label>Projected Annual Return:</label>
@@ -169,7 +169,7 @@
                     /
                     <span>{{
                       property.sharePrice! * estimationData.tokensPurchased
-                        | currency
+                        | currency : "EGP" : "symbol" : "1.0-0"
                     }}</span>
                   </p>
                 </div>
@@ -245,7 +245,7 @@
             Estimated Price
           </span>
           <p>
-            {{ property.sharePrice | currency }}
+            {{ property.sharePrice | currency : "EGP" : "symbol" : "1.0-0"}}
           </p>
         </div>
         <div class="d-flex justify-content-between align-items-center w-100">
