@@ -6,6 +6,7 @@ import { FacilityViewModelForAdmin, GovernorateAndCityViewModel, PropertyDetails
 import { BusinessHelper } from '../../../services/business-helper';
 import { Helper } from '../../../services/helper';
 import { DialogService } from '../../../services/dialog.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-property-actions',
@@ -14,8 +15,8 @@ import { DialogService } from '../../../services/dialog.service';
 })
 export class PropertyActionsComponent implements OnInit {
   helper = Helper;
-  validationErros:string[]=[]
-  math=Math;
+  validationErros: string[] = []
+  math = Math;
   propertyForm!: FormGroup;
   propertyTypes = BusinessHelper.propertyTypes;
   text: string = `
@@ -46,6 +47,7 @@ export class PropertyActionsComponent implements OnInit {
     private propertyForAdminService: PropertyForAdminService,
     private governorateAndCityService: GovernorateAndCityService,
     private dialog: DialogService,
+    private snackBar: MatSnackBar
   ) {
     this.initPropertyForm();
   }
@@ -91,14 +93,14 @@ export class PropertyActionsComponent implements OnInit {
         }
       })
   }
-  initCity() {    
+  initCity() {
     this
       .governorateAndCityService
       .apiCitiesGetByGovernorateIdGet$Json({ "GovernorateId": this.propertyForm.controls['governorateId'].value })
       .subscribe({
         next: next => {
           this.cities = next.data ?? []
-          if(this.cities.length) this.propertyForm.get('cityId')?.enable();
+          if (this.cities.length) this.propertyForm.get('cityId')?.enable();
         }
       })
 
@@ -117,9 +119,13 @@ export class PropertyActionsComponent implements OnInit {
     return this.propertyForm.get('facilities') as FormArray;
   }
   createFacility() {
-    return { facilityId: this.selectedFacility!.id!, description: this.selectedFacilityValue! }
+    return { facilityId: this.selectedFacility?.id, description: this.selectedFacilityValue }
   }
   addFacility(): void {
+    if (!this.selectedFacilityValue) {
+      this.snackBar.open('Facility Description is Required', 'X', { duration: 1200 });
+      return;
+    }
     this.facilitiesFormArray.value.push(this.createFacility());
     this.selectedFacility = undefined;
     this.selectedFacilityValue = "";
@@ -127,37 +133,37 @@ export class PropertyActionsComponent implements OnInit {
 
   }
   removeFacility(index: number): void {
-    this.facilitiesFormArray.value.splice(index,1);
+    this.facilitiesFormArray.value.splice(index, 1);
   }
   fiterFacilities(id: number) {
     return this.facilities.find(e => e.id == id)
   }
 
-  setControllerValue(controlName:string ,value:unknown, percentage=false){
-    if(percentage) (value as number)*=0.01;
+  setControllerValue(controlName: string, value: unknown, percentage = false) {
+    if (percentage) (value as number) *= 0.01;
     console.log(value);
     this.propertyForm.controls[controlName].setValue(value);
   }
 
-  submitForm(){
+  submitForm() {
     let formWithPercentages = this.propertyForm;
     let maintenanceCostControlValue = formWithPercentages.controls['maintenanceCost'].value;
-    formWithPercentages.controls['maintenanceCost'].setValue(maintenanceCostControlValue*0.01)
+    formWithPercentages.controls['maintenanceCost'].setValue(maintenanceCostControlValue * 0.01)
     let transactionFeesControlValue = formWithPercentages.controls['transactionFees'].value;
-    formWithPercentages.controls['transactionFees'].setValue(transactionFeesControlValue*0.01)
-    if(this.checkFormValidity())
-    this
-    .propertyForAdminService
-    .apiDashboardPropertyAddPost$Json({body:formWithPercentages.value})
-    .subscribe();
+    formWithPercentages.controls['transactionFees'].setValue(transactionFeesControlValue * 0.01)
+    if (this.checkFormValidity())
+      this
+        .propertyForAdminService
+        .apiDashboardPropertyAddPost$Json({ body: formWithPercentages.value })
+        .subscribe();
   }
 
   openErrorsDialog() {
     this.dialog.open("Property Addition Form Errors", [this.validationErros]);
   }
 
-  checkFormValidity(){
-    this.validationErros=[];
+  checkFormValidity() {
+    this.validationErros = [];
     if (this.propertyForm.invalid) {
       Object.keys(this.propertyForm.controls).forEach(controlName => {
         const control = this.propertyForm.get(controlName);
@@ -170,16 +176,16 @@ export class PropertyActionsComponent implements OnInit {
     }
     return true;
   }
-  transactionFeesPercentage:number=0;
-  calculateTransactionFeesPercentage(){
-    if(!this.propertyForm.controls['unitPrice'].value) return;
-    let division =  this.propertyForm.controls['transactionFees'].value / this.propertyForm.controls['unitPrice'].value
+  transactionFeesPercentage: number = 0;
+  calculateTransactionFeesPercentage() {
+    if (!this.propertyForm.controls['unitPrice'].value) return;
+    let division = this.propertyForm.controls['transactionFees'].value / this.propertyForm.controls['unitPrice'].value
     this.transactionFeesPercentage = division;
   }
-  maintenanceCostPercentage:number=0;
-  calculateMaintenanceCostPercentage(){    
-    if(!this.propertyForm.controls['unitPrice'].value) return;
-    let division =  this.propertyForm.controls['maintenanceCost'].value / this.propertyForm.controls['unitPrice'].value
+  maintenanceCostPercentage: number = 0;
+  calculateMaintenanceCostPercentage() {
+    if (!this.propertyForm.controls['unitPrice'].value) return;
+    let division = this.propertyForm.controls['maintenanceCost'].value / this.propertyForm.controls['unitPrice'].value
     this.maintenanceCostPercentage = division;
   }
 }
