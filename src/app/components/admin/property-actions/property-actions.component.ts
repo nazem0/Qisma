@@ -140,7 +140,6 @@ export class PropertyActionsComponent implements OnInit {
   }
 
   submitForm(){
-
     let formWithPercentages = this.propertyForm;
     let maintenanceCostControlValue = formWithPercentages.controls['maintenanceCost'].value;
     formWithPercentages.controls['maintenanceCost'].setValue(maintenanceCostControlValue*0.01)
@@ -158,6 +157,7 @@ export class PropertyActionsComponent implements OnInit {
   }
 
   checkFormValidity(){
+    this.validationErros=[];
     if (this.propertyForm.invalid) {
       Object.keys(this.propertyForm.controls).forEach(controlName => {
         const control = this.propertyForm.get(controlName);
