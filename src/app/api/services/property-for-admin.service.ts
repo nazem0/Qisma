@@ -17,6 +17,10 @@ import { apiDashboardFacilityGetAllGet$Json } from '../fn/property-for-admin/api
 import { ApiDashboardFacilityGetAllGet$Json$Params } from '../fn/property-for-admin/api-dashboard-facility-get-all-get-json';
 import { apiDashboardFacilityGetAllGet$Plain } from '../fn/property-for-admin/api-dashboard-facility-get-all-get-plain';
 import { ApiDashboardFacilityGetAllGet$Plain$Params } from '../fn/property-for-admin/api-dashboard-facility-get-all-get-plain';
+import { apiDashboardPropertyAddFromFormPost$Json } from '../fn/property-for-admin/api-dashboard-property-add-from-form-post-json';
+import { ApiDashboardPropertyAddFromFormPost$Json$Params } from '../fn/property-for-admin/api-dashboard-property-add-from-form-post-json';
+import { apiDashboardPropertyAddFromFormPost$Plain } from '../fn/property-for-admin/api-dashboard-property-add-from-form-post-plain';
+import { ApiDashboardPropertyAddFromFormPost$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-add-from-form-post-plain';
 import { apiDashboardPropertyAddPost$Json } from '../fn/property-for-admin/api-dashboard-property-add-post-json';
 import { ApiDashboardPropertyAddPost$Json$Params } from '../fn/property-for-admin/api-dashboard-property-add-post-json';
 import { apiDashboardPropertyAddPost$Plain } from '../fn/property-for-admin/api-dashboard-property-add-post-plain';
@@ -99,6 +103,69 @@ export class PropertyForAdminService extends BaseService {
    */
   apiDashboardPropertyAddPost$Json(params?: ApiDashboardPropertyAddPost$Json$Params, context?: HttpContext): Observable<Int32ApiResult> {
     return this.apiDashboardPropertyAddPost$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Int32ApiResult>): Int32ApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiDashboardPropertyAddFromFormPost()` */
+  static readonly ApiDashboardPropertyAddFromFormPostPath = '/api/Dashboard/Property/AddFromForm';
+
+  /**
+   * Add new property ==> Type 1- resedintial 2- commercial.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyAddFromFormPost$Plain()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiDashboardPropertyAddFromFormPost$Plain$Response(params?: ApiDashboardPropertyAddFromFormPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<Int32ApiResult>> {
+    return apiDashboardPropertyAddFromFormPost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Add new property ==> Type 1- resedintial 2- commercial.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyAddFromFormPost$Plain$Response()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiDashboardPropertyAddFromFormPost$Plain(params?: ApiDashboardPropertyAddFromFormPost$Plain$Params, context?: HttpContext): Observable<Int32ApiResult> {
+    return this.apiDashboardPropertyAddFromFormPost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Int32ApiResult>): Int32ApiResult => r.body)
+    );
+  }
+
+  /**
+   * Add new property ==> Type 1- resedintial 2- commercial.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyAddFromFormPost$Json()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiDashboardPropertyAddFromFormPost$Json$Response(params?: ApiDashboardPropertyAddFromFormPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<Int32ApiResult>> {
+    return apiDashboardPropertyAddFromFormPost$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Add new property ==> Type 1- resedintial 2- commercial.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyAddFromFormPost$Json$Response()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiDashboardPropertyAddFromFormPost$Json(params?: ApiDashboardPropertyAddFromFormPost$Json$Params, context?: HttpContext): Observable<Int32ApiResult> {
+    return this.apiDashboardPropertyAddFromFormPost$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<Int32ApiResult>): Int32ApiResult => r.body)
     );
   }

@@ -1,6 +1,6 @@
 import { GovernorateAndCityService } from './../../../api/services/governorate-and-city.service';
 import { PropertyForAdminService } from './../../../api/services/property-for-admin.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild, input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { FacilityViewModelForAdmin, GovernorateAndCityViewModel, PropertyDetailsViewModelForUser } from '../../../api/models';
 import { BusinessHelper } from '../../../services/business-helper';
@@ -15,19 +15,22 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class PropertyActionsComponent implements OnInit {
   helper = Helper;
+  readers: any[] = [];
+  inputArray: any[] = [];
   validationErros: string[] = []
+  files?: FileList;
   math = Math;
   propertyForm!: FormGroup;
   propertyTypes = BusinessHelper.propertyTypes;
   text: string = `
-  <h1>Title 1</h1>
+  <h2>Title 1</h2>
   <ol>
     <li>element 1</li>
     <li>element 2</li>
     <li>element 3</li>
   </ol>
   <p><br></p>
-  <h1>Title 2</h1>
+  <h2>Title 2</h2>
   <ol>
     <li>element 1</li>
     <li>element 2</li>
@@ -56,6 +59,25 @@ export class PropertyActionsComponent implements OnInit {
     this.initFacilities();
     // this.propertyForAdminService.apiDashboardPropertyAddPost$Json({body:{}})
   }
+
+  addPhotos($event: Event) {
+    this.files = ($event.target as HTMLInputElement).files!;
+    console.log(this.files);
+
+    for (let index = 0; index < this.files.length; index++) {
+      this.readers[index] = new FileReader();
+      this.readers[index].readAsDataURL(this.files.item(index) as Blob);
+      this.propertyForm.get('propertyImages')?.value.push(this.files.item(index) as Blob)
+      this.readers[index].onload = (_event: any) => {
+        this.inputArray!.push(this.readers[index].result);
+      };
+    }
+  }
+
+  delete(index: number) {
+    this.inputArray.splice(index, 1);
+    this.propertyForm.get('propertyImages')?.value.splice(index,1)
+  }
   initPropertyForm() {
     this.propertyForm = this.fb.group({
       location: new FormControl<string>('', [Validators.required]),
@@ -75,7 +97,8 @@ export class PropertyActionsComponent implements OnInit {
       maintenaceInstallment: new FormControl<number | undefined>(undefined, [Validators.required]),
       deliveryInstallment: new FormControl<number | undefined>(undefined, [Validators.required]),
       type: new FormControl<number | undefined>(undefined, [Validators.required]),
-      facilities: new FormControl<FacilityViewModelForAdmin[]>([])
+      facilities: new FormControl<FacilityViewModelForAdmin[]>([]),
+      propertyImages:new FormControl<Blob[]>([])
     });
   }
   check() {
@@ -146,16 +169,16 @@ export class PropertyActionsComponent implements OnInit {
   }
 
   submitForm() {
-    let formWithPercentages = this.propertyForm;
-    let maintenanceCostControlValue = formWithPercentages.controls['maintenanceCost'].value;
-    formWithPercentages.controls['maintenanceCost'].setValue(maintenanceCostControlValue * 0.01)
-    let transactionFeesControlValue = formWithPercentages.controls['transactionFees'].value;
-    formWithPercentages.controls['transactionFees'].setValue(transactionFeesControlValue * 0.01)
     if (this.checkFormValidity())
-      this
-        .propertyForAdminService
-        .apiDashboardPropertyAddPost$Json({ body: formWithPercentages.value })
-        .subscribe();
+      // this
+      //   .propertyForAdminService
+      //   .apiDashboardPropertyAddPost$Json({ body: this.propertyForm.value })
+      //   .subscribe();
+
+    this
+      .propertyForAdminService
+      .apiDashboardPropertyAddFromFormPost$Json({ body: this.propertyForm.value })
+      .subscribe();
   }
 
   openErrorsDialog() {
@@ -164,6 +187,10 @@ export class PropertyActionsComponent implements OnInit {
 
   checkFormValidity() {
     this.validationErros = [];
+    // if(this.propertyForm.get('propertyImages')?.value.length == 0){
+    //   this.validationErros.push('PropertyImages Invalid')
+    //   this.propertyForm
+    // }
     if (this.propertyForm.invalid) {
       Object.keys(this.propertyForm.controls).forEach(controlName => {
         const control = this.propertyForm.get(controlName);
@@ -172,20 +199,19 @@ export class PropertyActionsComponent implements OnInit {
         }
       });
       this.openErrorsDialog();
-      return false;
     }
-    return true;
+    return !this.validationErros.length;
   }
-  transactionFeesPercentage: number = 0;
-  calculateTransactionFeesPercentage() {
+  transactionFees: number = 0;
+  calculateTransactionFees() {
     if (!this.propertyForm.controls['unitPrice'].value) return;
-    let division = this.propertyForm.controls['transactionFees'].value / this.propertyForm.controls['unitPrice'].value
-    this.transactionFeesPercentage = division;
+    let dollars = this.propertyForm.controls['transactionFees'].value * this.propertyForm.controls['unitPrice'].value
+    this.transactionFees = dollars;
   }
-  maintenanceCostPercentage: number = 0;
-  calculateMaintenanceCostPercentage() {
+  maintenanceCost: number = 0;
+  calculateMaintenanceCost() {
     if (!this.propertyForm.controls['unitPrice'].value) return;
-    let division = this.propertyForm.controls['maintenanceCost'].value / this.propertyForm.controls['unitPrice'].value
-    this.maintenanceCostPercentage = division;
+    let dollars = this.propertyForm.controls['maintenanceCost'].value * this.propertyForm.controls['unitPrice'].value
+    this.maintenanceCost = dollars;
   }
 }

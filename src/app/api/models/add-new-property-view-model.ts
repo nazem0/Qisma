@@ -17,6 +17,7 @@ export interface AddNewPropertyViewModel {
   monthlyInstallment?: number | null;
   numberOfShares: number;
   numberOfYears?: number | null;
+  propertyImages: Array<Blob>;
   sharePrice: number;
   transactionFees?: number | null;
   type: Type;
