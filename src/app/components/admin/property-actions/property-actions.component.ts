@@ -141,11 +141,15 @@ export class PropertyActionsComponent implements OnInit {
 
   submitForm(){
 
+    let formWithPercentages = this.propertyForm;
+    let maintenanceCostControlValue = formWithPercentages.controls['maintenanceCost'].value;
+    formWithPercentages.controls['maintenanceCost'].setValue(maintenanceCostControlValue*0.01)
+    let transactionFeesControlValue = formWithPercentages.controls['transactionFees'].value;
+    formWithPercentages.controls['transactionFees'].setValue(transactionFeesControlValue*0.01)
     if(this.checkFormValidity())
-
     this
     .propertyForAdminService
-    .apiDashboardPropertyAddPost$Json({body:this.propertyForm.value})
+    .apiDashboardPropertyAddPost$Json({body:formWithPercentages.value})
     .subscribe();
   }
 
