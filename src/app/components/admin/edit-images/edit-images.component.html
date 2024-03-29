@@ -24,11 +24,6 @@
             <p-button styleClass="text-white" [severity]="'success'" type="submit" (click)="addAttachmnets()">Submit</p-button>
         </div>
     </div>
-    <div class="row row-cols-md-3 g-2 justify-content-center">
-        <div *ngFor="let img of images">
-            <img class="border border-3 h-100 w-100" [src]="helper.processFileUrl(img)">
-        </div>
-    </div>
     <div class="row g-2 row-cols-md-3 justify-content-center">
         <div class="position-relative" *ngFor="let img of images">
             <!-- <button class="position-absolute top-0 btn btn-danger" (click)="delete(pic.id)">
