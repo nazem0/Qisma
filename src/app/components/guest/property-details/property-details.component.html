@@ -1,5 +1,5 @@
 @if(property){
-<div style="max-height: 500px;" class="overflow-hidden gallery position-relative">
+<div style="max-height: 35vh;" class="overflow-hidden gallery position-relative">
   <p-carousel
     [value]="property.propertyImages!.slice(0, 3)"
     [numVisible]="3"
@@ -8,27 +8,11 @@
     [showNavigators]="false"
   >
     <ng-template let-image pTemplate="item" let-index="image.index">
-        <img class="h-100" [src]="helper.processFileUrl(image)" alt="" />
+        <img class="h-100 object-fit-cover" [src]="helper.processFileUrl(image)" alt="" />
     </ng-template>
   </p-carousel>
 
-  <p-galleria
-    [value]="property.propertyImages!"
-    [(visible)]="displayGalleria"
-    [responsiveOptions]="responsiveOptions"
-    [containerStyle]="{ 'max-width': '850px' }"
-    [circular]="true"
-    [fullScreen]="true"
-    [showItemNavigators]="true"
-    [showThumbnails]="false"
-  >
-    <ng-template pTemplate="item" let-item>
-      <img
-        [src]="helper.processFileUrl(item)"
-        style="width: 100%; display: block"
-      />
-    </ng-template>
-  </p-galleria>
+  
   <div
     style="right: 5px; top: 5px"
     class="position-absolute d-flex align-items-center gap-2"
@@ -54,6 +38,23 @@
     </p-button>
   </div>
 </div>
+<p-galleria
+    [value]="property.propertyImages!"
+    [(visible)]="displayGalleria"
+    [responsiveOptions]="responsiveOptions"
+    [containerStyle]="{ 'max-width': '850px' }"
+    [circular]="true"
+    [fullScreen]="true"
+    [showItemNavigators]="true"
+    [showThumbnails]="false"
+  >
+    <ng-template pTemplate="item" let-item>
+      <img
+        [src]="helper.processFileUrl(item)"
+        style="width: 100%; display: block"
+      />
+    </ng-template>
+  </p-galleria>
 <div class="container-sm">
   <div class="row g-lg-4 g-0 flex-wrap-reverse mx-0 position-relative">
     <div class="property-details col-lg-8 col-12">
