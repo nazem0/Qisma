@@ -11,11 +11,11 @@
                 <small class="mat-small text-muted">{{property.city}}</small>
             </div>
             <div class="d-flex gap-2 text-primary-subtle">
-                <small class="fw-semibold">{{property.projectedRentalYield?.toFixed(1)}}%</small>
+                <small class="fw-semibold">{{property.projectedRentalYield | percent : '1.0-3'}}</small>
                 <small class="mat-small fw-semibold">Projected Rental Yield</small>
             </div>
             <div class="d-flex gap-2">
-                <small class="fw-semibold">{{property.projectedAnnualReturn?.toFixed(1)}}%</small>
+                <small class="fw-semibold">{{property.projectedAnnualReturn | percent : '1.0-3'}}</small>
                 <small class="mat-small">Projected Annual Return</small>
             </div>
         </div>
