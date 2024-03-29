@@ -1,14 +1,13 @@
 @if(property){
-<div style="max-height: 40vh;" class="overflow-hidden gallery position-relative">
+<div style="min-height: 5rem; max-height: 20rem;" class="overflow-hidden gallery position-relative">
   <p-carousel
     [value]="property.propertyImages!.slice(0, 3)"
-    [numVisible]="3"
     [responsiveOptions]="responsiveOptions"
     [showIndicators]="false"
     [showNavigators]="false"
   >
     <ng-template let-image pTemplate="item" let-index="image.index">
-        <img class="h-100 object-fit-cover" [src]="helper.processFileUrl(image)" alt="" />
+        <img class="h-100 w-100 object-fit-cover" [src]="helper.processFileUrl(image)" alt="" />
     </ng-template>
   </p-carousel>
 
@@ -17,24 +16,27 @@
     style="right: 5px; top: 5px"
     class="position-absolute d-flex align-items-center gap-2"
   >
-    <p-button
-      routerLink="/property-images/{{ propertyId }}"
-      styleClass="p-2"
-      [rounded]="true"
-      [raised]="true"
-    >
-      <i class="pi pi-plus text-white"></i>
-    </p-button>
-
-    <p-button
+    @if(property.propertyImages?.length){
+      <p-button
       (onClick)="displayGalleria = true"
       [raised]="true"
       styleClass="bg-white text-primary border-0"
     >
       <span>
         <i class="pi pi-images"></i>
-        View All Photos
+        <span class="d-sm-inline d-none"> View All Photos</span>
       </span>
+    </p-button>
+    }
+
+    <p-button
+      routerLink="/property-images/{{ propertyId }}"
+      [raised]="true"
+    >
+    <span class="text-white">
+      <i class="pi pi-plus"></i>
+      <span class="d-sm-inline d-none"> Add Photos</span>
+    </span>
     </p-button>
   </div>
 </div>

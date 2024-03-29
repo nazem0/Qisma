@@ -3,7 +3,7 @@
         <div class="img-container">
             <div class="position-absolute badge badge-top text-white"><span>Featured</span></div>
             <div class="position-absolute badge badge-bottom"><small class="mat-small">New Listing</small></div>
-            <img class="w-100" [src]="property.imageUrl ? helper.processFileUrl(property.imageUrl) : '/assets/dummy-property.webp'" [alt]="property.address">
+            <img class="w-100" [src]="property.imageUrl ? helper.processFileUrl(property.imageUrl) : 'https://placehold.co/200?text=Add+Photos'" [alt]="property.address">
         </div>
         <div class="p-3">
             <div class="d-flex flex-column">
