@@ -1,8 +1,9 @@
+import { CustomPropertyForAdminService } from './../../../services/custom-property-for-admin.service';
 import { GovernorateAndCityService } from './../../../api/services/governorate-and-city.service';
 import { PropertyForAdminService } from './../../../api/services/property-for-admin.service';
 import { Component, ElementRef, Input, OnInit, ViewChild, input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
-import { FacilityViewModelForAdmin, GovernorateAndCityViewModel, PropertyDetailsViewModelForUser } from '../../../api/models';
+import { AddPropertyFacilityViewModel, FacilityViewModelForAdmin, GovernorateAndCityViewModel, PropertyDetailsViewModelForUser } from '../../../api/models';
 import { BusinessHelper } from '../../../services/business-helper';
 import { Helper } from '../../../services/helper';
 import { DialogService } from '../../../services/dialog.service';
@@ -48,6 +49,7 @@ export class PropertyActionsComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private propertyForAdminService: PropertyForAdminService,
+    private customPropertyForAdminService:CustomPropertyForAdminService,
     private governorateAndCityService: GovernorateAndCityService,
     private dialog: DialogService,
     private snackBar: MatSnackBar
@@ -76,7 +78,7 @@ export class PropertyActionsComponent implements OnInit {
 
   delete(index: number) {
     this.inputArray.splice(index, 1);
-    this.propertyForm.get('propertyImages')?.value.splice(index,1)
+    this.propertyForm.get('propertyImages')?.value.splice(index, 1)
   }
   initPropertyForm() {
     this.propertyForm = this.fb.group({
@@ -97,8 +99,8 @@ export class PropertyActionsComponent implements OnInit {
       maintenaceInstallment: new FormControl<number | undefined>(undefined, [Validators.required]),
       deliveryInstallment: new FormControl<number | undefined>(undefined, [Validators.required]),
       type: new FormControl<number | undefined>(undefined, [Validators.required]),
-      facilities: new FormControl<FacilityViewModelForAdmin[]>([]),
-      propertyImages:new FormControl<Blob[]>([])
+      facilities: new FormControl<AddPropertyFacilityViewModel[]>([]),
+      propertyImages: new FormControl<Blob[]>([])
     });
   }
   check() {
@@ -170,17 +172,52 @@ export class PropertyActionsComponent implements OnInit {
 
   submitForm() {
     if (this.checkFormValidity())
-      // this
-      //   .propertyForAdminService
-      //   .apiDashboardPropertyAddPost$Json({ body: this.propertyForm.value })
-      //   .subscribe();
-
+    // this
+    //   .propertyForAdminService
+    //   .apiDashboardPropertyAddPost$Json({ body: this.propertyForm.value })
+    //   .subscribe();
     this
-      .propertyForAdminService
-      .apiDashboardPropertyAddFromFormPost$Json({ body: this.propertyForm.value })
+      .customPropertyForAdminService
+      .addPropertyFromForm(this.getFormData())
       .subscribe();
   }
+  getFormData() {
+    // Initialize a new FormData object
+    const formData = new FormData();
 
+    // Assign values to form controls
+    formData.append('location', this.propertyForm.controls['location'].value);
+    formData.append('governorateId', this.propertyForm.controls['governorateId'].value);
+    formData.append('cityId', this.propertyForm.controls['cityId'].value);
+    formData.append('description', this.propertyForm.controls['description'].value);
+    formData.append('unitPrice', this.propertyForm.controls['unitPrice'].value);
+    formData.append('maintenanceCost', this.propertyForm.controls['maintenanceCost'].value);
+    formData.append('transactionFees', this.propertyForm.controls['transactionFees'].value);
+    formData.append('numberOfShares', this.propertyForm.controls['numberOfShares'].value);
+    formData.append('sharePrice', this.propertyForm.controls['sharePrice'].value);
+    formData.append('annualRentalYield', this.propertyForm.controls['annualRentalYield'].value);
+    formData.append('annualPriceAppreciation', this.propertyForm.controls['annualPriceAppreciation'].value);
+    formData.append('downPayment', this.propertyForm.controls['downPayment'].value);
+    formData.append('monthlyInstallment', this.propertyForm.controls['monthlyInstallment'].value);
+    formData.append('numberOfYears', this.propertyForm.controls['numberOfYears'].value);
+    formData.append('maintenaceInstallment', this.propertyForm.controls['maintenaceInstallment'].value);
+    formData.append('deliveryInstallment', this.propertyForm.controls['deliveryInstallment'].value);
+    formData.append('type', this.propertyForm.controls['type'].value);
+    
+    // Assuming facilities is an array, iterate over it and append each item
+    this.propertyForm.controls['facilities'].value.forEach((facility: AddPropertyFacilityViewModel, index:number) => {
+      formData.append(`facilities[${index}].facilityId`, facility.facilityId!.toString());
+      formData.append(`facilities[${index}].description`, facility.description!);
+    });
+
+    // Assuming propertyImages is an array of Blob objects, iterate over it and append each blob
+    this.propertyForm.controls['propertyImages'].value.forEach((image: Blob) => {
+      formData.append('propertyImages', image);
+    });
+
+    // Now you can use formData for further processing like sending it in a POST request
+    return formData;
+  }
   openErrorsDialog() {
     this.dialog.open("Property Addition Form Errors", [this.validationErros]);
   }
