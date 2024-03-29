@@ -1,5 +1,5 @@
-import { Helper } from '../../../../services/helper';
-import { PropertyViewModelInListViewForUser } from './../../../../api/models/property-view-model-in-list-view-for-user';
+import { Helper } from '../../../services/helper';
+import { PropertyViewModelInListViewForUser } from '../../../api/models/property-view-model-in-list-view-for-user';
 import { Component, Input } from '@angular/core';
 
 @Component({

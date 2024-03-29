@@ -7,7 +7,7 @@
         <div class="row row-cols-md-3 g-4">
             @for (item of contentSections; track $index) {
             <div>
-                <div class="shadow p-3 rounded-4">
+                <div class="shadow p-3 rounded-3 bg-white">
                     <p-rating [ngModel]="item.rate" [readonly]="true" [cancel]="false"></p-rating>
                 <p class="multi-line-paragraph">“{{item.review}}”</p>
                 <div class="d-flex justify-content-between w-100">

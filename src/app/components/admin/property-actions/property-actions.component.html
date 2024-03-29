@@ -58,7 +58,7 @@
         <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
           let-index="index">
           @for (item of this.facilitiesFormArray.value; track $index) {
-          <div class="border border-2 mb-2 rounded-2 d-flex flex-nowrap justify-content-between align-items-center mb-2">
+          <div class="border border-2 mb-2 rounded-3 d-flex flex-nowrap justify-content-between align-items-center mb-2">
             <div class="d-flex gap-2">
               <img class="ms-2" style="height: 24px" [src]="
                   helper.processFileUrl(

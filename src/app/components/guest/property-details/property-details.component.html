@@ -65,7 +65,7 @@
     <div class="property-details col-lg-8 col-12">
       <header class="my-5">
         <span
-          class="border border-2 px-3 py-1 rounded-4 border-success-subtle text-success"
+          class="border bg-white border-2 px-3 py-1 rounded-3 border-success-subtle text-success"
           >Active</span
         >
         <h3 class="mb-0 mt-3">{{ property.location }}</h3>
@@ -76,7 +76,7 @@
           <div class="d-flex gap-2 flex-wrap">
             @for (item of property.propertyFacilities; track $index) {
             <div
-              class="p-2 shadow-sm d-flex flex-column align-items-center justify-content-between rounded-3 border border-2"
+              class="p-2 shadow-sm bg-white d-flex flex-column align-items-center justify-content-between rounded-3 border border-2"
             >
               <img
                 style="width: 24px"
@@ -91,7 +91,7 @@
           <p [innerHTML]="property.description"></p>
         </p-tabPanel>
         <p-tabPanel header="Financials">
-          <div class="shadow-sm p-3 rounded-2 mb-2">
+          <div class="shadow-sm p-3 rounded-3 mb-2 bg-white">
             <h3>Financials</h3>
             <div class="field">
               <label>Unit Price:</label>
@@ -133,7 +133,7 @@
             </div>
           </div>
 
-          <div class="shadow-sm p-3 rounded-2 mb-2">
+          <div class="shadow-sm p-3 rounded-3 mb-2 bg-white">
             <h3>Payment Plan</h3>
             <div class="field">
               <label>Downpayment:</label>
@@ -172,7 +172,7 @@
             </div>
           </div>
 
-          <div class="shadow-sm p-3 rounded-2 mb-2">
+          <div class="shadow-sm p-3 rounded-3 mb-2 bg-white">
             <h3>Projected Annual Return</h3>
             <div class="field">
               <label>Projected Annual Return:</label>
@@ -190,8 +190,8 @@
             </div>
           </div>
           <div class="graph">
-            <div class="rounded-2 shadow-sm p-3 my-5">
-              <h3>Projected returns per token</h3>
+            <div class="rounded-3 shadow-sm p-3 my-5 bg-white">
+              <h3>Projected Returns Per Token</h3>
               <div>
                 <div class="d-flex justify-content-between">
                   <h5>Tokens Purchased</h5>
@@ -253,10 +253,10 @@
                 </h5>
               </div>
             </div>
-            <div>
-              <h5>
+            <div class="bg-white p-3 rounded-3 shadow-sm">
+              <h3>
                 Est. Investment Value over time based on above assumptions
-              </h5>
+              </h3>
               <p-chart
                 type="bar"
                 [data]="chart.data"
@@ -264,7 +264,7 @@
               ></p-chart>
             </div>
           </div>
-          <div class="table-container mt-3">
+          <div class="table-container mt-3 bg-white p-3 rounded-3 shadow-sm">
             <div class="graph-datatable">
               <div class="row py-3 align-items-center">
                 <div class="col-4"></div>
@@ -394,7 +394,7 @@
       </p-tabView>
     </div>
     <div class="col-lg-4 col-12">
-      <div class="shadow-sm p-3 position-sticky sticky-card">
+      <div class="bg-white rounded-3 shadow-sm p-3 position-sticky sticky-card">
         <div class="d-flex justify-content-between align-items-center w-100">
           <h3
             class="fw-bold"

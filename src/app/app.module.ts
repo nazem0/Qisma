@@ -71,14 +71,14 @@ import { ConfirmComponent } from './components/shared/confirm/confirm.component'
 import { HomeComponent } from './components/guest/home/home.component';
 import { HeroSectionComponent } from './components/guest/home/hero-section/hero-section.component';
 import { HomeSection1Component } from './components/guest/home/home-section-1/home-section-1.component';
-import { PropertyCardComponent } from './components/guest/home/home-section-2/property-card/property-card.component';
+import { PropertyCardComponent } from './components/shared/property-card/property-card.component';
 import { HomeSection2Component } from './components/guest/home/home-section-2/home-section-2.component';
 import { HomeSection3Component } from './components/guest/home/home-section-3/home-section-3.component';
 import { HomeSection4Component } from './components/guest/home/home-section-4/home-section-4.component';
 import { HomeSection5Component } from './components/guest/home/home-section-5/home-section-5.component';
 import { HomeSection6Component } from './components/guest/home/home-section-6/home-section-6.component';
 import { MarketplaceComponent } from './components/guest/marketplace/marketplace.component';
-import { PropertyCard2Component } from './components/guest/marketplace/property-card-2/property-card-2.component';
+import { PropertyCard2Component } from './components/shared/property-card-2/property-card-2.component';
 import { PropertyDetailsComponent } from './components/guest/property-details/property-details.component';
 import { ApiModule } from './api/api.module';
 import { environment } from '../environments/environment';
