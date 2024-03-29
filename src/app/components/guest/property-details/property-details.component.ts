@@ -4,17 +4,20 @@ import { UIChart } from 'primeng/chart';
 import { PropertyService } from '../../../api/services';
 import { ActivatedRoute } from '@angular/router';
 import { PropertyDetailsViewModelForUser } from '../../../api/models';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-property-details',
   templateUrl: './property-details.component.html',
-  styleUrl: './property-details.component.css'
+  styleUrl: './property-details.component.css',
+  providers:[CurrencyPipe]
 })
 export class PropertyDetailsComponent implements OnInit {
   helper=Helper;
   constructor(
     private propertyService: PropertyService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private currency:CurrencyPipe
   ) { }
   @ViewChild("chartElement") chartElement!: UIChart;
   propertyId?: number;
@@ -122,8 +125,8 @@ export class PropertyDetailsComponent implements OnInit {
           stacked: true,
           ticks: {
             color: textColorSecondary,
-            callback: function (value: number) {
-              return '$' + value;
+            callback: (value: number) => {
+              return this.currency.transform(value, 'EGP', 'symbol');
             }
           },
           grid: {
