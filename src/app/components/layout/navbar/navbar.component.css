@@ -5,7 +5,9 @@
 .logos-container{
     overflow-x: scroll;
 }
-
+.p-menubar{
+    background-color: unset;
+}
 .p-menubar>:first-child{
     margin-right: auto;
 }
