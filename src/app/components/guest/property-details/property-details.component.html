@@ -1,5 +1,5 @@
 @if(property){
-<div style="max-height: 35vh;" class="overflow-hidden gallery position-relative">
+<div style="max-height: 40vh;" class="overflow-hidden gallery position-relative">
   <p-carousel
     [value]="property.propertyImages!.slice(0, 3)"
     [numVisible]="3"
@@ -51,7 +51,7 @@
     <ng-template pTemplate="item" let-item>
       <img
         [src]="helper.processFileUrl(item)"
-        style="width: 100%; display: block"
+        style="width: 100%; display: block; object-fit: cover;"
       />
     </ng-template>
   </p-galleria>
