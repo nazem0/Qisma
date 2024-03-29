@@ -174,12 +174,12 @@ export class PropertyActionsComponent implements OnInit {
   calculateTransactionFeesPercentage(){
     if(!this.propertyForm.controls['unitPrice'].value) return;
     let division =  this.propertyForm.controls['transactionFees'].value / this.propertyForm.controls['unitPrice'].value
-    this.transactionFeesPercentage = division /100;
+    this.transactionFeesPercentage = division;
   }
   maintenanceCostPercentage:number=0;
   calculateMaintenanceCostPercentage(){    
     if(!this.propertyForm.controls['unitPrice'].value) return;
     let division =  this.propertyForm.controls['maintenanceCost'].value / this.propertyForm.controls['unitPrice'].value
-    this.maintenanceCostPercentage = division /100;
+    this.maintenanceCostPercentage = division;
   }
 }
