@@ -1,5 +1,8 @@
 @if(property){
-<div style="min-height: 5rem; max-height: 20rem;" class="overflow-hidden gallery position-relative">
+<div
+  style="min-height: 5rem; max-height: 20rem"
+  class="overflow-hidden gallery position-relative"
+>
   <p-carousel
     [value]="property.propertyImages!.slice(0, 3)"
     [responsiveOptions]="responsiveOptions"
@@ -7,17 +10,20 @@
     [showNavigators]="false"
   >
     <ng-template let-image pTemplate="item" let-index="image.index">
-        <img class="h-100 w-100 object-fit-cover" [src]="helper.processFileUrl(image)" alt="" />
+      <img
+        class="h-100 w-100 object-fit-cover"
+        [src]="helper.processFileUrl(image)"
+        alt=""
+      />
     </ng-template>
   </p-carousel>
 
-  
   <div
     style="right: 5px; top: 5px"
     class="position-absolute d-flex align-items-center gap-2"
   >
     @if(property.propertyImages?.length){
-      <p-button
+    <p-button
       (onClick)="displayGalleria = true"
       [raised]="true"
       styleClass="bg-white text-primary border-0"
@@ -29,34 +35,31 @@
     </p-button>
     }
 
-    <p-button
-      routerLink="/property-images/{{ propertyId }}"
-      [raised]="true"
-    >
-    <span class="text-white">
-      <i class="pi pi-plus"></i>
-      <span class="d-sm-inline d-none"> Add Photos</span>
-    </span>
+    <p-button routerLink="/property-images/{{ propertyId }}" [raised]="true">
+      <span class="text-white">
+        <i class="pi pi-plus"></i>
+        <span class="d-sm-inline d-none"> Add Photos</span>
+      </span>
     </p-button>
   </div>
 </div>
 <p-galleria
-    [value]="property.propertyImages!"
-    [(visible)]="displayGalleria"
-    [responsiveOptions]="responsiveOptions"
-    [containerStyle]="{ 'max-width': '850px' }"
-    [circular]="true"
-    [fullScreen]="true"
-    [showItemNavigators]="true"
-    [showThumbnails]="false"
-  >
-    <ng-template pTemplate="item" let-item>
-      <img
-        [src]="helper.processFileUrl(item)"
-        style="width: 100%; display: block; object-fit: cover;"
-      />
-    </ng-template>
-  </p-galleria>
+  [value]="property.propertyImages!"
+  [(visible)]="displayGalleria"
+  [responsiveOptions]="responsiveOptions"
+  [containerStyle]="{ 'max-width': '850px' }"
+  [circular]="true"
+  [fullScreen]="true"
+  [showItemNavigators]="true"
+  [showThumbnails]="false"
+>
+  <ng-template pTemplate="item" let-item>
+    <img
+      [src]="helper.processFileUrl(item)"
+      style="width: 100%; display: block; object-fit: cover"
+    />
+  </ng-template>
+</p-galleria>
 <div class="container-sm">
   <div class="row g-lg-4 g-0 flex-wrap-reverse mx-0 position-relative">
     <div class="property-details col-lg-8 col-12">
@@ -92,17 +95,29 @@
             <h3>Financials</h3>
             <div class="field">
               <label>Unit Price:</label>
-              <span> {{ property.unitPrice | currency : "EGP" : "symbol" : "1.0-0"}}</span>
+              <span>
+                {{
+                  property.unitPrice | currency : "EGP" : "symbol" : "1.0-0"
+                }}</span
+              >
             </div>
             <mat-divider></mat-divider>
             <div class="field">
               <label>Maintenance Cost:</label>
-              <span>{{ property.maintenanceCostNumerical | currency : "EGP" : "symbol" : "1.0-0"}}</span>
+              <span>{{
+                property.maintenanceCostNumerical
+                  | currency : "EGP" : "symbol" : "1.0-0"
+              }}</span>
             </div>
             <mat-divider></mat-divider>
             <div class="field">
               <label>Transaction Fees:</label>
-              <span> {{ property.transactionFeesNumerical | currency : "EGP" : "symbol" : "1.0-0"}}</span>
+              <span>
+                {{
+                  property.transactionFeesNumerical
+                    | currency : "EGP" : "symbol" : "1.0-0"
+                }}</span
+              >
             </div>
             <mat-divider></mat-divider>
             <div class="field">
@@ -112,7 +127,9 @@
             <mat-divider></mat-divider>
             <div class="field">
               <label>Price per Share:</label>
-              <span>{{ property.sharePrice | currency : "EGP" : "symbol" : "1.0-0"}}</span>
+              <span>{{
+                property.sharePrice | currency : "EGP" : "symbol" : "1.0-0"
+              }}</span>
             </div>
           </div>
 
@@ -120,12 +137,17 @@
             <h3>Payment Plan</h3>
             <div class="field">
               <label>Downpayment:</label>
-              <span>{{ property.downPayment | currency : "EGP" : "symbol" : "1.0-0"}}</span>
+              <span>{{
+                property.downPayment | currency : "EGP" : "symbol" : "1.0-0"
+              }}</span>
             </div>
             <mat-divider></mat-divider>
             <div class="field">
               <label>Monthly Installment:</label>
-              <span>{{ property.monthlyInstallment | currency : "EGP" : "symbol" : "1.0-0"}}</span>
+              <span>{{
+                property.monthlyInstallment
+                  | currency : "EGP" : "symbol" : "1.0-0"
+              }}</span>
             </div>
             <mat-divider></mat-divider>
             <div class="field">
@@ -135,12 +157,18 @@
             <mat-divider></mat-divider>
             <div class="field">
               <label>Maintenance Installment:</label>
-              <span>{{ property.maintenaceInstallment | currency : "EGP" : "symbol" : "1.0-0"}}</span>
+              <span>{{
+                property.maintenaceInstallment
+                  | currency : "EGP" : "symbol" : "1.0-0"
+              }}</span>
             </div>
             <mat-divider></mat-divider>
             <div class="field">
               <label>Delivery Installment:</label>
-              <span>{{ property.deliveryInstallment | currency : "EGP" : "symbol" : "1.0-0"}}</span>
+              <span>{{
+                property.deliveryInstallment
+                  | currency : "EGP" : "symbol" : "1.0-0"
+              }}</span>
             </div>
           </div>
 
@@ -152,14 +180,14 @@
             </div>
             <mat-divider></mat-divider>
             <div class="field">
-                <label>Projected Rental Yield:</label>
-                <span>{{ property.annualRentalYield | percent }}</span>
-              </div>
-              <mat-divider></mat-divider>
-              <div class="field">
-                <label>Projected Appreciation:</label>
-                <span>{{ property.annualPriceAppreciation | percent }}</span>
-              </div>
+              <label>Projected Rental Yield:</label>
+              <span>{{ property.annualRentalYield | percent }}</span>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="field">
+              <label>Projected Appreciation:</label>
+              <span>{{ property.annualPriceAppreciation | percent }}</span>
+            </div>
           </div>
           <div class="graph">
             <div class="rounded-2 shadow-sm p-3 my-5">
@@ -172,9 +200,9 @@
                     /
                     <span>
                       {{
-                      property.sharePrice! * estimationData.tokensPurchased
-                        | currency : "EGP" : "symbol" : "1.0-0"
-                    }}
+                        property.sharePrice! * estimationData.tokensPurchased
+                          | currency : "EGP" : "symbol" : "1.0-0"
+                      }}
                     </span>
                   </h5>
                 </div>
@@ -236,21 +264,147 @@
               ></p-chart>
             </div>
           </div>
+          <div class="table-container mt-3">
+            <div class="graph-datatable">
+              <div class="row py-3 align-items-center">
+                <div class="col-4"></div>
+                <h4 class="col-2 fw-bold text-center">Year 2</h4>
+                <h4 class="col-2 fw-bold text-center">Year 5</h4>
+                <h4 class="col-2 fw-bold text-center">Year 10</h4>
+                <h4 class="col-2 fw-bold text-center">Year 15</h4>
+              </div>
+              <div class="row py-3 align-items-center">
+                <h4 class="col-4 fw-bold">
+                  Cumulative Rental Yield
+                  <span class="d-block">x 10<sup>3</sup></span>
+                </h4>
+                <div class="col-2 text-center">
+                  {{
+                    chart.data.datasets[0].data[1] * 0.001
+                      | currency : "EGP" : "symbol-narrow"
+                  }}
+                </div>
+                <div class="col-2 text-center">
+                  {{
+                    chart.data.datasets[0].data[4] * 0.001
+                      | currency : "EGP" : "symbol-narrow"
+                  }}
+                </div>
+                <div class="col-2 text-center">
+                  {{
+                    chart.data.datasets[0].data[9] * 0.001
+                      | currency : "EGP" : "symbol-narrow"
+                  }}
+                </div>
+                <div class="col-2 text-center">
+                  {{
+                    chart.data.datasets[0].data[14] * 0.001
+                      | currency : "EGP" : "symbol-narrow"
+                  }}
+                </div>
+              </div>
+              <mat-divider></mat-divider>
+              <div class="row py-3 align-items-center">
+                <h4 class="col-4 fw-bold">
+                  Cumulative Appreciation Gain
+                  <span class="d-block">x 10<sup>3</sup></span>
+                </h4>
+                <div class="col-2 text-center">
+                  {{
+                    chart.data.datasets[1].data[1] * 0.001
+                      | currency : "EGP" : "symbol-narrow"
+                  }}
+                </div>
+                <div class="col-2 text-center">
+                  {{
+                    chart.data.datasets[1].data[4] * 0.001
+                      | currency : "EGP" : "symbol-narrow"
+                  }}
+                </div>
+                <div class="col-2 text-center">
+                  {{
+                    chart.data.datasets[1].data[9] * 0.001
+                      | currency : "EGP" : "symbol-narrow"
+                  }}
+                </div>
+                <div class="col-2 text-center">
+                  {{
+                    chart.data.datasets[1].data[14] * 0.001
+                      | currency : "EGP" : "symbol-narrow"
+                  }}
+                </div>
+              </div>
+              <mat-divider></mat-divider>
+              <div class="row py-3 align-items-center">
+                <h4 class="col-4 fw-bold">
+                  Your Investment <span class="d-block">x 10<sup>3</sup></span>
+                </h4>
+                <div class="col-2 text-center">
+                  {{
+                    chart.data.datasets[2].data[1] * 0.001
+                      | currency : "EGP" : "symbol-narrow"
+                  }}
+                </div>
+                <div class="col-2 text-center">
+                  {{
+                    chart.data.datasets[2].data[4] * 0.001
+                      | currency : "EGP" : "symbol-narrow"
+                  }}
+                </div>
+                <div class="col-2 text-center">
+                  {{
+                    chart.data.datasets[2].data[9] * 0.001
+                      | currency : "EGP" : "symbol-narrow"
+                  }}
+                </div>
+                <div class="col-2 text-center">
+                  {{
+                    chart.data.datasets[2].data[14] * 0.001
+                      | currency : "EGP" : "symbol-narrow"
+                  }}
+                </div>
+              </div>
+              <mat-divider></mat-divider>
+              <div class="row py-3 align-items-center">
+                <h4 class="col-4 fw-bold">
+                  Total Investment Value
+                  <span class="d-block">x 10<sup>3</sup></span>
+                </h4>
+                <div class="col-2 text-center">
+                  {{(chart.data.datasets[0].data[1] + chart.data.datasets[1].data[1] + chart.data.datasets[2].data[1]) * 0.001 | currency : 'EGP' :
+                  'symbol-narrow'}}
+                </div>
+                <div class="col-2 text-center">
+                  {{(chart.data.datasets[0].data[4] + chart.data.datasets[1].data[4] + chart.data.datasets[2].data[4]) * 0.001 | currency : 'EGP' :
+                  'symbol-narrow'}}
+                </div>
+                <div class="col-2 text-center">
+                  {{(chart.data.datasets[0].data[9] + chart.data.datasets[1].data[9] + chart.data.datasets[2].data[9]) * 0.001 | currency : 'EGP' :
+                  'symbol-narrow'}}
+                </div>
+                <div class="col-2 text-center">
+                  {{(chart.data.datasets[0].data[14] + chart.data.datasets[1].data[14] + chart.data.datasets[2].data[14]) * 0.001 | currency : 'EGP' :
+                  'symbol-narrow'}}
+                </div>
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+          </div>
         </p-tabPanel>
       </p-tabView>
     </div>
     <div class="col-lg-4 col-12">
       <div class="shadow-sm p-3 position-sticky sticky-card">
         <div class="d-flex justify-content-between align-items-center w-100">
-          <span
-            class="fs-3 fw-bold"
+          <h3
+            class="fw-bold"
             pTooltip="This is the lowest current price per token availiable for this property."
             [tooltipPosition]="'left'"
           >
             Estimated Price
-          </span>
+          </h3>
           <p>
-            {{ property.sharePrice | currency : "EGP" : "symbol" : "1.0-0"}}
+            {{ property.sharePrice | currency : "EGP" : "symbol" : "1.0-0" }}
           </p>
         </div>
         <div class="d-flex justify-content-between align-items-center w-100">

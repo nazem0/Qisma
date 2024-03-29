@@ -126,7 +126,7 @@ export class PropertyDetailsComponent implements OnInit {
           ticks: {
             color: textColorSecondary,
             callback: (value: number) => {
-              return this.currency.transform(value, 'EGP', 'symbol');
+              return this.currency.transform(value, 'EGP', 'symbol-narrow');
             }
           },
           grid: {

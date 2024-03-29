@@ -1,20 +1,32 @@
-.sticky-card{
+.sticky-card {
     top: 25px;
 }
+
 img[src$=".svg"] {
     /* Set the fill color */
-    fill: #ff0000 !important; /* Red color */
+    fill: #ff0000 !important;
+    /* Red color */
 }
 
-.field{
+.field {
     display: flex;
     justify-content: space-between;
 }
-.field>:first-child{
+
+.field>:first-child {
     font-weight: bold;
     /* font-size:20px; */
 }
 
-h3{
+h3 {
     font-weight: bold;
+}
+
+.table-container {
+    max-width:100%;
+    overflow: scroll;
+}
+
+.graph-datatable {
+    min-width: 600px;
 }
