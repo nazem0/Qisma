@@ -65,8 +65,12 @@
     <div class="property-details col-lg-8 col-12">
       <header class="my-5">
         <span
-          class="border bg-white border-2 px-3 py-1 rounded-3 border-success-subtle text-success"
-          >{{businessHelper.getPropertyStatusName(property.status!)}}</span
+          class="border bg-white border-2 px-3 py-1 rounded-3"
+          [ngClass]="{
+            'border-success-subtle text-success': property.status == 2,
+            'border-danger-subtle text-danger': property.status == 1
+          }"
+          >{{ businessHelper.getPropertyStatusName(property.status!) }}</span
         >
         <h3 class="mb-0 mt-3">{{ property.location }}</h3>
         <span>{{ property.city }}, {{ property.governorate }}</span>
@@ -372,20 +376,36 @@
                   <span class="d-block">x 10<sup>3</sup></span>
                 </h4>
                 <div class="col-2 text-center">
-                  {{(chart.data.datasets[0].data[1] + chart.data.datasets[1].data[1] + chart.data.datasets[2].data[1]) * 0.001 | currency : 'EGP' :
-                  'symbol-narrow'}}
+                  {{
+                    (chart.data.datasets[0].data[1] +
+                      chart.data.datasets[1].data[1] +
+                      chart.data.datasets[2].data[1]) *
+                      0.001 | currency : "EGP" : "symbol-narrow"
+                  }}
                 </div>
                 <div class="col-2 text-center">
-                  {{(chart.data.datasets[0].data[4] + chart.data.datasets[1].data[4] + chart.data.datasets[2].data[4]) * 0.001 | currency : 'EGP' :
-                  'symbol-narrow'}}
+                  {{
+                    (chart.data.datasets[0].data[4] +
+                      chart.data.datasets[1].data[4] +
+                      chart.data.datasets[2].data[4]) *
+                      0.001 | currency : "EGP" : "symbol-narrow"
+                  }}
                 </div>
                 <div class="col-2 text-center">
-                  {{(chart.data.datasets[0].data[9] + chart.data.datasets[1].data[9] + chart.data.datasets[2].data[9]) * 0.001 | currency : 'EGP' :
-                  'symbol-narrow'}}
+                  {{
+                    (chart.data.datasets[0].data[9] +
+                      chart.data.datasets[1].data[9] +
+                      chart.data.datasets[2].data[9]) *
+                      0.001 | currency : "EGP" : "symbol-narrow"
+                  }}
                 </div>
                 <div class="col-2 text-center">
-                  {{(chart.data.datasets[0].data[14] + chart.data.datasets[1].data[14] + chart.data.datasets[2].data[14]) * 0.001 | currency : 'EGP' :
-                  'symbol-narrow'}}
+                  {{
+                    (chart.data.datasets[0].data[14] +
+                      chart.data.datasets[1].data[14] +
+                      chart.data.datasets[2].data[14]) *
+                      0.001 | currency : "EGP" : "symbol-narrow"
+                  }}
                 </div>
               </div>
               <mat-divider></mat-divider>
