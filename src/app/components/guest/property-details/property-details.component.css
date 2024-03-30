@@ -2,12 +2,6 @@
     top: 25px;
 }
 
-img[src$=".svg"] {
-    /* Set the fill color */
-    fill: #ff0000 !important;
-    /* Red color */
-}
-
 .field {
     display: flex;
     justify-content: space-between;
@@ -29,4 +23,9 @@ h3 {
 
 .graph-datatable {
     min-width: 600px;
+}
+
+.property-image{
+    background-position: center;
+    min-height: 20rem;
 }

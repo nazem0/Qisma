@@ -1,33 +1,16 @@
 @if(property){
-<div
-  style="min-height: 5rem; max-height: 20rem"
-  class="overflow-hidden gallery position-relative"
->
-  <p-carousel
-    [value]="property.propertyImages!.slice(0, 3)"
-    [responsiveOptions]="responsiveOptions"
-    [showIndicators]="false"
-    [showNavigators]="false"
-  >
+<div class="overflow-hidden gallery position-relative">
+  <p-carousel [value]="property.propertyImages!.slice(0, 3)" [responsiveOptions]="responsiveOptions"
+    [showIndicators]="false" [showNavigators]="false">
     <ng-template let-image pTemplate="item" let-index="image.index">
-      <img
-        class="h-100 w-100 object-fit-cover"
-        [src]="helper.processFileUrl(image)"
-        alt=""
-      />
+      <div class="h-100 w-100 property-image" [ngStyle]="{'background-image': 'url(' + helper.processFileUrl(image) + ')'}">
+      </div>
     </ng-template>
   </p-carousel>
 
-  <div
-    style="right: 5px; top: 5px"
-    class="position-absolute d-flex align-items-center gap-2"
-  >
+  <div style="right: 5px; top: 5px" class="position-absolute d-flex align-items-center gap-2">
     @if(property.propertyImages?.length){
-    <p-button
-      (onClick)="displayGalleria = true"
-      [raised]="true"
-      styleClass="bg-white text-primary border-0"
-    >
+    <p-button (onClick)="displayGalleria = true" [raised]="true" styleClass="bg-white text-primary border-0">
       <span>
         <i class="pi pi-images"></i>
         <span class="d-sm-inline d-none"> View All Photos</span>
@@ -43,35 +26,21 @@
     </p-button>
   </div>
 </div>
-<p-galleria
-  [value]="property.propertyImages!"
-  [(visible)]="displayGalleria"
-  [responsiveOptions]="responsiveOptions"
-  [containerStyle]="{ 'max-width': '850px' }"
-  [circular]="true"
-  [fullScreen]="true"
-  [showItemNavigators]="true"
-  [showThumbnails]="false"
->
+<p-galleria [value]="property.propertyImages!" [(visible)]="displayGalleria" [responsiveOptions]="responsiveOptions"
+  [containerStyle]="{ 'max-width': '850px' }" [circular]="true" [fullScreen]="true" [showItemNavigators]="true"
+  [showThumbnails]="false">
   <ng-template pTemplate="item" let-item>
-    <img
-      [src]="helper.processFileUrl(item)"
-      style="width: 100%; display: block; object-fit: cover"
-    />
+    <img [src]="helper.processFileUrl(item)" style="width: 100%; display: block; object-fit: cover" />
   </ng-template>
 </p-galleria>
 <div class="container-sm">
   <div class="row g-lg-4 g-0 flex-wrap-reverse mx-0 position-relative">
     <div class="property-details col-lg-8 col-12">
       <header class="my-5">
-        <span
-          class="border bg-white border-2 px-3 py-1 rounded-3"
-          [ngClass]="{
+        <span class="border bg-white border-2 px-3 py-1 rounded-3" [ngClass]="{
             'border-success-subtle text-success': property.status == 2,
             'border-danger-subtle text-danger': property.status == 1
-          }"
-          >{{ businessHelper.getPropertyStatusName(property.status!) }}</span
-        >
+          }">{{ businessHelper.getPropertyStatusName(property.status!) }}</span>
         <h3 class="mb-0 mt-3">{{ property.location }}</h3>
         <span>{{ property.city }}, {{ property.governorate }}</span>
       </header>
@@ -80,13 +49,8 @@
           <div class="d-flex gap-2 flex-wrap mb-5">
             @for (item of property.propertyFacilities; track $index) {
             <div
-              class="p-2 shadow-sm bg-white d-flex flex-column align-items-center justify-content-between rounded-3 border border-2"
-            >
-              <img
-                style="width: 24px"
-                [src]="helper.processFileUrl(item.svg, true)"
-                alt=""
-              />
+              class="p-2 shadow-sm bg-white d-flex flex-column align-items-center justify-content-between rounded-3 border border-2">
+              <img style="width: 24px" [src]="helper.processFileUrl(item.svg, true)" alt="" />
               <span>{{ item.describtion }}</span>
             </div>
             }
@@ -102,27 +66,25 @@
               <label>Unit Price:</label>
               <span>
                 {{
-                  property.unitPrice | currency : "EGP" : "symbol" : "1.0-0"
-                }}</span
-              >
+                property.unitPrice | currency : "EGP" : "symbol" : "1.0-0"
+                }}</span>
             </div>
             <mat-divider></mat-divider>
             <div class="field">
               <label>Maintenance Cost:</label>
               <span>{{
                 property.maintenanceCostNumerical
-                  | currency : "EGP" : "symbol" : "1.0-0"
-              }}</span>
+                | currency : "EGP" : "symbol" : "1.0-0"
+                }}</span>
             </div>
             <mat-divider></mat-divider>
             <div class="field">
               <label>Transaction Fees:</label>
               <span>
                 {{
-                  property.transactionFeesNumerical
-                    | currency : "EGP" : "symbol" : "1.0-0"
-                }}</span
-              >
+                property.transactionFeesNumerical
+                | currency : "EGP" : "symbol" : "1.0-0"
+                }}</span>
             </div>
             <mat-divider></mat-divider>
             <div class="field">
@@ -134,7 +96,7 @@
               <label>Price per Share:</label>
               <span>{{
                 property.sharePrice | currency : "EGP" : "symbol" : "1.0-0"
-              }}</span>
+                }}</span>
             </div>
           </div>
 
@@ -144,15 +106,15 @@
               <label>Downpayment:</label>
               <span>{{
                 property.downPayment | currency : "EGP" : "symbol" : "1.0-0"
-              }}</span>
+                }}</span>
             </div>
             <mat-divider></mat-divider>
             <div class="field">
               <label>Monthly Installment:</label>
               <span>{{
                 property.monthlyInstallment
-                  | currency : "EGP" : "symbol" : "1.0-0"
-              }}</span>
+                | currency : "EGP" : "symbol" : "1.0-0"
+                }}</span>
             </div>
             <mat-divider></mat-divider>
             <div class="field">
@@ -164,16 +126,16 @@
               <label>Maintenance Installment:</label>
               <span>{{
                 property.maintenaceInstallment
-                  | currency : "EGP" : "symbol" : "1.0-0"
-              }}</span>
+                | currency : "EGP" : "symbol" : "1.0-0"
+                }}</span>
             </div>
             <mat-divider></mat-divider>
             <div class="field">
               <label>Delivery Installment:</label>
               <span>{{
                 property.deliveryInstallment
-                  | currency : "EGP" : "symbol" : "1.0-0"
-              }}</span>
+                | currency : "EGP" : "symbol" : "1.0-0"
+                }}</span>
             </div>
           </div>
 
@@ -205,19 +167,14 @@
                     /
                     <span>
                       {{
-                        property.sharePrice! * estimationData.tokensPurchased
-                          | currency : "EGP" : "symbol" : "1.0-0"
+                      property.sharePrice! * estimationData.tokensPurchased
+                      | currency : "EGP" : "symbol" : "1.0-0"
                       }}
                     </span>
                   </h5>
                 </div>
-                <p-slider
-                  [animate]="true"
-                  [(ngModel)]="estimationData.tokensPurchased"
-                  (ngModelChange)="initChart()"
-                  [min]="1"
-                  [max]="property.availableShares!"
-                ></p-slider>
+                <p-slider [animate]="true" [(ngModel)]="estimationData.tokensPurchased" (ngModelChange)="initChart()"
+                  [min]="1" [max]="property.availableShares!"></p-slider>
                 <h5 class="d-flex justify-content-between mt-2">
                   <span>1</span>
                   <span>{{ property.availableShares }}</span>
@@ -228,13 +185,8 @@
                   <span>Appreciation</span>
                   <span>{{ estimationData.appreciation }}%</span>
                 </h5>
-                <p-slider
-                  [animate]="true"
-                  [(ngModel)]="estimationData.appreciation"
-                  (ngModelChange)="initChart()"
-                  [min]="1"
-                  [max]="100"
-                ></p-slider>
+                <p-slider [animate]="true" [(ngModel)]="estimationData.appreciation" (ngModelChange)="initChart()"
+                  [min]="1" [max]="100"></p-slider>
                 <h5 class="d-flex justify-content-between mt-2">
                   <span>1</span>
                   <span>100</span>
@@ -245,13 +197,8 @@
                   <span>Rental Yield</span>
                   <span>{{ estimationData.rentalYield }}%</span>
                 </h5>
-                <p-slider
-                  [animate]="true"
-                  [(ngModel)]="estimationData.rentalYield"
-                  (ngModelChange)="initChart()"
-                  [min]="1"
-                  [max]="100"
-                ></p-slider>
+                <p-slider [animate]="true" [(ngModel)]="estimationData.rentalYield" (ngModelChange)="initChart()"
+                  [min]="1" [max]="100"></p-slider>
                 <h5 class="d-flex justify-content-between mt-2">
                   <span>1</span>
                   <span>100</span>
@@ -262,11 +209,7 @@
               <h3>
                 Est. Investment Value over time based on above assumptions
               </h3>
-              <p-chart
-                type="bar"
-                [data]="chart.data"
-                [options]="chart.options"
-              ></p-chart>
+              <p-chart type="bar" [data]="chart.data" [options]="chart.options"></p-chart>
             </div>
           </div>
           <div class="table-container mt-3 bg-white p-3 rounded-3 shadow-sm">
@@ -285,26 +228,26 @@
                 </h4>
                 <div class="col-2 text-center">
                   {{
-                    chart.data.datasets[0].data[1] * 0.001
-                      | currency : "EGP" : "symbol-narrow"
+                  chart.data.datasets[0].data[1] * 0.001
+                  | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                    chart.data.datasets[0].data[4] * 0.001
-                      | currency : "EGP" : "symbol-narrow"
+                  chart.data.datasets[0].data[4] * 0.001
+                  | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                    chart.data.datasets[0].data[9] * 0.001
-                      | currency : "EGP" : "symbol-narrow"
+                  chart.data.datasets[0].data[9] * 0.001
+                  | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                    chart.data.datasets[0].data[14] * 0.001
-                      | currency : "EGP" : "symbol-narrow"
+                  chart.data.datasets[0].data[14] * 0.001
+                  | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
               </div>
@@ -316,26 +259,26 @@
                 </h4>
                 <div class="col-2 text-center">
                   {{
-                    chart.data.datasets[1].data[1] * 0.001
-                      | currency : "EGP" : "symbol-narrow"
+                  chart.data.datasets[1].data[1] * 0.001
+                  | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                    chart.data.datasets[1].data[4] * 0.001
-                      | currency : "EGP" : "symbol-narrow"
+                  chart.data.datasets[1].data[4] * 0.001
+                  | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                    chart.data.datasets[1].data[9] * 0.001
-                      | currency : "EGP" : "symbol-narrow"
+                  chart.data.datasets[1].data[9] * 0.001
+                  | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                    chart.data.datasets[1].data[14] * 0.001
-                      | currency : "EGP" : "symbol-narrow"
+                  chart.data.datasets[1].data[14] * 0.001
+                  | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
               </div>
@@ -346,26 +289,26 @@
                 </h4>
                 <div class="col-2 text-center">
                   {{
-                    chart.data.datasets[2].data[1] * 0.001
-                      | currency : "EGP" : "symbol-narrow"
+                  chart.data.datasets[2].data[1] * 0.001
+                  | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                    chart.data.datasets[2].data[4] * 0.001
-                      | currency : "EGP" : "symbol-narrow"
+                  chart.data.datasets[2].data[4] * 0.001
+                  | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                    chart.data.datasets[2].data[9] * 0.001
-                      | currency : "EGP" : "symbol-narrow"
+                  chart.data.datasets[2].data[9] * 0.001
+                  | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                    chart.data.datasets[2].data[14] * 0.001
-                      | currency : "EGP" : "symbol-narrow"
+                  chart.data.datasets[2].data[14] * 0.001
+                  | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
               </div>
@@ -377,34 +320,34 @@
                 </h4>
                 <div class="col-2 text-center">
                   {{
-                    (chart.data.datasets[0].data[1] +
-                      chart.data.datasets[1].data[1] +
-                      chart.data.datasets[2].data[1]) *
-                      0.001 | currency : "EGP" : "symbol-narrow"
+                  (chart.data.datasets[0].data[1] +
+                  chart.data.datasets[1].data[1] +
+                  chart.data.datasets[2].data[1]) *
+                  0.001 | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                    (chart.data.datasets[0].data[4] +
-                      chart.data.datasets[1].data[4] +
-                      chart.data.datasets[2].data[4]) *
-                      0.001 | currency : "EGP" : "symbol-narrow"
+                  (chart.data.datasets[0].data[4] +
+                  chart.data.datasets[1].data[4] +
+                  chart.data.datasets[2].data[4]) *
+                  0.001 | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                    (chart.data.datasets[0].data[9] +
-                      chart.data.datasets[1].data[9] +
-                      chart.data.datasets[2].data[9]) *
-                      0.001 | currency : "EGP" : "symbol-narrow"
+                  (chart.data.datasets[0].data[9] +
+                  chart.data.datasets[1].data[9] +
+                  chart.data.datasets[2].data[9]) *
+                  0.001 | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                    (chart.data.datasets[0].data[14] +
-                      chart.data.datasets[1].data[14] +
-                      chart.data.datasets[2].data[14]) *
-                      0.001 | currency : "EGP" : "symbol-narrow"
+                  (chart.data.datasets[0].data[14] +
+                  chart.data.datasets[1].data[14] +
+                  chart.data.datasets[2].data[14]) *
+                  0.001 | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
               </div>
@@ -417,11 +360,8 @@
     <div class="col-lg-4 col-12">
       <div class="bg-white rounded-3 shadow-sm p-3 position-sticky sticky-card">
         <div class="d-flex justify-content-between align-items-center w-100">
-          <h3
-            class="fw-bold"
-            pTooltip="This is the lowest current price per token availiable for this property."
-            [tooltipPosition]="'left'"
-          >
+          <h3 class="fw-bold" pTooltip="This is the lowest current price per token availiable for this property."
+            [tooltipPosition]="'left'">
             Share Price
           </h3>
           <p>
@@ -431,8 +371,7 @@
         <div class="d-flex justify-content-between align-items-center w-100">
           <span
             pTooltip="The projected total return on investment over a 12 month period, assuming the Operating Reserve is replenished to full and tenants are current on rent. Calculated by adding the projected rental yield and the projected appreciation for the next 12 months."
-            [tooltipPosition]="'left'"
-          >
+            [tooltipPosition]="'left'">
             Projected Annual Return
           </span>
           <p>
@@ -442,8 +381,7 @@
         <div class="d-flex justify-content-between align-items-center w-100">
           <span
             pTooltip="The projected annual return on capital based on potential Cash Flow (potential Gross Rental Income - projected expenses) once the Operating Reserve is replenished to full and all tenants are paying rent. Projected Rental Yield adjusts dynamically based on the 'Starting Price' for the property, which is the lowest current price per token available for the property."
-            [tooltipPosition]="'left'"
-          >
+            [tooltipPosition]="'left'">
             Projected Rental Yield
           </span>
           <p>
@@ -453,8 +391,7 @@
         <div class="d-flex justify-content-between align-items-center w-100">
           <span
             pTooltip="The projected return on capital based on historical Cash Flow (prior month's Gross Rental Income - prior month's expenses). Click the 'Financials' tab for details."
-            [tooltipPosition]="'left'"
-          >
+            [tooltipPosition]="'left'">
             Rental Yield
           </span>
           <p>
