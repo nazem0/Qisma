@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { AddPropertyFacilityViewModel } from '../models/add-property-facility-view-model';
+import { Status } from '../models/status';
 import { Type } from '../models/type';
 export interface AddNewPropertyViewModel {
   annualPriceAppreciation: number;
@@ -19,6 +20,7 @@ export interface AddNewPropertyViewModel {
   numberOfYears?: number | null;
   propertyImages: Array<Blob>;
   sharePrice: number;
+  status: Status;
   transactionFees?: number | null;
   type: Type;
   unitPrice: number;

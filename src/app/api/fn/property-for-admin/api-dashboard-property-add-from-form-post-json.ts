@@ -8,6 +8,7 @@ import { RequestBuilder } from '../../request-builder';
 
 import { AddPropertyFacilityViewModel } from '../../models/add-property-facility-view-model';
 import { Int32ApiResult } from '../../models/int-32-api-result';
+import { Status } from '../../models/status';
 import { Type } from '../../models/type';
 
 export interface ApiDashboardPropertyAddFromFormPost$Json$Params {
@@ -29,6 +30,7 @@ export interface ApiDashboardPropertyAddFromFormPost$Json$Params {
 'MaintenaceInstallment'?: number;
 'DeliveryInstallment'?: number;
 'Type': Type;
+'Status': Status;
 'Facilities'?: Array<AddPropertyFacilityViewModel>;
 'PropertyImages': Array<Blob>;
 }

@@ -1,3 +1,4 @@
+import { BusinessHelper } from './../../../services/business-helper';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Helper } from '../../../services/helper';
 import { UIChart } from 'primeng/chart';
@@ -13,7 +14,9 @@ import { CurrencyPipe } from '@angular/common';
   providers:[CurrencyPipe]
 })
 export class PropertyDetailsComponent implements OnInit {
+  propertyStatuses = BusinessHelper.propertyStatuses;
   helper=Helper;
+  businessHelper=BusinessHelper
   constructor(
     private propertyService: PropertyService,
     private route: ActivatedRoute,

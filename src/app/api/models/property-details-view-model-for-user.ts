@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { PropertyFacilityViewModelForUser } from '../models/property-facility-view-model-for-user';
+import { Status } from '../models/status';
 import { Type } from '../models/type';
 export interface PropertyDetailsViewModelForUser {
   annualPriceAppreciation?: number;
@@ -22,6 +23,7 @@ export interface PropertyDetailsViewModelForUser {
   propertyFacilities?: Array<PropertyFacilityViewModelForUser> | null;
   propertyImages?: Array<string> | null;
   sharePrice?: number;
+  status?: Status;
   transactionFeesNumerical?: number | null;
   transactionFeesPercentage?: number | null;
   type?: Type;

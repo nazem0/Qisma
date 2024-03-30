@@ -9,4 +9,20 @@ export class BusinessHelper {
       name: "Commercial",
     }
   ]
+
+  public static propertyStatuses = [
+    {
+      id: 1,
+      name: "Under Construction",
+    },
+    {
+      id: 2,
+      name: "Ready To Move And Rent",
+    }
+  ]
+
+  public static getPropertyStatusName(id:number) : string |  undefined {
+    return this.propertyStatuses.find(e=>e.id == id)?.name
+  }
+  
 }

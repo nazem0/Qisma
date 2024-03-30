@@ -1,5 +1,5 @@
 <div class="container-sm">
-  <p-button (onClick)="check()">Check</p-button>
+  <!-- <p-button (onClick)="check()">Check</p-button> -->
   <form [formGroup]="propertyForm">
     <p-stepper orientation="vertical">
       <p-stepperPanel header="Details">
@@ -48,6 +48,19 @@
                 </p-dropdown>
               </p-inputGroup>
             </div>
+
+            <div>
+              <p-inputGroup>
+                <p-inputGroupAddon>
+                  <i class="pi pi-th-large"></i>
+                </p-inputGroupAddon>
+                <p-dropdown [showClear]="true" placeholder="Property Status" styleClass="w-100" [options]="propertyStatuses"
+                  optionLabel="name" (onChange)="
+                  setControllerValue('status', $event.value?.id)">
+                </p-dropdown>
+              </p-inputGroup>
+            </div>
+
           </div>
           <div class="flex py-4">
             <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />

@@ -48,7 +48,7 @@ export class PropertyForAdminService extends BaseService {
   static readonly ApiDashboardPropertyAddPostPath = '/api/Dashboard/Property/Add';
 
   /**
-   * Add new property ==> Type 1- resedintial 2- commercial.
+   * Add new property ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
    *
    *
    *
@@ -62,7 +62,7 @@ export class PropertyForAdminService extends BaseService {
   }
 
   /**
-   * Add new property ==> Type 1- resedintial 2- commercial.
+   * Add new property ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
    *
    *
    *
@@ -78,7 +78,7 @@ export class PropertyForAdminService extends BaseService {
   }
 
   /**
-   * Add new property ==> Type 1- resedintial 2- commercial.
+   * Add new property ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
    *
    *
    *
@@ -92,7 +92,7 @@ export class PropertyForAdminService extends BaseService {
   }
 
   /**
-   * Add new property ==> Type 1- resedintial 2- commercial.
+   * Add new property ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
    *
    *
    *
@@ -111,7 +111,7 @@ export class PropertyForAdminService extends BaseService {
   static readonly ApiDashboardPropertyAddFromFormPostPath = '/api/Dashboard/Property/AddFromForm';
 
   /**
-   * Add new property ==> Type 1- resedintial 2- commercial.
+   * Add new property ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
    *
    *
    *
@@ -125,7 +125,7 @@ export class PropertyForAdminService extends BaseService {
   }
 
   /**
-   * Add new property ==> Type 1- resedintial 2- commercial.
+   * Add new property ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
    *
    *
    *
@@ -141,7 +141,7 @@ export class PropertyForAdminService extends BaseService {
   }
 
   /**
-   * Add new property ==> Type 1- resedintial 2- commercial.
+   * Add new property ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
    *
    *
    *
@@ -155,7 +155,7 @@ export class PropertyForAdminService extends BaseService {
   }
 
   /**
-   * Add new property ==> Type 1- resedintial 2- commercial.
+   * Add new property ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
    *
    *
    *

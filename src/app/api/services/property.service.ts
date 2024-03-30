@@ -93,7 +93,7 @@ export class PropertyService extends BaseService {
   static readonly ApiPropertyGetByIdGetPath = '/api/Property/GetById';
 
   /**
-   * Get property details for user by property id.
+   * Get property details for user by property id ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
    *
    *
    *
@@ -107,7 +107,7 @@ export class PropertyService extends BaseService {
   }
 
   /**
-   * Get property details for user by property id.
+   * Get property details for user by property id ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
    *
    *
    *
@@ -123,7 +123,7 @@ export class PropertyService extends BaseService {
   }
 
   /**
-   * Get property details for user by property id.
+   * Get property details for user by property id ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
    *
    *
    *
@@ -137,7 +137,7 @@ export class PropertyService extends BaseService {
   }
 
   /**
-   * Get property details for user by property id.
+   * Get property details for user by property id ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
    *
    *
    *

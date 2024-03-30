@@ -1,7 +1,7 @@
 import { CustomPropertyForAdminService } from './../../../services/custom-property-for-admin.service';
 import { GovernorateAndCityService } from './../../../api/services/governorate-and-city.service';
 import { PropertyForAdminService } from './../../../api/services/property-for-admin.service';
-import { Component, ElementRef, Input, OnInit, ViewChild, input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { AddPropertyFacilityViewModel, FacilityViewModelForAdmin, GovernorateAndCityViewModel, PropertyDetailsViewModelForUser } from '../../../api/models';
 import { BusinessHelper } from '../../../services/business-helper';
@@ -23,6 +23,7 @@ export class PropertyActionsComponent implements OnInit {
   math = Math;
   propertyForm!: FormGroup;
   propertyTypes = BusinessHelper.propertyTypes;
+  propertyStatuses = BusinessHelper.propertyStatuses;
   text: string = `
   <h2>Title 1</h2>
   <ol>
@@ -83,22 +84,23 @@ export class PropertyActionsComponent implements OnInit {
   initPropertyForm() {
     this.propertyForm = this.fb.group({
       location: new FormControl<string>('', [Validators.required]),
-      governorateId: new FormControl<number | undefined>(undefined, [Validators.required]),
-      cityId: new FormControl<number | undefined>(undefined, [Validators.required]),
+      governorateId: new FormControl<number | null>(null, [Validators.required]),
+      cityId: new FormControl<number | null>(null, [Validators.required]),
       description: new FormControl<string>(this.text, [Validators.required]),
-      unitPrice: new FormControl<number | undefined>(undefined, [Validators.required]),
-      maintenanceCost: new FormControl<number | undefined>(undefined, [Validators.required]),
-      transactionFees: new FormControl<number | undefined>(undefined, [Validators.required]),
-      numberOfShares: new FormControl<number | undefined>(undefined, [Validators.required]),
-      sharePrice: new FormControl<number | undefined>(undefined, [Validators.required]),
-      annualRentalYield: new FormControl<number | undefined>(undefined, [Validators.required]),
-      annualPriceAppreciation: new FormControl<number | undefined>(undefined, [Validators.required]),
-      downPayment: new FormControl<number | undefined>(undefined, [Validators.required]),
-      monthlyInstallment: new FormControl<number | undefined>(undefined, [Validators.required]),
-      numberOfYears: new FormControl<number | undefined>(undefined, [Validators.required]),
-      maintenaceInstallment: new FormControl<number | undefined>(undefined, [Validators.required]),
-      deliveryInstallment: new FormControl<number | undefined>(undefined, [Validators.required]),
-      type: new FormControl<number | undefined>(undefined, [Validators.required]),
+      unitPrice: new FormControl<number | null>(null, [Validators.required]),
+      maintenanceCost: new FormControl<number | null>(null, [Validators.required]),
+      transactionFees: new FormControl<number | null>(null, [Validators.required]),
+      numberOfShares: new FormControl<number | null>(null, [Validators.required]),
+      sharePrice: new FormControl<number | null>(null, [Validators.required]),
+      annualRentalYield: new FormControl<number | null>(null, [Validators.required]),
+      annualPriceAppreciation: new FormControl<number | null>(null, [Validators.required]),
+      downPayment: new FormControl<number | null>(null, [Validators.required]),
+      monthlyInstallment: new FormControl<number | null>(null, [Validators.required]),
+      numberOfYears: new FormControl<number | null>(null, [Validators.required]),
+      maintenaceInstallment: new FormControl<number | null>(null, [Validators.required]),
+      deliveryInstallment: new FormControl<number | null>(null, [Validators.required]),
+      type: new FormControl<number | null>(null, [Validators.required]),
+      status: new FormControl<number | null>(null, [Validators.required]),
       facilities: new FormControl<AddPropertyFacilityViewModel[]>([]),
       propertyImages: new FormControl<Blob[]>([])
     });
@@ -203,6 +205,7 @@ export class PropertyActionsComponent implements OnInit {
     formData.append('maintenaceInstallment', this.propertyForm.controls['maintenaceInstallment'].value);
     formData.append('deliveryInstallment', this.propertyForm.controls['deliveryInstallment'].value);
     formData.append('type', this.propertyForm.controls['type'].value);
+    formData.append('status', this.propertyForm.controls['status'].value);
     
     // Assuming facilities is an array, iterate over it and append each item
     this.propertyForm.controls['facilities'].value.forEach((facility: AddPropertyFacilityViewModel, index:number) => {
