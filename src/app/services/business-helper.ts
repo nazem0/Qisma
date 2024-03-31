@@ -18,6 +18,10 @@ export class BusinessHelper {
     {
       id: 2,
       name: "Ready To Move And Rent",
+    },
+    {
+      id:3,
+      name:"Rented"
     }
   ]
 
