@@ -18,12 +18,12 @@
     </p-button>
     }
 
-    <p-button routerLink="/property-images/{{ propertyId }}" [raised]="true">
+    <!-- <p-button routerLink="/property-images/{{ propertyId }}" [raised]="true">
       <span class="text-white">
         <i class="pi pi-plus"></i>
         <span class="d-sm-inline d-none"> Add Photos</span>
       </span>
-    </p-button>
+    </p-button> -->
   </div>
 </div>
 <p-galleria [value]="property.propertyImages!" [(visible)]="displayGalleria" [responsiveOptions]="responsiveOptions"
@@ -159,10 +159,10 @@
           </div>
           <div class="graph">
             <div class="rounded-3 shadow-sm p-3 my-5 bg-white">
-              <h3>Projected Returns Per Token</h3>
+              <h3>Projected Returns Per Share</h3>
               <div>
                 <div class="d-flex justify-content-between">
-                  <h5>Tokens Purchased</h5>
+                  <h5>Shares Purchased</h5>
                   <h5>
                     <span>{{ estimationData.tokensPurchased }}</span>
                     /
@@ -354,10 +354,10 @@
         </p-tabPanel>
       </p-tabView>
     </div>
-    <div class="col-lg-4 col-12">
+    <div class="col-lg-4 col-12 gy-4">
       <div class="bg-white rounded-3 shadow-sm p-3 position-sticky sticky-card">
         <div class="d-flex justify-content-between align-items-center w-100">
-          <h3 class="fw-bold" pTooltip="This is the lowest current price per token availiable for this property."
+          <h3 class="fw-bold" pTooltip="This is the lowest current price per share availiable for this property."
             [tooltipPosition]="'left'">
             Share Price
           </h3>
@@ -365,36 +365,40 @@
             {{ property.sharePrice | currency : "EGP" : "symbol" : "1.0-0" }}
           </p>
         </div>
-        <div class="d-flex justify-content-between align-items-center w-100">
+        <mat-divider></mat-divider>
+        
+        <div class="d-flex justify-content-between align-items-center w-100 my-3">
           <span
             pTooltip="The projected total return on investment over a 12 month period, assuming the Operating Reserve is replenished to full and tenants are current on rent. Calculated by adding the projected rental yield and the projected appreciation for the next 12 months."
             [tooltipPosition]="'left'">
             Projected Annual Return
           </span>
-          <p>
+          <span>
             {{ property.projectedAnnualReturn | percent }}
-          </p>
-        </div>
-        <div class="d-flex justify-content-between align-items-center w-100">
-          <span
-            pTooltip="The projected annual return on capital based on potential Cash Flow (potential Gross Rental Income - projected expenses) once the Operating Reserve is replenished to full and all tenants are paying rent. Projected Rental Yield adjusts dynamically based on the 'Starting Price' for the property, which is the lowest current price per token available for the property."
-            [tooltipPosition]="'left'">
-            Projected Rental Yield
           </span>
-          <p>
-            {{ property.annualRentalYield | percent }}
-          </p>
         </div>
-        <div class="d-flex justify-content-between align-items-center w-100">
+        <div class="d-flex justify-content-between align-items-center w-100 my-3">
           <span
             pTooltip="The projected return on capital based on historical Cash Flow (prior month's Gross Rental Income - prior month's expenses). Click the 'Financials' tab for details."
             [tooltipPosition]="'left'">
-            Rental Yield
+            Projected Appreciation
           </span>
-          <p>
-            {{ property.annualRentalYield | percent }}
-          </p>
+          <span>
+            {{ property.annualPriceAppreciation | percent }}
+          </span>
         </div>
+        
+        <div class="d-flex justify-content-between align-items-center w-100 my-3">
+          <span
+            pTooltip="The projected annual return on capital based on potential Cash Flow (potential Gross Rental Income - projected expenses) once the Operating Reserve is replenished to full and all tenants are paying rent. Projected Rental Yield adjusts dynamically based on the 'Starting Price' for the property, which is the lowest current price per share available for the property."
+            [tooltipPosition]="'left'">
+            Projected Rental Yield
+          </span>
+          <span>
+            {{ property.annualRentalYield | percent }}
+          </span>
+        </div>
+        
         <div class="row row-cols-2 justify-content-center">
           <div>
             <p-button styleClass="w-100">

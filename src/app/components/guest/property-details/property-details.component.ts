@@ -11,16 +11,16 @@ import { CurrencyPipe } from '@angular/common';
   selector: 'app-property-details',
   templateUrl: './property-details.component.html',
   styleUrl: './property-details.component.css',
-  providers:[CurrencyPipe]
+  providers: [CurrencyPipe]
 })
 export class PropertyDetailsComponent implements OnInit {
   propertyStatuses = BusinessHelper.propertyStatuses;
-  helper=Helper;
-  businessHelper=BusinessHelper
+  helper = Helper;
+  businessHelper = BusinessHelper
   constructor(
     private propertyService: PropertyService,
     private route: ActivatedRoute,
-    private currency:CurrencyPipe
+    private currency: CurrencyPipe
   ) { }
   @ViewChild("chartElement") chartElement!: UIChart;
   propertyId?: number;
@@ -74,25 +74,25 @@ export class PropertyDetailsComponent implements OnInit {
     let rental = (this.estimationData.rentalYield * 0.01) * tokensPurchased;
     let appreciation = (this.estimationData.appreciation * 0.01) * tokensPurchased;
     this.chart.data = {
-      labels: Helper.ascendingNumbersArray({ n: 30, step: 1 }),
+      labels: Helper.ascendingNumbersArray({ n: 20, step: 1 }),
       datasets: [
         {
           type: 'bar',
           label: 'Cumulative Rental Yield',
           backgroundColor: documentStyle.getPropertyValue('--blue-300'),
-          data: this.increasingArray(30, rental, rental)
+          data: this.increasingArray(20, rental, rental)
         },
         {
           type: 'bar',
           label: 'Cumulative Appreciation',
           backgroundColor: documentStyle.getPropertyValue('--blue-500'),
-          data: this.increasingArray(30, appreciation, appreciation)
+          data: this.increasingArray(20, appreciation, appreciation)
         },
         {
           type: 'bar',
           label: 'Your Investment',
           backgroundColor: documentStyle.getPropertyValue('--green-300'),
-          data: Helper.ascendingNumbersArray({ fixedNumber: tokensPurchased })
+          data: Helper.ascendingNumbersArray({ n: 20, fixedNumber: tokensPurchased })
         }
       ]
     };
