@@ -13,21 +13,16 @@
     </div>
     <div class="filters row row-cols-lg-5 row-cols-md-3 g-4 justify-content-center">
         <div>
-            <small class="mat-small d-block mt-1 mb-3">Governorate</small>
+            <small class="mat-small d-block mt-2 mb-1">Governorate</small>
             <div>
                 <p-dropdown [filter]="true" filterBy="name" [options]="governorates" [optionLabel]="'name'"
                     [showClear]="true" [(ngModel)]="selectedGov" (onChange)="initCity()" placeholder="All Governorates"
                     styleClass="w-100">
-                    <ng-template let-option pTemplate="item">
-                        <div class="flex align-items-center gap-2">
-                            <div>{{ option.name }}</div>
-                        </div>
-                    </ng-template>
                 </p-dropdown>
             </div>
         </div>
         <div>
-            <small class="mat-small d-block mt-1 mb-3">City</small>
+            <small class="mat-small d-block mt-2 mb-1">City</small>
             <div>
                 <p-dropdown [filter]="true" filterBy="name" [(ngModel)]="selectedCity" [disabled]="!selectedGov"
                     [options]="cities" [optionLabel]="'name'" [showClear]="true" placeholder="All Cities"
@@ -35,30 +30,25 @@
             </div>
         </div>
         <div>
-            <small class="mat-small d-block mt-1 mb-3">Property type</small>
+            <small class="mat-small d-block mt-2 mb-1">Property type</small>
             <div>
                 <p-dropdown [(ngModel)]="selectedProperty" [showClear]="true" placeholder="All Properties" styleClass="w-100" [options]="propertyTypes"
                     optionLabel="name">
-                    <ng-template let-option pTemplate="item">
-                        <div class="flex align-items-center gap-2">
-                            <div>{{ option.name }}</div>
-                        </div>
-                    </ng-template>
                 </p-dropdown>
             </div>
         </div>
         <div>
-            <small class="mat-small">Property Price Range</small>
+            <small class="mat-small">Property Price Range In EGP</small>
             <div>
                 <p class="mb-1 text-end mat-small">
                     {{
                     filters.propertyPriceRange[0]
-                    | currency : "EGP" : "symbol" : "1.0-0"
+                    | currency : "EGP" : "" : "1.0-0"
                     }}
                     -
                     {{
                     filters.propertyPriceRange[1]
-                    | currency : "EGP" : "symbol" : "1.0-0"
+                    | currency : "EGP" : "" : "1.0-0"
                     }}
                 </p>
 
@@ -71,15 +61,15 @@
             </div>
         </div>
         <div>
-            <small class="mat-small">Share Price Range</small>
+            <small class="mat-small">Share Price Range In EGP</small>
             <div>
                 <p class="mb-1 text-end mat-small">
                     {{
-                    filters.sharePriceRange[0] | currency : "EGP" : "symbol" : "1.0-0"
+                    filters.sharePriceRange[0] | currency : "EGP" : "" : "1.0-0"
                     }}
                     -
                     {{
-                    filters.sharePriceRange[1] | currency : "EGP" : "symbol" : "1.0-0"
+                    filters.sharePriceRange[1] | currency : "EGP" : "" : "1.0-0"
                     }}
                 </p>
                 <p-slider [min]="500 * math.pow(10, 3)" [max]="20*math.pow(10,6)" [step]="500 * math.pow(10, 3)"
