@@ -17,7 +17,7 @@ export class BusinessHelper {
     },
     {
       id: 2,
-      name: "Ready To Move And Rent",
+      name: "Ready To Move",
     },
     {
       id:3,
