@@ -225,29 +225,29 @@
               <div class="row py-3 align-items-center">
                 <h4 class="col-4 fw-bold">
                   Cumulative Rental Yield
-                  <span class="d-block">x 10<sup>3</sup></span>
+                 
                 </h4>
                 <div class="col-2 text-center">
                   {{
-                  chart.data.datasets[0].data[1] * 0.001
+                  chart.data.datasets[0].data[1] 
                   | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                  chart.data.datasets[0].data[4] * 0.001
+                  chart.data.datasets[0].data[4] 
                   | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                  chart.data.datasets[0].data[9] * 0.001
+                  chart.data.datasets[0].data[9] 
                   | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                  chart.data.datasets[0].data[14] * 0.001
+                  chart.data.datasets[0].data[14]
                   | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
@@ -256,29 +256,29 @@
               <div class="row py-3 align-items-center">
                 <h4 class="col-4 fw-bold">
                   Cumulative Appreciation Gain
-                  <span class="d-block">x 10<sup>3</sup></span>
+                 
                 </h4>
                 <div class="col-2 text-center">
                   {{
-                  chart.data.datasets[1].data[1] * 0.001
+                  chart.data.datasets[1].data[1] 
                   | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                  chart.data.datasets[1].data[4] * 0.001
+                  chart.data.datasets[1].data[4] 
                   | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                  chart.data.datasets[1].data[9] * 0.001
+                  chart.data.datasets[1].data[9] 
                   | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                  chart.data.datasets[1].data[14] * 0.001
+                  chart.data.datasets[1].data[14]
                   | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
@@ -286,29 +286,29 @@
               <mat-divider></mat-divider>
               <div class="row py-3 align-items-center">
                 <h4 class="col-4 fw-bold">
-                  Your Investment <span class="d-block">x 10<sup>3</sup></span>
+                  Your Investment
                 </h4>
                 <div class="col-2 text-center">
                   {{
-                  chart.data.datasets[2].data[1] * 0.001
+                  chart.data.datasets[2].data[1] 
                   | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                  chart.data.datasets[2].data[4] * 0.001
+                  chart.data.datasets[2].data[4] 
                   | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                  chart.data.datasets[2].data[9] * 0.001
+                  chart.data.datasets[2].data[9] 
                   | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
-                  chart.data.datasets[2].data[14] * 0.001
+                  chart.data.datasets[2].data[14]
                   | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
@@ -317,38 +317,34 @@
               <div class="row py-3 align-items-center">
                 <h4 class="col-4 fw-bold">
                   Total Investment Value
-                  <span class="d-block">x 10<sup>3</sup></span>
+                 
                 </h4>
                 <div class="col-2 text-center">
                   {{
                   (chart.data.datasets[0].data[1] +
                   chart.data.datasets[1].data[1] +
-                  chart.data.datasets[2].data[1]) *
-                  0.001 | currency : "EGP" : "symbol-narrow"
+                  chart.data.datasets[2].data[1]) | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
                   (chart.data.datasets[0].data[4] +
                   chart.data.datasets[1].data[4] +
-                  chart.data.datasets[2].data[4]) *
-                  0.001 | currency : "EGP" : "symbol-narrow"
+                  chart.data.datasets[2].data[4]) | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
                   (chart.data.datasets[0].data[9] +
                   chart.data.datasets[1].data[9] +
-                  chart.data.datasets[2].data[9]) *
-                  0.001 | currency : "EGP" : "symbol-narrow"
+                  chart.data.datasets[2].data[9]) | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
                   (chart.data.datasets[0].data[14] +
                   chart.data.datasets[1].data[14] +
-                  chart.data.datasets[2].data[14]) *
-                  0.001 | currency : "EGP" : "symbol-narrow"
+                  chart.data.datasets[2].data[14]) | currency : "EGP" : "symbol-narrow"
                   }}
                 </div>
               </div>
