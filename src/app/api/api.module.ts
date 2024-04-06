@@ -7,6 +7,7 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 import { GovernorateAndCityService } from './services/governorate-and-city.service';
 import { PropertyService } from './services/property.service';
 import { PropertyForAdminService } from './services/property-for-admin.service';
+import { UserAccountService } from './services/user-account.service';
 
 /**
  * Module that provides all services and configuration.
@@ -19,6 +20,7 @@ import { PropertyForAdminService } from './services/property-for-admin.service';
     GovernorateAndCityService,
     PropertyService,
     PropertyForAdminService,
+    UserAccountService,
     ApiConfiguration
   ],
 })

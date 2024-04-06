@@ -84,7 +84,12 @@ export class EditImagesComponent {
     }
     this
     .propertyForAdminService
-    .apiDashboardPropertyImagesAddPost$Json({body:{PropertyId:this.propertyId!, Images:this.imagesForUpload}}).subscribe({
+    .apiDashboardPropertyImagesAddPost$Json({
+      body:{
+        PropertyId:this.propertyId!,
+        Images:this.imagesForUpload
+      }
+    }).subscribe({
       next: () => {
         this.getAttachments();
         this.snackBar.open("Images Added Successfully",'Close',{"duration":1000})

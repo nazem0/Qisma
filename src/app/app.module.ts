@@ -33,7 +33,8 @@ import { GalleriaModule } from 'primeng/galleria';
 import { SliderModule } from 'primeng/slider';
 import { EditorModule } from 'primeng/editor';
 import { StepperModule } from 'primeng/stepper';
-
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -158,6 +159,8 @@ registerLocaleData(en);
     SliderModule,
     EditorModule,
     StepperModule,
+    IconFieldModule,
+    InputIconModule,
     // Angular Material Modules
     MatStepperModule,
     MatFormFieldModule,

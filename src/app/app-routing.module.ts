@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: "", component: LayoutComponent, children: [
       // { path: "login", component: LoginComponent, title: "Login" },
-      // { path: "register", component: RegisterComponent, title: "Create Account" },
+      { path: "register", component: RegisterComponent, title: "Create Account" },
       // { path: "forgot-password", component: ForgotPasswordComponent, title: "Forgot Password" },
       // { path: "reset-password", component: ResetPasswordComponent, title: "Reset Password" },
       // { path: "contact-us", component: ContactUsComponent, title: "Contact Us" },

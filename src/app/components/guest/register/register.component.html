@@ -1,184 +1,63 @@
-<div class="register-container">
-  <h2 class="mb-0">Join Ramadan Sports Fest!</h2>
-  <small>For more information <a href="tel:+201066611700">+201066611700</a></small>
-  <mat-stepper [linear]="true" #stepper class="pb-0">
-    <mat-step label="Personal Details">
-      <form [formGroup]="form" class="d-flex flex-column gap-3 mt-2" (ngSubmit)="register()">
-        <div>
-          <div class="w-100 p-input-icon-left">
-            <i class="pi pi-user"></i>
-            <input type="text" placeholder="Full Name" pInputText formControlName="fullName" />
-          </div>
-          <small *ngIf="helper.formControlInvalid(form, 'fullName')" class="my-2 text-danger">
-            Full Name is required.
-          </small>
-        </div>
+<form>
+  <p-iconField iconPosition="left">
+    <p-inputIcon styleClass="pi pi-user" />
+    <input type="text" pInputText formcontrolName="formData.FirstName" placeholder="First Name" required />
+  </p-iconField>
 
-        <!-- Phone Input with error message -->
-        <div>
-          <div class="input-w-icon w-100">
-            <i class="pi pi-mobile"></i>
-            <p-inputMask mask="019 999 999 99" formControlName="phoneNumber" placeholder="Phone"></p-inputMask>
-          </div>
-          <small *ngIf="helper.formControlInvalid(form, 'phoneNumber')" class="my-2 text-danger">Phone number is
-            required</small>
-        </div>
+  <p-iconField iconPosition="left">
+    <p-inputIcon styleClass="pi pi-user" />
+    <input type="text" pInputText formcontrolName="formData.MiddleName" placeholder="Middle Name" />
+  </p-iconField>
 
-        <!-- Date of Birth Input -->
-        <div>
-          <div class="w-100 input-w-icon">
-            <i class="pi pi-calendar"></i>
-            <p-calendar [touchUI]="true" [(ngModel)]="birthDate" [ngModelOptions]="{standalone:true}"
-              [iconDisplay]="'input'" [showIcon]="false" placeholder="Date Of Birth" [defaultDate]="defaultDate"
-              [minDate]="minDate" [maxDate]="maxDate" (onSelect)="checkAge($event)"
-              (onFocus)="this.form.get('dateOfBirth')?.markAsTouched();this.form.get('dateOfBirth')?.markAsDirty()"></p-calendar>
-          </div>
-          <small *ngIf="helper.formControlInvalid(form, 'dateOfBirth')" class="my-2 text-danger">
-            Date of Birth is required.
-          </small>
-        </div>
-        <!-- Gender Input -->
-        <div>
-          <div class="d-flex justify-content-evenly">
-            <div *ngFor="let genders of [].constructor(2); let i = index" class="d-flex gap-2 align-items-center">
-              <p-radioButton [inputId]="(i + 1).toString()" [value]="i + 1" formControlName="gender"></p-radioButton>
-              <label [for]="(i + 1).toString()">{{
-                !i ? "Male" : "Female"
-                }}</label>
-            </div>
-          </div>
-          <small *ngIf="helper.formControlInvalid(form, 'gender')" class="my-2 text-danger">
-            Gender is required.
-          </small>
-        </div>
+  <p-iconField iconPosition="left">
+    <p-inputIcon styleClass="pi pi-user" />
+    <input type="text" pInputText formcontrolName="formData.LastName" placeholder="Last Name" required />
+  </p-iconField>
 
-        <!-- Personal Image Input -->
-        <div>
-          <div class="d-flex gap-2 align-items-center justify-content-between">
-            <span>Personal Image</span>
-            <a *ngIf="personalImage" (click)="_helper.openImagePreview(personalImage)">Preview</a>
-            <label for="personal-image">
-              <i pButton class="pi pi-camera"></i>
-            </label>
-            <input #personalImageInputElement hidden id="personal-image" type="file" (change)="personalImageInput($event)" accept="image/*"
-            (click)="personalImageInputElement.value = ''; personalImage=''" />
-          </div>
-          <small *ngIf="helper.formControlInvalid(form, 'personalImage')" class="my-2 text-danger">
-            Personal Image is required.
-          </small>
-        </div>
-        <div class="mb-3">
-          <!-- Button to Proceed -->
-          <button pButton matStepperNext type="button">
-            <span class="mx-auto">Next</span>
-          </button>
-        </div>
-      </form>
-    </mat-step>
+  <p-iconField iconPosition="left">
+    <p-inputIcon styleClass="pi pi-phone" />
+    <input type="text" pInputText formcontrolName="formData.PhoneNumber" placeholder="Phone Number" required />
+  </p-iconField>
 
-    <mat-step *ngIf="above16" label="Identity Details">
-      <form [formGroup]="form" class="d-flex flex-column gap-3 mt-2" (ngSubmit)="register()">
-        <!-- National ID Input (Shown only if above 18) -->
-        <div>
-          <div class="w-100">
-            <div class=" input-w-icon w-100">
-              <i class="pi pi-id-card"></i>
-              <p-inputMask mask="9 99 99 99 99 99999" formControlName="nationalId"
-                placeholder="National ID" styleClass="w-100"></p-inputMask>
-            </div>
-            <small *ngIf="helper.formControlInvalid(form, 'nationalId')" class="my-2 text-danger">
-              National ID is required.
-            </small>
-          </div>
-        </div>
+  <p-iconField iconPosition="left">
+    <p-inputIcon styleClass="pi pi-envelope" />
+    <input type="email" pInputText formcontrolName="formData.Email" placeholder="Email" required />
+  </p-iconField>
 
-        <!-- National ID Image Input (Shown only if above 18) -->
-        <div>
-          <div class="d-flex align-items-center justify-content-between">
-            <span>National ID Image</span>
-            <a *ngIf="nationalIdImage" (click)="_helper.openImagePreview(nationalIdImage)">Preview</a>
-            <label for="national-id-image">
-              <i pButton class="pi pi-id-card"></i>
-            </label>
-            <input #nationalIdImageInputElement hidden id="national-id-image" type="file" (change)="nationalIdImageInput($event)" accept="image/*"
-            (click)="nationalIdImageInputElement.value = ''; nationalIdImage=''" />
-          </div>
-          <small *ngIf="helper.formControlInvalid(form, 'nationalIdImage')" class="my-2 text-danger">
-            National ID Image is required.
-          </small>
-        </div>
-        <!-- Button to Proceed -->
-        <div class="d-flex justify-content-center gap-3 mb-3">
-          <button pButton matStepperPrevious type="button">
-            <i class="pi pi-arrow-left"></i>
-          </button>
-          <button pButton matStepperNext type="button">
-            <i class="pi pi-arrow-right"></i>
-          </button>
-        </div>
-      </form>
-    </mat-step>
+  <p-iconField iconPosition="left">
+    <p-inputIcon styleClass="pi pi-calendar" />
+    <input type="date" pInputText formcontrolName="formData.DateOfBirth" placeholder="Date of Birth" required />
+  </p-iconField>
 
-    <mat-step label="Login Details">
-      <form [formGroup]="form" class="d-flex flex-column gap-3 mt-2">
-        <!-- Email Input with error message -->
-        <div>
-          <div class="p-input-icon-left w-100">
-            <i class="pi pi-envelope"></i>
-            <input type="email" placeholder="Email" pInputText formControlName="email" />
-          </div>
-          <small *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="my-2 text-danger">Valid email
-            is required</small>
-        </div>
+  <p-iconField iconPosition="left">
+    <p-inputIcon styleClass="pi pi-map-marker" />
+    <input type="text" pInputText formcontrolName="formData.Address" placeholder="Address" required />
+  </p-iconField>
 
-        <!-- Password Input with error message -->
-        <div>
-          <div class="p-input-icon-left p-input-icon-right w-100">
-            <i class="pi pi-lock"></i>
-            <input [type]="hidePassword ? 'password' : 'text'" placeholder="Password" pInputText
-              formControlName="password" />
-            <i class="pointer pi pi-eye" (click)="toggleHidePassword()"></i>
-          </div>
-          <small class="text-danger" *ngIf="helper.formControlInvalid(form,'password')">
-            Password is required
-            <ul class="text-start">
-              <li>The password must have at least 6 characters.</li>
-              <li>At least one uppercase letter.</li>
-              <li>At least one lowercase letter</li>
-              <li>At least one digit.</li>
-              <li>At least one special character.</li>
-            </ul>
-          </small>
-        </div>
-        <!-- Agreement Checkbox with error message -->
-        <div class="mb-4">
-          <label for="agreement">
-            <p-checkbox [binary]="true" [(ngModel)]="agreement" [ngModelOptions]="{standalone: true}"
-              inputId="agreement"></p-checkbox>
-            I read and agree to <a class="purple" (click)="openPoliciesDialog()">Terms & Conditions</a>
-          </label>
-        </div>
-      </form>
-      <!-- Button to Proceed -->
-      <!-- Buttons -->
-      <div class="d-flex gap-2 mb-3">
-        <button pButton matStepperPrevious type="button">
-          <i class="pi pi-arrow-left"></i>
-        </button>
-        <button pButton type="submit" class="purple-btn w-100" (click)="register()">
-          <span class="mx-auto">Create Account</span>
-        </button>
-        <button pButton (click)="stepper.reset()" type="button">
-          <i class="pi pi-replay"></i>
-        </button>
-      </div>
-    </mat-step>
+  <p-iconField iconPosition="left">
+    <p-inputIcon styleClass="pi pi-id-card" />
+    <input type="text" pInputText formcontrolName="formData.IdentityNumber" placeholder="Identity Number" required />
+  </p-iconField>
 
-  </mat-stepper>
-  <div>
-    <p>
-      Already have an account?
-      <a class="purple" routerLink="/login">Login</a>
-    </p>
-  </div>
-</div>
+  <p-iconField iconPosition="left">
+    <p-inputIcon styleClass="pi pi-briefcase" />
+    <input type="text" pInputText formcontrolName="formData.Occupation" placeholder="Occupation" />
+  </p-iconField>
+
+  <p-iconField iconPosition="left">
+    <p-inputIcon styleClass="pi pi-building" />
+    <input type="text" pInputText formcontrolName="formData.CompanyName" placeholder="Company Name" />
+  </p-iconField>
+
+  <p-iconField iconPosition="left">
+    <p-inputIcon styleClass="pi pi-envelope" />
+    <input type="checkbox" pInputText formcontrolName="formData.ReciveEmails" placeholder="Receive Emails" />
+  </p-iconField>
+
+  <p-iconField iconPosition="left">
+    <p-inputIcon styleClass="pi pi-key" />
+    <input type="password" pInputText formcontrolName="formData.Password" placeholder="Password" required />
+  </p-iconField>
+
+  <button pButton type="submit" label="Register"></button>
+</form>

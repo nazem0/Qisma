@@ -1,17 +1,21 @@
 /* tslint:disable */
 /* eslint-disable */
-import { PropertyFacilityViewModelForUser } from '../models/property-facility-view-model-for-user';
+import { PropertyFacilityViewModelForAdmin } from '../models/property-facility-view-model-for-admin';
+import { PropertyImageViewModelforAdmin } from '../models/property-image-view-modelfor-admin';
 import { Status } from '../models/status';
 import { Type } from '../models/type';
-export interface PropertyDetailsViewModelForUser {
+export interface PropertyDetailsViewModelForAdmin {
   annualPriceAppreciation?: number;
   annualRentalYield?: number;
   availableShares?: number;
   city?: string | null;
+  cityId?: number;
   deliveryInstallment?: number | null;
   description?: string | null;
   downPayment?: number | null;
+  facilities?: Array<PropertyFacilityViewModelForAdmin> | null;
   governorate?: string | null;
+  governorateId?: number;
   location?: string | null;
   maintenaceInstallment?: number | null;
   maintenanceCost?: number | null;
@@ -20,8 +24,8 @@ export interface PropertyDetailsViewModelForUser {
   numberOfShares?: number;
   numberOfYears?: number | null;
   projectedAnnualReturn?: number;
-  propertyFacilities?: Array<PropertyFacilityViewModelForUser> | null;
-  propertyImages?: Array<string> | null;
+  propertyId?: number;
+  propertyImages?: Array<PropertyImageViewModelforAdmin> | null;
   sharePrice?: number;
   status?: Status;
   transactionFees?: number | null;

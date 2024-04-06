@@ -25,6 +25,26 @@ import { apiDashboardPropertyAddPost$Json } from '../fn/property-for-admin/api-d
 import { ApiDashboardPropertyAddPost$Json$Params } from '../fn/property-for-admin/api-dashboard-property-add-post-json';
 import { apiDashboardPropertyAddPost$Plain } from '../fn/property-for-admin/api-dashboard-property-add-post-plain';
 import { ApiDashboardPropertyAddPost$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-add-post-plain';
+import { apiDashboardPropertyDeleteDelete$Json } from '../fn/property-for-admin/api-dashboard-property-delete-delete-json';
+import { ApiDashboardPropertyDeleteDelete$Json$Params } from '../fn/property-for-admin/api-dashboard-property-delete-delete-json';
+import { apiDashboardPropertyDeleteDelete$Plain } from '../fn/property-for-admin/api-dashboard-property-delete-delete-plain';
+import { ApiDashboardPropertyDeleteDelete$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-delete-delete-plain';
+import { apiDashboardPropertyFacilityAddPost$Json } from '../fn/property-for-admin/api-dashboard-property-facility-add-post-json';
+import { ApiDashboardPropertyFacilityAddPost$Json$Params } from '../fn/property-for-admin/api-dashboard-property-facility-add-post-json';
+import { apiDashboardPropertyFacilityAddPost$Plain } from '../fn/property-for-admin/api-dashboard-property-facility-add-post-plain';
+import { ApiDashboardPropertyFacilityAddPost$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-facility-add-post-plain';
+import { apiDashboardPropertyFacilityDeleteDelete$Json } from '../fn/property-for-admin/api-dashboard-property-facility-delete-delete-json';
+import { ApiDashboardPropertyFacilityDeleteDelete$Json$Params } from '../fn/property-for-admin/api-dashboard-property-facility-delete-delete-json';
+import { apiDashboardPropertyFacilityDeleteDelete$Plain } from '../fn/property-for-admin/api-dashboard-property-facility-delete-delete-plain';
+import { ApiDashboardPropertyFacilityDeleteDelete$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-facility-delete-delete-plain';
+import { apiDashboardPropertyGetByIdGet$Json } from '../fn/property-for-admin/api-dashboard-property-get-by-id-get-json';
+import { ApiDashboardPropertyGetByIdGet$Json$Params } from '../fn/property-for-admin/api-dashboard-property-get-by-id-get-json';
+import { apiDashboardPropertyGetByIdGet$Plain } from '../fn/property-for-admin/api-dashboard-property-get-by-id-get-plain';
+import { ApiDashboardPropertyGetByIdGet$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-get-by-id-get-plain';
+import { apiDashboardPropertyImageDeleteDelete$Json } from '../fn/property-for-admin/api-dashboard-property-image-delete-delete-json';
+import { ApiDashboardPropertyImageDeleteDelete$Json$Params } from '../fn/property-for-admin/api-dashboard-property-image-delete-delete-json';
+import { apiDashboardPropertyImageDeleteDelete$Plain } from '../fn/property-for-admin/api-dashboard-property-image-delete-delete-plain';
+import { ApiDashboardPropertyImageDeleteDelete$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-image-delete-delete-plain';
 import { apiDashboardPropertyImagesAddPost$Json } from '../fn/property-for-admin/api-dashboard-property-images-add-post-json';
 import { ApiDashboardPropertyImagesAddPost$Json$Params } from '../fn/property-for-admin/api-dashboard-property-images-add-post-json';
 import { apiDashboardPropertyImagesAddPost$Plain } from '../fn/property-for-admin/api-dashboard-property-images-add-post-plain';
@@ -33,8 +53,15 @@ import { apiDashboardPropertyImagesGetAllGet$Json } from '../fn/property-for-adm
 import { ApiDashboardPropertyImagesGetAllGet$Json$Params } from '../fn/property-for-admin/api-dashboard-property-images-get-all-get-json';
 import { apiDashboardPropertyImagesGetAllGet$Plain } from '../fn/property-for-admin/api-dashboard-property-images-get-all-get-plain';
 import { ApiDashboardPropertyImagesGetAllGet$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-images-get-all-get-plain';
+import { apiDashboardPropertyUpdatePut$Json } from '../fn/property-for-admin/api-dashboard-property-update-put-json';
+import { ApiDashboardPropertyUpdatePut$Json$Params } from '../fn/property-for-admin/api-dashboard-property-update-put-json';
+import { apiDashboardPropertyUpdatePut$Plain } from '../fn/property-for-admin/api-dashboard-property-update-put-plain';
+import { ApiDashboardPropertyUpdatePut$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-update-put-plain';
 import { FacilityViewModelForAdminListApiResult } from '../models/facility-view-model-for-admin-list-api-result';
 import { Int32ApiResult } from '../models/int-32-api-result';
+import { PropertyDetailsViewModelForAdminApiResult } from '../models/property-details-view-model-for-admin-api-result';
+import { PropertyFacilityViewModelForAdminApiResult } from '../models/property-facility-view-model-for-admin-api-result';
+import { PropertyImageViewModelforAdminApiResult } from '../models/property-image-view-modelfor-admin-api-result';
 import { StringApiResult } from '../models/string-api-result';
 import { StringListApiResult } from '../models/string-list-api-result';
 
@@ -246,7 +273,7 @@ export class PropertyForAdminService extends BaseService {
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  apiDashboardPropertyImagesAddPost$Plain$Response(params?: ApiDashboardPropertyImagesAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  apiDashboardPropertyImagesAddPost$Plain$Response(params?: ApiDashboardPropertyImagesAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyImageViewModelforAdminApiResult>> {
     return apiDashboardPropertyImagesAddPost$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -260,9 +287,9 @@ export class PropertyForAdminService extends BaseService {
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  apiDashboardPropertyImagesAddPost$Plain(params?: ApiDashboardPropertyImagesAddPost$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
+  apiDashboardPropertyImagesAddPost$Plain(params?: ApiDashboardPropertyImagesAddPost$Plain$Params, context?: HttpContext): Observable<PropertyImageViewModelforAdminApiResult> {
     return this.apiDashboardPropertyImagesAddPost$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+      map((r: StrictHttpResponse<PropertyImageViewModelforAdminApiResult>): PropertyImageViewModelforAdminApiResult => r.body)
     );
   }
 
@@ -276,7 +303,7 @@ export class PropertyForAdminService extends BaseService {
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  apiDashboardPropertyImagesAddPost$Json$Response(params?: ApiDashboardPropertyImagesAddPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  apiDashboardPropertyImagesAddPost$Json$Response(params?: ApiDashboardPropertyImagesAddPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyImageViewModelforAdminApiResult>> {
     return apiDashboardPropertyImagesAddPost$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -290,9 +317,9 @@ export class PropertyForAdminService extends BaseService {
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  apiDashboardPropertyImagesAddPost$Json(params?: ApiDashboardPropertyImagesAddPost$Json$Params, context?: HttpContext): Observable<StringApiResult> {
+  apiDashboardPropertyImagesAddPost$Json(params?: ApiDashboardPropertyImagesAddPost$Json$Params, context?: HttpContext): Observable<PropertyImageViewModelforAdminApiResult> {
     return this.apiDashboardPropertyImagesAddPost$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+      map((r: StrictHttpResponse<PropertyImageViewModelforAdminApiResult>): PropertyImageViewModelforAdminApiResult => r.body)
     );
   }
 
@@ -419,6 +446,384 @@ export class PropertyForAdminService extends BaseService {
   apiDashboardFacilityGetAllGet$Json(params?: ApiDashboardFacilityGetAllGet$Json$Params, context?: HttpContext): Observable<FacilityViewModelForAdminListApiResult> {
     return this.apiDashboardFacilityGetAllGet$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<FacilityViewModelForAdminListApiResult>): FacilityViewModelForAdminListApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiDashboardPropertyImageDeleteDelete()` */
+  static readonly ApiDashboardPropertyImageDeleteDeletePath = '/api/Dashboard/PropertyImage/Delete';
+
+  /**
+   * Delete property image.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyImageDeleteDelete$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyImageDeleteDelete$Plain$Response(params: ApiDashboardPropertyImageDeleteDelete$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardPropertyImageDeleteDelete$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Delete property image.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyImageDeleteDelete$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyImageDeleteDelete$Plain(params: ApiDashboardPropertyImageDeleteDelete$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardPropertyImageDeleteDelete$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /**
+   * Delete property image.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyImageDeleteDelete$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyImageDeleteDelete$Json$Response(params: ApiDashboardPropertyImageDeleteDelete$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardPropertyImageDeleteDelete$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Delete property image.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyImageDeleteDelete$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyImageDeleteDelete$Json(params: ApiDashboardPropertyImageDeleteDelete$Json$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardPropertyImageDeleteDelete$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiDashboardPropertyFacilityAddPost()` */
+  static readonly ApiDashboardPropertyFacilityAddPostPath = '/api/Dashboard/PropertyFacility/Add';
+
+  /**
+   * Add property facility.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyFacilityAddPost$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyFacilityAddPost$Plain$Response(params: ApiDashboardPropertyFacilityAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyFacilityViewModelForAdminApiResult>> {
+    return apiDashboardPropertyFacilityAddPost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Add property facility.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyFacilityAddPost$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyFacilityAddPost$Plain(params: ApiDashboardPropertyFacilityAddPost$Plain$Params, context?: HttpContext): Observable<PropertyFacilityViewModelForAdminApiResult> {
+    return this.apiDashboardPropertyFacilityAddPost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<PropertyFacilityViewModelForAdminApiResult>): PropertyFacilityViewModelForAdminApiResult => r.body)
+    );
+  }
+
+  /**
+   * Add property facility.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyFacilityAddPost$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyFacilityAddPost$Json$Response(params: ApiDashboardPropertyFacilityAddPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyFacilityViewModelForAdminApiResult>> {
+    return apiDashboardPropertyFacilityAddPost$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Add property facility.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyFacilityAddPost$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyFacilityAddPost$Json(params: ApiDashboardPropertyFacilityAddPost$Json$Params, context?: HttpContext): Observable<PropertyFacilityViewModelForAdminApiResult> {
+    return this.apiDashboardPropertyFacilityAddPost$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<PropertyFacilityViewModelForAdminApiResult>): PropertyFacilityViewModelForAdminApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiDashboardPropertyFacilityDeleteDelete()` */
+  static readonly ApiDashboardPropertyFacilityDeleteDeletePath = '/api/Dashboard/PropertyFacility/Delete';
+
+  /**
+   * Delete property facility.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyFacilityDeleteDelete$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyFacilityDeleteDelete$Plain$Response(params: ApiDashboardPropertyFacilityDeleteDelete$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardPropertyFacilityDeleteDelete$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Delete property facility.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyFacilityDeleteDelete$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyFacilityDeleteDelete$Plain(params: ApiDashboardPropertyFacilityDeleteDelete$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardPropertyFacilityDeleteDelete$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /**
+   * Delete property facility.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyFacilityDeleteDelete$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyFacilityDeleteDelete$Json$Response(params: ApiDashboardPropertyFacilityDeleteDelete$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardPropertyFacilityDeleteDelete$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Delete property facility.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyFacilityDeleteDelete$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyFacilityDeleteDelete$Json(params: ApiDashboardPropertyFacilityDeleteDelete$Json$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardPropertyFacilityDeleteDelete$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiDashboardPropertyGetByIdGet()` */
+  static readonly ApiDashboardPropertyGetByIdGetPath = '/api/Dashboard/Property/GetById';
+
+  /**
+   * Get property details for admin by property id ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyGetByIdGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyGetByIdGet$Plain$Response(params: ApiDashboardPropertyGetByIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyDetailsViewModelForAdminApiResult>> {
+    return apiDashboardPropertyGetByIdGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Get property details for admin by property id ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyGetByIdGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyGetByIdGet$Plain(params: ApiDashboardPropertyGetByIdGet$Plain$Params, context?: HttpContext): Observable<PropertyDetailsViewModelForAdminApiResult> {
+    return this.apiDashboardPropertyGetByIdGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<PropertyDetailsViewModelForAdminApiResult>): PropertyDetailsViewModelForAdminApiResult => r.body)
+    );
+  }
+
+  /**
+   * Get property details for admin by property id ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyGetByIdGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyGetByIdGet$Json$Response(params: ApiDashboardPropertyGetByIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyDetailsViewModelForAdminApiResult>> {
+    return apiDashboardPropertyGetByIdGet$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Get property details for admin by property id ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyGetByIdGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyGetByIdGet$Json(params: ApiDashboardPropertyGetByIdGet$Json$Params, context?: HttpContext): Observable<PropertyDetailsViewModelForAdminApiResult> {
+    return this.apiDashboardPropertyGetByIdGet$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<PropertyDetailsViewModelForAdminApiResult>): PropertyDetailsViewModelForAdminApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiDashboardPropertyUpdatePut()` */
+  static readonly ApiDashboardPropertyUpdatePutPath = '/api/Dashboard/Property/Update';
+
+  /**
+   * Update property ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyUpdatePut$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiDashboardPropertyUpdatePut$Plain$Response(params?: ApiDashboardPropertyUpdatePut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardPropertyUpdatePut$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Update property ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyUpdatePut$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiDashboardPropertyUpdatePut$Plain(params?: ApiDashboardPropertyUpdatePut$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardPropertyUpdatePut$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /**
+   * Update property ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyUpdatePut$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiDashboardPropertyUpdatePut$Json$Response(params?: ApiDashboardPropertyUpdatePut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardPropertyUpdatePut$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Update property ==> Type 1- resedintial 2- commercial ==> Status 1- Under construction 2- Ready to move and rent.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyUpdatePut$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiDashboardPropertyUpdatePut$Json(params?: ApiDashboardPropertyUpdatePut$Json$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardPropertyUpdatePut$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiDashboardPropertyDeleteDelete()` */
+  static readonly ApiDashboardPropertyDeleteDeletePath = '/api/Dashboard/Property/Delete';
+
+  /**
+   * Delete property.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyDeleteDelete$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyDeleteDelete$Plain$Response(params: ApiDashboardPropertyDeleteDelete$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardPropertyDeleteDelete$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Delete property.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyDeleteDelete$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyDeleteDelete$Plain(params: ApiDashboardPropertyDeleteDelete$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardPropertyDeleteDelete$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /**
+   * Delete property.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardPropertyDeleteDelete$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyDeleteDelete$Json$Response(params: ApiDashboardPropertyDeleteDelete$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardPropertyDeleteDelete$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Delete property.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardPropertyDeleteDelete$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiDashboardPropertyDeleteDelete$Json(params: ApiDashboardPropertyDeleteDelete$Json$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardPropertyDeleteDelete$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
     );
   }
 

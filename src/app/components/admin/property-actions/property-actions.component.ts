@@ -3,11 +3,13 @@ import { GovernorateAndCityService } from './../../../api/services/governorate-a
 import { PropertyForAdminService } from './../../../api/services/property-for-admin.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
-import { AddPropertyFacilityViewModel, FacilityViewModelForAdmin, GovernorateAndCityViewModel, PropertyDetailsViewModelForUser } from '../../../api/models';
+import { AddPropertyFacilityViewModel, FacilityViewModelForAdmin, GovernorateAndCityViewModel, PropertyDetailsViewModelForAdmin, PropertyDetailsViewModelForUser } from '../../../api/models';
 import { BusinessHelper } from '../../../services/business-helper';
 import { Helper } from '../../../services/helper';
 import { DialogService } from '../../../services/dialog.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+import { IndexableObject } from 'ng-zorro-antd/core/types';
 
 @Component({
   selector: 'app-property-actions',
@@ -16,8 +18,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class PropertyActionsComponent implements OnInit {
   helper = Helper;
-  readers: any[] = [];
-  inputArray: any[] = [];
+  readers: FileReader[] = [];
+  inputArray: (string | ArrayBuffer | null)[] = [];
   validationErros: string[] = []
   files?: FileList;
   math = Math;
@@ -47,19 +49,22 @@ export class PropertyActionsComponent implements OnInit {
   cities: GovernorateAndCityViewModel[] = [];
   selectedGov?: GovernorateAndCityViewModel;
   selectedCity?: GovernorateAndCityViewModel;
+  selectedType?: GovernorateAndCityViewModel;
+  selectedStatus?: GovernorateAndCityViewModel;
   constructor(
     private fb: FormBuilder,
     private propertyForAdminService: PropertyForAdminService,
-    private customPropertyForAdminService:CustomPropertyForAdminService,
+    private customPropertyForAdminService: CustomPropertyForAdminService,
     private governorateAndCityService: GovernorateAndCityService,
     private dialog: DialogService,
-    private snackBar: MatSnackBar
-  ) {
-    this.initPropertyForm();
-  }
+    private snackBar: MatSnackBar,
+    private route: ActivatedRoute
+  ) { }
   ngOnInit(): void {
+    this.initEmptyPropertyForm();
     this.initGovs()
     this.initFacilities();
+    this.getPropertyWithId();
     // this.propertyForAdminService.apiDashboardPropertyAddPost$Json({body:{}})
   }
 
@@ -81,7 +86,31 @@ export class PropertyActionsComponent implements OnInit {
     this.inputArray.splice(index, 1);
     this.propertyForm.get('propertyImages')?.value.splice(index, 1)
   }
-  initPropertyForm() {
+  initPropertyForm(propertyDetails: PropertyDetailsViewModelForAdmin) {
+    console.log(propertyDetails);
+    Object.keys(propertyDetails).forEach(key => {
+      console.log(key, (propertyDetails as IndexableObject)[key]);
+      
+      this.propertyForm.get(key)?.setValue((propertyDetails as IndexableObject)[key]);
+    });
+    propertyDetails.propertyImages!.forEach(image => {
+      this.inputArray.push(this.helper.processFileUrl(image.imageUrl!));
+    });
+    this.selectedGov = { id: propertyDetails.governorateId, name: propertyDetails.governorate }
+    this.initCity();
+    this.selectedCity = { id: propertyDetails.cityId, name: propertyDetails.city }
+    let selectedTypeName = BusinessHelper.propertyTypes.find(e=>e.id==propertyDetails.type)?.name;
+    this.selectedType = {id:propertyDetails.type, name:selectedTypeName}
+    let selectedStatusName = BusinessHelper.propertyStatuses.find(e=>e.id==propertyDetails.status)?.name;
+    this.selectedStatus = {id:propertyDetails.status, name:selectedStatusName}
+    console.log(this.propertyForm);
+    this.calculateMaintenanceCost();
+    this.calculateTransactionFees();
+    console.log(this.propertyForm);
+    
+  }
+
+  initEmptyPropertyForm() {
     this.propertyForm = this.fb.group({
       location: new FormControl<string>('', [Validators.required]),
       governorateId: new FormControl<number | null>(null, [Validators.required]),
@@ -174,14 +203,14 @@ export class PropertyActionsComponent implements OnInit {
 
   submitForm() {
     if (this.checkFormValidity())
-    // this
-    //   .propertyForAdminService
-    //   .apiDashboardPropertyAddPost$Json({ body: this.propertyForm.value })
-    //   .subscribe();
-    this
-      .customPropertyForAdminService
-      .addPropertyFromForm(this.getFormData())
-      .subscribe();
+      // this
+      //   .propertyForAdminService
+      //   .apiDashboardPropertyAddPost$Json({ body: this.propertyForm.value })
+      //   .subscribe();
+      this
+        .customPropertyForAdminService
+        .addPropertyFromForm(this.getFormData())
+        .subscribe();
   }
   getFormData() {
     // Initialize a new FormData object
@@ -206,9 +235,9 @@ export class PropertyActionsComponent implements OnInit {
     formData.append('deliveryInstallment', this.propertyForm.controls['deliveryInstallment'].value);
     formData.append('type', this.propertyForm.controls['type'].value);
     formData.append('status', this.propertyForm.controls['status'].value);
-    
+
     // Assuming facilities is an array, iterate over it and append each item
-    this.propertyForm.controls['facilities'].value.forEach((facility: AddPropertyFacilityViewModel, index:number) => {
+    this.propertyForm.controls['facilities'].value.forEach((facility: AddPropertyFacilityViewModel, index: number) => {
       formData.append(`facilities[${index}].facilityId`, facility.facilityId!.toString());
       formData.append(`facilities[${index}].description`, facility.description!);
     });
@@ -227,10 +256,6 @@ export class PropertyActionsComponent implements OnInit {
 
   checkFormValidity() {
     this.validationErros = [];
-    // if(this.propertyForm.get('propertyImages')?.value.length == 0){
-    //   this.validationErros.push('PropertyImages Invalid')
-    //   this.propertyForm
-    // }
     if (this.propertyForm.invalid) {
       Object.keys(this.propertyForm.controls).forEach(controlName => {
         const control = this.propertyForm.get(controlName);
@@ -244,14 +269,34 @@ export class PropertyActionsComponent implements OnInit {
   }
   transactionFees: number = 0;
   calculateTransactionFees() {
+    console.log(this.propertyForm.controls['transactionFees'].value);
     if (!this.propertyForm.controls['unitPrice'].value) return;
     let dollars = this.propertyForm.controls['transactionFees'].value * this.propertyForm.controls['unitPrice'].value
     this.transactionFees = dollars;
   }
   maintenanceCost: number = 0;
   calculateMaintenanceCost() {
+    console.log(this.propertyForm.controls['maintenanceCost'].value);
+    
     if (!this.propertyForm.controls['unitPrice'].value) return;
     let dollars = this.propertyForm.controls['maintenanceCost'].value * this.propertyForm.controls['unitPrice'].value
     this.maintenanceCost = dollars;
+  }
+
+  getPropertyWithId() {
+    let propertyIdParam = this.route.snapshot.paramMap.get("id");
+    if (!propertyIdParam) {
+      this.initEmptyPropertyForm()
+      return;
+    }
+    let propertyId = parseInt(propertyIdParam);
+    this
+      .propertyForAdminService
+      .apiDashboardPropertyGetByIdGet$Json({ PropertyId: propertyId })
+      .subscribe({
+        next: next => {
+          this.initPropertyForm(next.data!);
+        }
+      })
   }
 }

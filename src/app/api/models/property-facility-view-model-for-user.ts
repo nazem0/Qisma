@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface PropertyFacilityViewModelForUser {
-  describtion?: string | null;
+  description?: string | null;
   svg?: string | null;
 }
