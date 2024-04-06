@@ -341,3 +341,16 @@ button {
     padding: 0;
 }
 
+ngx-intl-tel-input 
+{
+    div{
+        width:100%;
+        border:0px;
+    }
+    input{
+        border:0px;
+        background:white;
+        width:100%;
+    }
+}
+

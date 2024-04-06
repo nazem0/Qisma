@@ -1,92 +1,91 @@
-<form>
-  <div class="row row-cols-3 gx-0">
+<div class="container-sm mt-2">
+  <form class="d-flex flex-column gap-2">
+    <div class="row row-cols-3 gx-0">
+      <div>
+        <p-iconField iconPosition="left">
+          <p-inputIcon styleClass="pi pi-user" />
+          <input type="text" pInputText formcontrolName="formData.FirstName" placeholder="First Name" required />
+        </p-iconField>
+      </div>
+
+      <div>
+        <input type="text" pInputText formcontrolName="formData.MiddleName" placeholder="Middle Name" />
+      </div>
+
+      <div>
+        <input type="text" pInputText formcontrolName="formData.LastName" placeholder="Last Name" required />
+      </div>
+    </div>
+
     <div>
       <p-iconField iconPosition="left">
-        <p-inputIcon styleClass="pi pi-user" />
-        <input type="text" pInputText formcontrolName="formData.FirstName" placeholder="First Name" required />
+        <p-inputIcon styleClass="pi pi-phone" />
+        <input type="text" pInputText formcontrolName="formData.PhoneNumber" placeholder="Phone Number" required />
       </p-iconField>
     </div>
-  
+
     <div>
-        <input type="text" pInputText formcontrolName="formData.MiddleName" placeholder="Middle Name" />
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-envelope" />
+        <input type="email" pInputText formcontrolName="formData.Email" placeholder="Email" required />
+      </p-iconField>
     </div>
-  
+
     <div>
-        <input type="text" pInputText formcontrolName="formData.LastName" placeholder="Last Name" required />
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-calendar" />
+        <input type="date" pInputText formcontrolName="formData.DateOfBirth" placeholder="Date of Birth" required />
+      </p-iconField>
     </div>
-  </div>
 
-  <div>
-    <p-iconField iconPosition="left">
-      <p-inputIcon styleClass="pi pi-phone" />
-      <input type="text" pInputText formcontrolName="formData.PhoneNumber" placeholder="Phone Number" required />
-    </p-iconField>
+    <div>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-map-marker" />
+        <input type="text" pInputText formcontrolName="formData.Address" placeholder="Address" required />
+      </p-iconField>
+    </div>
 
-  </div>
+    <ngx-intl-tel-input style="width: 100%;"
+    [enableAutoCountrySelect]="false"
+    [enablePlaceholder]="true"
+    [searchCountryFlag]="true"
+    [selectFirstCountry]="false"
+    [maxLength]="15"
+    [phoneValidation]="true"
+    name="phone"
+    formControlName="phone"
+    ngClass="p-inputtext"
+    >
+  </ngx-intl-tel-input>
 
-  <div>
-    <p-iconField iconPosition="left">
-      <p-inputIcon styleClass="pi pi-envelope" />
-      <input type="email" pInputText formcontrolName="formData.Email" placeholder="Email" required />
-    </p-iconField>
+    <div>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-briefcase" />
+        <input type="text" pInputText formcontrolName="formData.Occupation" placeholder="Occupation" />
+      </p-iconField>
+    </div>
 
-  </div>
+    <div>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-building" />
+        <input type="text" pInputText formcontrolName="formData.CompanyName" placeholder="Company Name" />
+      </p-iconField>
+    </div>
 
-  <div>
-    <p-iconField iconPosition="left">
-      <p-inputIcon styleClass="pi pi-calendar" />
-      <input type="date" pInputText formcontrolName="formData.DateOfBirth" placeholder="Date of Birth" required />
-    </p-iconField>
+    <div>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-envelope" />
+        <input type="text" pInputText formcontrolName="formData.ReciveEmails" placeholder="Receive Emails" />
+      </p-iconField>
+    </div>
 
-  </div>
+    <div>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-key" />
+        <input type="password" pInputText formcontrolName="formData.Password" placeholder="Password" required />
+      </p-iconField>
+    </div>
 
-  <div>
-    <p-iconField iconPosition="left">
-      <p-inputIcon styleClass="pi pi-map-marker" />
-      <input type="text" pInputText formcontrolName="formData.Address" placeholder="Address" required />
-    </p-iconField>
-
-  </div>
-
-  <div>
-    <p-iconField iconPosition="left">
-      <p-inputIcon styleClass="pi pi-id-card" />
-      <input type="text" pInputText formcontrolName="formData.IdentityNumber" placeholder="Identity Number" required />
-    </p-iconField>
-
-  </div>
-
-  <div>
-    <p-iconField iconPosition="left">
-      <p-inputIcon styleClass="pi pi-briefcase" />
-      <input type="text" pInputText formcontrolName="formData.Occupation" placeholder="Occupation" />
-    </p-iconField>
-
-  </div>
-
-  <div>
-    <p-iconField iconPosition="left">
-      <p-inputIcon styleClass="pi pi-building" />
-      <input type="text" pInputText formcontrolName="formData.CompanyName" placeholder="Company Name" />
-    </p-iconField>
-
-  </div>
-
-  <div>
-    <p-iconField iconPosition="left">
-      <p-inputIcon styleClass="pi pi-envelope" />
-      <input type="text" pInputText formcontrolName="formData.ReciveEmails" placeholder="Receive Emails" />
-    </p-iconField>
-
-  </div>
-
-  <div>
-    <p-iconField iconPosition="left">
-      <p-inputIcon styleClass="pi pi-key" />
-      <input type="password" pInputText formcontrolName="formData.Password" placeholder="Password" required />
-    </p-iconField>
-
-  </div>
-
-  <button pButton type="submit" label="Register"></button>
-</form>
+    <button pButton type="submit" label="Register"></button>
+  </form>
+</div>

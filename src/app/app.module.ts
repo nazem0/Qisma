@@ -45,6 +45,7 @@ import { MatDividerModule } from '@angular/material/divider';
 
 
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input-gg';
 
 
 import { RegisterComponent } from './components/guest/register/register.component';
@@ -171,6 +172,8 @@ registerLocaleData(en);
     MatDividerModule,
     //NzMaterial Modules
     NzPaginationModule,
+
+    NgxIntlTelInputModule,
     // for HttpClient use:
     LoadingBarHttpClientModule,
     // Api Module,
