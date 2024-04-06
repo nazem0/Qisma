@@ -1,25 +1,19 @@
 <form>
-  <div>
-    <p-iconField iconPosition="left">
-      <p-inputIcon styleClass="pi pi-user" />
-      <input type="text" pInputText formcontrolName="formData.FirstName" placeholder="First Name" required />
-    </p-iconField>
-  </div>
-
-  <div>
-    <p-iconField iconPosition="left">
-      <p-inputIcon styleClass="pi pi-user" />
-      <input type="text" pInputText formcontrolName="formData.MiddleName" placeholder="Middle Name" />
-    </p-iconField>
-
-  </div>
-
-  <div>
-    <p-iconField iconPosition="left">
-      <p-inputIcon styleClass="pi pi-user" />
-      <input type="text" pInputText formcontrolName="formData.LastName" placeholder="Last Name" required />
-    </p-iconField>
-
+  <div class="row row-cols-3 gx-0">
+    <div>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-user" />
+        <input type="text" pInputText formcontrolName="formData.FirstName" placeholder="First Name" required />
+      </p-iconField>
+    </div>
+  
+    <div>
+        <input type="text" pInputText formcontrolName="formData.MiddleName" placeholder="Middle Name" />
+    </div>
+  
+    <div>
+        <input type="text" pInputText formcontrolName="formData.LastName" placeholder="Last Name" required />
+    </div>
   </div>
 
   <div>
@@ -81,7 +75,7 @@
   <div>
     <p-iconField iconPosition="left">
       <p-inputIcon styleClass="pi pi-envelope" />
-      <input type="checkbox" pInputText formcontrolName="formData.ReciveEmails" placeholder="Receive Emails" />
+      <input type="text" pInputText formcontrolName="formData.ReciveEmails" placeholder="Receive Emails" />
     </p-iconField>
 
   </div>
