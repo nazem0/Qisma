@@ -19,23 +19,24 @@ export class Http implements HttpInterceptor {
         })
         return next.handle(req).pipe(
             tap(async (event: HttpEvent<any>) => {
-                if (event instanceof HttpResponse) {
-                    if (req.method === 'GET' && event.status === 200) {
-                        // Do nothing for successful GET requests
-                    } else if (event.ok && event.status === 200) {
-                        this.messageService.add(
-                            { severity: 'success', detail: event.body.message, life: 5000 },
-                        );
-                    } else if ((event.body.ok || event.ok) && event.body.message) {
-                        this.messageService.add(
-                            { severity: 'info', detail: event.body.message, life: 5000 },
-                        );
-                    } else if ((!event.body.ok || !event.ok) && event.body.message) {
-                        this.messageService.add(
-                            { severity: 'warn', detail: event.body.message, life: 5000 },
-                        );
-                    }
+                if (!(event instanceof HttpResponse)) return;
+                
+                if (req.method === 'GET' && event.status === 200) {
+                    // Do nothing for successful GET requests
+                } else if (event.ok && event.status === 200) {
+                    this.messageService.add(
+                        { severity: 'success', detail: event.body.message, life: 5000 },
+                    );
+                } else if ((event.body.ok || event.ok) && event.body.message) {
+                    this.messageService.add(
+                        { severity: 'info', detail: event.body.message, life: 5000 },
+                    );
+                } else if ((!event.body.ok || !event.ok) && event.body.message) {
+                    this.messageService.add(
+                        { severity: 'warn', detail: event.body.message, life: 5000 },
+                    );
                 }
+
             }),
             catchError((error: HttpErrorResponse) => {
                 if (error.status === 401) {
@@ -53,6 +54,6 @@ export class Http implements HttpInterceptor {
                 return throwError(() => new Error(error.message));
             })
         );
-        
+
     }
 }
