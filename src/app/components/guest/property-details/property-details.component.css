@@ -28,4 +28,6 @@ h3 {
 .property-image{
     background-position: center;
     min-height: 20rem;
+    background-repeat: no-repeat;
+    background-size:cover;
 }

@@ -13,9 +13,7 @@
                 <p-dropdown [filter]="true" filterBy="name" [options]="governorates" [optionLabel]="'name'"
                   [showClear]="true" (onChange)="
                   setControllerValue('governorateId', $event.value?.id);
-                  $event.value?.id ? initCity() : null"
-                  [ngModel]="selectedGov"
-                  [ngModelOptions]="{'standalone':true}"
+                  $event.value?.id ? initCity() : null" [ngModel]="selectedGov" [ngModelOptions]="{'standalone':true}"
                   (onClear)="setControllerValue('cityId', undefined); this.propertyForm.controls['cityId'].disable()"
                   placeholder="Governorate" styleClass="w-100">
                 </p-dropdown>
@@ -27,9 +25,7 @@
                   <i class="pi pi-map-marker"></i>
                 </p-inputGroupAddon>
                 <p-dropdown [filter]="true" filterBy="name" [options]="cities" [optionLabel]="'name'" [showClear]="true"
-                  [ngModel]="selectedCity"
-                  [ngModelOptions]="{'standalone':true}"
-                  (onChange)="
+                  [ngModel]="selectedCity" [ngModelOptions]="{'standalone':true}" (onChange)="
                   setControllerValue('cityId', $event.value?.id)" placeholder="City" styleClass="w-100"></p-dropdown>
               </p-inputGroup>
             </div>
@@ -47,10 +43,7 @@
                   <i class="pi pi-th-large"></i>
                 </p-inputGroupAddon>
                 <p-dropdown [showClear]="true" placeholder="Property Type" styleClass="w-100" [options]="propertyTypes"
-                  optionLabel="name" 
-                  [ngModel]="selectedType"
-                  [ngModelOptions]="{'standalone':true}"
-                  (onChange)="
+                  optionLabel="name" [ngModel]="selectedType" [ngModelOptions]="{'standalone':true}" (onChange)="
                   setControllerValue('type', $event.value?.id)">
                 </p-dropdown>
               </p-inputGroup>
@@ -61,11 +54,9 @@
                 <p-inputGroupAddon>
                   <i class="pi pi-th-large"></i>
                 </p-inputGroupAddon>
-                <p-dropdown [showClear]="true" placeholder="Property Status" styleClass="w-100" [options]="propertyStatuses"
-                  optionLabel="name"
-                  [ngModel]="selectedStatus"
-                  [ngModelOptions]="{'standalone':true}"
-                   (onChange)="
+                <p-dropdown [showClear]="true" placeholder="Property Status" styleClass="w-100"
+                  [options]="propertyStatuses" optionLabel="name" [ngModel]="selectedStatus"
+                  [ngModelOptions]="{'standalone':true}" (onChange)="
                   setControllerValue('status', $event.value?.id)">
                 </p-dropdown>
               </p-inputGroup>
@@ -80,23 +71,25 @@
       <p-stepperPanel header="Photos">
         <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
           let-index="index">
-          @for (image of propertyForm.get('propertyImages')?.value; track $index) {
+          <!-- @for (image of propertyForm.get('propertyImages')?.value; track $index) {
             <img [src]="image.url" alt="">
-          }
+          } -->
           <div class="mb-3 d-flex flex-column align-items-center">
             <div class="mb-3">
               <label pButton for="upload-files">
-                  <i class="pi pi-plus text-white"></i>
+                <i class="pi pi-plus text-white"></i>
               </label>
             </div>
-            <input (change)="addPhotos($event)" class="d-none" type="file" id="upload-files" #uploadedPhotos accept="image/*" multiple>
+            <input (change)="addPhotos($event)" class="d-none" type="file" id="upload-files" #uploadedPhotos
+              accept="image/*" multiple>
             <ng-container *ngIf="inputArray">
               <div class="row row-cols-3 g-2 justify-content-center">
                 <div class="position-relative" *ngFor="let item of inputArray; let i = index">
-                  <p-button [rounded]="true" severity="danger" styleClass="position-absolute top-0 p-1" (click)="delete(i)">
-                            <i class="pi pi-times text-white"></i>
-                        </p-button>
-                  <img style="max-height: 200px;" class="border border-3 w-100 h-100 object-fit-cover" [src]="item">
+                  <p-button [rounded]="true" severity="danger" styleClass="position-absolute top-0 p-1"
+                    (click)="editPage ? delete(i, item.id) : delete(i)">
+                    <i class="pi pi-times text-white"></i>
+                  </p-button>
+                  <img style="max-height: 200px;" class="border border-3 w-100 h-100 object-fit-cover" [src]="item.src">
 
                 </div>
               </div>
@@ -111,27 +104,6 @@
       <p-stepperPanel header="Facilities">
         <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
           let-index="index">
-          @for (item of this.facilitiesFormArray.value; track $index) {
-          <div
-            class="border border-2 mb-2 rounded-3 d-flex flex-nowrap justify-content-between align-items-center mb-2">
-            <div class="d-flex gap-2">
-              <img class="ms-2" style="height: 24px" [src]="
-                  helper.processFileUrl(
-                    fiterFacilities(item.facilityId)?.svg,
-                    true
-                  )
-                " alt="" />
-            </div>
-            <span>{{item.description}}</span>
-            <button class="text-white p-button-danger" (click)="removeFacility($index)" type="button" pButton
-              icon="pi pi-minus"></button>
-            <!-- <div>
-              <p-inputGroup>
-                <input [disabled]="true" type="text" pInputText [value]="item.description" />
-              </p-inputGroup>
-            </div> -->
-          </div>
-          }
           <div class="row g-0 align-items-center">
             <div class="col-sm-4">
               <p-dropdown [filter]="true" filterBy="name" [options]="facilities" [optionLabel]="'name'"
@@ -157,6 +129,44 @@
               </p-inputGroup>
             </div>
           </div>
+          @for (item of this.facilitiesFormArray.value; track $index) {
+          <div class="
+              bg-white
+              border
+              border-2
+              rounded-3
+              d-flex
+              flex-nowrap
+              justify-content-between
+              align-items-center
+              mt-2">
+            <div class="d-flex gap-2">
+              <img class="ms-2" style="height: 24px" [src]="
+                    helper.processFileUrl(fiterFacilities(item.facilityId)?.svg,true)" [alt]="item.description" />
+            </div>
+
+            <div class="col-8">
+              <p-inputGroup>
+                <!-- <span>{{item.description}}</span> -->
+                <input type="text" pInputText placeholder="Description" disabled [ngModel]="item.description"
+                  [ngModelOptions]="{standalone: true}" />
+                @if(editPage){
+                <button class="text-white p-button-danger" (click)="removeFacility($index, item.propertyFacilityId)"
+                  type="button" pButton icon="pi pi-minus"></button>
+                }
+                @else{
+                <button class="text-white p-button-danger" (click)="removeFacility($index)" type="button" pButton
+                  icon="pi pi-minus"></button>
+                }
+              </p-inputGroup>
+            </div>
+            <!-- <div>
+                <p-inputGroup>
+                  <input [disabled]="true" type="text" pInputText [value]="item.description" />
+                </p-inputGroup>
+              </div> -->
+          </div>
+          }
           <div class="row row-cols-sm-2 g-2 mt-3">
             <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
             <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
@@ -303,17 +313,17 @@
                 formControlName="annualRentalYield"></p-slider>
               <span class="text-end">{{this.propertyForm.controls['annualRentalYield'].value | percent}}</span>
             </div>
-              <div class="d-flex flex-column gap-2">
-                <span>Annual Price Appreciation</span>
-                <p-slider [animate]="true" [ngModel]="0" [min]="0" [step]="0.01" [max]="1"
-                  formControlName="annualPriceAppreciation"></p-slider>
-                <span class="text-end">{{this.propertyForm.controls['annualPriceAppreciation'].value | percent}}</span>
-              </div>
+            <div class="d-flex flex-column gap-2">
+              <span>Annual Price Appreciation</span>
+              <p-slider [animate]="true" [ngModel]="0" [min]="0" [step]="0.01" [max]="1"
+                formControlName="annualPriceAppreciation"></p-slider>
+              <span class="text-end">{{this.propertyForm.controls['annualPriceAppreciation'].value | percent}}</span>
+            </div>
           </div>
           <div class="row row-cols-sm-2 g-2 mt-3">
             <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
-            <p-button [raised]="propertyForm.valid" styleClass="text-white w-100" label="Add Property"
-              (onClick)="submitForm()" />
+            <p-button [raised]="propertyForm.valid" styleClass="text-white w-100"
+              [label]="editPage?'Update Property':'Add Property'" (onClick)="submitForm()" />
           </div>
         </ng-template>
       </p-stepperPanel>
