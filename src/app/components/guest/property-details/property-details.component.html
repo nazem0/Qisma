@@ -3,7 +3,7 @@
   <p-carousel [value]="property.propertyImages!.slice(0, 3)" [responsiveOptions]="responsiveOptions"
     [showIndicators]="false" [showNavigators]="false">
     <ng-template let-image pTemplate="item" let-index="image.index">
-      <div class="h-100 w-100 property-image" [ngStyle]="{'background-image': 'url(' + helper.processFileUrl(image) + ')'}">
+      <div class="property-image" [ngStyle]="{'background-image': 'url(' + helper.processFileUrl(image) + ')'}">
       </div>
     </ng-template>
   </p-carousel>
@@ -17,13 +17,6 @@
       </span>
     </p-button>
     }
-
-    <!-- <p-button routerLink="/property-images/{{ propertyId }}" [raised]="true">
-      <span class="text-white">
-        <i class="pi pi-plus"></i>
-        <span class="d-sm-inline d-none"> Add Photos</span>
-      </span>
-    </p-button> -->
   </div>
 </div>
 <p-galleria [value]="property.propertyImages!" [(visible)]="displayGalleria" [responsiveOptions]="responsiveOptions"

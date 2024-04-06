@@ -12,9 +12,9 @@
                 </p-inputGroupAddon>
                 <p-dropdown [filter]="true" filterBy="name" [options]="governorates" [optionLabel]="'name'"
                   [showClear]="true" (onChange)="
-                  setControllerValue('governorateId', $event.value?.id);
+                  setControlValue('governorateId', $event.value?.id);
                   $event.value?.id ? initCity() : null" [ngModel]="selectedGov" [ngModelOptions]="{'standalone':true}"
-                  (onClear)="setControllerValue('cityId', undefined); this.propertyForm.controls['cityId'].disable()"
+                  (onClear)="setControlValue('cityId', undefined); this.propertyForm.controls['cityId'].disable()"
                   placeholder="Governorate" styleClass="w-100">
                 </p-dropdown>
               </p-inputGroup>
@@ -26,7 +26,7 @@
                 </p-inputGroupAddon>
                 <p-dropdown [filter]="true" filterBy="name" [options]="cities" [optionLabel]="'name'" [showClear]="true"
                   [ngModel]="selectedCity" [ngModelOptions]="{'standalone':true}" (onChange)="
-                  setControllerValue('cityId', $event.value?.id)" placeholder="City" styleClass="w-100"></p-dropdown>
+                  setControlValue('cityId', $event.value?.id)" placeholder="City" styleClass="w-100"></p-dropdown>
               </p-inputGroup>
             </div>
             <div>
@@ -44,7 +44,7 @@
                 </p-inputGroupAddon>
                 <p-dropdown [showClear]="true" placeholder="Property Type" styleClass="w-100" [options]="propertyTypes"
                   optionLabel="name" [ngModel]="selectedType" [ngModelOptions]="{'standalone':true}" (onChange)="
-                  setControllerValue('type', $event.value?.id)">
+                  setControlValue('type', $event.value?.id)">
                 </p-dropdown>
               </p-inputGroup>
             </div>
@@ -57,7 +57,7 @@
                 <p-dropdown [showClear]="true" placeholder="Property Status" styleClass="w-100"
                   [options]="propertyStatuses" optionLabel="name" [ngModel]="selectedStatus"
                   [ngModelOptions]="{'standalone':true}" (onChange)="
-                  setControllerValue('status', $event.value?.id)">
+                  setControlValue('status', $event.value?.id)">
                 </p-dropdown>
               </p-inputGroup>
             </div>

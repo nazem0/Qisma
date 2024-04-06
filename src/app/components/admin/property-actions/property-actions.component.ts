@@ -33,7 +33,7 @@ export class PropertyActionsComponent implements OnInit {
   propertyId?: number;
   helper = Helper;
   readers: FileReader[] = [];
-  inputArray: {id?:number, src:string|ArrayBuffer|null}[] = [];
+  inputArray: { id?: number, src: string | ArrayBuffer | null }[] = [];
   validationErros: string[] = [];
   files?: FileList;
   math = Math;
@@ -85,52 +85,50 @@ export class PropertyActionsComponent implements OnInit {
   addPhotos($event: Event) {
     this.files = ($event.target as HTMLInputElement).files!;
     console.log(this.files);
-    let blobFiles :Blob[]=[]
     for (let index = 0; index < this.files.length; index++) {
       this.readers[index] = new FileReader();
       this.readers[index].readAsDataURL(this.files.item(index) as Blob);
-      blobFiles.push(this.files.item(index) as Blob)
+      this.propertyForm.get('propertyImages')?.setValue(this.files.item(index) as Blob)
       this.readers[index].onload = (_event: any) => {
-        this.inputArray!.push({src:this.readers[index].result});
+        this.inputArray!.push({ src: this.readers[index].result });
       };
+      if (this.editPage && this.propertyId) {
+        this.propertyForAdminService.apiDashboardPropertyImagesAddPost$Json({
+          body: {
+            Images: [this.files.item(index) as Blob],
+            PropertyId: this.propertyId
+          }
+        }).subscribe();
+      }
     }
-    console.log(blobFiles);
-    
-    this.propertyForm.get('propertyImages')?.setValue(blobFiles)
-    if (this.editPage && this.propertyId) {
-      this.propertyForAdminService.apiDashboardPropertyImagesAddPost$Json({
-        body: {
-          Images:blobFiles,
-          PropertyId: this.propertyId
-        }
-      }).subscribe();
-    }
+
+
 
   }
 
-  delete(index: number, id?:number) {
+  delete(index: number, id?: number) {
     this.inputArray.splice(index, 1);
     this.propertyForm.get('propertyImages')?.value.splice(index, 1);
-    if(id &&this.editPage && this.propertyId){
+    if (id && this.editPage && this.propertyId) {
       this
-      .propertyForAdminService
-      .apiDashboardPropertyImageDeleteDelete$Json({
-        PropertyImageId:id
-      }).subscribe()
+        .propertyForAdminService
+        .apiDashboardPropertyImageDeleteDelete$Json({
+          PropertyImageId: id
+        }).subscribe()
     }
   }
   initPropertyForm(propertyDetails: PropertyDetailsViewModelForAdmin) {
-    console.log(propertyDetails);
     //Mapping
     Object.keys(propertyDetails).forEach((key) => {
-      this.propertyForm
-        .get(key)
-        ?.setValue((propertyDetails as IndexableObject)[key]);
+      this.propertyForm.get(key)?.setValue((propertyDetails as IndexableObject)[key]);
+      this.propertyForm.get(key)?.removeValidators(Validators.required)
     });
+    this.propertyForm.updateValueAndValidity()
 
     propertyDetails.propertyImages!.forEach((image) => {
-      this.inputArray.push({id:image.id, src:this.helper.processFileUrl(image.imageUrl!)});
+      this.inputArray.push({ id: image.id, src: this.helper.processFileUrl(image.imageUrl!) });
     });
+
     this.selectedGov = {
       id: propertyDetails.governorateId,
       name: propertyDetails.governorate,
@@ -153,6 +151,9 @@ export class PropertyActionsComponent implements OnInit {
     };
     this.calculateMaintenanceCost();
     this.calculateTransactionFees();
+
+    console.log(this.propertyForm);
+
   }
 
   initEmptyPropertyForm() {
@@ -198,6 +199,9 @@ export class PropertyActionsComponent implements OnInit {
       facilities: new FormControl<AddPropertyFacilityViewModel[]>([]),
       propertyImages: new FormControl<Blob[]>([]),
     });
+
+    console.log(this.propertyForm);
+
   }
   check() {
     console.log(this.propertyForm.value);
@@ -275,31 +279,41 @@ export class PropertyActionsComponent implements OnInit {
     return this.facilities.find((e) => e.id == id);
   }
 
-  setControllerValue(controlName: string, value: unknown, percentage = false) {
+  setControlValue(controlName: string, value: unknown, percentage = false) {
     if (percentage) (value as number) *= 0.01;
     console.log(value);
     this.propertyForm.controls[controlName].setValue(value);
+    this.propertyForm.controls[controlName].markAsDirty();
   }
 
   submitForm() {
-    if (this.checkFormValidity())
-      this.customPropertyForAdminService
+    if (!this.checkFormValidity()) return;
+    if (this.editPage) {
+      this
+        .propertyForAdminService
+        .apiDashboardPropertyUpdatePut$Json({
+          body: this.getUpdateFormGroup().value
+        })
+        .subscribe()
+    }
+    else {
+      this
+        .customPropertyForAdminService
         .addPropertyFromForm(this.getFormData())
         .subscribe();
+    }
+
+
   }
   getFormData() {
     // Initialize a new FormData object
     const formData = new FormData();
-
     // Assign values to form controls
     for (const controlName in this.propertyForm.controls) {
-      if (this.propertyForm.controls.hasOwnProperty(controlName)) {
-        const control = this.propertyForm.controls[controlName];
-        formData.set(controlName, control.value);
-      }
+      if (['facilities', 'propertyImages'].includes(controlName)) continue;
+      const control = this.propertyForm.controls[controlName];
+      formData.set(controlName, control.value);
     }
-
-    // Assuming facilities is an array, iterate over it and append each item
     this.propertyForm.controls['facilities'].value.forEach(
       (facility: AddPropertyFacilityViewModel, index: number) => {
         formData.append(
@@ -312,17 +326,27 @@ export class PropertyActionsComponent implements OnInit {
         );
       }
     );
-
-    // Assuming propertyImages is an array of Blob objects, iterate over it and append each blob
     this.propertyForm.controls['propertyImages'].value.forEach(
       (image: Blob) => {
         formData.append('propertyImages', image);
       }
     );
-
-    // Now you can use formData for further processing like sending it in a POST request
     return formData;
   }
+
+  getUpdateFormGroup() {
+    let updateFromGroup: FormGroup = this.fb.group({
+      propertyId: new FormControl<number>(this.propertyId!, [Validators.required])
+    });
+    for (const controlName in this.propertyForm.controls) {
+      if (['facilities', 'propertyImages'].includes(controlName)) continue;
+      const control = this.propertyForm.controls[controlName];
+      if (!control.dirty) continue;
+      updateFromGroup.addControl(controlName, control);
+    }
+    return updateFromGroup;
+  }
+
   openErrorsDialog() {
     this.dialog.open('Property Addition Form Errors', [this.validationErros]);
   }
@@ -378,4 +402,5 @@ export class PropertyActionsComponent implements OnInit {
         },
       });
   }
+
 }
