@@ -7,6 +7,7 @@ import { AuthHelper } from '../../../services/auth-helper';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { DialogService } from '../../../services/dialog.service';
+import { CountryISO } from 'ngx-intl-tel-input-gg';
 
 @Component({
   selector: 'app-register',
@@ -29,6 +30,7 @@ export class RegisterComponent {
   registrationErrors: string[] = [];
   policiesAr : string[];
   policesEn : string[];
+  countryISO = CountryISO
   constructor(
     private _formbuilder: FormBuilder,
     private _authHelper: AuthHelper,

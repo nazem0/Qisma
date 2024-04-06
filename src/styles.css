@@ -342,12 +342,13 @@ button {
 
 ngx-intl-tel-input 
 {
-    div{
-        width:100%;
-        border:0px;
+    >div:first-of-type{
+        width: 100%;
     }
     input{
-        border:0px;
+        width: 100%;
+        border:unset;
+        outline:unset;
         background:white;
         width:100%;
     }
