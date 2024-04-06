@@ -179,7 +179,6 @@ a:hover,
     left: 0.75rem;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--gray-500);
     z-index: 3;
 }
 

@@ -32,10 +32,16 @@
     </div>
 
     <div>
-      <p-iconField iconPosition="left">
-        <p-inputIcon styleClass="pi pi-calendar" />
-        <input type="date" pInputText formcontrolName="formData.DateOfBirth" placeholder="Date of Birth" required />
-      </p-iconField>
+      <div class="w-100 input-w-icon">
+        <i class="pi pi-calendar"></i>
+        <p-calendar [touchUI]="true" [(ngModel)]="birthDate" [ngModelOptions]="{standalone:true}"
+          [iconDisplay]="'input'" [showIcon]="false" placeholder="Date Of Birth" [defaultDate]="defaultDate"
+          [minDate]="minDate" [maxDate]="maxDate" (onSelect)="checkAge($event)"
+          (onFocus)="this.form.get('dateOfBirth')?.markAsTouched();this.form.get('dateOfBirth')?.markAsDirty()"></p-calendar>
+      </div>
+      <small *ngIf="helper.formControlInvalid(form, 'dateOfBirth')" class="my-2 text-danger">
+        Date of Birth is required.
+      </small>
     </div>
 
     <div>
