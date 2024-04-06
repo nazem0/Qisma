@@ -1,9 +1,16 @@
 <a>
     <div class="shadow-sm property-card bg-white shadow-sm rounded-3 overflow-hidden">
+
         <div class="img-container">
-            <div class="position-absolute badge badge-top text-white"><span>Featured</span></div>
+            <div class="position-absolute badge badge-top">
+                <span class="text-white">
+                    Featured
+                </span>
+            </div>
             <div class="position-absolute badge badge-bottom"><small class="mat-small">New Listing</small></div>
-            <img class="w-100" [src]="property.imageUrl ? helper.processFileUrl(property.imageUrl) : 'https://placehold.co/200?text=Add+Photos'" [alt]="property.address">
+            <img class="w-100"
+                [src]="property.imageUrl ? helper.processFileUrl(property.imageUrl) : 'https://placehold.co/200?text=Add+Photos'"
+                [alt]="property.address">
         </div>
         <div class="p-3">
             <div class="d-flex flex-column">
@@ -19,8 +26,16 @@
                 <small class="mat-small">Projected Annual Return</small>
             </div>
         </div>
+       
         <div class="bg-primary p-3 text-center text-white">
-            <small class="mat-small">Available: {{property.availableTokens}} shares at {{property.tokenPrice | currency : "EGP" : "symbol" : "1.0-0"}}</small>
+            <small class="mat-small">Available: {{property.availableTokens}} shares at {{property.tokenPrice | currency
+                : "EGP" : "symbol" : "1.0-0"}}</small>
         </div>
+
+        <a [routerLink]="'/property-actions/' + property.propertyId">
+            <p-button [raised]="true" styleClass="bg-white text-primary border-0 px-2 py-0 w-100">
+                <span class="mx-auto">Edit Property</span>
+            </p-button>
+        </a>
     </div>
 </a>
