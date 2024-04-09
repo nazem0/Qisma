@@ -3,11 +3,15 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Helper } from '../../../services/helper';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ButtonModule } from 'primeng/button';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-edit-images',
   templateUrl: './edit-images.component.html',
-  styleUrl: './edit-images.component.css'
+  styleUrl: './edit-images.component.css',
+  standalone:true,
+  imports:[ButtonModule, NgIf, NgFor]
 })
 export class EditImagesComponent {
   @ViewChild("uploadedFiles") uploadedFiles!: ElementRef

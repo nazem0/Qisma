@@ -8,13 +8,14 @@ import {
   Validators,
   FormArray,
   FormControl,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import {
   AddPropertyFacilityViewModel,
   FacilityViewModelForAdmin,
   GovernorateAndCityViewModel,
   PropertyDetailsViewModelForAdmin,
-  PropertyDetailsViewModelForUser,
 } from '../../../api/models';
 import { BusinessHelper } from '../../../services/business-helper';
 import { Helper } from '../../../services/helper';
@@ -22,11 +23,39 @@ import { DialogService } from '../../../services/dialog.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { IndexableObject } from 'ng-zorro-antd/core/types';
+import { CurrencyPipe, NgFor, NgIf, PercentPipe } from '@angular/common';
+import { StepperModule } from 'primeng/stepper';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { DropdownModule } from 'primeng/dropdown';
+import { ButtonModule } from 'primeng/button';
+import { SliderModule } from 'primeng/slider';
+import { InputTextModule } from 'primeng/inputtext';
+import { EditorModule } from 'primeng/editor';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @Component({
   selector: 'app-property-actions',
   templateUrl: './property-actions.component.html',
   styleUrl: './property-actions.component.css',
+  standalone:true,
+  imports:[
+    NgIf,
+    NgFor,
+    FormsModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    StepperModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    DropdownModule,
+    SliderModule,
+    CurrencyPipe,
+    PercentPipe,
+    InputTextModule,
+    EditorModule,
+    InputNumberModule
+  ]
 })
 export class PropertyActionsComponent implements OnInit {
   editPage = false;
@@ -37,7 +66,7 @@ export class PropertyActionsComponent implements OnInit {
   validationErros: string[] = [];
   files?: FileList;
   math = Math;
-  propertyForm!: FormGroup;
+  propertyForm?: FormGroup;
   propertyTypes = BusinessHelper.propertyTypes;
   propertyStatuses = BusinessHelper.propertyStatuses;
   text: string = `
@@ -88,7 +117,7 @@ export class PropertyActionsComponent implements OnInit {
     for (let index = 0; index < this.files.length; index++) {
       this.readers[index] = new FileReader();
       this.readers[index].readAsDataURL(this.files.item(index) as Blob);
-      this.propertyForm.get('propertyImages')?.setValue(this.files.item(index) as Blob)
+      this.propertyForm?.get('propertyImages')?.setValue(this.files.item(index) as Blob)
       this.readers[index].onload = (_event: any) => {
         this.inputArray!.push({ src: this.readers[index].result });
       };
@@ -108,7 +137,7 @@ export class PropertyActionsComponent implements OnInit {
 
   delete(index: number, id?: number) {
     this.inputArray.splice(index, 1);
-    this.propertyForm.get('propertyImages')?.value.splice(index, 1);
+    this.propertyForm?.get('propertyImages')?.value.splice(index, 1);
     if (id && this.editPage && this.propertyId) {
       this
         .propertyForAdminService
@@ -120,10 +149,10 @@ export class PropertyActionsComponent implements OnInit {
   initPropertyForm(propertyDetails: PropertyDetailsViewModelForAdmin) {
     //Mapping
     Object.keys(propertyDetails).forEach((key) => {
-      this.propertyForm.get(key)?.setValue((propertyDetails as IndexableObject)[key]);
-      this.propertyForm.get(key)?.removeValidators(Validators.required)
+      this.propertyForm?.get(key)?.setValue((propertyDetails as IndexableObject)[key]);
+      this.propertyForm?.get(key)?.removeValidators(Validators.required)
     });
-    this.propertyForm.updateValueAndValidity()
+    this.propertyForm?.updateValueAndValidity()
 
     propertyDetails.propertyImages!.forEach((image) => {
       this.inputArray.push({ id: image.id, src: this.helper.processFileUrl(image.imageUrl!) });
@@ -159,43 +188,43 @@ export class PropertyActionsComponent implements OnInit {
   initEmptyPropertyForm() {
     this.propertyForm = this.fb.group({
       location: new FormControl<string>('', [Validators.required]),
-      governorateId: new FormControl<number | null>(null, [
+      governorateId: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
-      cityId: new FormControl<number | null>(null, [Validators.required]),
+      cityId: new FormControl<number | undefined>(undefined, [Validators.required]),
       description: new FormControl<string>(this.text, [Validators.required]),
-      unitPrice: new FormControl<number | null>(null, [Validators.required]),
-      maintenanceCost: new FormControl<number | null>(null, [
+      unitPrice: new FormControl<number | undefined>(undefined, [Validators.required]),
+      maintenanceCost: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
-      transactionFees: new FormControl<number | null>(null, [
+      transactionFees: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
-      numberOfShares: new FormControl<number | null>(null, [
+      numberOfShares: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
-      sharePrice: new FormControl<number | null>(null, [Validators.required]),
-      annualRentalYield: new FormControl<number | null>(null, [
+      sharePrice: new FormControl<number | undefined>(undefined, [Validators.required]),
+      annualRentalYield: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
-      annualPriceAppreciation: new FormControl<number | null>(null, [
+      annualPriceAppreciation: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
-      downPayment: new FormControl<number | null>(null, [Validators.required]),
-      monthlyInstallment: new FormControl<number | null>(null, [
+      downPayment: new FormControl<number | undefined>(undefined, [Validators.required]),
+      monthlyInstallment: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
-      numberOfYears: new FormControl<number | null>(null, [
+      numberOfYears: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
-      maintenaceInstallment: new FormControl<number | null>(null, [
+      maintenaceInstallment: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
-      deliveryInstallment: new FormControl<number | null>(null, [
+      deliveryInstallment: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
-      type: new FormControl<number | null>(null, [Validators.required]),
-      status: new FormControl<number | null>(null, [Validators.required]),
+      type: new FormControl<number | undefined>(undefined, [Validators.required]),
+      status: new FormControl<number | undefined>(undefined, [Validators.required]),
       facilities: new FormControl<AddPropertyFacilityViewModel[]>([]),
       propertyImages: new FormControl<Blob[]>([]),
     });
@@ -204,7 +233,7 @@ export class PropertyActionsComponent implements OnInit {
 
   }
   check() {
-    console.log(this.propertyForm.value);
+    console.log(this.propertyForm?.value);
   }
 
   initGovs() {
@@ -217,12 +246,12 @@ export class PropertyActionsComponent implements OnInit {
   initCity() {
     this.governorateAndCityService
       .apiCitiesGetByGovernorateIdGet$Json({
-        GovernorateId: this.propertyForm.controls['governorateId'].value,
+        GovernorateId: this.propertyForm?.controls['governorateId'].value,
       })
       .subscribe({
         next: (next) => {
           this.cities = next.data ?? [];
-          if (this.cities.length) this.propertyForm.get('cityId')?.enable();
+          if (this.cities.length) this.propertyForm?.get('cityId')?.enable();
         },
       });
   }
@@ -236,7 +265,7 @@ export class PropertyActionsComponent implements OnInit {
       });
   }
   get facilitiesFormArray() {
-    return this.propertyForm.get('facilities') as FormArray;
+    return this.propertyForm?.get('facilities') as FormArray;
   }
   createFacility() {
     return {
@@ -282,8 +311,8 @@ export class PropertyActionsComponent implements OnInit {
   setControlValue(controlName: string, value: unknown, percentage = false) {
     if (percentage) (value as number) *= 0.01;
     console.log(value);
-    this.propertyForm.controls[controlName].setValue(value);
-    this.propertyForm.controls[controlName].markAsDirty();
+    this.propertyForm?.controls[controlName].setValue(value);
+    this.propertyForm?.controls[controlName].markAsDirty();
   }
 
   submitForm() {
@@ -309,12 +338,12 @@ export class PropertyActionsComponent implements OnInit {
     // Initialize a new FormData object
     const formData = new FormData();
     // Assign values to form controls
-    for (const controlName in this.propertyForm.controls) {
+    for (const controlName in this.propertyForm?.controls) {
       if (['facilities', 'propertyImages'].includes(controlName)) continue;
-      const control = this.propertyForm.controls[controlName];
+      const control = this.propertyForm?.controls[controlName];
       formData.set(controlName, control.value);
     }
-    this.propertyForm.controls['facilities'].value.forEach(
+    this.propertyForm?.controls['facilities'].value.forEach(
       (facility: AddPropertyFacilityViewModel, index: number) => {
         formData.append(
           `facilities[${index}].facilityId`,
@@ -326,7 +355,7 @@ export class PropertyActionsComponent implements OnInit {
         );
       }
     );
-    this.propertyForm.controls['propertyImages'].value.forEach(
+    this.propertyForm?.controls['propertyImages'].value.forEach(
       (image: Blob) => {
         formData.append('propertyImages', image);
       }
@@ -338,9 +367,9 @@ export class PropertyActionsComponent implements OnInit {
     let updateFromGroup: FormGroup = this.fb.group({
       propertyId: new FormControl<number>(this.propertyId!, [Validators.required])
     });
-    for (const controlName in this.propertyForm.controls) {
+    for (const controlName in this.propertyForm?.controls) {
       if (['facilities', 'propertyImages'].includes(controlName)) continue;
-      const control = this.propertyForm.controls[controlName];
+      const control = this.propertyForm?.controls[controlName];
       if (!control.dirty) continue;
       updateFromGroup.addControl(controlName, control);
     }
@@ -353,9 +382,9 @@ export class PropertyActionsComponent implements OnInit {
 
   checkFormValidity() {
     this.validationErros = [];
-    if (this.propertyForm.invalid) {
-      Object.keys(this.propertyForm.controls).forEach((controlName) => {
-        const control = this.propertyForm.get(controlName);
+    if (this.propertyForm?.invalid) {
+      Object.keys(this.propertyForm?.controls).forEach((controlName) => {
+        const control = this.propertyForm?.get(controlName);
         if (control && control.errors) {
           this.validationErros.push(
             `${controlName[0].toUpperCase() + controlName.slice(1)} is invalid`
@@ -368,21 +397,21 @@ export class PropertyActionsComponent implements OnInit {
   }
   transactionFees: number = 0;
   calculateTransactionFees() {
-    console.log(this.propertyForm.controls['transactionFees'].value);
-    if (!this.propertyForm.controls['unitPrice'].value) return;
+    console.log(this.propertyForm?.controls['transactionFees'].value);
+    if (!this.propertyForm?.controls['unitPrice'].value) return;
     let dollars =
-      this.propertyForm.controls['transactionFees'].value *
-      this.propertyForm.controls['unitPrice'].value;
+      this.propertyForm?.controls['transactionFees'].value *
+      this.propertyForm?.controls['unitPrice'].value;
     this.transactionFees = dollars;
   }
   maintenanceCost: number = 0;
   calculateMaintenanceCost() {
-    console.log(this.propertyForm.controls['maintenanceCost'].value);
+    console.log(this.propertyForm?.controls['maintenanceCost'].value);
 
-    if (!this.propertyForm.controls['unitPrice'].value) return;
+    if (!this.propertyForm?.controls['unitPrice'].value) return;
     let dollars =
-      this.propertyForm.controls['maintenanceCost'].value *
-      this.propertyForm.controls['unitPrice'].value;
+      this.propertyForm?.controls['maintenanceCost'].value *
+      this.propertyForm?.controls['unitPrice'].value;
     this.maintenanceCost = dollars;
   }
 
@@ -392,6 +421,7 @@ export class PropertyActionsComponent implements OnInit {
       this.initEmptyPropertyForm();
       return;
     }
+    
     this.propertyId = parseInt(propertyIdParam);
     this.editPage = true;
     this.propertyForAdminService

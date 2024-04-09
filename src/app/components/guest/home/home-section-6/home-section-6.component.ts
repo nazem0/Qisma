@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home-section-6',
   templateUrl: './home-section-6.component.html',
   styleUrl: './home-section-6.component.css',
   standalone:true,
+  imports:[RouterModule]
 })
 export class HomeSection6Component {
   content: { title: string, content:{title:string, url:string}[] }[];

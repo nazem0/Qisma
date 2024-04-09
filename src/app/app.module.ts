@@ -68,12 +68,10 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { ConfirmComponent } from './components/shared/confirm/confirm.component';
 import { ApiModule } from './api/api.module';
 import { environment } from '../environments/environment';
-import { PropertyActionsComponent } from './components/admin/property-actions/property-actions.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-import { EditImagesComponent } from './components/admin/edit-images/edit-images.component';
 
 registerLocaleData(en);
 
@@ -93,8 +91,6 @@ registerLocaleData(en);
     PageNotFoundComponent,
     ConfirmComponent,
     FooterComponent,
-    PropertyActionsComponent,
-    EditImagesComponent,
   ],
   imports: [
     BrowserModule,
