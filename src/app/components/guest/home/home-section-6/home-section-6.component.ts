@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-home-section-6',
   templateUrl: './home-section-6.component.html',
-  styleUrl: './home-section-6.component.css'
+  styleUrl: './home-section-6.component.css',
+  standalone:true,
 })
 export class HomeSection6Component {
   content: { title: string, content:{title:string, url:string}[] }[];

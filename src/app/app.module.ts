@@ -28,7 +28,6 @@ import { RatingModule } from 'primeng/rating';
 import { ChartModule } from 'primeng/chart';
 import { TabViewModule } from 'primeng/tabview';
 import { CarouselModule } from 'primeng/carousel';
-import { GalleriaModule } from 'primeng/galleria';
 import { SliderModule } from 'primeng/slider';
 import { EditorModule } from 'primeng/editor';
 import { StepperModule } from 'primeng/stepper';
@@ -67,15 +66,6 @@ import { AboutUsComponent } from './components/guest/about-us/about-us.component
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { ConfirmComponent } from './components/shared/confirm/confirm.component';
-import { HomeComponent } from './components/guest/home/home.component';
-import { HeroSectionComponent } from './components/guest/home/hero-section/hero-section.component';
-import { HomeSection1Component } from './components/guest/home/home-section-1/home-section-1.component';
-import { PropertyCardComponent } from './components/shared/property-card/property-card.component';
-import { HomeSection2Component } from './components/guest/home/home-section-2/home-section-2.component';
-import { HomeSection3Component } from './components/guest/home/home-section-3/home-section-3.component';
-import { HomeSection4Component } from './components/guest/home/home-section-4/home-section-4.component';
-import { HomeSection5Component } from './components/guest/home/home-section-5/home-section-5.component';
-import { HomeSection6Component } from './components/guest/home/home-section-6/home-section-6.component';
 import { ApiModule } from './api/api.module';
 import { environment } from '../environments/environment';
 import { PropertyActionsComponent } from './components/admin/property-actions/property-actions.component';
@@ -97,20 +87,11 @@ registerLocaleData(en);
     LayoutComponent,
     DialogComponent,
     PaymentComponent,
-    HomeComponent,
     ResetPasswordComponent,
     DevComponent,
     AboutUsComponent,
     PageNotFoundComponent,
     ConfirmComponent,
-    HeroSectionComponent,
-    HomeSection1Component,
-    HomeSection2Component,
-    PropertyCardComponent,
-    HomeSection3Component,
-    HomeSection4Component,
-    HomeSection5Component,
-    HomeSection6Component,
     FooterComponent,
     PropertyActionsComponent,
     EditImagesComponent,
@@ -143,7 +124,6 @@ registerLocaleData(en);
     ChartModule,
     TabViewModule,
     CarouselModule,
-    GalleriaModule,
     SliderModule,
     EditorModule,
     StepperModule,

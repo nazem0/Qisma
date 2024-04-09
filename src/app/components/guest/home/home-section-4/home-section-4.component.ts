@@ -1,9 +1,18 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { RatingModule } from 'primeng/rating';
 
 @Component({
   selector: 'app-home-section-4',
   templateUrl: './home-section-4.component.html',
-  styleUrl: './home-section-4.component.css'
+  styleUrl: './home-section-4.component.css',
+  standalone:true,
+  imports:[
+    FormsModule,
+    RatingModule,
+    ButtonModule
+  ]
 })
 export class HomeSection4Component {
   contentSections : {rate:number, review:string, reviewer:{name:string, ref?:{title:string, url:string}, img:string}}[];

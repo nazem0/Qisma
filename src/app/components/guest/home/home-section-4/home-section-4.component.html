@@ -9,18 +9,18 @@
             <div>
                 <div class="shadow p-3 rounded-3 bg-white">
                     <p-rating [ngModel]="item.rate" [readonly]="true" [cancel]="false"></p-rating>
-                <p class="multi-line-paragraph">“{{item.review}}”</p>
-                <div class="d-flex justify-content-between w-100">
-                    <div>
-                        <p class="m-0">{{item.reviewer.name}}</p>
-                        @if(item.reviewer.ref){
+                    <p class="multi-line-paragraph">“{{item.review}}”</p>
+                    <div class="d-flex justify-content-between w-100">
+                        <div>
+                            <p class="m-0">{{item.reviewer.name}}</p>
+                            @if(item.reviewer.ref){
                             <a [href]="item.reviewer.ref.url">
                                 <small>{{item.reviewer.ref.title}}</small>
                             </a>
-                        }
-                    </div>
+                            }
+                        </div>
                         <img class="reviewer-img" [src]="item.reviewer.img" [alt]="item.reviewer.name">
-                </div>
+                    </div>
                 </div>
             </div>
             }
