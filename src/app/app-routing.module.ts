@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   {
     path: "", component: LayoutComponent, children: [
-      // { path: "login", component: LoginComponent, title: "Login" },
+      { path: "login", component: LoginComponent, title: "Login" },
       { path: "register", component: RegisterComponent, title: "Create Account" },
       // { path: "forgot-password", component: ForgotPasswordComponent, title: "Forgot Password" },
       // { path: "reset-password", component: ResetPasswordComponent, title: "Reset Password" },

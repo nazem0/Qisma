@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface UserDataViewModel {
-  role?: string | null;
+  roles?: Array<string> | null;
   token?: string | null;
 }

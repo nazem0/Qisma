@@ -1,4 +1,4 @@
-<div class="login-container">
+<div class="text-center container-sm">
   <form [formGroup]="form" class="d-flex flex-column gap-3">
     <h1>Welcome back!</h1>
     <div>
@@ -12,7 +12,7 @@
         />
       </div>
       <small
-        *ngIf="helper.formControlInvalid(form,'email')"
+        *ngIf="helper.formControlInvalid(form, 'email')"
         class="my-2 text-danger"
         >Valid email is required</small
       >
@@ -36,23 +36,21 @@
       >
     </div>
 
-    <div class="w-100 d-flex justify-content-center">
-      <p-button
-        label="Login"
-        [rounded]="false"
-        [raised]="true"
-        (onClick)="login()"
-      ></p-button>
-    </div>
+    <p-button
+      styleClass="w-100"
+      [rounded]="false"
+      [raised]="true"
+      (onClick)="login()"
+    >
+      <span class="text-white mx-auto">Login</span>
+    </p-button>
 
     <div>
       <p>
         Don't have an account?
         <a class="purple" routerLink="/register">Register</a>
       </p>
-      <a class="purple" routerLink="/forgot-password">
-        Forgot Password?
-      </a>
+      <a class="purple" routerLink="/forgot-password"> Forgot Password? </a>
     </div>
   </form>
 </div>

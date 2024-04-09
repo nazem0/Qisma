@@ -86,7 +86,8 @@ body {
     button {
         color: #08165d;
     }
-    *{
+
+    * {
         box-sizing: border-box;
     }
 }
@@ -182,8 +183,14 @@ a:hover,
     z-index: 3;
 }
 
-.input-w-icon input {
-    padding-left: 2.5rem;
+.input-w-icon {
+    .p-dropdown.p-dropdown-clearable .p-dropdown-label {
+        padding-left: 2.5rem;
+    }
+
+    input:not(.p-dropdown-filter) {
+        padding-left: 2.5rem;
+    }
 }
 
 
@@ -302,16 +309,6 @@ button {
     margin: 0 auto;
 }
 
-/* .icon-circle{
-    width: 40px;
-    height: 40px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-} */
 
 .text-primary-subtle {
     color: var(--primary-400) !important;
@@ -322,35 +319,41 @@ button {
     }
 }
 
-.p-stepper .p-stepper-header .p-stepper-action, .p-tabview .p-tabview-nav, .p-tabview .p-tabview-panels {
+.p-stepper .p-stepper-header .p-stepper-action,
+.p-tabview .p-tabview-nav,
+.p-tabview .p-tabview-panels {
     background-color: unset;
 }
 
-.p-galleria-item-nav, .p-galleria-close-icon{
+.p-galleria-item-nav,
+.p-galleria-close-icon {
     color: white;
 }
 
 
-.p-stepper.p-stepper-vertical .p-stepper-toggleable-content{
+.p-stepper.p-stepper-vertical .p-stepper-toggleable-content {
     background: unset;
 }
 
 
-.p-tabview-panels{
+.p-tabview-panels {
     padding: 0;
 }
 
-ngx-intl-tel-input 
-{
-    >div:first-of-type{
+ngx-intl-tel-input {
+    padding: 0;
+
+    >div:first-of-type {
+        padding: 0.75rem;
         width: 100%;
     }
-    input{
+
+    input {
+        padding: 0;
         width: 100%;
-        border:unset;
-        outline:unset;
-        background:white;
-        width:100%;
+        border: unset;
+        outline: unset;
+        background: white;
+        width: 100%;
     }
 }
-

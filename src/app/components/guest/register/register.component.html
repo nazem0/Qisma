@@ -1,98 +1,174 @@
 <div class="container-sm mt-2">
-  <form class="d-flex flex-column gap-2">
+  <form [formGroup]="form" class="d-flex flex-column gap-2">
     <div class="row row-cols-3 gx-0">
       <div>
         <p-iconField iconPosition="left">
-          <p-inputIcon styleClass="pi pi-user" />
-          <input type="text" pInputText formcontrolName="formData.FirstName" placeholder="First Name" required />
+          <p-inputIcon styleClass="pi pi-user"></p-inputIcon>
+          <input type="text" pInputText formControlName="firstName" placeholder="First Name" required />
         </p-iconField>
+        <small *ngIf="
+            form.get('firstName')?.invalid && form.get('firstName')?.touched
+          " class="my-2 text-danger">First Name is required.</small>
       </div>
 
       <div>
-        <input type="text" pInputText formcontrolName="formData.MiddleName" placeholder="Middle Name" />
+        <input type="text" pInputText formControlName="middleName" placeholder="Middle Name" />
+        <small *ngIf="
+            form.get('middleName')?.invalid && form.get('middleName')?.touched
+          " class="my-2 text-danger">Middle Name is required.</small>
       </div>
 
       <div>
-        <input type="text" pInputText formcontrolName="formData.LastName" placeholder="Last Name" required />
+        <input type="text" pInputText formControlName="lastName" placeholder="Last Name" required />
+        <small *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched" class="my-2 text-danger">Last Name
+          is required.</small>
       </div>
     </div>
 
     <div>
       <p-iconField iconPosition="left">
-        <p-inputIcon styleClass="pi pi-phone" />
-        <input type="text" pInputText formcontrolName="formData.PhoneNumber" placeholder="Phone Number" required />
+        <p-inputIcon styleClass="pi pi-envelope"></p-inputIcon>
+        <input type="email" pInputText formControlName="email" placeholder="Email" required />
       </p-iconField>
-    </div>
-
-    <div>
-      <p-iconField iconPosition="left">
-        <p-inputIcon styleClass="pi pi-envelope" />
-        <input type="email" pInputText formcontrolName="formData.Email" placeholder="Email" required />
-      </p-iconField>
+      <small *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="my-2 text-danger">Email is
+        required.</small>
     </div>
 
     <div>
       <div class="w-100 input-w-icon">
-        <i class="pi pi-calendar"></i>
-        <p-calendar [touchUI]="true" [(ngModel)]="birthDate" [ngModelOptions]="{standalone:true}"
-          [iconDisplay]="'input'" [showIcon]="false" placeholder="Date Of Birth" [defaultDate]="defaultDate"
-          [minDate]="minDate" [maxDate]="maxDate" (onSelect)="checkAge($event)"
-          (onFocus)="this.form.get('dateOfBirth')?.markAsTouched();this.form.get('dateOfBirth')?.markAsDirty()"></p-calendar>
+        <span class="pi pi-calendar"></span>
+        <p-calendar [dateFormat]="'dd/mm/yy'" [touchUI]="true" [iconDisplay]="'input'" [showIcon]="false" placeholder="Date Of Birth"
+          [defaultDate]="defaultDate" [minDate]="minDate" (onFocus)="
+            form.get('dateOfBirth')?.markAsTouched();
+            form.get('dateOfBirth')?.markAsDirty()
+          " (onSelect)="setDateOfBirth($event)"></p-calendar>
       </div>
-      <small *ngIf="helper.formControlInvalid(form, 'dateOfBirth')" class="my-2 text-danger">
-        Date of Birth is required.
+      <small *ngIf="
+          form.get('dateOfBirth')?.invalid && form.get('dateOfBirth')?.touched
+        " class="my-2 text-danger">Date of Birth is required.</small>
+    </div>
+
+    <div>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-map-marker"></p-inputIcon>
+        <input type="text" pInputText formControlName="address" placeholder="Address" required />
+      </p-iconField>
+      <small *ngIf="form.get('address')?.invalid && form.get('address')?.touched" class="my-2 text-danger">Address is
+        required.</small>
+    </div>
+
+    <div>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-id-card"></p-inputIcon>
+        <input type="text" pInputText formControlName="identityNumber" placeholder="Identity Number" required />
+      </p-iconField>
+      <small *ngIf="
+          form.get('identityNumber')?.invalid &&
+          form.get('identityNumber')?.touched
+        " class="my-2 text-danger">Identity Number is required.</small>
+    </div>
+
+    <ngx-intl-tel-input [selectedCountryISO]="countryISO.Egypt" [enablePlaceholder]="true" [searchCountryFlag]="true"
+      [maxLength]="15" [phoneValidation]="true" [(ngModel)]="phoneNumber" [ngModelOptions]="{ standalone: true }"
+      (ngModelChange)="
+        form.controls['phoneNumber'].setValue(phoneNumber?.e164Number)
+      " ngClass="p-inputtext"></ngx-intl-tel-input>
+    <small *ngIf="
+        form.get('phoneNumber')!.invalid && form.get('phoneNumber')!.touched
+      " class="my-2 text-danger">Phone Number is required.</small>
+
+    <div>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-briefcase"></p-inputIcon>
+        <input type="text" pInputText formControlName="occupation" placeholder="Occupation (Optional)" />
+      </p-iconField>
+    </div>
+
+    <div>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-building"></p-inputIcon>
+        <input type="text" pInputText formControlName="companyName" placeholder="Company Name (Optional)" />
+      </p-iconField>
+    </div>
+
+    <div>
+      <div class="p-input-icon-left p-input-icon-right w-100">
+        <i class="pi pi-lock"></i>
+        <input [type]="hidePassword ? 'password' : 'text'" placeholder="Password" pInputText
+          formControlName="password" />
+        <i class="pointer pi pi-eye" (click)="toggleHidePassword()"></i>
+      </div>
+      <small class="text-danger" *ngIf="
+          form.controls['password'].touched || form.controls['password'].dirty
+        ">
+        @if(form.controls['password'].getError('required')){ Password is
+        required }
+        <ul class="text-start" *ngIf="form.controls['password'].getError('pattern')">
+          <li>The password must have at least 6 characters.</li>
+          <li>At least one uppercase letter.</li>
+          <li>At least one lowercase letter</li>
+          <li>At least one digit.</li>
+          <li>At least one special character. {{ "(@ $ ! % * ? &)" }}</li>
+        </ul>
       </small>
     </div>
 
     <div>
-      <p-iconField iconPosition="left">
-        <p-inputIcon styleClass="pi pi-map-marker" />
-        <input type="text" pInputText formcontrolName="formData.Address" placeholder="Address" required />
-      </p-iconField>
-    </div>
-
-    <ngx-intl-tel-input style="width: 100%;"
-    [selectedCountryISO]="countryISO.Egypt"
-    [enableAutoCountrySelect]="false"
-    [enablePlaceholder]="true"
-    [searchCountryFlag]="true"
-    [selectFirstCountry]="false"
-    [maxLength]="15"
-    [phoneValidation]="true"
-    name="phone"
-    formControlName="phone"
-    ngClass="p-inputtext"
-    >
-  </ngx-intl-tel-input>
-
-    <div>
-      <p-iconField iconPosition="left">
-        <p-inputIcon styleClass="pi pi-briefcase" />
-        <input type="text" pInputText formcontrolName="formData.Occupation" placeholder="Occupation" />
-      </p-iconField>
+      <div class="w-100 input-w-icon">
+        <span class="pi pi-th-large"></span>
+        <div>
+          <p-dropdown [filter]="true" filterBy="name" [options]="investorTypes" [optionLabel]="'name'"
+            [showClear]="true" placeholder="Investor Type" styleClass="w-100" (onFocus)="
+              form.get('investorType')?.markAsTouched();
+              form.get('investorType')?.markAsDirty()
+            " (onChange)="form.controls['investorType'].setValue($event.value.id)"></p-dropdown>
+        </div>
+      </div>
+      <small *ngIf="
+          form.get('investorType')!.invalid && form.get('investorType')!.touched
+        " class="my-2 text-danger">Investor Type is required.</small>
     </div>
 
     <div>
-      <p-iconField iconPosition="left">
-        <p-inputIcon styleClass="pi pi-building" />
-        <input type="text" pInputText formcontrolName="formData.CompanyName" placeholder="Company Name" />
-      </p-iconField>
+      <div class="w-100 input-w-icon">
+        <span class="pi pi-envelope"></span>
+        <div>
+          <p-dropdown [options]="['Yes', 'No']" [showClear]="true" placeholder="Receive Emails" styleClass="w-100"
+            (onFocus)="
+              form.get('receiveEmails')?.markAsTouched();
+              form.get('receiveEmails')?.markAsDirty()
+            " (onChange)="
+              this.form.controls['receiveEmails'].setValue(
+                $event.value == 'Yes' ? true : false
+              )
+            "></p-dropdown>
+        </div>
+      </div>
+      <small *ngIf="
+          form.get('receiveEmails')!.invalid &&
+          form.get('receiveEmails')!.touched
+        " class="my-2 text-danger">Please select an option whether you want to receive emails from us or
+        not</small>
     </div>
 
     <div>
-      <p-iconField iconPosition="left">
-        <p-inputIcon styleClass="pi pi-envelope" />
-        <input type="text" pInputText formcontrolName="formData.ReciveEmails" placeholder="Receive Emails" />
-      </p-iconField>
+      <label for="national-id-image" pButton class="p-button-raised w-100">
+        <span class="text-white mx-auto">
+          <i class="pi pi-id-card"></i>
+          Upload ID Image</span>
+      </label>
+      <input #nationalIdImageInputElement hidden id="national-id-image" type="file"
+        (change)="nationalIdImageInput($event)" accept="image/*"
+        (click)="nationalIdImageInputElement.value = ''; nationalIdImage = ''" />
     </div>
 
-    <div>
-      <p-iconField iconPosition="left">
-        <p-inputIcon styleClass="pi pi-key" />
-        <input type="password" pInputText formcontrolName="formData.Password" placeholder="Password" required />
-      </p-iconField>
-    </div>
-
-    <button pButton type="submit" label="Register"></button>
+    <small *ngIf="
+        form.get('identityNumber')?.invalid &&
+        form.get('identityNumber')?.touched
+      " class="my-2 text-danger">Identity Number is required.</small>
+    <p-button styleClass="w-100" [raised]="this.form.valid" [disabled]="this.form.invalid" (click)="submit()"
+      type="submit">
+      <span class="text-white mx-auto">Register</span>
+    </p-button>
   </form>
 </div>

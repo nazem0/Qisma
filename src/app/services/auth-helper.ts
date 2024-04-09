@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, Observable } from "rxjs";
+import { TokenData } from "../interfaces/token-data";
 
 @Injectable()
 
@@ -8,8 +9,8 @@ export class AuthHelper {
     private _isLoggedIn = new BehaviorSubject<boolean>(this.checkLogin());
     isLoggedIn = this._isLoggedIn.asObservable();
 
-    role = "";
-    $roleObservable = new BehaviorSubject<string>(this.role)
+    roles : string[] = [];
+    $roleObservable = new BehaviorSubject<string[]>(this.roles)
     constructor(private router: Router) {
 
     }
@@ -18,22 +19,22 @@ export class AuthHelper {
     public login(auth: any): void {
         localStorage.setItem(AuthHelper.authKey, JSON.stringify(auth));
         this._isLoggedIn.next(true);
-        this.$roleObservable.next(this.getRole())
+        this.$roleObservable.next(this.getRoles())
         this.router.navigate(["home"]);
 
     }
     public logout(): void {
-        
+
         localStorage.removeItem(AuthHelper.authKey);
         this._isLoggedIn.next(false);
-        this.$roleObservable.next("")
+        this.$roleObservable.next([])
         this.router.navigate(["login"]);
     }
 
-    public getAuth(): any | void {
+    public getAuth(): TokenData | void {
         let auth = localStorage.getItem("auth");
         if (!auth) return;
-        let jsonAuth = JSON.parse(auth) as any;        
+        let jsonAuth = JSON.parse(auth!) as TokenData;
         return jsonAuth;
     }
     public getToken(): string | null | undefined {
@@ -44,8 +45,8 @@ export class AuthHelper {
         return this.getAuth()?.token ? true : false;
     }
 
-    public getRole():string{
-        let result = this.getAuth()?.role??""        
-        return result
+    public getRoles(): string[] {
+        let result = this.getAuth()?.roles;
+        return result ?? [];
     }
 }

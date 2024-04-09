@@ -25,6 +25,19 @@ export class BusinessHelper {
     }
   ]
 
+  public static investoreTypes =[
+    {
+      id:1,
+      name:"Retail"
+    },
+    {
+      id:2,
+      name:"Institutional"
+    }
+  ]
+  
+  
+
   public static getPropertyStatusName(id:number) : string |  undefined {
     return this.propertyStatuses.find(e=>e.id == id)?.name
   }

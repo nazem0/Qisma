@@ -9,6 +9,10 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
+import { apiSignInPost$Json } from '../fn/user-account/api-sign-in-post-json';
+import { ApiSignInPost$Json$Params } from '../fn/user-account/api-sign-in-post-json';
+import { apiSignInPost$Plain } from '../fn/user-account/api-sign-in-post-plain';
+import { ApiSignInPost$Plain$Params } from '../fn/user-account/api-sign-in-post-plain';
 import { apiSignUpForCustomerPost$Json } from '../fn/user-account/api-sign-up-for-customer-post-json';
 import { ApiSignUpForCustomerPost$Json$Params } from '../fn/user-account/api-sign-up-for-customer-post-json';
 import { apiSignUpForCustomerPost$Plain } from '../fn/user-account/api-sign-up-for-customer-post-plain';
@@ -80,6 +84,69 @@ export class UserAccountService extends BaseService {
    */
   apiSignUpForCustomerPost$Json(params?: ApiSignUpForCustomerPost$Json$Params, context?: HttpContext): Observable<UserDataViewModelApiResult> {
     return this.apiSignUpForCustomerPost$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<UserDataViewModelApiResult>): UserDataViewModelApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiSignInPost()` */
+  static readonly ApiSignInPostPath = '/api/SignIn';
+
+  /**
+   * Sign in.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiSignInPost$Plain()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiSignInPost$Plain$Response(params?: ApiSignInPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UserDataViewModelApiResult>> {
+    return apiSignInPost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Sign in.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiSignInPost$Plain$Response()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiSignInPost$Plain(params?: ApiSignInPost$Plain$Params, context?: HttpContext): Observable<UserDataViewModelApiResult> {
+    return this.apiSignInPost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<UserDataViewModelApiResult>): UserDataViewModelApiResult => r.body)
+    );
+  }
+
+  /**
+   * Sign in.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiSignInPost$Json()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiSignInPost$Json$Response(params?: ApiSignInPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<UserDataViewModelApiResult>> {
+    return apiSignInPost$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Sign in.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiSignInPost$Json$Response()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiSignInPost$Json(params?: ApiSignInPost$Json$Params, context?: HttpContext): Observable<UserDataViewModelApiResult> {
+    return this.apiSignInPost$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<UserDataViewModelApiResult>): UserDataViewModelApiResult => r.body)
     );
   }

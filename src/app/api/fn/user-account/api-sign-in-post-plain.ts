@@ -6,16 +6,17 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { StringApiResult } from '../../models/string-api-result';
+import { UserDataViewModelApiResult } from '../../models/user-data-view-model-api-result';
 
-export interface ApiDashboardFacilityAddPost$Plain$Params {
+export interface ApiSignInPost$Plain$Params {
       body?: {
-'File'?: Blob;
+'Email': string;
+'Password'?: string;
 }
 }
 
-export function apiDashboardFacilityAddPost$Plain(http: HttpClient, rootUrl: string, params?: ApiDashboardFacilityAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiDashboardFacilityAddPost$Plain.PATH, 'post');
+export function apiSignInPost$Plain(http: HttpClient, rootUrl: string, params?: ApiSignInPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UserDataViewModelApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiSignInPost$Plain.PATH, 'post');
   if (params) {
     rb.body(params.body, 'multipart/form-data');
   }
@@ -25,9 +26,9 @@ export function apiDashboardFacilityAddPost$Plain(http: HttpClient, rootUrl: str
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<StringApiResult>;
+      return r as StrictHttpResponse<UserDataViewModelApiResult>;
     })
   );
 }
 
-apiDashboardFacilityAddPost$Plain.PATH = '/api/Dashboard/Facility/Add';
+apiSignInPost$Plain.PATH = '/api/SignIn';

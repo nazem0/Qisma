@@ -16,6 +16,7 @@ export interface PropertyDetailsViewModelForAdmin {
   facilities?: Array<PropertyFacilityViewModelForAdmin> | null;
   governorate?: string | null;
   governorateId?: number;
+  isDeleted?: boolean;
   location?: string | null;
   maintenaceInstallment?: number | null;
   maintenanceCost?: number | null;

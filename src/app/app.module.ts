@@ -58,7 +58,6 @@ import { AuthHelper } from './services/auth-helper';
 import { ContactUsComponent } from './components/guest/contact-us/contact-us.component';
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { SidebarComponent } from './components/layout/sidebar/sidebar.component';
 import { UserAuthGuard } from './guards/user.guard';
 import { DialogComponent } from './components/shared/dialog/dialog.component';
 import { Helper } from './services/helper';
@@ -100,7 +99,6 @@ registerLocaleData(en);
     RegisterComponent,
     ForgotPasswordComponent,
     LayoutComponent,
-    SidebarComponent,
     ContactUsComponent,
     NavbarComponent,
     LayoutComponent,
