@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/guest/login/login.component';
 
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -48,7 +47,6 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input-gg';
 
 
-import { RegisterComponent } from './components/guest/register/register.component';
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
@@ -95,8 +93,6 @@ registerLocaleData(en);
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
     ForgotPasswordComponent,
     LayoutComponent,
     ContactUsComponent,

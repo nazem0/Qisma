@@ -1,14 +1,24 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Helper } from '../../../services/helper';
 import { DialogService } from '../../../services/dialog.service';
 import { UserAccountService } from '../../../api/services';
 import { AuthHelper } from '../../../services/auth-helper';
+import { NgIf } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
+  standalone:true,
+  imports:[
+    NgIf,
+    ReactiveFormsModule,
+    ButtonModule,
+    InputTextModule,
+  ]
 })
 export class LoginComponent {
   form: FormGroup;

@@ -49,4 +49,8 @@ export class AuthHelper {
         let result = this.getAuth()?.roles;
         return result ?? [];
     }
+
+    public hasRole(role:string) : boolean{
+        return this.getRoles().includes(role);
+    }
 }

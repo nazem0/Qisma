@@ -1,19 +1,37 @@
 import { UserAccountService } from './../../../api/services/user-account.service';
 import { BusinessHelper } from './../../../services/business-helper';
 import { Component, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Helper } from '../../../services/helper';
-import { AuthHelper } from '../../../services/auth-helper';
-import { DialogService } from '../../../services/dialog.service';
-import { CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input-gg';
+import { CountryISO, NgxIntlTelInputModule } from 'ngx-intl-tel-input-gg';
 import { InvestoreType } from '../../../api/models';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { IfStmt } from '@angular/compiler';
+import { NgIf } from '@angular/common';
+import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
-  encapsulation: ViewEncapsulation.None
+  standalone:true,
+  imports:[
+    NgIf,
+    ReactiveFormsModule,
+    IconFieldModule,
+    InputIconModule,
+    CalendarModule,
+    FormsModule,
+    NgxIntlTelInputModule,
+    DropdownModule,
+    InputTextModule,
+    ButtonModule
+  ],
 })
 export class RegisterComponent {
   minDate = Helper.getDateByYears(80)
