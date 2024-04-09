@@ -1,16 +1,37 @@
 import { BusinessHelper } from './../../../services/business-helper';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Helper } from '../../../services/helper';
-import { UIChart } from 'primeng/chart';
+import { ChartModule, UIChart } from 'primeng/chart';
 import { PropertyService } from '../../../api/services';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { PropertyDetailsViewModelForUser } from '../../../api/models';
 import { CurrencyPipe } from '@angular/common';
+import { CarouselModule } from 'primeng/carousel';
+import { ButtonModule } from 'primeng/button';
+import { GalleriaModule } from 'primeng/galleria';
+import { TabViewModule } from 'primeng/tabview';
+import { MatDividerModule } from '@angular/material/divider';
+import { SliderModule } from 'primeng/slider';
+import { FormsModule } from '@angular/forms';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-property-details',
   templateUrl: './property-details.component.html',
   styleUrl: './property-details.component.css',
+  standalone: true,
+  imports: [
+    CarouselModule,
+    GalleriaModule,
+    ButtonModule,
+    RouterModule,
+    TabViewModule,
+    MatDividerModule,
+    SliderModule,
+    FormsModule,
+    ChartModule,
+    TooltipModule
+  ],
   providers: [CurrencyPipe]
 })
 export class PropertyDetailsComponent implements OnInit {
