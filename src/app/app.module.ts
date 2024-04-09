@@ -12,20 +12,15 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
 // import { MessagesModule } from 'primeng/messages';
 import { FieldsetModule } from 'primeng/fieldset';
-import { AccordionModule } from 'primeng/accordion';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { TreeTableModule } from 'primeng/treetable';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuModule } from 'primeng/menu';
-import { RatingModule } from 'primeng/rating';
-import { ChartModule } from 'primeng/chart';
 import { TabViewModule } from 'primeng/tabview';
 import { CarouselModule } from 'primeng/carousel';
 import { SliderModule } from 'primeng/slider';
@@ -104,20 +99,15 @@ registerLocaleData(en);
     ButtonModule,
     InputMaskModule,
     InputNumberModule,
-    RadioButtonModule,
-    CalendarModule,
     FileUploadModule,
     // MessagesModule,
     FieldsetModule,
-    AccordionModule,
     DropdownModule,
     InputGroupModule,
     InputGroupAddonModule,
     TreeTableModule,
     MenubarModule,
     MenuModule,
-    RatingModule,
-    ChartModule,
     TabViewModule,
     CarouselModule,
     SliderModule,
