@@ -16,7 +16,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
-import { MessagesModule } from 'primeng/messages';
+// import { MessagesModule } from 'primeng/messages';
 import { FieldsetModule } from 'primeng/fieldset';
 import { AccordionModule } from 'primeng/accordion';
 import { DropdownModule } from 'primeng/dropdown';
@@ -51,7 +51,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input-gg';
 import { RegisterComponent } from './components/guest/register/register.component';
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MessageService, SharedModule } from 'primeng/api';
+
 import { Http } from './interceptors/http.interceptor';
 import { ForgotPasswordComponent } from './components/guest/forgot-password/forgot-password.component';
 import { AuthHelper } from './services/auth-helper';
@@ -131,7 +131,6 @@ registerLocaleData(en);
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule,
     //PrimeNg Modules
     CheckboxModule,
     InputTextModule,
@@ -141,7 +140,7 @@ registerLocaleData(en);
     RadioButtonModule,
     CalendarModule,
     FileUploadModule,
-    MessagesModule,
+    // MessagesModule,
     FieldsetModule,
     AccordionModule,
     DropdownModule,
@@ -186,7 +185,6 @@ registerLocaleData(en);
       useClass: Http,
       multi: true,
     },
-    MessageService,
     Helper,
     AuthHelper,
     UserAuthGuard,

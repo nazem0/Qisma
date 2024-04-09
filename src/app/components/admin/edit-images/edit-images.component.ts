@@ -1,10 +1,8 @@
 import { PropertyForAdminService } from './../../../api/services/property-for-admin.service';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
 import { Helper } from '../../../services/helper';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { LoginComponent } from '../../guest/login/login.component';
 
 @Component({
   selector: 'app-edit-images',

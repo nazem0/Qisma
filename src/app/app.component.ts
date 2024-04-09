@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +8,4 @@ import { MessageService } from 'primeng/api';
 })
 export class AppComponent {
   title = 'Lofty';
-  constructor(
-    public messageService: MessageService
-  ) {
-    this.subscribeToMessageObserver();
-  }
-  subscribeToMessageObserver() {
-    this.messageService.messageObserver.subscribe()
-  }
-
 }

@@ -33,7 +33,7 @@ export class LoginComponent {
     .apiSignInPost$Json({body:this.form.value})
     .subscribe({
       next:next=>{
-        this._authHelper.login(next.data);
+        this._authHelper.login(next.data!);
       }
     })
   }

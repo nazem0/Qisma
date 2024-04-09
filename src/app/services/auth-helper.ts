@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { BehaviorSubject, Observable } from "rxjs";
-import { TokenData } from "../interfaces/token-data";
+import { BehaviorSubject } from "rxjs";
+import { UserDataViewModel } from "../api/models";
 
 @Injectable()
 
@@ -16,7 +16,7 @@ export class AuthHelper {
     }
     public static readonly authKey = "auth";
 
-    public login(auth: any): void {
+    public login(auth: UserDataViewModel): void {
         localStorage.setItem(AuthHelper.authKey, JSON.stringify(auth));
         this._isLoggedIn.next(true);
         this.$roleObservable.next(this.getRoles())
@@ -31,10 +31,10 @@ export class AuthHelper {
         this.router.navigate(["login"]);
     }
 
-    public getAuth(): TokenData | void {
+    public getAuth(): UserDataViewModel | void {
         let auth = localStorage.getItem("auth");
         if (!auth) return;
-        let jsonAuth = JSON.parse(auth!) as TokenData;
+        let jsonAuth = JSON.parse(auth!) as UserDataViewModel;
         return jsonAuth;
     }
     public getToken(): string | null | undefined {
