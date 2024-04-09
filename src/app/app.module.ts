@@ -76,8 +76,6 @@ import { HomeSection3Component } from './components/guest/home/home-section-3/ho
 import { HomeSection4Component } from './components/guest/home/home-section-4/home-section-4.component';
 import { HomeSection5Component } from './components/guest/home/home-section-5/home-section-5.component';
 import { HomeSection6Component } from './components/guest/home/home-section-6/home-section-6.component';
-import { MarketplaceComponent } from './components/guest/marketplace/marketplace.component';
-import { PropertyCard2Component } from './components/shared/property-card-2/property-card-2.component';
 import { ApiModule } from './api/api.module';
 import { environment } from '../environments/environment';
 import { PropertyActionsComponent } from './components/admin/property-actions/property-actions.component';
@@ -114,8 +112,6 @@ registerLocaleData(en);
     HomeSection5Component,
     HomeSection6Component,
     FooterComponent,
-    MarketplaceComponent,
-    PropertyCard2Component,
     PropertyActionsComponent,
     EditImagesComponent,
   ],
