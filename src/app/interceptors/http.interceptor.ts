@@ -19,22 +19,25 @@ export class Http implements HttpInterceptor {
         return next.handle(req).pipe(
             tap(async (event: HttpEvent<any>) => {
                 if (!(event instanceof HttpResponse)) return;
-                
+
                 if (req.method === 'GET' && event.status === 200) {
                     // Do nothing for successful GET requests
                 }
                 else {
-                    this._snackbar.open(event.body.message, '✔', {duration: 5000})
+                    this._snackbar.open(event.body.message, '✔', { duration: 5000 })
                 }
             }),
             catchError((error: HttpErrorResponse) => {
                 if (error.status === 401) {
-                    this._snackbar.open("Unauthorized", 'ok', {duration: 5000})
+                    this._snackbar.open("Unauthorized", 'ok', { duration: 5000 })
                     this._authHelper.logout();
-                } else {
-                    if (error.error != null) {
-                        this._snackbar.open(error.error.message, 'ok', {duration: 5000})
+                } else if (error.error != null) {
+                    {
+                        this._snackbar.open(error.error.message, 'ok', { duration: 5000})
                     }
+                }
+                else{
+                    this._snackbar.open("Error", 'ok', { duration: 5000})
                 }
                 return throwError(() => new Error(error.message));
             })

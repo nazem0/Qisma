@@ -71,8 +71,7 @@
     <ngx-intl-tel-input [selectedCountryISO]="countryISO.Egypt" [enablePlaceholder]="true" [searchCountryFlag]="true"
       [maxLength]="15" [phoneValidation]="true" [(ngModel)]="phoneNumber" [ngModelOptions]="{ standalone: true }"
       (ngModelChange)="
-        form.controls['phoneNumber'].setValue(phoneNumber?.e164Number)
-      " pInputText></ngx-intl-tel-input>
+        form.controls['phoneNumber'].setValue(phoneNumber?.e164Number)" pInputText></ngx-intl-tel-input>
     <small *ngIf="
         form.get('phoneNumber')!.invalid && form.get('phoneNumber')!.touched
       " class="my-2 text-danger">Phone Number is required.</small>
