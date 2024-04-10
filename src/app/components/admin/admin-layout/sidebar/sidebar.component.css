@@ -8,3 +8,7 @@
 .link-active{
     background-color: var(--primary-100);
 }
+
+.user-avatar{
+    width: 30px;
+}

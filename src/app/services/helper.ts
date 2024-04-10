@@ -23,7 +23,10 @@ export class Helper {
             return v.toString(16);
         });
     }
-
+    public static generateAvatar(name:string, bgColor:string|null=null, color:string|null=null){
+        return `https://ui-avatars.com/api/?name=${name}&background=${bgColor??'3f51b5'}&color=${color??'fff'}`
+      }
+  
     public static getDateByYears(years: number): Date {
         let currentDate = new Date()
         let result = new Date(currentDate.getFullYear() - years, currentDate.getMonth(), currentDate.getDay());
