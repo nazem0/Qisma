@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-export enum InvestoreType {
+export enum InvestorType {
   $1 = 1,
   $2 = 2
 }

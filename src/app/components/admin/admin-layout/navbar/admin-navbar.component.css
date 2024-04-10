@@ -1,0 +1,11 @@
+.logo {
+    height: var(--nav-logo-height);
+}
+
+.logos-container{
+    overflow-x: scroll;
+}
+
+.navbar{
+    height: var(--navbar-container-height);
+}

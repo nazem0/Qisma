@@ -31,11 +31,12 @@
             <small class="mat-small">Available: {{property.availableTokens}} shares at {{property.tokenPrice | currency
                 : "EGP" : "symbol" : "1.0-0"}}</small>
         </div>
-
-        <a [routerLink]="'/property-actions/' + property.propertyId">
-            <p-button [raised]="true" styleClass="bg-white text-primary border-0 px-2 py-0 w-100">
-                <span class="mx-auto">Edit Property</span>
-            </p-button>
-        </a>
+        @if(authHelper.hasRole("Admin")){
+            <a [routerLink]="'/admin/marketplace/property-actions/' + property.propertyId">
+                <p-button [raised]="true" styleClass="bg-white text-primary border-0 px-2 py-0 w-100">
+                    <span class="mx-auto">Edit Property</span>
+                </p-button>
+            </a>
+        }
     </div>
 </a>

@@ -4,7 +4,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Helper } from '../../../services/helper';
 import { CountryISO, NgxIntlTelInputModule } from 'ngx-intl-tel-input-gg';
-import { InvestoreType } from '../../../api/models';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -14,6 +13,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { InvestorType } from '../../../api/models';
 
 @Component({
   selector: 'app-register',
@@ -67,7 +67,7 @@ export class RegisterComponent {
       occupation: new FormControl<string>(""),
       companyName: new FormControl<string>(""),
       receiveEmails: new FormControl<boolean | undefined>(undefined, [Validators.required]),
-      investorType: new FormControl<InvestoreType | undefined>(undefined, [Validators.required]),
+      investorType: new FormControl<InvestorType | undefined>(undefined, [Validators.required]),
       password: new FormControl<string>("", [Validators.required, Validators.pattern(Helper.passwordRegEx)]),
     })
   }

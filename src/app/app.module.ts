@@ -59,6 +59,7 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { AdminAuthGuard } from './guards/admin.guard';
 
 registerLocaleData(en);
 
@@ -127,6 +128,7 @@ registerLocaleData(en);
     },
     Helper,
     AuthHelper,
+    AdminAuthGuard,
     UserAuthGuard,
     { provide: NZ_I18N, useValue: en_US },
     provideHttpClient(),

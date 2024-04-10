@@ -7,7 +7,7 @@ export { FacilityViewModelForAdminListApiResult } from './models/facility-view-m
 export { GovernorateAndCityViewModel } from './models/governorate-and-city-view-model';
 export { GovernorateAndCityViewModelListApiResult } from './models/governorate-and-city-view-model-list-api-result';
 export { Int32ApiResult } from './models/int-32-api-result';
-export { InvestoreType } from './models/investore-type';
+export { InvestorType } from './models/investor-type';
 export { PropertyDetailsViewModelForAdmin } from './models/property-details-view-model-for-admin';
 export { PropertyDetailsViewModelForAdminApiResult } from './models/property-details-view-model-for-admin-api-result';
 export { PropertyDetailsViewModelForUser } from './models/property-details-view-model-for-user';

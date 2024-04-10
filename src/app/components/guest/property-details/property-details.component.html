@@ -33,17 +33,19 @@
     </p-button>
     }
 
-    <a [routerLink]="'/property-actions/' + propertyId">
-      <p-button
-        [raised]="true"
-        styleClass="bg-white text-primary border-0"
-      >
-        <span>
-          <i class="pi pi-pencil"></i>
-          <span class="d-sm-inline d-none"> Edit Property</span>
-        </span>
-      </p-button>
-    </a>
+    @if(authHelper.hasRole("Admin")){
+      <a [routerLink]="'/admin/marketplace/property-actions/' + propertyId">
+        <p-button
+          [raised]="true"
+          styleClass="bg-white text-primary border-0"
+        >
+          <span>
+            <i class="pi pi-pencil"></i>
+            <span class="d-sm-inline d-none"> Edit Property</span>
+          </span>
+        </p-button>
+      </a>
+    }
   </div>
 </div>
 <p-galleria

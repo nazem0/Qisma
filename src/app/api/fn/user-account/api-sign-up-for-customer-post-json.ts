@@ -6,7 +6,7 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { InvestoreType } from '../../models/investore-type';
+import { InvestorType } from '../../models/investor-type';
 import { UserDataViewModelApiResult } from '../../models/user-data-view-model-api-result';
 
 export interface ApiSignUpForCustomerPost$Json$Params {
@@ -23,7 +23,7 @@ export interface ApiSignUpForCustomerPost$Json$Params {
 'Occupation'?: string;
 'CompanyName'?: string;
 'ReciveEmails': boolean;
-'InvestoreType': InvestoreType;
+'InvestorType': InvestorType;
 'Password': string;
 }
 }

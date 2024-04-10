@@ -49,7 +49,9 @@ export class AuthHelper {
         let result = this.getAuth()?.roles;
         return result ?? [];
     }
-
+    public getUserName():string|undefined|null{
+        return this.getAuth()?.name;
+    }
     public hasRole(role:string) : boolean{
         return this.getRoles().includes(role);
     }

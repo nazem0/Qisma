@@ -15,9 +15,20 @@ import { MarketplaceComponent } from './components/guest/marketplace/marketplace
 import { PropertyDetailsComponent } from './components/guest/property-details/property-details.component';
 import { PropertyActionsComponent } from './components/admin/property-actions/property-actions.component';
 import { EditImagesComponent } from './components/admin/edit-images/edit-images.component';
+import { AdminLayoutComponent } from './components/admin/admin-layout/admin-layout.component';
+import { AdminAuthGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
+  {
+    path:"admin", component:AdminLayoutComponent, children:[
+      { path: "marketplace", component: MarketplaceComponent, title: "Marketplace" },
+      { path:"marketplace/property-images/:id", component:EditImagesComponent, title:"Property Images"},
+      { path: "marketplace/property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
+      { path:"marketplace/property-actions", component:PropertyActionsComponent, title:"Property Actions"},
+      { path:"marketplace/property-actions/:id", component:PropertyActionsComponent, title:"Property Actions"},
+    ], canActivate:[AdminAuthGuard]
+  },
   {
     path: "", component: LayoutComponent, children: [
       { path: "login", component: LoginComponent, title: "Login" },
@@ -29,13 +40,11 @@ const routes: Routes = [
       { path: "dev", component: DevComponent, title: "Nazem" },
       { path: "home", component: HomeComponent, title: "Home" },
       { path: "marketplace", component: MarketplaceComponent, title: "Marketplace" },
-      { path: "property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
-      { path:"property-actions", component:PropertyActionsComponent, title:"Property Actions"},
-      { path:"property-actions/:id", component:PropertyActionsComponent, title:"Property Actions"},
-      { path:"property-images/:id", component:EditImagesComponent, title:"Property Images"},
+      { path: "marketplace/property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
       { path: '**', component: PageNotFoundComponent }
     ]
-  }
+  },
+  
 ];
 
 @NgModule({

@@ -1,0 +1,10 @@
+.sidebar {
+    width: 100%;
+    min-height: 100%;
+    a:hover{
+        background-color: var(--primary-100);
+    }
+}
+.link-active{
+    background-color: var(--primary-100);
+}

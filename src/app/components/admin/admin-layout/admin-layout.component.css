@@ -1,0 +1,15 @@
+.sidenav-container {
+    min-height:100vh;
+    height: 100%;
+}
+
+.expanded {
+    width: 240px;
+}
+
+.collapsed {
+    width: 0px;
+}
+.content, .sidenav-container {
+    padding-top: var(--navbar-container-height);
+}

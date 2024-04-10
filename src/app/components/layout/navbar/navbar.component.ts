@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { AuthHelper } from '../../../services/auth-helper';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -12,7 +11,9 @@ import { MenuItem } from 'primeng/api';
 export class NavbarComponent {
   items: MenuItem[];
 
-  constructor() {
+  constructor(
+    private authHelper:AuthHelper
+  ) {
     this.items = [
       { label: 'Staking', routerLink: 'staking' },
       { label: 'Marketplace', routerLink: 'marketplace' },
@@ -20,9 +21,19 @@ export class NavbarComponent {
       { label: 'Learn', routerLink: 'learn' },
       { label: 'Blog', routerLink: 'blog' },
       { label: 'List Property', routerLink: 'property-actions' },
-      { label: 'Login', routerLink: 'login' },
-      { label: 'Sign Up', routerLink: 'register'}
     ];
+    if(!authHelper.isLoggedIn){
+      this.items.push(
+        { label: 'Login', routerLink: 'login' },
+        { label: 'Sign Up', routerLink: 'register'}
+    )
+    }
+    else{
+      this.items.push({label:authHelper.getUserName()!, routerLink:""})
+      if(authHelper.hasRole("Admin")){
+        this.items.push({label:"Admin Panel", routerLink:"/admin/marketplace"})
+      }
+    }
   }
   signUp() {
     // Your sign-up logic here

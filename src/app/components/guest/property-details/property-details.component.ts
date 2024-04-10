@@ -14,6 +14,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { SliderModule } from 'primeng/slider';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule } from 'primeng/tooltip';
+import { AuthHelper } from '../../../services/auth-helper';
 
 @Component({
   selector: 'app-property-details',
@@ -37,11 +38,12 @@ import { TooltipModule } from 'primeng/tooltip';
 export class PropertyDetailsComponent implements OnInit {
   propertyStatuses = BusinessHelper.propertyStatuses;
   helper = Helper;
-  businessHelper = BusinessHelper
+  businessHelper = BusinessHelper;
   constructor(
     private propertyService: PropertyService,
     private route: ActivatedRoute,
-    private currency: CurrencyPipe
+    private currency: CurrencyPipe,
+    public authHelper:AuthHelper
   ) { }
   @ViewChild("chartElement") chartElement!: UIChart;
   propertyId?: number;

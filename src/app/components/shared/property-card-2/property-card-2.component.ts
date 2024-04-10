@@ -4,6 +4,7 @@ import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CurrencyPipe, PercentPipe } from '@angular/common';
+import { AuthHelper } from '../../../services/auth-helper';
 
 @Component({
   selector: 'app-property-card-2',
@@ -20,4 +21,5 @@ import { CurrencyPipe, PercentPipe } from '@angular/common';
 export class PropertyCard2Component {
   @Input() property!: PropertyViewModelInListViewForUser;
   helper=Helper
+  constructor(public authHelper:AuthHelper){}
 }

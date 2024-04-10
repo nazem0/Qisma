@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 import { AuthHelper } from '../services/auth-helper';
 import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable()
-export class UserAuthGuard implements CanActivate, CanActivateChild {
+export class AdminAuthGuard implements CanActivate, CanActivateChild {
   constructor(
     private router:Router,
     private _authHelper:AuthHelper,
@@ -20,7 +20,7 @@ export class UserAuthGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (this._authHelper.hasRole("admin")) {
+    if (this._authHelper.hasRole("Admin")) {
       return true;
     } 
     else if(this._authHelper.isLoggedIn){
