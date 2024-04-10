@@ -22,13 +22,13 @@ import { MarketplacePropertiesPaginationComponent } from './components/guest/mar
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   {
-    path:"admin", component:AdminLayoutComponent, children:[
+    path: "admin", component: AdminLayoutComponent, children: [
       { path: "marketplace", component: MarketplacePropertiesPaginationComponent, title: "Marketplace" },
-      { path:"marketplace/property-images/:id", component:EditImagesComponent, title:"Property Images"},
+      { path: "marketplace/property-images/:id", component: EditImagesComponent, title: "Property Images" },
       { path: "marketplace/property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
-      { path:"marketplace/property-actions", component:PropertyActionsComponent, title:"Property Actions"},
-      { path:"marketplace/property-actions/:id", component:PropertyActionsComponent, title:"Property Actions"},
-    ], canActivate:[AdminAuthGuard]
+      { path: "marketplace/property-actions", component: PropertyActionsComponent, title: "Property Actions" },
+      { path: "marketplace/property-actions/:id", component: PropertyActionsComponent, title: "Property Actions" },
+    ], canActivate: [AdminAuthGuard]
   },
   {
     path: "", component: LayoutComponent, children: [
@@ -45,7 +45,7 @@ const routes: Routes = [
       { path: '**', component: PageNotFoundComponent }
     ]
   },
-  
+
 ];
 
 @NgModule({
