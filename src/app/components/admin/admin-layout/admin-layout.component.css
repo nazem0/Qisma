@@ -11,5 +11,5 @@
     width: 0px;
 }
 .content, .sidenav-container {
-    padding-top: var(--navbar-container-height);
+    padding-top: calc(var(--navbar-container-height) + 20px);
 }

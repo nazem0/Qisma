@@ -1,16 +1,4 @@
-.logo {
-    height: var(--nav-logo-height);
-}
 
-.logos-container{
-    overflow-x: scroll;
-}
-.p-menubar{
-    background-color: unset;
-}
-.p-menubar>:first-child{
-    margin-right: auto;
-}
-.p-menubar>:last-child{
-    display: none;
+#navlinks{
+    height: 400px;
 }

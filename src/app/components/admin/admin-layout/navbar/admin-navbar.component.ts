@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { NavigationEnd, Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 
@@ -7,7 +8,7 @@ import { ButtonModule } from 'primeng/button';
   templateUrl: './admin-navbar.component.html',
   styleUrl: './admin-navbar.component.css',
   standalone:true,
-  imports:[ButtonModule]
+  imports:[ButtonModule, MatIconModule]
 })
 export class AdminNavbarComponent {
   @Input() expanded = false;

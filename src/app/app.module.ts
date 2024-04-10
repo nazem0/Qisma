@@ -40,8 +40,6 @@ import { Http } from './interceptors/http.interceptor';
 import { ForgotPasswordComponent } from './components/guest/forgot-password/forgot-password.component';
 import { AuthHelper } from './services/auth-helper';
 import { ContactUsComponent } from './components/guest/contact-us/contact-us.component';
-import { NavbarComponent } from './components/layout/navbar/navbar.component';
-import { LayoutComponent } from './components/layout/layout.component';
 import { UserAuthGuard } from './guards/user.guard';
 import { DialogComponent } from './components/shared/dialog/dialog.component';
 import { Helper } from './services/helper';
@@ -51,7 +49,6 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { DevComponent } from './components/guest/dev/dev.component';
 import { AboutUsComponent } from './components/guest/about-us/about-us.component';
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
-import { FooterComponent } from './components/layout/footer/footer.component';
 import { ConfirmComponent } from './components/shared/confirm/confirm.component';
 import { ApiModule } from './api/api.module';
 import { environment } from '../environments/environment';
@@ -67,10 +64,7 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     ForgotPasswordComponent,
-    LayoutComponent,
     ContactUsComponent,
-    NavbarComponent,
-    LayoutComponent,
     DialogComponent,
     PaymentComponent,
     ResetPasswordComponent,
@@ -78,7 +72,6 @@ registerLocaleData(en);
     AboutUsComponent,
     PageNotFoundComponent,
     ConfirmComponent,
-    FooterComponent,
   ],
   imports: [
     BrowserModule,

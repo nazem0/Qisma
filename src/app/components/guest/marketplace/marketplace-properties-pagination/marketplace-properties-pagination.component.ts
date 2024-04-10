@@ -1,3 +1,4 @@
+import { AuthHelper } from './../../../../services/auth-helper';
 import { CurrencyPipe, NgIf, NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -47,7 +48,8 @@ export class MarketplacePropertiesPaginationComponent implements OnInit {
   selectedProperty?:{id:number, name:string};
   constructor(
     private propertyService: PropertyService,
-    private governorateAndCityService: GovernorateAndCityService
+    private governorateAndCityService: GovernorateAndCityService,
+    public authHelper:AuthHelper
   ) { }
   pagination = {
     index: 0,

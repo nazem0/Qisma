@@ -357,3 +357,7 @@ ngx-intl-tel-input {
         width: 100%;
     }
 }
+
+.h-0{
+    height: 0;
+}

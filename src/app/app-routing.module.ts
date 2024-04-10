@@ -17,12 +17,13 @@ import { PropertyActionsComponent } from './components/admin/property-actions/pr
 import { EditImagesComponent } from './components/admin/edit-images/edit-images.component';
 import { AdminLayoutComponent } from './components/admin/admin-layout/admin-layout.component';
 import { AdminAuthGuard } from './guards/admin.guard';
+import { MarketplacePropertiesPaginationComponent } from './components/guest/marketplace/marketplace-properties-pagination/marketplace-properties-pagination.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   {
     path:"admin", component:AdminLayoutComponent, children:[
-      { path: "marketplace", component: MarketplaceComponent, title: "Marketplace" },
+      { path: "marketplace", component: MarketplacePropertiesPaginationComponent, title: "Marketplace" },
       { path:"marketplace/property-images/:id", component:EditImagesComponent, title:"Property Images"},
       { path: "marketplace/property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
       { path:"marketplace/property-actions", component:PropertyActionsComponent, title:"Property Actions"},
