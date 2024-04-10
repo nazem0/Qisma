@@ -18,13 +18,10 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
-import { TreeTableModule } from 'primeng/treetable';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuModule } from 'primeng/menu';
 import { TabViewModule } from 'primeng/tabview';
-import { CarouselModule } from 'primeng/carousel';
 import { SliderModule } from 'primeng/slider';
-import { EditorModule } from 'primeng/editor';
 import { StepperModule } from 'primeng/stepper';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -34,11 +31,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogTitle, MatDialogContent, } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatDividerModule } from '@angular/material/divider';
-
-
-import { NzPaginationModule } from 'ng-zorro-antd/pagination';
-import { NgxIntlTelInputModule } from 'ngx-intl-tel-input-gg';
 
 
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient } from '@angular/common/http';
@@ -105,13 +97,10 @@ registerLocaleData(en);
     DropdownModule,
     InputGroupModule,
     InputGroupAddonModule,
-    TreeTableModule,
     MenubarModule,
     MenuModule,
     TabViewModule,
-    CarouselModule,
     SliderModule,
-    EditorModule,
     StepperModule,
     IconFieldModule,
     InputIconModule,
@@ -122,11 +111,6 @@ registerLocaleData(en);
     MatDialogTitle,
     MatDialogContent,
     MatSnackBarModule,
-    MatDividerModule,
-    //NzMaterial Modules
-    NzPaginationModule,
-
-    NgxIntlTelInputModule,
     // for HttpClient use:
     LoadingBarHttpClientModule,
     // Api Module,
