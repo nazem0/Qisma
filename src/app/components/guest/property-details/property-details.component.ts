@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Helper } from '../../../services/helper';
 import { ChartModule, UIChart } from 'primeng/chart';
 import { PropertyService } from '../../../api/services';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { PropertyDetailsViewModelForUser } from '../../../api/models';
 import { CurrencyPipe } from '@angular/common';
 import { CarouselModule } from 'primeng/carousel';
@@ -15,6 +15,7 @@ import { SliderModule } from 'primeng/slider';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule } from 'primeng/tooltip';
 import { AuthHelper } from '../../../services/auth-helper';
+import { ConfirmComponent } from '../../shared/confirm/confirm.component';
 
 @Component({
   selector: 'app-property-details',
@@ -31,19 +32,23 @@ import { AuthHelper } from '../../../services/auth-helper';
     SliderModule,
     FormsModule,
     ChartModule,
-    TooltipModule
+    TooltipModule,
+    ConfirmComponent,
+    
   ],
   providers: [CurrencyPipe]
 })
 export class PropertyDetailsComponent implements OnInit {
   propertyStatuses = BusinessHelper.propertyStatuses;
   helper = Helper;
-  businessHelper = BusinessHelper;
+  businessHelperStatic = BusinessHelper;
   constructor(
     private propertyService: PropertyService,
     private route: ActivatedRoute,
     private currency: CurrencyPipe,
-    public authHelper:AuthHelper
+    public authHelper:AuthHelper,
+    public businessHelper:BusinessHelper,
+    public router:Router
   ) { }
   @ViewChild("chartElement") chartElement!: UIChart;
   propertyId?: number;
@@ -186,6 +191,10 @@ export class PropertyDetailsComponent implements OnInit {
           })
       }
     })
+  }
+
+  goToPropertiesPage(){
+    this.router.navigate(['../..'], {relativeTo:this.route})
   }
 }
 

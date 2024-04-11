@@ -1,3 +1,4 @@
+import { BusinessHelper } from './../../../services/business-helper';
 import { PropertyForAdminService } from './../../../api/services/property-for-admin.service';
 import { Helper } from '../../../services/helper';
 import { PropertyViewModelInListViewForUser } from '../../../api/models/property-view-model-in-list-view-for-user';
@@ -27,19 +28,9 @@ export class PropertyCard2Component {
   @Output() refresh = new EventEmitter();
   constructor(
     public authHelper: AuthHelper,
-    private _propertyForAdminService: PropertyForAdminService,
+    public businessHelper:BusinessHelper
   ) { }
 
-  deleteProperty(propertyId: number) {
-    this
-      ._propertyForAdminService
-      .apiDashboardPropertyDeleteDelete$Json({
-        PropertyId: propertyId
-      }).subscribe({
-        next: () => {
-          this.refresh.emit()
-        }
-      })
-  }
+  
 
 }

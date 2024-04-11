@@ -1,4 +1,10 @@
+import { Injectable } from "@angular/core"
+import { PropertyForAdminService } from "../api/services"
+@Injectable()
 export class BusinessHelper {
+  constructor(private _propertyForAdminService:PropertyForAdminService){
+
+  }
   public static propertyTypes = [
     {
       id: 1,
@@ -41,5 +47,12 @@ export class BusinessHelper {
   public static getPropertyStatusName(id:number) : string |  undefined {
     return this.propertyStatuses.find(e=>e.id == id)?.name
   }
-  
+
+  deleteProperty(propertyId: number) {
+    this
+      ._propertyForAdminService
+      .apiDashboardPropertyDeleteDelete$Json({
+        PropertyId: propertyId
+      }).subscribe()
+  }
 }
