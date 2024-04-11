@@ -1,25 +1,45 @@
+import { PropertyForAdminService } from './../../../api/services/property-for-admin.service';
 import { Helper } from '../../../services/helper';
 import { PropertyViewModelInListViewForUser } from '../../../api/models/property-view-model-in-list-view-for-user';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CurrencyPipe, PercentPipe } from '@angular/common';
 import { AuthHelper } from '../../../services/auth-helper';
+import { ConfirmComponent } from '../confirm/confirm.component';
 
 @Component({
   selector: 'app-property-card-2',
   templateUrl: './property-card-2.component.html',
   styleUrl: './property-card-2.component.css',
-  standalone:true,
-  imports:[
+  standalone: true,
+  imports: [
     RouterModule,
     ButtonModule,
     CurrencyPipe,
-    PercentPipe
+    PercentPipe,
+    ConfirmComponent
   ]
 })
 export class PropertyCard2Component {
   @Input() property!: PropertyViewModelInListViewForUser;
-  helper=Helper
-  constructor(public authHelper:AuthHelper){}
+  helper = Helper;
+  @Output() refresh = new EventEmitter();
+  constructor(
+    public authHelper: AuthHelper,
+    private _propertyForAdminService: PropertyForAdminService,
+  ) { }
+
+  deleteProperty(propertyId: number) {
+    this
+      ._propertyForAdminService
+      .apiDashboardPropertyDeleteDelete$Json({
+        PropertyId: propertyId
+      }).subscribe({
+        next: () => {
+          this.refresh.emit()
+        }
+      })
+  }
+
 }

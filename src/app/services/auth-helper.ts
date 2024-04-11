@@ -28,7 +28,7 @@ export class AuthHelper {
         localStorage.removeItem(AuthHelper.authKey);
         this._isLoggedIn.next(false);
         this.$roleObservable.next([])
-        this.router.navigate(["login"]);
+        // this.router.navigate(["login"]);
     }
 
     public getAuth(): UserDataViewModel | void {

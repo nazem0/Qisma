@@ -61,7 +61,9 @@ export class MarketplacePropertiesPaginationComponent implements OnInit {
     this.getProperties();
     
   }
-
+  resetPagination(){
+    this.pagination.index=0;
+  }
   initGovs() {
     this
     .governorateAndCityService

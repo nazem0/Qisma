@@ -22,6 +22,9 @@
         Admin Panel
       </a>
       }
+      <a (click)="authHelper.logout()" title="logout">
+        <i class="pi pi-sign-out"></i>
+      </a>
       }
       @else{
       @for (link of guestLinks; track $index) {
@@ -32,7 +35,7 @@
       }
     </div>
 
-    <div class="d-flex d-lg-none flex-column gap-4 justify-content-end transition overflow-y-scroll" id="navlinks"
+    <div class="d-flex d-lg-none flex-column gap-4 justify-content-start transition overflow-y-scroll" id="navlinks"
       #navlinks>
       @for (link of links; track $index) {
       <a [routerLink]="link.routerLink">
@@ -48,6 +51,9 @@
         Admin Panel
       </a>
       }
+      <a (click)="authHelper.logout()">
+        Logout
+      </a>
       }
       @else{
       @for (link of guestLinks; track $index) {

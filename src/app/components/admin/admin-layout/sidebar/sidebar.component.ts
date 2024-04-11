@@ -1,11 +1,12 @@
 import { AccordionModule } from 'primeng/accordion';
-import { Component, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Output, ViewEncapsulation, output } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AuthHelper } from '../../../../services/auth-helper';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { Helper } from '../../../../services/helper';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-sidebar',
@@ -18,12 +19,14 @@ import { Helper } from '../../../../services/helper';
     AccordionModule,
     AsyncPipe,
     ButtonModule,
-    MatDividerModule
+    MatDividerModule,
+    TooltipModule
   ]
 })
 export class SidebarComponent {
   roles: string[] = []
   links : {title:string, url:string, iconClass:string}[];
+  @Output() collapse=new EventEmitter();
   helper=Helper;
   constructor(
     public _authHelper: AuthHelper,

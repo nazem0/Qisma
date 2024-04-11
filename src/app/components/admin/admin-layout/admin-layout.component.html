@@ -6,7 +6,7 @@
 </div>
 <div class="d-flex">
     <div class="transition sidenav-container bg-white h-100 overflow-y-scroll sticky-top border border-1" [ngClass]="{ expanded: expanded, collapsed: !expanded }">
-        <app-sidebar></app-sidebar>
+        <app-sidebar (collapse)="collapse()"></app-sidebar>
     </div>
     <div class="container-fluid content">
         <router-outlet></router-outlet>

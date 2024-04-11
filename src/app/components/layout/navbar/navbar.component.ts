@@ -21,7 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
   ]
 })
 export class NavbarComponent implements AfterViewInit {
-  collapse:boolean=false;
+  collapse:boolean=true;
   links: {label:string, routerLink:string}[];
   guestLinks:{label:string, routerLink:string}[];
   @ViewChild("navlinks") navlinksRef!: ElementRef;
@@ -44,13 +44,14 @@ export class NavbarComponent implements AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.navlinksDiv = this.navlinksRef.nativeElement;
+    this.toggleCollapse()
   }
   signUp() {
     // Your sign-up logic here
   }
   toggleCollapse(){
     this.collapse = !this.collapse;
-    let height = this.collapse ? 0 : 400;
+    let height = this.collapse ? 0 : 430;
     let margin = this.collapse ? 0 : 6;
     this.navlinksDiv.style.marginTop = `${margin}px`;
     this.navlinksDiv.style.height = `${height}px`;

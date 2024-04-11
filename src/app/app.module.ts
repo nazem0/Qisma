@@ -49,7 +49,6 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { DevComponent } from './components/guest/dev/dev.component';
 import { AboutUsComponent } from './components/guest/about-us/about-us.component';
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
-import { ConfirmComponent } from './components/shared/confirm/confirm.component';
 import { ApiModule } from './api/api.module';
 import { environment } from '../environments/environment';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -71,7 +70,6 @@ registerLocaleData(en);
     DevComponent,
     AboutUsComponent,
     PageNotFoundComponent,
-    ConfirmComponent,
   ],
   imports: [
     BrowserModule,

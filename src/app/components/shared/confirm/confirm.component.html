@@ -1,35 +1,31 @@
-<div class="p-4">
-  <!-- <div class="confirm-container" style="width: 431px;"> -->
-@if(data.title)
-{
-  <div
-    mat-dialog-title
-    class="d-flex justify-content-center align-items-center"
-    style="height: 70px"
-  >
-    <h2 class="mb-0 ms-3">{{ data.title }}</h2>
-  </div>
-}
+<div class="text-center">
+  <p-button (click)="showDialog()" [severity]="severity"
+    styleClass="w-100 p-1">
+    <span class="text-white mx-auto">{{label}}</span>
+  </p-button>
+  <p-dialog #dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '50rem' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <ng-template pTemplate="header">
+      <div>{{title}}</div>
+    </ng-template>
+    <p class="m-0">
+      {{description}}
+    </p>
+    <ng-template pTemplate="footer">
+      <div class="d-flex gap-2">
+        <div class="col">
+          <p-button (click)="visible = false; confirmation.next(true);" pAutoFocus
+            [autofocus]="true" styleClass="w-100">
+            <span class="text-white mx-auto">Yes</span>
+          </p-button>
+        </div>
 
-<div mat-dialog-content class="mx-auto text-center">{{ data.message }}</div>
-
-<div class="d-flex gap-2 justify-content-center" mat-dialog-actions>
-  <p-button
-    [raised]="true"
-    mat-dialog-close
-    cdkFocusInitial
-    (click)="dialogRef.close(true)"
-    styleClass="w-100"
-    >Confirm</p-button
-  >
-  <p-button
-    [raised]="true"
-    mat-dialog-close
-    (click)="dialogRef.close(false)"
-    severity="secondary"
-    styleClass="w-100"
-    >Cancel</p-button
-  >
-</div>
-
+        <div class="col">
+          <p-button (click)="visible = false;" pAutoFocus [autofocus]="true" styleClass="w-100">
+            <span class="text-white mx-auto">No</span>
+          </p-button>
+        </div>
+      </div>
+    </ng-template>
+  </p-dialog>
 </div>

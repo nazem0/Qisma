@@ -3,14 +3,31 @@
     <!-- <h2 >Qisma</h2> -->
   </div>
   @for (link of links; track $index) {
-  <a class="ps-3 py-2 d-flex align-items-center gap-3 w-100" [routerLink]="'/admin/'+link.url" [routerLinkActive]="'link-active'">
-    <i [classList]="'pi '+link.iconClass"></i>
-    {{link.title}}
+  <a
+    class="ps-3 py-2 d-flex align-items-center gap-3 w-100"
+    [routerLink]="'/admin/' + link.url"
+    [routerLinkActive]="'link-active'"
+    (click)="collapse.emit()"
+  >
+    <i [classList]="'pi ' + link.iconClass"></i>
+    {{ link.title }}
   </a>
   }
   <mat-divider class="my-3"></mat-divider>
   <div class="d-flex gap-2">
-    <img class="user-avatar rounded-circle" [src]="helper.generateAvatar(_authHelper.getUserName()!)" alt="">
-    <span>{{_authHelper.getUserName()}}</span>
+    <img
+      class="user-avatar rounded-circle"
+      [src]="helper.generateAvatar(_authHelper.getUserName()!)"
+      alt=""
+    />
+    <span>{{ _authHelper.getUserName() }}</span>
   </div>
+  <mat-divider class="my-3"></mat-divider>
+  <a
+    (click)="collapse.emit();_authHelper.logout()"
+    class="ps-3 py-2 d-flex align-items-center gap-3 w-100"
+  >
+    <i class="pi pi-sign-out"></i>
+    Logout
+  </a>
 </div>

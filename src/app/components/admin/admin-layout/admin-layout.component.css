@@ -1,6 +1,7 @@
 .sidenav-container {
     min-height:100vh;
     height: 100%;
+    position: fixed;
 }
 
 .expanded {
@@ -11,5 +12,5 @@
     width: 0px;
 }
 .content, .sidenav-container {
-    padding-top: calc(var(--navbar-container-height) + 20px);
+    padding-top: var(--navbar-container-height);
 }

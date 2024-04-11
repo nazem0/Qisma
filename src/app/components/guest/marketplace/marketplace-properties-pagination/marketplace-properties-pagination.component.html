@@ -1,5 +1,5 @@
 @if(authHelper.hasRole("Admin")){
-<div class="row justify-content-center">
+<div class="row justify-content-center mt-2">
     <div class="col-6">
         <p-button styleClass="w-100" routerLink="property-actions">
             <span class="mx-auto text-white">
@@ -82,7 +82,7 @@
 </div>
 <div class="row justify-content-center align-items-center">
    <div class="col-6 my-3">
-    <p-button (onClick)="getProperties()" styleClass="w-100">
+    <p-button (onClick)="resetPagination();getProperties()" styleClass="w-100">
         <span class="mx-auto text-white">
             <i class="pi pi-search"></i></span>
     </p-button>
@@ -90,9 +90,7 @@
 </div>
 <div *ngIf="properties" class="row row-cols-md-4 g-3 justify-content-center">
     @for (item of properties; track $index) {
-    <a [routerLink]="['property-details/' + item.propertyId]">
-        <app-property-card-2 [property]="item"></app-property-card-2>
-    </a>
+        <app-property-card-2 [property]="item" (refresh)="getProperties()"></app-property-card-2>
     }
     <!-- <a [routerLink]="['/property-details']" *ngFor="let item of [].constructor(8)">
     </a> -->

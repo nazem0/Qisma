@@ -117,7 +117,7 @@ export class PropertyActionsComponent implements OnInit {
     for (let index = 0; index < this.files.length; index++) {
       this.readers[index] = new FileReader();
       this.readers[index].readAsDataURL(this.files.item(index) as Blob);
-      this.propertyForm?.get('propertyImages')?.setValue(this.files.item(index) as Blob)
+      this.propertyForm?.get('propertyImages')?.value.push(this.files.item(index) as Blob)
       this.readers[index].onload = (_event: any) => {
         this.inputArray!.push({ src: this.readers[index].result });
       };
@@ -355,6 +355,8 @@ export class PropertyActionsComponent implements OnInit {
         );
       }
     );
+    console.log(this.propertyForm?.controls['propertyImages'].value);
+    
     this.propertyForm?.controls['propertyImages'].value.forEach(
       (image: Blob) => {
         formData.append('propertyImages', image);

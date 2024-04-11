@@ -9,8 +9,8 @@ import { AdminNavbarComponent } from './navbar/admin-navbar.component';
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.css',
-  standalone:true,
-  imports:[
+  standalone: true,
+  imports: [
     SidebarComponent,
     AdminNavbarComponent,
     RouterModule,
@@ -19,23 +19,9 @@ import { AdminNavbarComponent } from './navbar/admin-navbar.component';
 })
 export class AdminLayoutComponent {
   expanded = true;
-  home=location.href.endsWith('/home');
-  constructor(
-    private _authHelper:AuthHelper,
-    private _router:Router
-  ){
-    this._authHelper.isLoggedIn.subscribe({
-      next:next=>this.expanded = next
-    })
-
-    this._router.events.subscribe({
-      next:next=>{
-        if (next instanceof NavigationEnd) {
-          this.home = next.url==='/home'
-          
-        }
-      }
-    })
-    
+  constructor() {
+  }
+  collapse() {
+    this.expanded = false;
   }
 }
