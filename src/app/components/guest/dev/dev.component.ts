@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-dev',
   templateUrl: './dev.component.html',
-  styleUrl: './dev.component.css'
+  styleUrl: './dev.component.css',
+  standalone:true,
+  imports:[ButtonModule]
 })
 export class DevComponent {
 constructor(){}

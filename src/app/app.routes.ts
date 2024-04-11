@@ -1,15 +1,11 @@
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { LoginComponent } from './components/guest/login/login.component';
 import { RegisterComponent } from './components/guest/register/register.component';
 import { ForgotPasswordComponent } from './components/guest/forgot-password/forgot-password.component';
-import { ContactUsComponent } from './components/guest/contact-us/contact-us.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { UserAuthGuard } from './guards/user.guard';
 import { ResetPasswordComponent } from './components/guest/reset-password/reset-password.component';
 import { DevComponent } from './components/guest/dev/dev.component';
-import { AboutUsComponent } from './components/guest/about-us/about-us.component';
 import { HomeComponent } from './components/guest/home/home.component';
 import { MarketplaceComponent } from './components/guest/marketplace/marketplace.component';
 import { PropertyDetailsComponent } from './components/guest/property-details/property-details.component';
@@ -19,7 +15,7 @@ import { AdminLayoutComponent } from './components/admin/admin-layout/admin-layo
 import { AdminAuthGuard } from './guards/admin.guard';
 import { MarketplacePropertiesPaginationComponent } from './components/guest/marketplace/marketplace-properties-pagination/marketplace-properties-pagination.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   {
     path: "admin", component: AdminLayoutComponent, children: [
@@ -34,10 +30,8 @@ const routes: Routes = [
     path: "", component: LayoutComponent, children: [
       { path: "login", component: LoginComponent, title: "Login" },
       { path: "register", component: RegisterComponent, title: "Create Account" },
-      // { path: "forgot-password", component: ForgotPasswordComponent, title: "Forgot Password" },
-      // { path: "reset-password", component: ResetPasswordComponent, title: "Reset Password" },
-      // { path: "contact-us", component: ContactUsComponent, title: "Contact Us" },
-      // { path: "about-us", component: AboutUsComponent, title: "About Us" },
+      { path: "forgot-password", component: ForgotPasswordComponent, title: "Forgot Password" },
+      { path: "reset-password", component: ResetPasswordComponent, title: "Reset Password" },
       { path: "dev", component: DevComponent, title: "Nazem" },
       { path: "home", component: HomeComponent, title: "Home" },
       { path: "marketplace", component: MarketplaceComponent, title: "Marketplace" },
@@ -47,9 +41,3 @@ const routes: Routes = [
   },
 
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: "enabled" })],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }

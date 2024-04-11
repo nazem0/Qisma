@@ -21,7 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
   ]
 })
 export class NavbarComponent implements AfterViewInit {
-  collapse:boolean=true;
+  collapse:boolean=false;
   links: {label:string, routerLink:string}[];
   guestLinks:{label:string, routerLink:string}[];
   @ViewChild("navlinks") navlinksRef!: ElementRef;
@@ -51,9 +51,10 @@ export class NavbarComponent implements AfterViewInit {
   }
   toggleCollapse(){
     this.collapse = !this.collapse;
-    let height = this.collapse ? 0 : 430;
-    let margin = this.collapse ? 0 : 6;
-    this.navlinksDiv.style.marginTop = `${margin}px`;
-    this.navlinksDiv.style.height = `${height}px`;
+    if(!this.collapse){
+      this.navlinksDiv.classList.add("expanded");
+    }else{
+      this.navlinksDiv.classList.remove("expanded");
+    }
   }
 }

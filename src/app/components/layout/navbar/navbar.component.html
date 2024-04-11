@@ -1,7 +1,7 @@
 <div class="container-sm">
   <div class=" row justify-content-between align-items-center py-3">
     <div class="col-lg-2">
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between align-items-center">
         <a [routerLink]="['/home']"><img src="/assets/logos/logo.png" height="40" class="ms-2 me-auto" />
         </a>
         <mat-icon style="cursor: pointer;" class="d-lg-none" (click)="toggleCollapse()">menu</mat-icon>
@@ -35,10 +35,10 @@
       }
     </div>
 
-    <div class="d-flex d-lg-none flex-column gap-4 justify-content-start transition overflow-y-scroll" id="navlinks"
+    <div class="d-flex d-lg-none flex-column gap-4 justify-content-center transition overflow-y-scroll" id="navlinks"
       #navlinks>
       @for (link of links; track $index) {
-      <a [routerLink]="link.routerLink">
+      <a [routerLink]="link.routerLink" >
         {{link.label}}
       </a>
       }

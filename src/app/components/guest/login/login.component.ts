@@ -7,6 +7,7 @@ import { AuthHelper } from '../../../services/auth-helper';
 import { NgIf } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ import { InputTextModule } from 'primeng/inputtext';
     ReactiveFormsModule,
     ButtonModule,
     InputTextModule,
+    RouterModule
   ]
 })
 export class LoginComponent {
