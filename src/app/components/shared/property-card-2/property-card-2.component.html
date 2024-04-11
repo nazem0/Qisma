@@ -38,6 +38,8 @@
     </a>
     }
 </a>
-<app-confirm [label]="'Delete Property'" [severity]="'danger'" [title]="'Delete '+property.address+' property'"
+@if(authHelper.hasRole("Admin")){
+    <app-confirm [label]="'Delete Property'" [severity]="'danger'" [title]="'Delete '+property.address+' property'"
     [description]="'Are you sure you want to delete this property?'"
     (confirmation)="deleteProperty(property.propertyId!)"></app-confirm>
+}
