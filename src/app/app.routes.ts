@@ -11,15 +11,14 @@ import { MarketplaceComponent } from './components/guest/marketplace/marketplace
 import { PropertyDetailsComponent } from './components/guest/property-details/property-details.component';
 import { PropertyActionsComponent } from './components/admin/property-actions/property-actions.component';
 import { EditImagesComponent } from './components/admin/edit-images/edit-images.component';
-import { AdminLayoutComponent } from './components/admin/admin-layout/admin-layout.component';
 import { AdminAuthGuard } from './guards/admin.guard';
 import { MarketplacePropertiesPaginationComponent } from './components/guest/marketplace/marketplace-properties-pagination/marketplace-properties-pagination.component';
 
 export const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   {
-    path: "admin", component: AdminLayoutComponent, children: [
-      { path: "marketplace", component: MarketplacePropertiesPaginationComponent, title: "Marketplace" },
+    path: "admin", component: LayoutComponent, children: [
+      { path: "marketplace", component: MarketplaceComponent, title: "Marketplace" },
       { path: "marketplace/property-images/:id", component: EditImagesComponent, title: "Property Images" },
       { path: "marketplace/property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
       { path: "marketplace/property-actions", component: PropertyActionsComponent, title: "Property Actions" },

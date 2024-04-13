@@ -10,7 +10,7 @@ export class AuthHelper {
     isLoggedIn = this._isLoggedIn.asObservable();
 
     roles : string[] = [];
-    $roleObservable = new BehaviorSubject<string[]>(this.roles)
+    $rolesObservable = new BehaviorSubject<string[]>(this.roles)
     constructor(private router: Router) {
 
     }
@@ -19,7 +19,7 @@ export class AuthHelper {
     public login(auth: UserDataViewModel): void {
         localStorage.setItem(AuthHelper.authKey, JSON.stringify(auth));
         this._isLoggedIn.next(true);
-        this.$roleObservable.next(this.getRoles())
+        this.$rolesObservable.next(this.getRoles())
         this.router.navigate(["home"]);
 
     }
@@ -27,7 +27,7 @@ export class AuthHelper {
 
         localStorage.removeItem(AuthHelper.authKey);
         this._isLoggedIn.next(false);
-        this.$roleObservable.next([])
+        this.$rolesObservable.next([])
         // this.router.navigate(["login"]);
     }
 

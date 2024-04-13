@@ -1,64 +1,71 @@
 <div class="container-sm">
-  <div class=" row justify-content-between align-items-center py-3">
+  <div class="row justify-content-between align-items-center py-3">
     <div class="col-lg-2">
       <div class="d-flex justify-content-between align-items-center">
-        <a [routerLink]="['/home']"><img src="/assets/logos/logo.png" height="40" class="ms-2 me-auto" />
+        <a [routerLink]="['/home']">
+          <img src="/assets/logos/logo.png" height="40" class="ms-2 me-auto" />
         </a>
-        <mat-icon style="cursor: pointer;" class="d-lg-none" (click)="toggleCollapse()">menu</mat-icon>
+        <mat-icon class="ms-2" style="cursor: pointer" (click)="expanded = !expanded; togglerEvent.next(expanded)">
+          menu
+        </mat-icon>
+        <img [src]="helper.generateAvatar(authHelper.getUserName()!)" style="cursor: pointer" height="40"
+          class="d-lg-none rounded-circle" (click)="toggleCollapse()" />
       </div>
     </div>
-    <div class="d-none d-lg-flex flex-row gap-4 justify-content-end col-lg-10 transition">
+
+
+
+
+
+    <!-- PC Navbar View -->
+    <div class="d-none d-lg-flex flex-row gap-4 justify-content-end align-items-center col-lg-10 transition">
       @for (link of links; track $index) {
       <a [routerLink]="link.routerLink">
-        {{link.label}}
+        {{ link.label }}
       </a>
-      }
-      @if(authHelper.isLoggedIn | async){
-      <a>
-        {{authHelper.getUserName()}}
-      </a>
-      @if(authHelper.hasRole("Admin")){
-      <a [routerLink]="'/admin/marketplace'">
-        Admin Panel
-      </a>
-      }
-      <a (click)="authHelper.logout()" title="logout">
-        <i class="pi pi-sign-out"></i>
-      </a>
-      }
-      @else{
-      @for (link of guestLinks; track $index) {
+      } @if(authHelper.isLoggedIn | async){
+      <!-- Angular Material Menu -->
+
+        <img [matMenuTriggerFor]="userMenu" [src]="helper.generateAvatar(authHelper.getUserName()!)" style="cursor: pointer" height="40"
+          class="rounded-circle" />
+      <mat-menu #userMenu="matMenu">
+        @for (link of userLinks; track $index) {
+        <button mat-menu-item [routerLink]="link.routerLink">
+          {{ link.label }}
+        </button>
+
+        }
+      </mat-menu>
+      } @else{ @for (link of guestLinks; track $index) {
       <a [routerLink]="link.routerLink">
-        {{link.label}}
+        {{ link.label }}
       </a>
-      }
-      }
+      } }
     </div>
 
+
+
+
+    <!-- Mobile View Navbar -->
     <div class="d-flex d-lg-none flex-column gap-4 justify-content-center transition overflow-y-scroll" id="navlinks"
       #navlinks>
       @for (link of links; track $index) {
-      <a [routerLink]="link.routerLink" >
-        {{link.label}}
+      <a [routerLink]="link.routerLink">
+        {{ link.label }}
+      </a>
+      } @if(authHelper.isLoggedIn | async){
+      @for (link of userLinks; track $index) {
+      <a [routerLink]="link.routerLink">
+        {{ link.label }}
       </a>
       }
-      @if(authHelper.isLoggedIn | async){
-      <a>
-        {{authHelper.getUserName()}}
-      </a>
-      @if(authHelper.hasRole("Admin")){
-      <a [routerLink]="'/admin/marketplace'">
-        Admin Panel
-      </a>
       }
-      <a (click)="authHelper.logout()">
-        Logout
-      </a>
-      }
+
       @else{
+
       @for (link of guestLinks; track $index) {
       <a [routerLink]="link.routerLink">
-        {{link.label}}
+        {{ link.label }}
       </a>
       }
       }

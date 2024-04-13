@@ -1,7 +1,10 @@
 <div>
-    <div class="navbar-container bg-white border border-1">
-        <app-navbar>
+    <div class="navbar-container bg-white border border-1 sticky-top">
+        <app-navbar (togglerEvent)="toggleExpanded()" [expanded]="expanded">
         </app-navbar>
+    </div>
+    <div class="transition sidenav-container bg-white h-100 overflow-y-scroll sticky-top border border-1 z-2" [ngClass]="{ expanded: expanded, collapsed: !expanded }">
+        <app-sidebar (collapse)="toggleExpanded()"></app-sidebar>
     </div>
     <div class="content">
         <router-outlet></router-outlet>

@@ -1,11 +1,11 @@
 import { AccordionModule } from 'primeng/accordion';
 import { Component, EventEmitter, Output, ViewEncapsulation, output } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { AuthHelper } from '../../../../services/auth-helper';
+import { AuthHelper } from '../../../services/auth-helper';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { Helper } from '../../../../services/helper';
+import { Helper } from '../../../services/helper';
 import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
@@ -33,7 +33,7 @@ export class SidebarComponent {
     private _router: Router,
     private _route: ActivatedRoute,
   ) {
-    this._authHelper.$roleObservable.subscribe({
+    this._authHelper.$rolesObservable.subscribe({
       next: next => this.roles = next
     })
     this.roles = this._authHelper.getRoles()
@@ -71,8 +71,5 @@ export class SidebarComponent {
   }
   logout() {
     this._authHelper.logout();
-  }
-  requiredLoop(tab:number){
-    // return this.tournamentTypes.filter(e=>e.sports.includes(tab)).map(e=>e.types)
   }
 }
