@@ -5,9 +5,11 @@
         <a [routerLink]="['/home']">
           <img src="/assets/logos/logo.png" height="40" class="ms-2 me-auto" />
         </a>
+        @if(authHelper.isLoggedIn|async){
         <mat-icon class="ms-2" style="cursor: pointer" (click)="expanded = !expanded; togglerEvent.next(expanded)">
           menu
         </mat-icon>
+        }
         <img [src]="helper.generateAvatar(authHelper.getUserName()!)" style="cursor: pointer" height="40"
           class="d-lg-none rounded-circle" (click)="toggleCollapse()" />
       </div>
@@ -26,8 +28,8 @@
       } @if(authHelper.isLoggedIn | async){
       <!-- Angular Material Menu -->
 
-        <img [matMenuTriggerFor]="userMenu" [src]="helper.generateAvatar(authHelper.getUserName()!)" style="cursor: pointer" height="40"
-          class="rounded-circle" />
+      <img [matMenuTriggerFor]="userMenu" [src]="helper.generateAvatar(authHelper.getUserName()!)"
+        style="cursor: pointer" height="40" class="rounded-circle" />
       <mat-menu #userMenu="matMenu">
         @for (link of userLinks; track $index) {
         <button mat-menu-item [routerLink]="link.routerLink">
@@ -35,6 +37,9 @@
         </button>
 
         }
+        <button mat-menu-item (click)="authHelper.logout()">
+          Logout
+        </button>
       </mat-menu>
       } @else{ @for (link of guestLinks; track $index) {
       <a [routerLink]="link.routerLink">
@@ -59,6 +64,9 @@
         {{ link.label }}
       </a>
       }
+      <a (click)="authHelper.logout()">
+        Logout
+      </a>
       }
 
       @else{

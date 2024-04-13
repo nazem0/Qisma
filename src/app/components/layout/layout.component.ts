@@ -4,7 +4,7 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { NgClass } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-layout',
@@ -16,12 +16,14 @@ import { NgClass } from '@angular/common';
     RouterModule,
     FooterComponent,
     SidebarComponent,
-    NgClass
+    NgClass,
+    AsyncPipe
   ]
 })
 export class LayoutComponent {
-
-  expanded = true;
+  
+  expanded = false;
+  constructor(public authHelper:AuthHelper){}
   toggleExpanded() {
     console.log("Clicked");
     

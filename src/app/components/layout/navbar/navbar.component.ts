@@ -55,7 +55,6 @@ export class NavbarComponent implements AfterViewInit {
     ];
     this.userLinks= [
       { label: 'Profile', routerLink: 'profile' },
-      { label: 'Logout', command:()=>this.authHelper.logout() },
     ]
     if(this.authHelper.hasRole("Admin")){
       this.userLinks.push({label:'Admin Panel', routerLink:'/admin/marketplace'})
