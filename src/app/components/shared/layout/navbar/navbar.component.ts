@@ -1,14 +1,13 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
-import { AuthHelper } from '../../../services/auth-helper';
 import { MenuItem } from 'primeng/api';
-import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { Helper } from '../../../services/helper';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { Helper } from '../../../../services/helper';
+import { AuthHelper } from '../../../../services/auth-helper';
 
 @Component({
   selector: 'app-navbar',
@@ -32,7 +31,7 @@ export class NavbarComponent implements AfterViewInit {
   guestLinks:{label:string, routerLink:string}[];
   @ViewChild("navlinks") navlinksRef!: ElementRef;
   navlinksDiv!: HTMLDivElement;
-
+  @Input() showSidebarMenuButton:boolean=false;
   @Input() expanded = false;
   @Output() togglerEvent: EventEmitter<boolean> = new EventEmitter(this.expanded);
   helper=Helper;
@@ -53,11 +52,13 @@ export class NavbarComponent implements AfterViewInit {
       { label: 'Login', routerLink: 'login' },
       { label: 'Sign Up', routerLink: 'register' }
     ];
-    this.userLinks= [
-      { label: 'Profile', routerLink: 'profile' },
-    ]
+
     if(this.authHelper.hasRole("Admin")){
-      this.userLinks.push({label:'Admin Panel', routerLink:'/admin/marketplace'})
+      this.userLinks.push({label:'Admin Panel', routerLink:'/admin'})
+    }
+    if(this.authHelper.hasRole("Customer")){
+      this.userLinks.push({label:'Profile', routerLink:'/profile'})
+
     }
   }
   ngAfterViewInit(): void {

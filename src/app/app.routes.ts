@@ -1,9 +1,9 @@
+import { LayoutComponent } from './components/shared/layout/layout.component';
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
 import { Routes } from '@angular/router';
 import { LoginComponent } from './components/guest/login/login.component';
 import { RegisterComponent } from './components/guest/register/register.component';
 import { ForgotPasswordComponent } from './components/guest/forgot-password/forgot-password.component';
-import { LayoutComponent } from './components/layout/layout.component';
 import { ResetPasswordComponent } from './components/guest/reset-password/reset-password.component';
 import { DevComponent } from './components/guest/dev/dev.component';
 import { HomeComponent } from './components/guest/home/home.component';
@@ -13,15 +13,24 @@ import { PropertyActionsComponent } from './components/admin/property-actions/pr
 import { EditImagesComponent } from './components/admin/edit-images/edit-images.component';
 import { AdminAuthGuard } from './guards/admin.guard';
 import { MarketplacePropertiesPaginationComponent } from './components/guest/marketplace/marketplace-properties-pagination/marketplace-properties-pagination.component';
+import { UserLayoutComponent } from './components/shared/user-layout/user-layout.component';
+import { UserAuthGuard } from './guards/user.guard';
 
 export const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   {
-    path: "admin", component: LayoutComponent, children: [
+    path: "admin", component: UserLayoutComponent, children: [
+      { path: "marketplace", component: MarketplaceComponent, title: "Marketplace" },
+      { path: "marketplace/property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
       { path: "marketplace/property-images/:id", component: EditImagesComponent, title: "Property Images" },
       { path: "marketplace/property-actions", component: PropertyActionsComponent, title: "Property Actions" },
       { path: "marketplace/property-actions/:id", component: PropertyActionsComponent, title: "Property Actions" },
     ], canActivate: [AdminAuthGuard]
+  },
+  {
+    path: "profile", component: UserLayoutComponent, children: [
+
+    ], canActivate: [UserAuthGuard]
   },
   {
     path: "", component: LayoutComponent, children: [
@@ -33,8 +42,8 @@ export const routes: Routes = [
       { path: "home", component: HomeComponent, title: "Home" },
       { path: "marketplace", component: MarketplaceComponent, title: "Marketplace" },
       { path: "marketplace/property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
-      { path: '**', component: PageNotFoundComponent }
     ]
   },
+  { path: '**', component: PageNotFoundComponent }
 
 ];

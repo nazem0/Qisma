@@ -1,12 +1,12 @@
 import { AccordionModule } from 'primeng/accordion';
 import { Component, EventEmitter, Output, ViewEncapsulation, output } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { AuthHelper } from '../../../services/auth-helper';
+import {  Router, RouterModule } from '@angular/router';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { Helper } from '../../../services/helper';
 import { TooltipModule } from 'primeng/tooltip';
+import { AuthHelper } from '../../../../services/auth-helper';
+import { Helper } from '../../../../services/helper';
 
 @Component({
   selector: 'app-sidebar',
@@ -31,7 +31,6 @@ export class SidebarComponent {
   constructor(
     public _authHelper: AuthHelper,
     private _router: Router,
-    private _route: ActivatedRoute,
   ) {
     this._authHelper.$rolesObservable.subscribe({
       next: next => this.roles = next
@@ -42,28 +41,34 @@ export class SidebarComponent {
         title:"Properties",
         url:"marketplace",
         iconClass:"pi-home"
-      },
-      {
-        title:"Wallet",
-        url:"wallet",
-        iconClass:"pi-wallet"
-      },
-      {
-        title:"Portofolio",
-        url:"portofolio",
-        iconClass:"pi-th-large"
-      },
-      {
-        title:"Rewards",
-        url:"rewards",
-        iconClass:"pi-star"
-      },
-      {
-        title:"Cart",
-        url:"cart",
-        iconClass:"pi-cart-plus"
       }
     ]
+    if(_authHelper.hasRole("Customer"))
+    {
+      this.links.push(...[
+        {
+          title:"Wallet",
+          url:"wallet",
+          iconClass:"pi-wallet"
+        },
+        {
+          title:"Portofolio",
+          url:"portofolio",
+          iconClass:"pi-th-large"
+        },
+        {
+          title:"Rewards",
+          url:"rewards",
+          iconClass:"pi-star"
+        },
+        {
+          title:"Cart",
+          url:"cart",
+          iconClass:"pi-cart-plus"
+        }
+      ])
+
+    }
   }
 
   login() {

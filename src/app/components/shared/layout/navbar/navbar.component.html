@@ -5,7 +5,7 @@
         <a [routerLink]="['/home']">
           <img src="/assets/logos/logo.png" height="40" class="ms-2 me-auto" />
         </a>
-        @if(authHelper.isLoggedIn|async){
+        @if(showSidebarMenuButton && (authHelper.isLoggedIn|async)){
         <mat-icon class="ms-2" style="cursor: pointer" (click)="expanded = !expanded; togglerEvent.next(expanded)">
           menu
         </mat-icon>

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { AuthHelper } from '../../services/auth-helper';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AsyncPipe, NgClass } from '@angular/common';
+import { AuthHelper } from '../../../services/auth-helper';
 
 @Component({
   selector: 'app-layout',
