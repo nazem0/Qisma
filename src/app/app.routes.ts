@@ -18,9 +18,7 @@ export const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   {
     path: "admin", component: LayoutComponent, children: [
-      { path: "marketplace", component: MarketplaceComponent, title: "Marketplace" },
       { path: "marketplace/property-images/:id", component: EditImagesComponent, title: "Property Images" },
-      { path: "marketplace/property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
       { path: "marketplace/property-actions", component: PropertyActionsComponent, title: "Property Actions" },
       { path: "marketplace/property-actions/:id", component: PropertyActionsComponent, title: "Property Actions" },
     ], canActivate: [AdminAuthGuard]
