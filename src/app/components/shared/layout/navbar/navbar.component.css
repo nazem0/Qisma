@@ -1,7 +1,6 @@
-
-#navlinks{
-    height: 0px;
-}
 .expanded{
     height: 420px !important;
+}
+.collapsed{
+    height: 0px !important;
 }

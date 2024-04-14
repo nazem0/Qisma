@@ -5,19 +5,12 @@
         <a [routerLink]="['/home']">
           <img src="/assets/logos/logo.png" height="40" class="ms-2 me-auto" />
         </a>
+        <mat-icon class="ms-2" style="cursor: pointer" (click)="toggleCollapse(); togglerEvent.next(collapse)">
+          menu
+        </mat-icon>
         @if(showSidebarMenuButton && (authHelper.isLoggedIn|async)){
-        <mat-icon class="ms-2" style="cursor: pointer" (click)="expanded = !expanded; togglerEvent.next(expanded)">
-          menu
-        </mat-icon>
         <img [src]="helper.generateAvatar(authHelper.getUserName()!)" style="cursor: pointer" height="40"
-          class="d-lg-none rounded-circle" (click)="toggleCollapse()" />
-        }
-        @else{
-
-        <mat-icon class="ms-2" style="cursor: pointer" class="d-lg-none rounded-circle" (click)="toggleCollapse()">
-          menu
-        </mat-icon>
-
+          class="d-lg-none rounded-circle" (click)="toggleNavbarCollapse()" />
         }
       </div>
     </div>
@@ -45,7 +38,7 @@
         </button>
         }
         }
-        @else if(authHelper.hasRole(roles.Customer)){
+        @if(authHelper.hasRole(roles.Customer)){
         @for (link of userLinks; track $index) {
         <button mat-menu-item [routerLink]="link.routerLink">
           {{ link.label }}
@@ -67,17 +60,26 @@
 
 
     <!-- Mobile View Navbar -->
-    <div class="d-flex d-lg-none flex-column gap-4 justify-content-center transition overflow-y-scroll" id="navlinks"
-      #navlinks>
+    <div class="d-flex d-lg-none flex-column gap-4 justify-content-center transition overflow-y-scroll" [ngClass]="{ expanded: !navbarCollapse, collapsed: navbarCollapse }">
       @for (link of links; track $index) {
       <a [routerLink]="link.routerLink">
         {{ link.label }}
       </a>
       } @if(authHelper.isLoggedIn | async){
+      
+      @if(authHelper.hasRole(roles.Admin)){
+      @for (link of adminLinks; track $index) {
+      <a [routerLink]="link.routerLink">
+        {{ link.label }}
+      </a>
+      }
+      }
+      @if(authHelper.hasRole(roles.Customer)){
       @for (link of userLinks; track $index) {
       <a [routerLink]="link.routerLink">
         {{ link.label }}
       </a>
+      }
       }
       <a (click)="authHelper.logout()">
         Logout

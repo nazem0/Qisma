@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
@@ -26,16 +26,15 @@ import { Roles } from '../../../../enums/roles.enum';
     MatIconModule,
   ]
 })
-export class NavbarComponent implements AfterViewInit {
-  collapse: boolean = false;
+export class NavbarComponent {
+  @Input() collapse: boolean = false;
+  navbarCollapse=true;
   links: { label: string, routerLink: string }[];
   guestLinks: { label: string, routerLink: string }[];
   adminLinks: { label: string, routerLink: string }[];
-  @ViewChild("navlinks") navlinksRef!: ElementRef;
   navlinksDiv!: HTMLDivElement;
   @Input() showSidebarMenuButton: boolean = false;
-  @Input() expanded = false;
-  @Output() togglerEvent: EventEmitter<boolean> = new EventEmitter(this.expanded);
+  @Output() togglerEvent: EventEmitter<boolean> = new EventEmitter(this.collapse);
   helper = Helper;
   roles = Roles;
   userLinks: MenuItem[] = []
@@ -57,19 +56,12 @@ export class NavbarComponent implements AfterViewInit {
     this.adminLinks = [{ label: "Admin Panel", routerLink: "/admin" }]
     this.userLinks = [{ label: 'Profile', routerLink: '/profile' }]
   }
-  ngAfterViewInit(): void {
-    this.navlinksDiv = this.navlinksRef.nativeElement;
-    this.toggleCollapse()
-  }
-  signUp() {
-    // Your sign-up logic here
-  }
   toggleCollapse() {
     this.collapse = !this.collapse;
-    if (!this.collapse) {
-      this.navlinksDiv.classList.add("expanded");
-    } else {
-      this.navlinksDiv.classList.remove("expanded");
-    }
+    
+  }
+
+  toggleNavbarCollapse() {
+    this.navbarCollapse = !this.navbarCollapse;
   }
 }

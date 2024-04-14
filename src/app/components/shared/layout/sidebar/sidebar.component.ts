@@ -69,7 +69,7 @@ export class SidebarComponent {
   }
 
   login() {
-    this._router.navigate(["login"])
+    this._router.navigate(["/login"])
   }
   logout() {
     this._authHelper.logout();

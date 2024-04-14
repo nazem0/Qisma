@@ -1,6 +1,6 @@
 import { NgClass, AsyncPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../layout/footer/footer.component';
 import { NavbarComponent } from '../layout/navbar/navbar.component';
 import { SidebarComponent } from '../layout/sidebar/sidebar.component';
@@ -21,11 +21,9 @@ import { AuthHelper } from '../../../services/auth-helper';
   ]
 })
 export class UserLayoutComponent {
-  expanded = true;
+  collapse = false;
   constructor(public authHelper:AuthHelper){}
-  toggleExpanded() {
-    console.log("Clicked");
-    
-    this.expanded = !this.expanded;
+  toggleCollapse() {    
+    this.collapse = !this.collapse;
   }
 }
