@@ -5,12 +5,12 @@
         <a [routerLink]="['/home']">
           <img src="/assets/logos/logo.png" height="40" class="ms-2 me-auto" />
         </a>
-        <mat-icon class="ms-2" style="cursor: pointer" (click)="toggleCollapse(); togglerEvent.next(collapse)">
+        <mat-icon class=" d-lg-none  ms-2" style="cursor: pointer" (click)="toggleNavbarCollapse();">
           menu
         </mat-icon>
         @if(showSidebarMenuButton && (authHelper.isLoggedIn|async)){
         <img [src]="helper.generateAvatar(authHelper.getUserName()!)" style="cursor: pointer" height="40"
-          class="d-lg-none rounded-circle" (click)="toggleNavbarCollapse()" />
+          class="rounded-circle" (click)="toggleCollapse();  togglerEvent.next(collapse)" />
         }
       </div>
     </div>
@@ -62,21 +62,21 @@
     <!-- Mobile View Navbar -->
     <div class="d-flex d-lg-none flex-column gap-4 justify-content-center transition overflow-y-scroll" [ngClass]="{ expanded: !navbarCollapse, collapsed: navbarCollapse }">
       @for (link of links; track $index) {
-      <a [routerLink]="link.routerLink">
+      <a [routerLink]="link.routerLink" (click)="toggleNavbarCollapse()">
         {{ link.label }}
       </a>
       } @if(authHelper.isLoggedIn | async){
       
       @if(authHelper.hasRole(roles.Admin)){
       @for (link of adminLinks; track $index) {
-      <a [routerLink]="link.routerLink">
+      <a [routerLink]="link.routerLink" (click)="toggleNavbarCollapse()">
         {{ link.label }}
       </a>
       }
       }
       @if(authHelper.hasRole(roles.Customer)){
       @for (link of userLinks; track $index) {
-      <a [routerLink]="link.routerLink">
+      <a [routerLink]="link.routerLink" (click)="toggleNavbarCollapse()">
         {{ link.label }}
       </a>
       }
@@ -89,7 +89,7 @@
       @else{
 
       @for (link of guestLinks; track $index) {
-      <a [routerLink]="link.routerLink">
+      <a [routerLink]="link.routerLink" (click)="toggleNavbarCollapse()">
         {{ link.label }}
       </a>
       }
