@@ -13,10 +13,10 @@
           class="d-lg-none rounded-circle" (click)="toggleCollapse()" />
         }
         @else{
-          
-          <mat-icon class="ms-2" style="cursor: pointer" class="d-lg-none rounded-circle" (click)="toggleCollapse()">
-            menu
-          </mat-icon>
+
+        <mat-icon class="ms-2" style="cursor: pointer" class="d-lg-none rounded-circle" (click)="toggleCollapse()">
+          menu
+        </mat-icon>
 
         }
       </div>
@@ -38,11 +38,19 @@
       <img [matMenuTriggerFor]="userMenu" [src]="helper.generateAvatar(authHelper.getUserName()!)"
         style="cursor: pointer" height="40" class="rounded-circle" />
       <mat-menu #userMenu="matMenu">
+        @if(authHelper.hasRole(roles.Admin)){
+        @for (link of adminLinks; track $index) {
+        <button mat-menu-item [routerLink]="link.routerLink">
+          {{ link.label }}
+        </button>
+        }
+        }
+        @else if(authHelper.hasRole(roles.Customer)){
         @for (link of userLinks; track $index) {
         <button mat-menu-item [routerLink]="link.routerLink">
           {{ link.label }}
         </button>
-
+        }
         }
         <button mat-menu-item (click)="authHelper.logout()">
           Logout

@@ -1,3 +1,4 @@
+import { Roles } from './../../../enums/roles.enum';
 import { BusinessHelper } from './../../../services/business-helper';
 import { PropertyForAdminService } from './../../../api/services/property-for-admin.service';
 import { Helper } from '../../../services/helper';
@@ -26,6 +27,7 @@ export class PropertyCard2Component {
   @Input() property!: PropertyViewModelInListViewForUser;
   helper = Helper;
   @Output() refresh = new EventEmitter();
+  adminRole=Roles.Admin
   constructor(
     public authHelper: AuthHelper,
     public businessHelper:BusinessHelper

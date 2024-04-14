@@ -8,13 +8,14 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { Helper } from '../../../../services/helper';
 import { AuthHelper } from '../../../../services/auth-helper';
+import { Roles } from '../../../../enums/roles.enum';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
-  standalone:true,
-  imports:[
+  standalone: true,
+  imports: [
     MenubarModule,
     ButtonModule,
     NgClass,
@@ -26,17 +27,18 @@ import { AuthHelper } from '../../../../services/auth-helper';
   ]
 })
 export class NavbarComponent implements AfterViewInit {
-  collapse:boolean=false;
-  links: {label:string, routerLink:string}[];
-  guestLinks:{label:string, routerLink:string}[];
+  collapse: boolean = false;
+  links: { label: string, routerLink: string }[];
+  guestLinks: { label: string, routerLink: string }[];
+  adminLinks: { label: string, routerLink: string }[];
   @ViewChild("navlinks") navlinksRef!: ElementRef;
   navlinksDiv!: HTMLDivElement;
-  @Input() showSidebarMenuButton:boolean=false;
+  @Input() showSidebarMenuButton: boolean = false;
   @Input() expanded = false;
   @Output() togglerEvent: EventEmitter<boolean> = new EventEmitter(this.expanded);
-  helper=Helper;
-
-  userLinks:MenuItem[]=[]
+  helper = Helper;
+  roles = Roles;
+  userLinks: MenuItem[] = []
   constructor(
     public authHelper: AuthHelper,
   ) {
@@ -52,14 +54,8 @@ export class NavbarComponent implements AfterViewInit {
       { label: 'Login', routerLink: 'login' },
       { label: 'Sign Up', routerLink: 'register' }
     ];
-
-    if(this.authHelper.hasRole("Admin")){
-      this.userLinks.push({label:'Admin Panel', routerLink:'/admin'})
-    }
-    if(this.authHelper.hasRole("Customer")){
-      this.userLinks.push({label:'Profile', routerLink:'/profile'})
-
-    }
+    this.adminLinks = [{ label: "Admin Panel", routerLink: "/admin" }]
+    this.userLinks = [{ label: 'Profile', routerLink: '/profile' }]
   }
   ngAfterViewInit(): void {
     this.navlinksDiv = this.navlinksRef.nativeElement;
@@ -68,11 +64,11 @@ export class NavbarComponent implements AfterViewInit {
   signUp() {
     // Your sign-up logic here
   }
-  toggleCollapse(){
+  toggleCollapse() {
     this.collapse = !this.collapse;
-    if(!this.collapse){
+    if (!this.collapse) {
       this.navlinksDiv.classList.add("expanded");
-    }else{
+    } else {
       this.navlinksDiv.classList.remove("expanded");
     }
   }

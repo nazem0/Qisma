@@ -7,6 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { TooltipModule } from 'primeng/tooltip';
 import { AuthHelper } from '../../../../services/auth-helper';
 import { Helper } from '../../../../services/helper';
+import { Roles } from '../../../../enums/roles.enum';
 
 @Component({
   selector: 'app-sidebar',
@@ -24,7 +25,6 @@ import { Helper } from '../../../../services/helper';
   ]
 })
 export class SidebarComponent {
-  roles: string[] = []
   links : {title:string, url:string, iconClass:string}[];
   @Output() collapse=new EventEmitter();
   helper=Helper;
@@ -32,10 +32,7 @@ export class SidebarComponent {
     public _authHelper: AuthHelper,
     private _router: Router,
   ) {
-    this._authHelper.$rolesObservable.subscribe({
-      next: next => this.roles = next
-    })
-    this.roles = this._authHelper.getRoles()
+
     this.links=[
       {
         title:"Properties",
@@ -43,7 +40,7 @@ export class SidebarComponent {
         iconClass:"pi-home"
       }
     ]
-    if(_authHelper.hasRole("Customer"))
+    if(_authHelper.hasRole(Roles.Customer))
     {
       this.links.push(...[
         {

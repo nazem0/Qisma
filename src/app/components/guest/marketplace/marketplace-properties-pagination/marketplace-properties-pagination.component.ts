@@ -11,6 +11,7 @@ import { PropertyCard2Component } from '../../../shared/property-card-2/property
 import { GovernorateAndCityViewModel, PropertyViewModelInListViewForUser } from '../../../../api/models';
 import { PropertyService, GovernorateAndCityService } from '../../../../api/services';
 import { BusinessHelper } from '../../../../services/business-helper';
+import { Roles } from '../../../../enums/roles.enum';
 
 @Component({
   selector: 'app-marketplace-properties-pagination',
@@ -31,6 +32,7 @@ import { BusinessHelper } from '../../../../services/business-helper';
   ]
 })
 export class MarketplacePropertiesPaginationComponent implements OnInit {
+  adminRole = Roles.Admin;
   governorates: GovernorateAndCityViewModel[] = [];
   cities: GovernorateAndCityViewModel[] = [];
   properties?: PropertyViewModelInListViewForUser[] | null;

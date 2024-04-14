@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { TooltipModule } from 'primeng/tooltip';
 import { AuthHelper } from '../../../services/auth-helper';
 import { ConfirmComponent } from '../../shared/confirm/confirm.component';
+import { Roles } from '../../../enums/roles.enum';
 
 @Component({
   selector: 'app-property-details',
@@ -42,6 +43,7 @@ export class PropertyDetailsComponent implements OnInit {
   propertyStatuses = BusinessHelper.propertyStatuses;
   helper = Helper;
   businessHelperStatic = BusinessHelper;
+  adminRole = Roles.Admin;
   constructor(
     private propertyService: PropertyService,
     private route: ActivatedRoute,

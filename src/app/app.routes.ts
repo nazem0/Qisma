@@ -12,7 +12,6 @@ import { PropertyDetailsComponent } from './components/guest/property-details/pr
 import { PropertyActionsComponent } from './components/admin/property-actions/property-actions.component';
 import { EditImagesComponent } from './components/admin/edit-images/edit-images.component';
 import { AdminAuthGuard } from './guards/admin.guard';
-import { MarketplacePropertiesPaginationComponent } from './components/guest/marketplace/marketplace-properties-pagination/marketplace-properties-pagination.component';
 import { UserLayoutComponent } from './components/shared/user-layout/user-layout.component';
 import { UserAuthGuard } from './guards/user.guard';
 
@@ -29,7 +28,8 @@ export const routes: Routes = [
   },
   {
     path: "profile", component: UserLayoutComponent, children: [
-
+      { path: "marketplace", component: MarketplaceComponent, title: "Marketplace" },
+      { path: "marketplace/property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
     ], canActivate: [UserAuthGuard]
   },
   {

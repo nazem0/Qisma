@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject } from "rxjs";
 import { UserDataViewModel } from "../api/models";
+import { Roles } from "../enums/roles.enum";
 
 @Injectable()
 
@@ -20,7 +21,12 @@ export class AuthHelper {
         localStorage.setItem(AuthHelper.authKey, JSON.stringify(auth));
         this._isLoggedIn.next(true);
         this.$rolesObservable.next(this.getRoles())
-        this.router.navigate(["home"]);
+        if(this.hasRole(Roles.Admin)){
+            this.router.navigate(["/admin/marketplace"]);
+        }
+        else if(this.hasRole(Roles.Customer)){
+            this.router.navigate(["/profile/marketplace"]);
+        }
 
     }
     public logout(): void {
@@ -46,13 +52,14 @@ export class AuthHelper {
     }
 
     public getRoles(): string[] {
-        let result = this.getAuth()?.roles;
-        return result ?? [];
+        return this.getAuth()?.roles ?? [];
     }
     public getUserName():string|undefined|null{
         return this.getAuth()?.name;
     }
     public hasRole(role:string) : boolean{
+        console.log(role, this.getRoles());
+        
         return this.getRoles().includes(role);
     }
 }

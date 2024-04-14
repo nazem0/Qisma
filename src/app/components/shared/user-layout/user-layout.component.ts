@@ -21,7 +21,7 @@ import { AuthHelper } from '../../../services/auth-helper';
   ]
 })
 export class UserLayoutComponent {
-  expanded = false;
+  expanded = true;
   constructor(public authHelper:AuthHelper){}
   toggleExpanded() {
     console.log("Clicked");

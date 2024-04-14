@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AuthHelper } from '../services/auth-helper';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Roles } from '../enums/roles.enum';
 @Injectable()
 export class AdminAuthGuard implements CanActivate, CanActivateChild {
   constructor(
@@ -20,7 +21,7 @@ export class AdminAuthGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (this._authHelper.hasRole("Admin")) {
+    if (this._authHelper.hasRole(Roles.Admin)) {
       return true;
     } 
     else if(this._authHelper.isLoggedIn){

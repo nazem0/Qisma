@@ -19,7 +19,7 @@
     </p-button>
     }
 
-    @if(authHelper.hasRole("Admin")){
+    @if(authHelper.hasRole(adminRole)){
     <a [routerLink]="'/admin/marketplace/property-actions/' + propertyId">
       <p-button [raised]="true" styleClass="bg-white text-primary border-0">
         <span>
