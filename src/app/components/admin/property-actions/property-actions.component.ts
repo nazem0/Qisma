@@ -203,6 +203,9 @@ export class PropertyActionsComponent implements OnInit {
       numberOfShares: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
+      minNumberOfShares: new FormControl<number | undefined>(undefined, [
+        Validators.required,
+      ]),
       sharePrice: new FormControl<number | undefined>(undefined, [Validators.required]),
       annualRentalYield: new FormControl<number | undefined>(undefined, [
         Validators.required,
