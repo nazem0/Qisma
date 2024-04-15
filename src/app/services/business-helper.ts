@@ -51,7 +51,7 @@ export class BusinessHelper {
   deleteProperty(propertyId: number) {
     this
       ._propertyForAdminService
-      .apiDashboardPropertyDeleteDelete$Json({
+      .apiDashboardPropertyEnableAndDisablePut$Json({
         PropertyId: propertyId
       }).subscribe()
   }

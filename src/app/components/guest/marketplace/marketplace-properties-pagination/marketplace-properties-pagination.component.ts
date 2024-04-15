@@ -8,7 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { SliderModule } from 'primeng/slider';
 import { PropertyCard2Component } from '../../../shared/property-card-2/property-card-2.component';
-import { GovernorateAndCityViewModel, PropertyViewModelInListViewForUser } from '../../../../api/models';
+import { GovernorateAndCityViewModel, PropertyViewModelInListView } from '../../../../api/models';
 import { PropertyService, GovernorateAndCityService } from '../../../../api/services';
 import { BusinessHelper } from '../../../../services/business-helper';
 import { Roles } from '../../../../enums/roles.enum';
@@ -35,7 +35,7 @@ export class MarketplacePropertiesPaginationComponent implements OnInit {
   adminRole = Roles.Admin;
   governorates: GovernorateAndCityViewModel[] = [];
   cities: GovernorateAndCityViewModel[] = [];
-  properties?: PropertyViewModelInListViewForUser[] | null;
+  properties?: PropertyViewModelInListView[] | null;
   math=Math;
   propertyTypes = BusinessHelper.propertyTypes
   filters: {
