@@ -21,6 +21,7 @@ export interface ApiDashboardPropertyAddFromFormPost$Plain$Params {
 'MaintenanceCost'?: number;
 'TransactionFees'?: number;
 'NumberOfShares': number;
+'MinNumberOfShares': number;
 'SharePrice': number;
 'AnnualRentalYield': number;
 'AnnualPriceAppreciation': number;

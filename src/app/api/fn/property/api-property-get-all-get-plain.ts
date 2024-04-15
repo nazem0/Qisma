@@ -6,7 +6,7 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { PropertyViewModelInListViewForUserPaginationViewModelApiResult } from '../../models/property-view-model-in-list-view-for-user-pagination-view-model-api-result';
+import { PropertyViewModelInListViewPaginationViewModelApiResult } from '../../models/property-view-model-in-list-view-pagination-view-model-api-result';
 import { Type } from '../../models/type';
 
 export interface ApiPropertyGetAllGet$Plain$Params {
@@ -21,7 +21,7 @@ export interface ApiPropertyGetAllGet$Plain$Params {
   MaxSharePrice?: number;
 }
 
-export function apiPropertyGetAllGet$Plain(http: HttpClient, rootUrl: string, params: ApiPropertyGetAllGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyViewModelInListViewForUserPaginationViewModelApiResult>> {
+export function apiPropertyGetAllGet$Plain(http: HttpClient, rootUrl: string, params: ApiPropertyGetAllGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyViewModelInListViewPaginationViewModelApiResult>> {
   const rb = new RequestBuilder(rootUrl, apiPropertyGetAllGet$Plain.PATH, 'get');
   if (params) {
     rb.query('PageNumber', params.PageNumber, {"style":"form"});
@@ -40,7 +40,7 @@ export function apiPropertyGetAllGet$Plain(http: HttpClient, rootUrl: string, pa
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<PropertyViewModelInListViewForUserPaginationViewModelApiResult>;
+      return r as StrictHttpResponse<PropertyViewModelInListViewPaginationViewModelApiResult>;
     })
   );
 }

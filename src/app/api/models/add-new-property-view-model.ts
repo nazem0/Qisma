@@ -15,6 +15,7 @@ export interface AddNewPropertyViewModel {
   location: string;
   maintenaceInstallment?: number | null;
   maintenanceCost?: number | null;
+  minNumberOfShares: number;
   monthlyInstallment?: number | null;
   numberOfShares: number;
   numberOfYears?: number | null;

@@ -25,10 +25,10 @@ import { apiDashboardPropertyAddPost$Json } from '../fn/property-for-admin/api-d
 import { ApiDashboardPropertyAddPost$Json$Params } from '../fn/property-for-admin/api-dashboard-property-add-post-json';
 import { apiDashboardPropertyAddPost$Plain } from '../fn/property-for-admin/api-dashboard-property-add-post-plain';
 import { ApiDashboardPropertyAddPost$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-add-post-plain';
-import { apiDashboardPropertyDeleteDelete$Json } from '../fn/property-for-admin/api-dashboard-property-delete-delete-json';
-import { ApiDashboardPropertyDeleteDelete$Json$Params } from '../fn/property-for-admin/api-dashboard-property-delete-delete-json';
-import { apiDashboardPropertyDeleteDelete$Plain } from '../fn/property-for-admin/api-dashboard-property-delete-delete-plain';
-import { ApiDashboardPropertyDeleteDelete$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-delete-delete-plain';
+import { apiDashboardPropertyEnableAndDisablePut$Json } from '../fn/property-for-admin/api-dashboard-property-enable-and-disable-put-json';
+import { ApiDashboardPropertyEnableAndDisablePut$Json$Params } from '../fn/property-for-admin/api-dashboard-property-enable-and-disable-put-json';
+import { apiDashboardPropertyEnableAndDisablePut$Plain } from '../fn/property-for-admin/api-dashboard-property-enable-and-disable-put-plain';
+import { ApiDashboardPropertyEnableAndDisablePut$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-enable-and-disable-put-plain';
 import { apiDashboardPropertyFacilityAddPost$Json } from '../fn/property-for-admin/api-dashboard-property-facility-add-post-json';
 import { ApiDashboardPropertyFacilityAddPost$Json$Params } from '../fn/property-for-admin/api-dashboard-property-facility-add-post-json';
 import { apiDashboardPropertyFacilityAddPost$Plain } from '../fn/property-for-admin/api-dashboard-property-facility-add-post-plain';
@@ -764,65 +764,65 @@ export class PropertyForAdminService extends BaseService {
     );
   }
 
-  /** Path part for operation `apiDashboardPropertyDeleteDelete()` */
-  static readonly ApiDashboardPropertyDeleteDeletePath = '/api/Dashboard/Property/Delete';
+  /** Path part for operation `apiDashboardPropertyEnableAndDisablePut()` */
+  static readonly ApiDashboardPropertyEnableAndDisablePutPath = '/api/Dashboard/Property/EnableAndDisable';
 
   /**
-   * Delete property.
+   * Enable and disable property.
    *
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiDashboardPropertyDeleteDelete$Plain()` instead.
+   * To access only the response body, use `apiDashboardPropertyEnableAndDisablePut$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiDashboardPropertyDeleteDelete$Plain$Response(params: ApiDashboardPropertyDeleteDelete$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
-    return apiDashboardPropertyDeleteDelete$Plain(this.http, this.rootUrl, params, context);
+  apiDashboardPropertyEnableAndDisablePut$Plain$Response(params: ApiDashboardPropertyEnableAndDisablePut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardPropertyEnableAndDisablePut$Plain(this.http, this.rootUrl, params, context);
   }
 
   /**
-   * Delete property.
+   * Enable and disable property.
    *
    *
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiDashboardPropertyDeleteDelete$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiDashboardPropertyEnableAndDisablePut$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiDashboardPropertyDeleteDelete$Plain(params: ApiDashboardPropertyDeleteDelete$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
-    return this.apiDashboardPropertyDeleteDelete$Plain$Response(params, context).pipe(
+  apiDashboardPropertyEnableAndDisablePut$Plain(params: ApiDashboardPropertyEnableAndDisablePut$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardPropertyEnableAndDisablePut$Plain$Response(params, context).pipe(
       map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
     );
   }
 
   /**
-   * Delete property.
+   * Enable and disable property.
    *
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiDashboardPropertyDeleteDelete$Json()` instead.
+   * To access only the response body, use `apiDashboardPropertyEnableAndDisablePut$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiDashboardPropertyDeleteDelete$Json$Response(params: ApiDashboardPropertyDeleteDelete$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
-    return apiDashboardPropertyDeleteDelete$Json(this.http, this.rootUrl, params, context);
+  apiDashboardPropertyEnableAndDisablePut$Json$Response(params: ApiDashboardPropertyEnableAndDisablePut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardPropertyEnableAndDisablePut$Json(this.http, this.rootUrl, params, context);
   }
 
   /**
-   * Delete property.
+   * Enable and disable property.
    *
    *
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiDashboardPropertyDeleteDelete$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiDashboardPropertyEnableAndDisablePut$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiDashboardPropertyDeleteDelete$Json(params: ApiDashboardPropertyDeleteDelete$Json$Params, context?: HttpContext): Observable<StringApiResult> {
-    return this.apiDashboardPropertyDeleteDelete$Json$Response(params, context).pipe(
+  apiDashboardPropertyEnableAndDisablePut$Json(params: ApiDashboardPropertyEnableAndDisablePut$Json$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardPropertyEnableAndDisablePut$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
     );
   }

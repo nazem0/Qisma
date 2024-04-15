@@ -16,6 +16,7 @@ export interface PropertyDetailsViewModelForUser {
   maintenaceInstallment?: number | null;
   maintenanceCost?: number | null;
   maintenanceCostNumerical?: number | null;
+  minNumberOfShares?: number;
   monthlyInstallment?: number | null;
   numberOfShares?: number;
   numberOfYears?: number | null;

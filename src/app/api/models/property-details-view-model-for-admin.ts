@@ -21,9 +21,11 @@ export interface PropertyDetailsViewModelForAdmin {
   maintenaceInstallment?: number | null;
   maintenanceCost?: number | null;
   maintenanceCostNumerical?: number | null;
+  minNumberOfShares?: number;
   monthlyInstallment?: number | null;
   numberOfShares?: number;
   numberOfYears?: number | null;
+  pendingShares?: number;
   projectedAnnualReturn?: number;
   propertyId?: number;
   propertyImages?: Array<PropertyImageViewModelforAdmin> | null;
@@ -33,5 +35,4 @@ export interface PropertyDetailsViewModelForAdmin {
   transactionFeesNumerical?: number | null;
   type?: Type;
   unitPrice?: number;
-  usedShares?: number;
 }

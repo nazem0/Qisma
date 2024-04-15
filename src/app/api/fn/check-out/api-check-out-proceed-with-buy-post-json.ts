@@ -8,12 +8,12 @@ import { RequestBuilder } from '../../request-builder';
 
 import { StringApiResult } from '../../models/string-api-result';
 
-export interface ApiDashboardPropertyDeleteDelete$Json$Params {
+export interface ApiCheckOutProceedWithBuyPost$Json$Params {
   PropertyId: number;
 }
 
-export function apiDashboardPropertyDeleteDelete$Json(http: HttpClient, rootUrl: string, params: ApiDashboardPropertyDeleteDelete$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiDashboardPropertyDeleteDelete$Json.PATH, 'delete');
+export function apiCheckOutProceedWithBuyPost$Json(http: HttpClient, rootUrl: string, params: ApiCheckOutProceedWithBuyPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiCheckOutProceedWithBuyPost$Json.PATH, 'post');
   if (params) {
     rb.query('PropertyId', params.PropertyId, {"style":"form"});
   }
@@ -28,4 +28,4 @@ export function apiDashboardPropertyDeleteDelete$Json(http: HttpClient, rootUrl:
   );
 }
 
-apiDashboardPropertyDeleteDelete$Json.PATH = '/api/Dashboard/Property/Delete';
+apiCheckOutProceedWithBuyPost$Json.PATH = '/api/CheckOut/ProceedWithBuy';

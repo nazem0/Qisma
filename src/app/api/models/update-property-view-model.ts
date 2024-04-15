@@ -13,6 +13,7 @@ export interface UpdatePropertyViewModel {
   location?: string | null;
   maintenaceInstallment?: number | null;
   maintenanceCost?: number | null;
+  minNumberOfShares?: number | null;
   monthlyInstallment?: number | null;
   numberOfShares?: number | null;
   numberOfYears?: number | null;

@@ -8,18 +8,18 @@ import { RequestBuilder } from '../../request-builder';
 
 import { StringApiResult } from '../../models/string-api-result';
 
-export interface ApiDashboardPropertyDeleteDelete$Plain$Params {
+export interface ApiDashboardPropertyEnableAndDisablePut$Json$Params {
   PropertyId: number;
 }
 
-export function apiDashboardPropertyDeleteDelete$Plain(http: HttpClient, rootUrl: string, params: ApiDashboardPropertyDeleteDelete$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiDashboardPropertyDeleteDelete$Plain.PATH, 'delete');
+export function apiDashboardPropertyEnableAndDisablePut$Json(http: HttpClient, rootUrl: string, params: ApiDashboardPropertyEnableAndDisablePut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiDashboardPropertyEnableAndDisablePut$Json.PATH, 'put');
   if (params) {
     rb.query('PropertyId', params.PropertyId, {"style":"form"});
   }
 
   return http.request(
-    rb.build({ responseType: 'text', accept: 'text/plain', context })
+    rb.build({ responseType: 'json', accept: 'text/json', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
@@ -28,4 +28,4 @@ export function apiDashboardPropertyDeleteDelete$Plain(http: HttpClient, rootUrl
   );
 }
 
-apiDashboardPropertyDeleteDelete$Plain.PATH = '/api/Dashboard/Property/Delete';
+apiDashboardPropertyEnableAndDisablePut$Json.PATH = '/api/Dashboard/Property/EnableAndDisable';
