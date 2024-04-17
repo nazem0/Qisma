@@ -8,6 +8,7 @@ import { CurrencyPipe, PercentPipe } from '@angular/common';
 import { AuthHelper } from '../../../services/auth-helper';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { PropertyViewModelInListView } from '../../../api/models';
+import { PropertyForAdminService } from '../../../api/services';
 
 @Component({
   selector: 'app-property-card-2',
@@ -30,12 +31,23 @@ export class PropertyCard2Component {
   constructor(
     public authHelper: AuthHelper,
     public businessHelper:BusinessHelper,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    private _propertyForAdminService: PropertyForAdminService
   ) {
     this.isInAdminPanel = authHelper.isInAdminPanel(this.activatedRoute);
   }
   
-
+  togglePropertyActivation(propertyId: number) {
+    this
+      ._propertyForAdminService
+      .apiDashboardPropertyEnableAndDisablePut$Json({
+        PropertyId: propertyId
+      }).subscribe(
+        {
+          next:()=>this.refresh.emit()
+        }
+      )
+  }
   
 
 }

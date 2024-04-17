@@ -29,9 +29,9 @@
       </p-button>
     </a>
 
-    <app-confirm [label]="'Delete Property'" [severity]="'danger'" [title]="'Delete '+property.location+' property'"
+    <app-confirm [label]="'Delete Property'" [severity]="'danger'" [title]="property.location+' property'"
       [description]="'Are you sure you want to delete this property?'"
-      (confirmation)="businessHelper.deleteProperty(propertyId!); goToPropertiesPage()"></app-confirm>
+      (confirmation)="togglePropertyActivation(propertyId!);"></app-confirm>
     }
   </div>
 </div>

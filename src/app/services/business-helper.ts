@@ -48,11 +48,4 @@ export class BusinessHelper {
     return this.propertyStatuses.find(e=>e.id == id)?.name
   }
 
-  deleteProperty(propertyId: number) {
-    this
-      ._propertyForAdminService
-      .apiDashboardPropertyEnableAndDisablePut$Json({
-        PropertyId: propertyId
-      }).subscribe()
-  }
 }

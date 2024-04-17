@@ -2,7 +2,7 @@ import { BusinessHelper } from './../../../services/business-helper';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Helper } from '../../../services/helper';
 import { ChartModule, UIChart } from 'primeng/chart';
-import { PropertyService } from '../../../api/services';
+import { PropertyForAdminService, PropertyService } from '../../../api/services';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { PropertyDetailsViewModelForUser } from '../../../api/models';
 import { CurrencyPipe } from '@angular/common';
@@ -50,7 +50,8 @@ export class PropertyDetailsComponent implements OnInit {
     private currency: CurrencyPipe,
     public authHelper:AuthHelper,
     public businessHelper:BusinessHelper,
-    public router:Router
+    public router:Router,
+    private _propertyForAdminService : PropertyForAdminService
   ) {
     this.isInAdminPanel = authHelper.isInAdminPanel(route)
   }
@@ -199,6 +200,18 @@ export class PropertyDetailsComponent implements OnInit {
 
   goToPropertiesPage(){
     this.router.navigate(['../..'], {relativeTo:this.route})
+  }
+
+  togglePropertyActivation(propertyId: number) {
+    this
+      ._propertyForAdminService
+      .apiDashboardPropertyEnableAndDisablePut$Json({
+        PropertyId: propertyId
+      }).subscribe({
+        next:()=>{
+          this.initProperty()
+        }
+      })
   }
 }
 
