@@ -43,7 +43,7 @@ export class PropertyDetailsComponent implements OnInit {
   propertyStatuses = BusinessHelper.propertyStatuses;
   helper = Helper;
   businessHelperStatic = BusinessHelper;
-  adminRole = Roles.Admin;
+  isInAdminPanel = false;
   constructor(
     private propertyService: PropertyService,
     private route: ActivatedRoute,
@@ -51,7 +51,9 @@ export class PropertyDetailsComponent implements OnInit {
     public authHelper:AuthHelper,
     public businessHelper:BusinessHelper,
     public router:Router
-  ) { }
+  ) {
+    this.isInAdminPanel = authHelper.isInAdminPanel(route)
+  }
   @ViewChild("chartElement") chartElement!: UIChart;
   propertyId?: number;
   chart: {
