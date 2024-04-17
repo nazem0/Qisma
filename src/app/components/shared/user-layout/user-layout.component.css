@@ -2,16 +2,16 @@
     min-height:100vh;
     height: 100%;
     position: fixed;
+    width: 60px;
+    padding-top: calc(var(--navbar-container-height) + 20px);
 }
 
 .expanded {
     width: 280px;
 }
 
-.collapsed {
-    width: 0px;
-}
-
-.sidenav-container {
-    padding-top: calc(var(--navbar-container-height) + 20px);
-}
+/* .sidebar-button{
+    top: 295px;
+    left:100px;
+    
+} */

@@ -1,5 +1,5 @@
 import { AccordionModule } from 'primeng/accordion';
-import { Component, EventEmitter, Output, ViewEncapsulation, output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation, output } from '@angular/core';
 import {  Router, RouterModule } from '@angular/router';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -26,7 +26,8 @@ import { Roles } from '../../../../enums/roles.enum';
 })
 export class SidebarComponent {
   links : {title:string, url:string, iconClass:string}[]=[];
-  @Output() collapse=new EventEmitter();
+  @Input() collapse:boolean = false;
+  @Output() collapseChange=new EventEmitter<boolean>();
   helper=Helper;
   constructor(
     public _authHelper: AuthHelper,
@@ -73,7 +74,12 @@ export class SidebarComponent {
     }
     
   }
-
+  toggleCollapse(){
+    if(this.collapse == false){
+      this.collapse = !this.collapse;
+      this.collapseChange.emit(this.collapse)
+    }
+  }
   login() {
     this._router.navigate(["/login"])
   }

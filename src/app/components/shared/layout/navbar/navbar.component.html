@@ -5,13 +5,8 @@
         <a [routerLink]="['/home']">
           <img src="/assets/logos/logo.png" height="40" class="ms-2 me-auto" />
         </a>
-        <mat-icon class="ms-2" style="cursor: pointer" (click)="toggleNavbarCollapse();">
-          menu
-        </mat-icon>
-        @if(showSidebarMenuButton && (authHelper.isLoggedIn|async)){
-        <img [src]="helper.generateAvatar(authHelper.getUserName()!)" style="cursor: pointer" height="40"
-          class="rounded-circle" (click)="toggleCollapse();  togglerEvent.next(collapse)" />
-        }
+        <img [src]="helper.generateAvatar(authHelper.getUserName()!)"
+        style="cursor: pointer" height="40" class="d-lg-none ms-2 rounded-circle" (click)="toggleNavbarCollapse();" />
       </div>
     </div>
 

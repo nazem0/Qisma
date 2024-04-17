@@ -5,6 +5,7 @@ import { FooterComponent } from '../layout/footer/footer.component';
 import { NavbarComponent } from '../layout/navbar/navbar.component';
 import { SidebarComponent } from '../layout/sidebar/sidebar.component';
 import { AuthHelper } from '../../../services/auth-helper';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-user-layout',
@@ -17,13 +18,19 @@ import { AuthHelper } from '../../../services/auth-helper';
     FooterComponent,
     SidebarComponent,
     NgClass,
-    AsyncPipe
+    AsyncPipe,
+    MatIconModule
   ]
 })
 export class UserLayoutComponent {
   collapse = false;
   constructor(public authHelper:AuthHelper){}
-  toggleCollapse() {    
-    this.collapse = !this.collapse;
+  toggleCollapse(state:boolean) {    
+    console.log(state);
+    console.log(this.collapse);
+    
+    this.collapse = state;
+    console.log(this.collapse);
+    
   }
 }

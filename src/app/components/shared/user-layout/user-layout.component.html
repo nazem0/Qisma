@@ -1,20 +1,28 @@
 <div>
-  <div class="navbar-container bg-white border border-1 sticky-top">
-      <app-navbar (togglerEvent)="toggleCollapse()" [collapse]="collapse"
-      [showSidebarMenuButton]="true">
-      </app-navbar>
-  </div>
-  @if(authHelper.isLoggedIn | async){
-      <div class="transition sidenav-container bg-white h-100 overflow-y-scroll sticky-top border border-1 z-2" [ngClass]="{ expanded: !collapse, collapsed: collapse }">
-          <app-sidebar (collapse)="toggleCollapse()"></app-sidebar>
-      </div>
-  }
-  <div class="content min-vh-100">
-      <router-outlet></router-outlet>
-  </div>
-  <div class="bg-dark-blue py-5 mt-5">
-      <div class="container-sm">
-          <app-footer></app-footer>
-      </div>
-  </div>
+    <div class="navbar-container bg-white border border-1 sticky-top">
+        <app-navbar [(collapse)]="collapse" [showSidebarMenuButton]="true">
+        </app-navbar>
+    </div>
+    @if(authHelper.isLoggedIn | async){
+    <div>
+        <div class="transition sidenav-container bg-white h-100 overflow-x-hidden sticky-top border border-1 z-2"
+            [ngClass]="{ expanded: !collapse}">
+            <app-sidebar [(collapse)]="collapse" >
+                <div style="cursor: pointer;" class="ps-3 py-2 d-flex align-items-center gap-3 w-100" (click)="toggleCollapse(!collapse)">
+                    <i class="material-icons fs-5">menu</i>
+                    Collapse
+                </div>
+            </app-sidebar>
+        </div>
+
+    </div>
+    }
+    <div class="content min-vh-100">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="bg-dark-blue py-5 mt-5">
+        <div class="container-sm">
+            <app-footer></app-footer>
+        </div>
+    </div>
 </div>

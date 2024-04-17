@@ -34,7 +34,7 @@ export class NavbarComponent {
   adminLinks: { label: string, routerLink: string }[];
   navlinksDiv!: HTMLDivElement;
   @Input() showSidebarMenuButton: boolean = false;
-  @Output() togglerEvent: EventEmitter<boolean> = new EventEmitter(this.collapse);
+  @Output() collapseChange: EventEmitter<boolean> = new EventEmitter();
   helper = Helper;
   roles = Roles;
   userLinks: MenuItem[] = []
@@ -58,6 +58,7 @@ export class NavbarComponent {
   }
   toggleCollapse() {
     this.collapse = !this.collapse;
+    this.collapseChange.emit(this.collapse);
     
   }
 
