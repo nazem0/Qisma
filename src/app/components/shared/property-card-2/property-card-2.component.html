@@ -30,7 +30,7 @@
         <small class="mat-small">Available: {{property.availableTokens}} shares at {{property.tokenPrice | currency
             : "EGP" : "symbol" : "1.0-0"}}</small>
     </div>
-    @if(authHelper.hasRole(adminRole)){
+    @if(isInAdminPanel){
     <a [routerLink]="'/admin/marketplace/property-actions/' + property.propertyId">
         <p-button [raised]="true" styleClass="bg-white text-primary border-0 px-2 py-0 w-100 rounded-0">
             <span class="mx-auto">Edit Property</span>
@@ -38,7 +38,7 @@
     </a>
     }
 </a>
-@if(authHelper.hasRole(adminRole)){
+@if(isInAdminPanel){
     <app-confirm [label]="'Delete Property'" [severity]="'danger'" [title]="'Delete '+property.address+' property'"
     [description]="'Are you sure you want to delete this property?'"
     (confirmation)="businessHelper.deleteProperty(property.propertyId!)"></app-confirm>

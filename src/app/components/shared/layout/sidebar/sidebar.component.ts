@@ -25,7 +25,7 @@ import { Roles } from '../../../../enums/roles.enum';
   ]
 })
 export class SidebarComponent {
-  links : {title:string, url:string, iconClass:string}[];
+  links : {title:string, url:string, iconClass:string}[]=[];
   @Output() collapse=new EventEmitter();
   helper=Helper;
   constructor(
@@ -33,16 +33,21 @@ export class SidebarComponent {
     private _router: Router,
   ) {
 
-    this.links=[
-      {
+    if(_authHelper.hasRole(Roles.Customer)){
+      this.links.push({
         title:"Properties",
         url:"marketplace",
         iconClass:"pi-home"
-      }
-    ]
+      });
+    }
     if(_authHelper.hasRole(Roles.Customer))
     {
       this.links.push(...[
+        {
+          title:"Properties",
+          url:"/marketplace",
+          iconClass:"pi-home"
+        },
         {
           title:"Wallet",
           url:"wallet",
@@ -66,6 +71,7 @@ export class SidebarComponent {
       ])
 
     }
+    
   }
 
   login() {

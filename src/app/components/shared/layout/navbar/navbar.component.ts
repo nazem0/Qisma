@@ -42,16 +42,16 @@ export class NavbarComponent {
     public authHelper: AuthHelper,
   ) {
     this.links = [
-      { label: 'Staking', routerLink: 'staking' },
-      { label: 'Marketplace', routerLink: 'marketplace' },
-      { label: 'About Us', routerLink: 'about-us' },
-      { label: 'Learn', routerLink: 'learn' },
-      { label: 'Blog', routerLink: 'blog' },
+      { label: 'Staking', routerLink: '/staking' },
+      { label: 'Marketplace', routerLink: '/marketplace' },
+      { label: 'About Us', routerLink: '/about-us' },
+      { label: 'Learn', routerLink: '/learn' },
+      { label: 'Blog', routerLink: '/blog' },
       { label: 'List Property', routerLink: 'property-actions' },
     ];
     this.guestLinks = [
-      { label: 'Login', routerLink: 'login' },
-      { label: 'Sign Up', routerLink: 'register' }
+      { label: 'Login', routerLink: '/login' },
+      { label: 'Sign Up', routerLink: '/register' }
     ];
     this.adminLinks = [{ label: "Admin Panel", routerLink: "/admin" }]
     this.userLinks = [{ label: 'Profile', routerLink: '/profile' }]

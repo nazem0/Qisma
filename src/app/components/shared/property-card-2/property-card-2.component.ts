@@ -2,7 +2,7 @@ import { Roles } from './../../../enums/roles.enum';
 import { BusinessHelper } from './../../../services/business-helper';
 import { Helper } from '../../../services/helper';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CurrencyPipe, PercentPipe } from '@angular/common';
 import { AuthHelper } from '../../../services/auth-helper';
@@ -26,11 +26,15 @@ export class PropertyCard2Component {
   @Input() property!: PropertyViewModelInListView;
   helper = Helper;
   @Output() refresh = new EventEmitter();
-  adminRole=Roles.Admin
+  isInAdminPanel : boolean;
   constructor(
     public authHelper: AuthHelper,
-    public businessHelper:BusinessHelper
-  ) { }
+    public businessHelper:BusinessHelper,
+    private activatedRoute:ActivatedRoute
+  ) {
+    this.isInAdminPanel = authHelper.isInAdminPanel(this.activatedRoute);
+  }
+  
 
   
 

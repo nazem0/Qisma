@@ -5,7 +5,7 @@
         <a [routerLink]="['/home']">
           <img src="/assets/logos/logo.png" height="40" class="ms-2 me-auto" />
         </a>
-        <mat-icon class=" d-lg-none  ms-2" style="cursor: pointer" (click)="toggleNavbarCollapse();">
+        <mat-icon class="ms-2" style="cursor: pointer" (click)="toggleNavbarCollapse();">
           menu
         </mat-icon>
         @if(showSidebarMenuButton && (authHelper.isLoggedIn|async)){

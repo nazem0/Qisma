@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { BehaviorSubject } from "rxjs";
 import { UserDataViewModel } from "../api/models";
 import { Roles } from "../enums/roles.enum";
@@ -12,9 +12,7 @@ export class AuthHelper {
 
     roles : string[] = [];
     $rolesObservable = new BehaviorSubject<string[]>(this.roles)
-    constructor(private router: Router) {
-
-    }
+    constructor(private router: Router) {}
     public static readonly authKey = "auth";
 
     public login(auth: UserDataViewModel): void {
@@ -58,8 +56,10 @@ export class AuthHelper {
         return this.getAuth()?.name;
     }
     public hasRole(role:string) : boolean{
-        console.log(role, this.getRoles());
-        
         return this.getRoles().includes(role);
+    }
+
+    public isInAdminPanel(route:ActivatedRoute){
+        return route.snapshot.parent?.url[0]?.path == Roles.Admin.toLowerCase();
     }
 }

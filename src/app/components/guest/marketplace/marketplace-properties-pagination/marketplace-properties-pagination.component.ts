@@ -2,7 +2,7 @@ import { AuthHelper } from './../../../../services/auth-helper';
 import { CurrencyPipe, NgIf, NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
@@ -48,11 +48,17 @@ export class MarketplacePropertiesPaginationComponent implements OnInit {
   selectedGov?: GovernorateAndCityViewModel
   selectedCity?: GovernorateAndCityViewModel
   selectedProperty?:{id:number, name:string};
+
+  isInAdminPanel : boolean;
+  
   constructor(
     private propertyService: PropertyService,
     private governorateAndCityService: GovernorateAndCityService,
-    public authHelper:AuthHelper
-  ) { }
+    public authHelper:AuthHelper,
+    private activatedRoute:ActivatedRoute
+  ) {
+    this.isInAdminPanel = authHelper.isInAdminPanel(this.activatedRoute);
+  }
   pagination = {
     index: 0,
     size: 12,
