@@ -34,7 +34,7 @@ export class SidebarComponent {
     private _router: Router,
   ) {
 
-    if(_authHelper.hasRole(Roles.Customer)){
+    if(_authHelper.hasRole(Roles.Admin)){
       this.links.push({
         title:"Properties",
         url:"marketplace",

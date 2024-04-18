@@ -59,7 +59,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 })
 export class PropertyActionsComponent implements OnInit {
   editPage = false;
-  propertyId?: number;
+  propertyId?: string;
   helper = Helper;
   readers: FileReader[] = [];
   inputArray: { id?: number, src: string | ArrayBuffer | null }[] = [];
@@ -370,7 +370,7 @@ export class PropertyActionsComponent implements OnInit {
 
   getUpdateFormGroup() {
     let updateFromGroup: FormGroup = this.fb.group({
-      propertyId: new FormControl<number>(this.propertyId!, [Validators.required])
+      propertyId: new FormControl<string>(this.propertyId!, [Validators.required])
     });
     for (const controlName in this.propertyForm?.controls) {
       if (['facilities', 'propertyImages'].includes(controlName)) continue;
@@ -427,7 +427,7 @@ export class PropertyActionsComponent implements OnInit {
       return;
     }
     
-    this.propertyId = parseInt(propertyIdParam);
+    this.propertyId = propertyIdParam;
     this.editPage = true;
     this.propertyForAdminService
       .apiDashboardPropertyGetByIdGet$Json({ PropertyId: this.propertyId })

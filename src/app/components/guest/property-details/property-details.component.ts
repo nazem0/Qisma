@@ -56,7 +56,7 @@ export class PropertyDetailsComponent implements OnInit {
     this.isInAdminPanel = authHelper.isInAdminPanel(route)
   }
   @ViewChild("chartElement") chartElement!: UIChart;
-  propertyId?: number;
+  propertyId?: string;
   chart: {
     data: any,
     options: any
@@ -202,7 +202,7 @@ export class PropertyDetailsComponent implements OnInit {
     this.router.navigate(['../..'], {relativeTo:this.route})
   }
 
-  togglePropertyActivation(propertyId: number) {
+  togglePropertyActivation(propertyId: string) {
     this
       ._propertyForAdminService
       .apiDashboardPropertyEnableAndDisablePut$Json({

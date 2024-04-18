@@ -10,21 +10,21 @@ import { NgFor, NgIf } from '@angular/common';
   selector: 'app-edit-images',
   templateUrl: './edit-images.component.html',
   styleUrl: './edit-images.component.css',
-  standalone:true,
-  imports:[ButtonModule, NgIf, NgFor]
+  standalone: true,
+  imports: [ButtonModule, NgIf, NgFor]
 })
 export class EditImagesComponent {
   @ViewChild("uploadedFiles") uploadedFiles!: ElementRef
   // postAttachments: IPostAttachmentCustom[] | null = null
-  propertyId?: number;
+  propertyId?: string;
   images: string[] = [];
-  imagesForUpload:Blob[] = [];
+  imagesForUpload: Blob[] = [];
   data: FormData;
   inputArray: any[] = [];
   readers: any[] = [];
   files: FileList | null = null;
   filesUploaded: boolean = false;
-  helper=Helper;
+  helper = Helper;
   constructor
     (
       private activatedRoute: ActivatedRoute,
@@ -35,11 +35,8 @@ export class EditImagesComponent {
     this.data = new FormData();
     this.activatedRoute.paramMap.subscribe({
       next: params => {
-        this.propertyId = parseInt(params.get("id")!)
-        if (isNaN(this.propertyId))
-          this.router.navigate(["404"]);
-        else
-          this.getAttachments();
+        this.propertyId = params.get("id")??""
+        if(this.propertyId) this.getAttachments();
       }
     })
   }
@@ -68,7 +65,7 @@ export class EditImagesComponent {
       .subscribe(
         {
           next: next => {
-            this.images = next.data??[];
+            this.images = next.data ?? [];
           }
         }
       )
@@ -77,7 +74,7 @@ export class EditImagesComponent {
 
   addAttachmnets() {
     if (!this.files || this.files.length <= 0) {
-      this.snackBar.open("You Have To Add Attachments First",'Close',{"duration":1000})
+      this.snackBar.open("You Have To Add Attachments First", 'Close', { "duration": 1000 })
       return;
     }
     this.data.set("PropertyId", this.propertyId!.toString())
@@ -85,26 +82,26 @@ export class EditImagesComponent {
       this.imagesForUpload.push(this.files?.item(i) as Blob);
     }
     this
-    .propertyForAdminService
-    .apiDashboardPropertyImagesAddPost$Json({
-      body:{
-        PropertyId:this.propertyId!,
-        Images:this.imagesForUpload
-      }
-    }).subscribe({
-      next: () => {
-        this.getAttachments();
-        this.snackBar.open("Images Added Successfully",'Close',{"duration":1000})
-        this.files = null;
-        this.data = new FormData();
-        this.inputArray = [];
-        this.readers = [];
-      }
-    })
+      .propertyForAdminService
+      .apiDashboardPropertyImagesAddPost$Json({
+        body: {
+          PropertyId: this.propertyId!,
+          Images: this.imagesForUpload
+        }
+      }).subscribe({
+        next: () => {
+          this.getAttachments();
+          this.snackBar.open("Images Added Successfully", 'Close', { "duration": 1000 })
+          this.files = null;
+          this.data = new FormData();
+          this.inputArray = [];
+          this.readers = [];
+        }
+      })
   }
   // delete(index:number){
   //   this.files?.item(index);
-    
+
   //   this.inputArray.splice(index,1);
   // }
   // delete(attachmentId: number | string) {

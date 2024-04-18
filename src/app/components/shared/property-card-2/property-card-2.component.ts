@@ -37,7 +37,7 @@ export class PropertyCard2Component {
     this.isInAdminPanel = authHelper.isInAdminPanel(this.activatedRoute);
   }
   
-  togglePropertyActivation(propertyId: number) {
+  togglePropertyActivation(propertyId: string) {
     this
       ._propertyForAdminService
       .apiDashboardPropertyEnableAndDisablePut$Json({

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../layout/footer/footer.component';
 import { NavbarComponent } from '../layout/navbar/navbar.component';
-import { SidebarComponent } from '../layout/sidebar/sidebar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 import { AuthHelper } from '../../../services/auth-helper';
 import { MatIconModule } from '@angular/material/icon';
 

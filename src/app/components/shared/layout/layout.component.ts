@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarComponent } from '../user-layout/sidebar/sidebar.component';
 import { AsyncPipe, NgClass } from '@angular/common';
 
 @Component({
