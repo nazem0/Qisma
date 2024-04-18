@@ -9,7 +9,7 @@ import { RequestBuilder } from '../../request-builder';
 import { PropertyDetailsViewModelForAdminApiResult } from '../../models/property-details-view-model-for-admin-api-result';
 
 export interface ApiDashboardPropertyGetByIdGet$Plain$Params {
-  PropertyId: number;
+  PropertyId: string;
 }
 
 export function apiDashboardPropertyGetByIdGet$Plain(http: HttpClient, rootUrl: string, params: ApiDashboardPropertyGetByIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyDetailsViewModelForAdminApiResult>> {

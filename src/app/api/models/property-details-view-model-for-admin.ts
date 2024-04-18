@@ -27,7 +27,7 @@ export interface PropertyDetailsViewModelForAdmin {
   numberOfYears?: number | null;
   pendingShares?: number;
   projectedAnnualReturn?: number;
-  propertyId?: number;
+  propertyId?: string | null;
   propertyImages?: Array<PropertyImageViewModelforAdmin> | null;
   sharePrice?: number;
   status?: Status;

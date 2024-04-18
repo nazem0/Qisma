@@ -12,6 +12,7 @@ export interface PropertyDetailsViewModelForUser {
   description?: string | null;
   downPayment?: number | null;
   governorate?: string | null;
+  isDeleted?: boolean;
   location?: string | null;
   maintenaceInstallment?: number | null;
   maintenanceCost?: number | null;
@@ -22,6 +23,7 @@ export interface PropertyDetailsViewModelForUser {
   numberOfYears?: number | null;
   projectedAnnualReturn?: number;
   propertyFacilities?: Array<PropertyFacilityViewModelForUser> | null;
+  propertyId?: string | null;
   propertyImages?: Array<string> | null;
   sharePrice?: number;
   status?: Status;

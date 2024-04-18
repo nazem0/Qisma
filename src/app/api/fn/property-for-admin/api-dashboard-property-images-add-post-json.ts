@@ -10,7 +10,7 @@ import { PropertyImageViewModelforAdminApiResult } from '../../models/property-i
 
 export interface ApiDashboardPropertyImagesAddPost$Json$Params {
       body?: {
-'PropertyId': number;
+'PropertyId': string;
 'Images': Array<Blob>;
 }
 }

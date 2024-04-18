@@ -7,13 +7,13 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 import { AddNewPropertyViewModel } from '../../models/add-new-property-view-model';
-import { Int32ApiResult } from '../../models/int-32-api-result';
+import { StringApiResult } from '../../models/string-api-result';
 
 export interface ApiDashboardPropertyAddPost$Plain$Params {
       body?: AddNewPropertyViewModel
 }
 
-export function apiDashboardPropertyAddPost$Plain(http: HttpClient, rootUrl: string, params?: ApiDashboardPropertyAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<Int32ApiResult>> {
+export function apiDashboardPropertyAddPost$Plain(http: HttpClient, rootUrl: string, params?: ApiDashboardPropertyAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
   const rb = new RequestBuilder(rootUrl, apiDashboardPropertyAddPost$Plain.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/*+json');
@@ -24,7 +24,7 @@ export function apiDashboardPropertyAddPost$Plain(http: HttpClient, rootUrl: str
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Int32ApiResult>;
+      return r as StrictHttpResponse<StringApiResult>;
     })
   );
 }

@@ -7,8 +7,8 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 import { AddPropertyFacilityViewModel } from '../../models/add-property-facility-view-model';
-import { Int32ApiResult } from '../../models/int-32-api-result';
 import { Status } from '../../models/status';
+import { StringApiResult } from '../../models/string-api-result';
 import { Type } from '../../models/type';
 
 export interface ApiDashboardPropertyAddFromFormPost$Plain$Params {
@@ -37,7 +37,7 @@ export interface ApiDashboardPropertyAddFromFormPost$Plain$Params {
 }
 }
 
-export function apiDashboardPropertyAddFromFormPost$Plain(http: HttpClient, rootUrl: string, params?: ApiDashboardPropertyAddFromFormPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<Int32ApiResult>> {
+export function apiDashboardPropertyAddFromFormPost$Plain(http: HttpClient, rootUrl: string, params?: ApiDashboardPropertyAddFromFormPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
   const rb = new RequestBuilder(rootUrl, apiDashboardPropertyAddFromFormPost$Plain.PATH, 'post');
   if (params) {
     rb.body(params.body, 'multipart/form-data');
@@ -48,7 +48,7 @@ export function apiDashboardPropertyAddFromFormPost$Plain(http: HttpClient, root
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Int32ApiResult>;
+      return r as StrictHttpResponse<StringApiResult>;
     })
   );
 }

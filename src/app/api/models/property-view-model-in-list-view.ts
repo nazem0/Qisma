@@ -8,6 +8,6 @@ export interface PropertyViewModelInListView {
   isDeleted?: boolean | null;
   projectedAnnualReturn?: number;
   projectedRentalYield?: number;
-  propertyId?: number;
+  propertyId?: string | null;
   tokenPrice?: number;
 }

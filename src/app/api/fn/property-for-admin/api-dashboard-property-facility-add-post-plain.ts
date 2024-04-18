@@ -11,7 +11,7 @@ import { PropertyFacilityViewModelForAdminApiResult } from '../../models/propert
 export interface ApiDashboardPropertyFacilityAddPost$Plain$Params {
   FacilityId?: number;
   Description?: string;
-  PropertyId: number;
+  PropertyId: string;
 }
 
 export function apiDashboardPropertyFacilityAddPost$Plain(http: HttpClient, rootUrl: string, params: ApiDashboardPropertyFacilityAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyFacilityViewModelForAdminApiResult>> {

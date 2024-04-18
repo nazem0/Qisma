@@ -17,7 +17,7 @@ export interface UpdatePropertyViewModel {
   monthlyInstallment?: number | null;
   numberOfShares?: number | null;
   numberOfYears?: number | null;
-  propertyId: number;
+  propertyId: string;
   sharePrice?: number | null;
   status?: Status;
   transactionFees?: number | null;

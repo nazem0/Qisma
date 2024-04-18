@@ -8,14 +8,14 @@ import { RequestBuilder } from '../../request-builder';
 
 import { StringApiResult } from '../../models/string-api-result';
 
-export interface ApiDashboardPropertyEnableAndDisablePut$Json$Params {
-  PropertyId: string;
+export interface ApiDashboardOrdersConfirmOrderPost$Json$Params {
+  OrderId: number;
 }
 
-export function apiDashboardPropertyEnableAndDisablePut$Json(http: HttpClient, rootUrl: string, params: ApiDashboardPropertyEnableAndDisablePut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiDashboardPropertyEnableAndDisablePut$Json.PATH, 'put');
+export function apiDashboardOrdersConfirmOrderPost$Json(http: HttpClient, rootUrl: string, params: ApiDashboardOrdersConfirmOrderPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiDashboardOrdersConfirmOrderPost$Json.PATH, 'post');
   if (params) {
-    rb.query('PropertyId', params.PropertyId, {"style":"form"});
+    rb.query('OrderId', params.OrderId, {"style":"form"});
   }
 
   return http.request(
@@ -28,4 +28,4 @@ export function apiDashboardPropertyEnableAndDisablePut$Json(http: HttpClient, r
   );
 }
 
-apiDashboardPropertyEnableAndDisablePut$Json.PATH = '/api/Dashboard/Property/EnableAndDisable';
+apiDashboardOrdersConfirmOrderPost$Json.PATH = '/api/Dashboard/Orders/ConfirmOrder';

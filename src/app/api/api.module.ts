@@ -4,8 +4,8 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
-import { CheckOutService } from './services/check-out.service';
 import { GovernorateAndCityService } from './services/governorate-and-city.service';
+import { OrderService } from './services/order.service';
 import { PropertyService } from './services/property.service';
 import { PropertyForAdminService } from './services/property-for-admin.service';
 import { UserAccountService } from './services/user-account.service';
@@ -18,8 +18,8 @@ import { UserAccountService } from './services/user-account.service';
   exports: [],
   declarations: [],
   providers: [
-    CheckOutService,
     GovernorateAndCityService,
+    OrderService,
     PropertyService,
     PropertyForAdminService,
     UserAccountService,

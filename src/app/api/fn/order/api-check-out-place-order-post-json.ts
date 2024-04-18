@@ -8,18 +8,20 @@ import { RequestBuilder } from '../../request-builder';
 
 import { StringApiResult } from '../../models/string-api-result';
 
-export interface ApiDashboardPropertyEnableAndDisablePut$Plain$Params {
+export interface ApiCheckOutPlaceOrderPost$Json$Params {
   PropertyId: string;
+  NumberOfShares: number;
 }
 
-export function apiDashboardPropertyEnableAndDisablePut$Plain(http: HttpClient, rootUrl: string, params: ApiDashboardPropertyEnableAndDisablePut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiDashboardPropertyEnableAndDisablePut$Plain.PATH, 'put');
+export function apiCheckOutPlaceOrderPost$Json(http: HttpClient, rootUrl: string, params: ApiCheckOutPlaceOrderPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiCheckOutPlaceOrderPost$Json.PATH, 'post');
   if (params) {
     rb.query('PropertyId', params.PropertyId, {"style":"form"});
+    rb.query('NumberOfShares', params.NumberOfShares, {"style":"form"});
   }
 
   return http.request(
-    rb.build({ responseType: 'text', accept: 'text/plain', context })
+    rb.build({ responseType: 'json', accept: 'text/json', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
@@ -28,4 +30,4 @@ export function apiDashboardPropertyEnableAndDisablePut$Plain(http: HttpClient, 
   );
 }
 
-apiDashboardPropertyEnableAndDisablePut$Plain.PATH = '/api/Dashboard/Property/EnableAndDisable';
+apiCheckOutPlaceOrderPost$Json.PATH = '/api/CheckOut/PlaceOrder';

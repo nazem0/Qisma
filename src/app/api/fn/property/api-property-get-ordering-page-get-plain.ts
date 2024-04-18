@@ -6,14 +6,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { PropertyDetailsViewModelForUserApiResult } from '../../models/property-details-view-model-for-user-api-result';
+import { OrderingPageViewModelApiResult } from '../../models/ordering-page-view-model-api-result';
 
-export interface ApiPropertyGetByIdGet$Plain$Params {
+export interface ApiPropertyGetOrderingPageGet$Plain$Params {
   PropertyId: string;
 }
 
-export function apiPropertyGetByIdGet$Plain(http: HttpClient, rootUrl: string, params: ApiPropertyGetByIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyDetailsViewModelForUserApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiPropertyGetByIdGet$Plain.PATH, 'get');
+export function apiPropertyGetOrderingPageGet$Plain(http: HttpClient, rootUrl: string, params: ApiPropertyGetOrderingPageGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<OrderingPageViewModelApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiPropertyGetOrderingPageGet$Plain.PATH, 'get');
   if (params) {
     rb.query('PropertyId', params.PropertyId, {"style":"form"});
   }
@@ -23,9 +23,9 @@ export function apiPropertyGetByIdGet$Plain(http: HttpClient, rootUrl: string, p
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<PropertyDetailsViewModelForUserApiResult>;
+      return r as StrictHttpResponse<OrderingPageViewModelApiResult>;
     })
   );
 }
 
-apiPropertyGetByIdGet$Plain.PATH = '/api/Property/GetById';
+apiPropertyGetOrderingPageGet$Plain.PATH = '/api/Property/GetOrderingPage';

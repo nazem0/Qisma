@@ -58,7 +58,6 @@ import { ApiDashboardPropertyUpdatePut$Json$Params } from '../fn/property-for-ad
 import { apiDashboardPropertyUpdatePut$Plain } from '../fn/property-for-admin/api-dashboard-property-update-put-plain';
 import { ApiDashboardPropertyUpdatePut$Plain$Params } from '../fn/property-for-admin/api-dashboard-property-update-put-plain';
 import { FacilityViewModelForAdminListApiResult } from '../models/facility-view-model-for-admin-list-api-result';
-import { Int32ApiResult } from '../models/int-32-api-result';
 import { PropertyDetailsViewModelForAdminApiResult } from '../models/property-details-view-model-for-admin-api-result';
 import { PropertyFacilityViewModelForAdminApiResult } from '../models/property-facility-view-model-for-admin-api-result';
 import { PropertyImageViewModelforAdminApiResult } from '../models/property-image-view-modelfor-admin-api-result';
@@ -84,7 +83,7 @@ export class PropertyForAdminService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiDashboardPropertyAddPost$Plain$Response(params?: ApiDashboardPropertyAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<Int32ApiResult>> {
+  apiDashboardPropertyAddPost$Plain$Response(params?: ApiDashboardPropertyAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
     return apiDashboardPropertyAddPost$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -98,9 +97,9 @@ export class PropertyForAdminService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiDashboardPropertyAddPost$Plain(params?: ApiDashboardPropertyAddPost$Plain$Params, context?: HttpContext): Observable<Int32ApiResult> {
+  apiDashboardPropertyAddPost$Plain(params?: ApiDashboardPropertyAddPost$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
     return this.apiDashboardPropertyAddPost$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Int32ApiResult>): Int32ApiResult => r.body)
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
     );
   }
 
@@ -114,7 +113,7 @@ export class PropertyForAdminService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiDashboardPropertyAddPost$Json$Response(params?: ApiDashboardPropertyAddPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<Int32ApiResult>> {
+  apiDashboardPropertyAddPost$Json$Response(params?: ApiDashboardPropertyAddPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
     return apiDashboardPropertyAddPost$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -128,9 +127,9 @@ export class PropertyForAdminService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiDashboardPropertyAddPost$Json(params?: ApiDashboardPropertyAddPost$Json$Params, context?: HttpContext): Observable<Int32ApiResult> {
+  apiDashboardPropertyAddPost$Json(params?: ApiDashboardPropertyAddPost$Json$Params, context?: HttpContext): Observable<StringApiResult> {
     return this.apiDashboardPropertyAddPost$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Int32ApiResult>): Int32ApiResult => r.body)
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
     );
   }
 
@@ -147,7 +146,7 @@ export class PropertyForAdminService extends BaseService {
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  apiDashboardPropertyAddFromFormPost$Plain$Response(params?: ApiDashboardPropertyAddFromFormPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<Int32ApiResult>> {
+  apiDashboardPropertyAddFromFormPost$Plain$Response(params?: ApiDashboardPropertyAddFromFormPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
     return apiDashboardPropertyAddFromFormPost$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -161,9 +160,9 @@ export class PropertyForAdminService extends BaseService {
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  apiDashboardPropertyAddFromFormPost$Plain(params?: ApiDashboardPropertyAddFromFormPost$Plain$Params, context?: HttpContext): Observable<Int32ApiResult> {
+  apiDashboardPropertyAddFromFormPost$Plain(params?: ApiDashboardPropertyAddFromFormPost$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
     return this.apiDashboardPropertyAddFromFormPost$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Int32ApiResult>): Int32ApiResult => r.body)
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
     );
   }
 
@@ -177,7 +176,7 @@ export class PropertyForAdminService extends BaseService {
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  apiDashboardPropertyAddFromFormPost$Json$Response(params?: ApiDashboardPropertyAddFromFormPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<Int32ApiResult>> {
+  apiDashboardPropertyAddFromFormPost$Json$Response(params?: ApiDashboardPropertyAddFromFormPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
     return apiDashboardPropertyAddFromFormPost$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -191,9 +190,9 @@ export class PropertyForAdminService extends BaseService {
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  apiDashboardPropertyAddFromFormPost$Json(params?: ApiDashboardPropertyAddFromFormPost$Json$Params, context?: HttpContext): Observable<Int32ApiResult> {
+  apiDashboardPropertyAddFromFormPost$Json(params?: ApiDashboardPropertyAddFromFormPost$Json$Params, context?: HttpContext): Observable<StringApiResult> {
     return this.apiDashboardPropertyAddFromFormPost$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Int32ApiResult>): Int32ApiResult => r.body)
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
     );
   }
 

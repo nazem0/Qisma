@@ -9,7 +9,7 @@ import { RequestBuilder } from '../../request-builder';
 import { StringListApiResult } from '../../models/string-list-api-result';
 
 export interface ApiDashboardPropertyImagesGetAllGet$Json$Params {
-  PropertyId: number;
+  PropertyId: string;
 }
 
 export function apiDashboardPropertyImagesGetAllGet$Json(http: HttpClient, rootUrl: string, params: ApiDashboardPropertyImagesGetAllGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringListApiResult>> {
