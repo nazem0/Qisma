@@ -92,13 +92,10 @@
         <span>{{orderPreview.propertyLocation}}</span>
       </div>
       <div class="d-flex justify-content-between flex-wrap">
-        <label>Available Shares:</label>
-        <span>{{orderPreview.orderingPage?.availableShares}}</span>
+        <label>Number Of Shares To Order:</label>
+        <span>{{numberOfShares}}</span>
       </div>
-      <div class="d-flex justify-content-between flex-wrap">
-        <label>Minimum Number Of Shares:</label>
-        <span>{{orderPreview.orderingPage?.minNumberOfShares}}</span>
-      </div>
+      
       <div class="d-flex justify-content-between flex-wrap">
         <label>Share Price:</label>
         <span>{{orderPreview.orderingPage?.sharePrice | currency : "EGP" : "symbol" : "1.0-0"}}</span>
