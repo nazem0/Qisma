@@ -376,3 +376,7 @@ ngx-intl-tel-input {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-700);
 }
+
+.p-dialog{
+    min-width: max(280px,50vw);
+}

@@ -1,0 +1,36 @@
+<h3>Payment Plan</h3>
+<div class="field">
+  <label>Downpayment:</label>
+  <span>{{
+    property.downPayment | currency : "EGP" : "symbol" : "1.0-0"
+    }}</span>
+</div>
+<mat-divider></mat-divider>
+<div class="field">
+  <label>Monthly Installment:</label>
+  <span>{{
+    property.monthlyInstallment
+    | currency : "EGP" : "symbol" : "1.0-0"
+    }}</span>
+</div>
+<mat-divider></mat-divider>
+<div class="field">
+  <label>Number of Years:</label>
+  <span> {{ property.numberOfYears }}</span>
+</div>
+<mat-divider></mat-divider>
+<div class="field">
+  <label>Maintenance Installment:</label>
+  <span>{{
+    property.maintenaceInstallment
+    | currency : "EGP" : "symbol" : "1.0-0"
+    }}</span>
+</div>
+<mat-divider></mat-divider>
+<div class="field">
+  <label>Delivery Installment:</label>
+  <span>{{
+    property.deliveryInstallment
+    | currency : "EGP" : "symbol" : "1.0-0"
+    }}</span>
+</div>

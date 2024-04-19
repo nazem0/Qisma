@@ -14,6 +14,7 @@ import { EditImagesComponent } from './components/admin/edit-images/edit-images.
 import { AdminAuthGuard } from './guards/admin.guard';
 import { UserLayoutComponent } from './components/shared/user-layout/user-layout.component';
 import { UserAuthGuard } from './guards/user.guard';
+import { OrderComponent } from './components/user/order/order.component';
 
 export const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -27,9 +28,10 @@ export const routes: Routes = [
     ], canActivate: [AdminAuthGuard]
   },
   {
-    path: "profile", component: UserLayoutComponent, children: [
+    path: "", component: LayoutComponent, children: [
       { path: "marketplace", component: MarketplaceComponent, title: "Marketplace" },
       { path: "marketplace/property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
+      { path: "order/:id", component: OrderComponent, title: "Place Order" },
     ], canActivate: [UserAuthGuard]
   },
   {

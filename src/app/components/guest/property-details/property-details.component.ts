@@ -1,5 +1,5 @@
 import { BusinessHelper } from './../../../services/business-helper';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Helper } from '../../../services/helper';
 import { ChartModule, UIChart } from 'primeng/chart';
 import { PropertyForAdminService, PropertyService } from '../../../api/services';
@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { TooltipModule } from 'primeng/tooltip';
 import { AuthHelper } from '../../../services/auth-helper';
 import { ConfirmComponent } from '../../shared/confirm/confirm.component';
-import { Roles } from '../../../enums/roles.enum';
+import { PaymentPlanComponent } from '../../shared/payment-plan/payment-plan.component';
 
 @Component({
   selector: 'app-property-details',
@@ -35,26 +35,17 @@ import { Roles } from '../../../enums/roles.enum';
     ChartModule,
     TooltipModule,
     ConfirmComponent,
+    PaymentPlanComponent,
     
   ],
-  providers: [CurrencyPipe]
+  providers: [CurrencyPipe],
+  encapsulation:ViewEncapsulation.None
 })
 export class PropertyDetailsComponent implements OnInit {
   propertyStatuses = BusinessHelper.propertyStatuses;
   helper = Helper;
   businessHelperStatic = BusinessHelper;
   isInAdminPanel = false;
-  constructor(
-    private propertyService: PropertyService,
-    private route: ActivatedRoute,
-    private currency: CurrencyPipe,
-    public authHelper:AuthHelper,
-    public businessHelper:BusinessHelper,
-    public router:Router,
-    private _propertyForAdminService : PropertyForAdminService
-  ) {
-    this.isInAdminPanel = authHelper.isInAdminPanel(route)
-  }
   @ViewChild("chartElement") chartElement!: UIChart;
   propertyId?: string;
   chart: {
@@ -76,6 +67,20 @@ export class PropertyDetailsComponent implements OnInit {
   // options: any;
   responsiveOptions: any[] | undefined;
   property?: PropertyDetailsViewModelForUser;
+  displayModal: boolean = false;
+
+  constructor(
+    private propertyService: PropertyService,
+    private route: ActivatedRoute,
+    private currency: CurrencyPipe,
+    public authHelper:AuthHelper,
+    public businessHelper:BusinessHelper,
+    public router:Router,
+    private _propertyForAdminService : PropertyForAdminService
+  ) {
+    this.isInAdminPanel = authHelper.isInAdminPanel(route)
+  }
+  
   ngOnInit(): void {
 
 
@@ -212,6 +217,10 @@ export class PropertyDetailsComponent implements OnInit {
           this.initProperty()
         }
       })
+  }
+
+  showOrderModal() {
+    this.displayModal = true;
   }
 }
 
