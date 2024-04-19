@@ -20,10 +20,10 @@ export class AuthHelper {
         this._isLoggedIn.next(true);
         this.$rolesObservable.next(this.getRoles())
         if(this.hasRole(Roles.Admin)){
-            this.router.navigate(["/admin/marketplace"]);
+            this.router.navigate(["/admin/"]);
         }
         else if(this.hasRole(Roles.Customer)){
-            this.router.navigate(["/profile/marketplace"]);
+            this.router.navigate(["/profile/"]);
         }
 
     }

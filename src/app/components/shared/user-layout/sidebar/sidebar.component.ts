@@ -35,11 +35,16 @@ export class SidebarComponent {
   ) {
 
     if(_authHelper.hasRole(Roles.Admin)){
-      this.links.push({
+      this.links.push(...[{
         title:"Properties",
         url:"marketplace",
         iconClass:"pi-home"
-      });
+      },
+      {
+        title:"Orders",
+        url:"orders",
+        iconClass:"pi-money-bill"
+      }]);
     }
     if(_authHelper.hasRole(Roles.Customer))
     {

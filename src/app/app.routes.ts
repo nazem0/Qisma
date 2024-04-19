@@ -15,11 +15,13 @@ import { AdminAuthGuard } from './guards/admin.guard';
 import { UserLayoutComponent } from './components/shared/user-layout/user-layout.component';
 import { UserAuthGuard } from './guards/user.guard';
 import { OrderComponent } from './components/user/order/order.component';
+import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orders.component';
 
 export const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   {
     path: "admin", component: UserLayoutComponent, children: [
+      { path: "orders", component: AdminOrdersComponent, title: "Orders" },
       { path: "marketplace", component: MarketplaceComponent, title: "Marketplace" },
       { path: "marketplace/property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
       { path: "marketplace/property-images/:id", component: EditImagesComponent, title: "Property Images" },
@@ -29,9 +31,11 @@ export const routes: Routes = [
   },
   {
     path: "", component: LayoutComponent, children: [
-      { path: "marketplace", component: MarketplaceComponent, title: "Marketplace" },
-      { path: "marketplace/property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
       { path: "order/:id", component: OrderComponent, title: "Place Order" },
+    ], canActivate: [UserAuthGuard]
+  },
+  {
+    path: "profile", component: UserLayoutComponent, children: [
     ], canActivate: [UserAuthGuard]
   },
   {

@@ -99,7 +99,6 @@ export class OrderComponent implements OnInit {
     .subscribe({
       next:next=>{
         this.displayOrderPreview = false;
-        this.snackbar.open(next.message!, "✔", {duration:1000})
         this.initProperty();
       }
     })

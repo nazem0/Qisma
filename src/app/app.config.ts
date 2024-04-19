@@ -1,4 +1,4 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, DEFAULT_CURRENCY_CODE, importProvidersFrom } from '@angular/core';
 import { provideRouter, withInMemoryScrolling, withRouterConfig } from '@angular/router';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -46,5 +46,8 @@ export const appConfig: ApplicationConfig = {
     BusinessHelper,
     UserAuthGuard,
     { provide: NZ_I18N, useValue: en_US },
+    {
+      provide: DEFAULT_CURRENCY_CODE , useValue: 'EGP'
+    }
   ]
 };
