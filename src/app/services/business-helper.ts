@@ -1,10 +1,5 @@
-import { Injectable } from "@angular/core"
-import { PropertyForAdminService } from "../api/services"
-@Injectable()
-export class BusinessHelper {
-  constructor(private _propertyForAdminService:PropertyForAdminService){
 
-  }
+export class BusinessHelper {
   public static propertyTypes = [
     {
       id: 1,
@@ -26,26 +21,29 @@ export class BusinessHelper {
       name: "Ready To Move",
     },
     {
-      id:3,
-      name:"Rented"
+      id: 3,
+      name: "Rented"
     }
   ]
 
-  public static investoreTypes =[
+  public static investoreTypes = [
     {
-      id:1,
-      name:"Retail"
+      id: 1,
+      name: "Retail"
     },
     {
-      id:2,
-      name:"Institutional"
+      id: 2,
+      name: "Institutional"
     }
   ]
-  
-  
 
-  public static getPropertyStatusName(id:number) : string |  undefined {
-    return this.propertyStatuses.find(e=>e.id == id)?.name
+  public static orderStatusArray = [
+    { id: 1, name: "Pending" },
+    { id: 2, name: "Confirmed" }
+  ];
+
+  public static getPropertyStatusName(id: number): string | undefined {
+    return this.propertyStatuses.find(e => e.id == id)?.name
   }
 
 }

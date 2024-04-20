@@ -2,12 +2,13 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { OrderService } from './../../../api/services/order.service';
 import { Component, OnInit } from '@angular/core';
 import { OrderViewModelForAdmin } from '../../../api/models';
-import { CurrencyPipe, DatePipe, NgClass, NgFor } from '@angular/common';
+import { CurrencyPipe, DatePipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { TableModule } from 'primeng/table'
 import { Helper } from '../../../services/helper';
 import { ButtonModule } from 'primeng/button';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { AccordionModule } from 'primeng/accordion';
+import { DropdownModule } from 'primeng/dropdown';
+import { BusinessHelper } from '../../../services/business-helper';
 @Component({
   selector: 'app-admin-orders',
   templateUrl: './admin-orders.component.html',
@@ -21,7 +22,9 @@ import { AccordionModule } from 'primeng/accordion';
     CurrencyPipe,
     ButtonModule,
     AccordionModule,
-    NgFor
+    NgFor,
+    NgIf,
+    DropdownModule
   ]
 })
 export class AdminOrdersComponent implements OnInit {
@@ -32,19 +35,19 @@ export class AdminOrdersComponent implements OnInit {
     total: 0
   }
   helper = Helper;
+  orderStatusArray = BusinessHelper.orderStatusArray
   constructor(
     private orderService: OrderService,
-    private matsnackbar: MatSnackBar
   ) { }
 
   ngOnInit() {
     this.getOrders()
   }
-  getOrders() {
+  getOrders(status?:number) {
     this
       .orderService
       .apiDashboardOrderGetAllGet$Json({
-        OrderStatus: 1,
+        OrderStatus:status,
         PageNumber: this.pagination.index,
         PageSize: this.pagination.size
       })
@@ -52,7 +55,6 @@ export class AdminOrdersComponent implements OnInit {
         next: next => {
           this.orders = next.data?.itemsList
           this.pagination.total = next.data?.totalItemsNumber!
-          console.log(this.orders);
 
         }
       })

@@ -43,7 +43,6 @@ export const appConfig: ApplicationConfig = {
     Helper,
     AuthHelper,
     AdminAuthGuard,
-    BusinessHelper,
     UserAuthGuard,
     { provide: NZ_I18N, useValue: en_US },
     {

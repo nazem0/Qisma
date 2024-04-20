@@ -1,0 +1,73 @@
+<div class="container-sm">
+  <p-dropdown
+  [optionLabel]="'name'"
+  [options]="orderStatusArray"
+  placeholder="Filter By Order Status"
+  (onChange)="getOrders($event.value.id)"
+  [showClear]="true"
+  (onClear)="getOrders()"
+  styleClass="w-100"
+  ></p-dropdown>
+  <p-table [value]="orders??[]" [rows]="pagination.size" [totalRecords]="pagination.total">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Order Financial Details</th>
+        <th>Property Details</th>
+        <th>Status</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-order>
+      <tr>
+        <td>
+          <p-accordion>
+            <p-accordionTab [header]="order.orderFinancialDetails.numberOfShares + ' Shares'">
+              <div>Order ID: {{order.orderFinancialDetails.orderId}}</div>
+              <div>Order Number: {{order.orderFinancialDetails.orderNumber}}</div>
+              <div>Transaction Fees: {{order.orderFinancialDetails.transactionFees | currency}}</div>
+              <div>Shares: {{order.orderFinancialDetails.numberOfShares}}</div>
+              <div>Share Price: {{order.orderFinancialDetails.sharePrice | currency}}</div>
+              <div>Down Payment: {{order.orderFinancialDetails.downPayment | currency}}</div>
+              <div>Monthly Installment: {{order.orderFinancialDetails.monthlyInstallment | currency}}</div>
+              <div>Years: {{order.orderFinancialDetails.numberOfYears}}</div>
+              <div>Maintenance Installment: {{order.orderFinancialDetails.maintenaceInstallment | currency}}</div>
+              <div>Delivery Installment: {{order.orderFinancialDetails.deliveryInstallment | currency}}</div>
+              
+            </p-accordionTab>
+          </p-accordion>
+        </td>
+        <td>
+          <p-accordion>
+            <p-accordionTab [header]="order.property.address">
+              <div>Property ID: {{order.property.propertyId}}</div>
+              <div>
+                <img [src]="helper.processFileUrl(order.property.imageUrl)" alt="Property Image" style="width:100px;height:auto;">
+              </div>
+              <div>Address: {{order.property.address}}</div>
+              <div>City: {{order.property.city}}</div>
+              <div>Annual Return: {{order.property.projectedAnnualReturn}}%</div>
+              <div>Rental Yield: {{order.property.projectedRentalYield}}%</div>
+              <div>Token Price: {{order.property.tokenPrice | currency}}</div>
+              <div>Available Tokens: {{order.property.availableTokens}}</div>
+            </p-accordionTab>
+          </p-accordion>
+        </td>
+        <td>
+          <p-accordion>
+            <p-accordionTab [header]="order.orderStatusName">
+              <div>Order Date: {{order.orderFinancialDetails.orderDate | date:'mediumDate'}}</div>
+              <div *ngIf="order.orderFinancialDetails.confirmationDate">Confirmation Date: {{order.orderFinancialDetails.confirmationDate | date:'mediumDate'}}</div>
+            </p-accordionTab>
+          </p-accordion>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <div class="text-center my-3">
+    <div class="spinner" [ngClass]="{ 'hidden': !orders }"></div>
+    <nz-pagination [nzPageIndex]="2" [nzTotal]="500" nzShowQuickJumper nzShowSizeChanger
+      [nzPageSizeOptions]="[12,18,24]" [nzPageSize]="pagination.size" [nzPageIndex]="pagination.index"
+      [nzTotal]="pagination.total" (nzPageIndexChange)="getPage($event)" [(nzPageSize)]="pagination.size"
+      (nzPageSizeChange)="getOrders()" [nzPageIndex]="pagination.index+1"></nz-pagination>
+  </div>
+</div>

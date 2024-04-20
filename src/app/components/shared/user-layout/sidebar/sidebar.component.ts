@@ -70,9 +70,14 @@ export class SidebarComponent {
           iconClass:"pi-star"
         },
         {
-          title:"Cart",
-          url:"cart",
+          title:"Orders",
+          url:"orders",
           iconClass:"pi-cart-plus"
+        },
+        {
+          title:"Profile",
+          url:"info",
+          iconClass:"pi-user"
         }
       ])
 
