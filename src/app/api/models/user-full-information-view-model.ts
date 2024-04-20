@@ -10,6 +10,7 @@ export interface UserFullInformationViewModel {
   identityImageUrl?: string | null;
   identityNumber?: string | null;
   investorType?: InvestorType;
+  investoreType?: InvestorType;
   lastName?: string | null;
   middleName?: string | null;
   occupation?: string | null;

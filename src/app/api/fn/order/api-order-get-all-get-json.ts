@@ -10,7 +10,7 @@ import { OrderStatus } from '../../models/order-status';
 import { OrderViewModelForUserPaginationViewModelApiResult } from '../../models/order-view-model-for-user-pagination-view-model-api-result';
 
 export interface ApiOrderGetAllGet$Json$Params {
-  OrderStatus: OrderStatus;
+  OrderStatus?: OrderStatus;
   PageNumber: number;
   PageSize: number;
 }

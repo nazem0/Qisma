@@ -17,7 +17,12 @@ import { apiSignUpForCustomerPost$Json } from '../fn/user-account/api-sign-up-fo
 import { ApiSignUpForCustomerPost$Json$Params } from '../fn/user-account/api-sign-up-for-customer-post-json';
 import { apiSignUpForCustomerPost$Plain } from '../fn/user-account/api-sign-up-for-customer-post-plain';
 import { ApiSignUpForCustomerPost$Plain$Params } from '../fn/user-account/api-sign-up-for-customer-post-plain';
+import { apiUserGetFullInformationGet$Json } from '../fn/user-account/api-user-get-full-information-get-json';
+import { ApiUserGetFullInformationGet$Json$Params } from '../fn/user-account/api-user-get-full-information-get-json';
+import { apiUserGetFullInformationGet$Plain } from '../fn/user-account/api-user-get-full-information-get-plain';
+import { ApiUserGetFullInformationGet$Plain$Params } from '../fn/user-account/api-user-get-full-information-get-plain';
 import { UserDataViewModelApiResult } from '../models/user-data-view-model-api-result';
+import { UserFullInformationViewModelApiResult } from '../models/user-full-information-view-model-api-result';
 
 @Injectable({ providedIn: 'root' })
 export class UserAccountService extends BaseService {
@@ -148,6 +153,69 @@ export class UserAccountService extends BaseService {
   apiSignInPost$Json(params?: ApiSignInPost$Json$Params, context?: HttpContext): Observable<UserDataViewModelApiResult> {
     return this.apiSignInPost$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<UserDataViewModelApiResult>): UserDataViewModelApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiUserGetFullInformationGet()` */
+  static readonly ApiUserGetFullInformationGetPath = '/api/User/GetFullInformation';
+
+  /**
+   * User full informations.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserGetFullInformationGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetFullInformationGet$Plain$Response(params?: ApiUserGetFullInformationGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UserFullInformationViewModelApiResult>> {
+    return apiUserGetFullInformationGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * User full informations.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserGetFullInformationGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetFullInformationGet$Plain(params?: ApiUserGetFullInformationGet$Plain$Params, context?: HttpContext): Observable<UserFullInformationViewModelApiResult> {
+    return this.apiUserGetFullInformationGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<UserFullInformationViewModelApiResult>): UserFullInformationViewModelApiResult => r.body)
+    );
+  }
+
+  /**
+   * User full informations.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserGetFullInformationGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetFullInformationGet$Json$Response(params?: ApiUserGetFullInformationGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<UserFullInformationViewModelApiResult>> {
+    return apiUserGetFullInformationGet$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * User full informations.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserGetFullInformationGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetFullInformationGet$Json(params?: ApiUserGetFullInformationGet$Json$Params, context?: HttpContext): Observable<UserFullInformationViewModelApiResult> {
+    return this.apiUserGetFullInformationGet$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<UserFullInformationViewModelApiResult>): UserFullInformationViewModelApiResult => r.body)
     );
   }
 

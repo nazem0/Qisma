@@ -39,4 +39,5 @@ export { UpdatePropertyViewModel } from './models/update-property-view-model';
 export { UserDataViewModel } from './models/user-data-view-model';
 export { UserDataViewModelApiResult } from './models/user-data-view-model-api-result';
 export { UserFullInformationViewModel } from './models/user-full-information-view-model';
+export { UserFullInformationViewModelApiResult } from './models/user-full-information-view-model-api-result';
 export { UserInformationForOrderPreviewViewModel } from './models/user-information-for-order-preview-view-model';
