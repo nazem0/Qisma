@@ -11,39 +11,52 @@
     <ng-template pTemplate="body" let-order>
       <tr>
         <td>
-          <div>UserID: {{order.userInformation.userId}}</div>
-          <div>Name: {{order.userInformation.firstName}} {{order.userInformation.middleName}}
-            {{order.userInformation.lastName}}</div>
-          <div>DOB: {{order.userInformation.dateOfBirth | date:'mediumDate'}}</div>
-          <div>Address: {{order.userInformation.address}}</div>
-          <div>Occupation: {{order.userInformation.occupation}} at {{order.userInformation.companyName}}</div>
-          <div>Investor Type: {{order.userInformation.investorType}}</div>
-          <div>Phone: {{order.userInformation.phoneNumber}}</div>
-          <div>Email: {{order.userInformation.email}}</div>
+          <p-accordion>
+            <p-accordionTab [header]="order.userInformation.firstName + ' ' + order.userInformation.middleName">
+              <div>UserID: {{order.userInformation.userId}}</div>
+              <div>Name: {{order.userInformation.firstName}} {{order.userInformation.middleName}} {{order.userInformation.lastName}}</div>
+              <div>DOB: {{order.userInformation.dateOfBirth | date:'mediumDate'}}</div>
+              <div>Address: {{order.userInformation.address}}</div>
+              <div>Occupation: {{order.userInformation.occupation}} at {{order.userInformation.companyName}}</div>
+              <div>Investor Type: {{order.userInformation.investorType}}</div>
+              <div>Phone: {{order.userInformation.phoneNumber}}</div>
+              <div>Email: {{order.userInformation.email}}</div>
+            </p-accordionTab>
+          </p-accordion>
         </td>
         <td>
-          <div>Order ID: {{order.orderFinancialDetails.orderId}}</div>
-          <div>Order Number: {{order.orderFinancialDetails.orderNumber}}</div>
-          <div>Transaction Fees: {{order.orderFinancialDetails.transactionFees | currency}}</div>
-          <div>Shares: {{order.orderFinancialDetails.numberOfShares}}</div>
-          <div>Share Price: {{order.orderFinancialDetails.sharePrice | currency}}</div>
-          <div>Down Payment: {{order.orderFinancialDetails.downPayment | currency}}</div>
-          <div>Monthly Installment: {{order.orderFinancialDetails.monthlyInstallment | currency}}</div>
-          <div>Years: {{order.orderFinancialDetails.numberOfYears}}</div>
-          <div>Maintenance Installment: {{order.orderFinancialDetails.maintenaceInstallment | currency}}</div>
-          <div>Delivery Installment: {{order.orderFinancialDetails.deliveryInstallment | currency}}</div>
-          <div>Order Date: {{order.orderFinancialDetails.orderDate | date:'mediumDate'}}</div>
-          <div>Confirmation Date: {{order.orderFinancialDetails.confirmationDate | date:'mediumDate'}}</div>
+          <p-accordion>
+            <p-accordionTab [header]="order.orderFinancialDetails.numberOfShares + ' Shares'">
+              <div>Order ID: {{order.orderFinancialDetails.orderId}}</div>
+              <div>Order Number: {{order.orderFinancialDetails.orderNumber}}</div>
+              <div>Transaction Fees: {{order.orderFinancialDetails.transactionFees | currency}}</div>
+              <div>Shares: {{order.orderFinancialDetails.numberOfShares}}</div>
+              <div>Share Price: {{order.orderFinancialDetails.sharePrice | currency}}</div>
+              <div>Down Payment: {{order.orderFinancialDetails.downPayment | currency}}</div>
+              <div>Monthly Installment: {{order.orderFinancialDetails.monthlyInstallment | currency}}</div>
+              <div>Years: {{order.orderFinancialDetails.numberOfYears}}</div>
+              <div>Maintenance Installment: {{order.orderFinancialDetails.maintenaceInstallment | currency}}</div>
+              <div>Delivery Installment: {{order.orderFinancialDetails.deliveryInstallment | currency}}</div>
+              <div>Order Date: {{order.orderFinancialDetails.orderDate | date:'mediumDate'}}</div>
+              <div>Confirmation Date: {{order.orderFinancialDetails.confirmationDate | date:'mediumDate'}}</div>
+            </p-accordionTab>
+          </p-accordion>
         </td>
         <td>
-          <div>Property ID: {{order.property.propertyId}}</div>
-          <div><img [src]="helper.processFileUrl(order.property.imageUrl)" alt="Property Image" style="width:100px;height:auto;"></div>
-          <div>Address: {{order.property.address}}</div>
-          <div>City: {{order.property.city}}</div>
-          <div>Annual Return: {{order.property.projectedAnnualReturn}}%</div>
-          <div>Rental Yield: {{order.property.projectedRentalYield}}%</div>
-          <div>Token Price: {{order.property.tokenPrice | currency}}</div>
-          <div>Available Tokens: {{order.property.availableTokens}}</div>
+          <p-accordion>
+            <p-accordionTab [header]="order.property.address">
+              <div>Property ID: {{order.property.propertyId}}</div>
+              <div>
+                <img [src]="helper.processFileUrl(order.property.imageUrl)" alt="Property Image" style="width:100px;height:auto;">
+              </div>
+              <div>Address: {{order.property.address}}</div>
+              <div>City: {{order.property.city}}</div>
+              <div>Annual Return: {{order.property.projectedAnnualReturn}}%</div>
+              <div>Rental Yield: {{order.property.projectedRentalYield}}%</div>
+              <div>Token Price: {{order.property.tokenPrice | currency}}</div>
+              <div>Available Tokens: {{order.property.availableTokens}}</div>
+            </p-accordionTab>
+          </p-accordion>
         </td>
         <td>
           <p-button [raised]="true" (onClick)="confirmOrder(order.orderFinancialDetails.orderId)">

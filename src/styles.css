@@ -353,13 +353,13 @@ ngx-intl-tel-input {
     }
 }
 
-.h-0{
+.h-0 {
     height: 0;
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+    width: 5px;
+    height: 5px;
 }
 
 /* Track
@@ -368,15 +368,15 @@ ngx-intl-tel-input {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-500);
-  
+    background: var(--primary-500);
+
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-700);
+    background: var(--primary-700);
 }
 
-.p-dialog{
-    min-width: max(280px,50vw);
+table td {
+    vertical-align: top;
 }

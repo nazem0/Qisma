@@ -2,11 +2,12 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { OrderService } from './../../../api/services/order.service';
 import { Component, OnInit } from '@angular/core';
 import { OrderViewModelForAdmin } from '../../../api/models';
-import { CurrencyPipe, DatePipe, NgClass } from '@angular/common';
+import { CurrencyPipe, DatePipe, NgClass, NgFor } from '@angular/common';
 import { TableModule } from 'primeng/table'
 import { Helper } from '../../../services/helper';
 import { ButtonModule } from 'primeng/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AccordionModule } from 'primeng/accordion';
 @Component({
   selector: 'app-admin-orders',
   templateUrl: './admin-orders.component.html',
@@ -18,7 +19,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     TableModule,
     DatePipe,
     CurrencyPipe,
-    ButtonModule
+    ButtonModule,
+    AccordionModule,
+    NgFor
   ]
 })
 export class AdminOrdersComponent implements OnInit {
