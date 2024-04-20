@@ -13,6 +13,10 @@ export class Helper {
         return fileUrl ? `${isFacility ? environment.Facilities : environment.staticFiles}/${fileUrl}` : "";
     }
 
+    public static processOrderPdfFileUrl(fileUrl:string){
+        return `${environment.OrdersPdf}/${fileUrl}`
+    }
+
     public static readonly passwordRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
 
 
