@@ -11,6 +11,7 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { OrderPreviewComponent } from '../order-preview/order-preview.component';
 import { OrderConfirmationComponent } from '../order-confirmation/order-confirmation.component';
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 @Component({
@@ -28,7 +29,7 @@ import { OrderConfirmationComponent } from '../order-confirmation/order-confirma
     DialogModule,
     OrderPreviewComponent,
     OrderConfirmationComponent,
-    
+    CheckboxModule,
   ]
 })
 export class OrderComponent implements OnInit {
@@ -39,6 +40,8 @@ export class OrderComponent implements OnInit {
   displayOrderPreview = false;
   displayOrderConfirmation = false;
   orderCode?:string | null;
+  agree=false;
+
   constructor(
     private route: ActivatedRoute,
     private propertyService: PropertyService,
@@ -98,9 +101,6 @@ export class OrderComponent implements OnInit {
       }
     })
   }
-  test(){
-    console.log("order preview", this.displayOrderPreview);    
-    console.log("order confirm", this.displayOrderConfirmation);
-  }
+
 }
 

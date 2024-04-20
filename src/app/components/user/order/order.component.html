@@ -50,12 +50,18 @@
   <p-dialog header="Order Preview" [(visible)]="displayOrderPreview" [modal]="true" [style]="{width: '50vw'}">
     <app-order-preview [numberOfShares]="numberOfShares" [propertyId]="propertyId"></app-order-preview>
     <p-footer>
-      <p-button [raised]="true" styleClass="w-100" (onClick)="placeOrder()">
-        <span class="text-white mx-auto">
-          <i class="pi pi-check"></i>
-          Confirm Order
-        </span>
-      </p-button>
+
+      <div class="d-flex flex-column align-items-center justify-content-center gap-3">
+        <p-checkbox label="I agree to terms & conditions and Privacy Policy" [binary]="true" [(ngModel)]="agree"></p-checkbox>
+        <p-button [raised]="true" styleClass="w-100" (onClick)="placeOrder()" [disabled]="!agree">
+          <span class="text-white mx-auto">
+            <i class="pi pi-check"></i>
+            Confirm Order
+          </span>
+        </p-button>
+  
+      </div>
+      
     </p-footer>
   </p-dialog>
   }
@@ -65,6 +71,4 @@
     <app-order-confirmation [numberOfShares]="numberOfShares" [propertyId]="propertyId" [orderCode]="orderCode"></app-order-confirmation>
   </p-dialog>
   }
-
-  <button (click)="test()"> test</button>
 </div>

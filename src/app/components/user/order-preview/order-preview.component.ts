@@ -4,6 +4,9 @@ import { OrderPreviewPageViewModel } from '../../../api/models';
 import { CurrencyPipe } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { ButtonModule } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-order-preview',
@@ -13,7 +16,7 @@ import { ButtonModule } from 'primeng/button';
   imports:[
     CurrencyPipe,
     MatDividerModule,
-    ButtonModule
+    ButtonModule,
   ]
 })
 export class OrderPreviewComponent implements OnInit {
