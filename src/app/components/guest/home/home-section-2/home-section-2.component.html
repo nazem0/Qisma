@@ -3,7 +3,7 @@
             <h1>Invest in fractions of rental properties across America</h1>
             <p>All without leaving your living room. No experience, connections, or down payments required.</p>
         </div>
-    <div class="mx-auto row row-cols-lg-3 g-3">
+    <div class="mx-auto row row-cols-lg-3 g-3 justify-content-center">
         @for (property of properties; track $index) {
             <app-property-card [property]="property"></app-property-card>
         }
