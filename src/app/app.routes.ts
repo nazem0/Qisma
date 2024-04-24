@@ -18,6 +18,7 @@ import { OrderComponent } from './components/user/order/order.component';
 import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orders.component';
 import { UserOrdersComponent } from './components/user/user-orders/user-orders.component';
 import { ProfileInfoComponent } from './components/user/profile-info/profile-info.component';
+import { PortfolioComponent } from './components/user/portfolio/portfolio.component';
 
 export const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -40,6 +41,7 @@ export const routes: Routes = [
     path: "profile", component: UserLayoutComponent, children: [
       { path: "orders", component: UserOrdersComponent, title: "Orders" },
       { path: "info", component: ProfileInfoComponent, title: "Profile Info" },
+      { path :"portfolio", component:PortfolioComponent, title:"Portfolio"}
     ], canActivate: [UserAuthGuard]
   },
   {

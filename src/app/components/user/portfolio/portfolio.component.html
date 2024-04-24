@@ -1,0 +1,56 @@
+<div class="container-sm">
+  <h2>Profile Info</h2>
+  <div class="d-flex flex-column gap-4">
+    <div class="bg-white p-3 rounded-3 shadow-sm">
+      <h4 class="text-muted">Portfolio Value</h4>
+      <h2>{{ data.protfolioValue | currency }}</h2>
+    </div>
+    <div>
+      <h3>Key Financials</h3>
+      <div class="row row-cols-lg-2 g-3">
+        <div>
+          <div class="bg-white p-3 rounded-3 shadow-sm d-flex justify-content-between">
+            <div>
+              <i class="pi pi-dollar text-success"></i>
+              <small class="text-muted d-block">Monthly Income</small>
+            </div>
+            <div class="text-end">
+              <span class="fw-bold">{{ data.grossMonthlyIncome | currency}}</span>
+              <small class="text-muted d-block">{{data.currentMonth}}</small>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="bg-white p-3 rounded-3 shadow-sm d-flex justify-content-between">
+            <div>
+              <i class="pi pi-dollar text-success"></i>
+              <small class="text-muted d-block">Total Appreciation</small>
+            </div>
+            <div class="text-end">
+              <span class="fw-bold">{{ data.totalAppreciation | currency }}</span>
+              <small class="text-muted d-block">{{data.currentMonth}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3>Quick Insights</h3>
+      <div class="row row-cols-lg-2 g-3">
+        <div>
+          <div class="bg-white p-3 rounded-3 shadow-sm d-flex justify-content-between">
+            <div>
+              <i class="pi pi-home text-success"></i>
+              <small class="text-muted d-block">Number Of Properties</small>
+            </div>
+            <div class="text-end">
+              <span class="fw-bold">{{ data.grossMonthlyIncome | currency}}</span>
+              <small class="text-muted d-block">{{data.currentMonth}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>

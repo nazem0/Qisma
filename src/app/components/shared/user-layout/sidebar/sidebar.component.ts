@@ -60,8 +60,8 @@ export class SidebarComponent {
           iconClass:"pi-wallet"
         },
         {
-          title:"Portofolio",
-          url:"portofolio",
+          title:"Portfolio",
+          url:"portfolio",
           iconClass:"pi-th-large"
         },
         {

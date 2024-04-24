@@ -23,7 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
   ]
 })
 export class UserLayoutComponent {
-  collapse = false;
+  collapse = true;
   constructor(public authHelper:AuthHelper){}
   toggleCollapse(state:boolean) {    
     console.log(state);
