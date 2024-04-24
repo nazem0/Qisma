@@ -380,3 +380,7 @@ ngx-intl-tel-input {
 table td {
     vertical-align: top;
 }
+
+.sticky-top {
+    z-index: 1000;
+}
