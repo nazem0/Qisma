@@ -1,5 +1,5 @@
 <div>
-    <div class="navbar-container bg-white border border-1 sticky-top">
+    <div class="navbar-container bg-white border border-1 sticky-top container-fluid">
         <app-navbar [(collapse)]="collapse" [showSidebarMenuButton]="true">
         </app-navbar>
     </div>
@@ -17,11 +17,11 @@
 
     </div>
     }
-    <div class="content min-vh-100">
+    <div class="container-fluid min-vh-100">
         <router-outlet></router-outlet>
     </div>
     <div class="bg-dark-blue py-5 mt-5">
-        <div class="container-sm">
+        <div class="container-fluid">
             <app-footer></app-footer>
         </div>
     </div>
