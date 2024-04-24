@@ -21,7 +21,7 @@ export class HomeSection4Component {
      {
        rate:5,
        review:
-       `Before the week is up I will be at $200 in rental income on Lofty.
+       `Before the week is up I will be at $200 in rental income on Qisma.
 
        Can't Wait to see the compounding of this account.
 
@@ -38,7 +38,7 @@ export class HomeSection4Component {
      {
       rate:3,
       review:
-      `Before the week is up I will be at $200 in rental income on Lofty.
+      `Before the week is up I will be at $200 in rental income on Qisma.
 
       Can't Wait to see the compounding of this account.
 
@@ -55,7 +55,7 @@ export class HomeSection4Component {
     {
       rate:1,
       review:
-      `Before the week is up I will be at $200 in rental income on Lofty.
+      `Before the week is up I will be at $200 in rental income on Qisma.
 
       Can't Wait to see the compounding of this account.
       

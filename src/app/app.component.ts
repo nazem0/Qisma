@@ -13,5 +13,5 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
   ]
 })
 export class AppComponent {
-  title = 'Lofty';
+  title = 'Qisma';
 }

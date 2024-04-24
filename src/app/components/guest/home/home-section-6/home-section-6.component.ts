@@ -12,17 +12,17 @@ export class HomeSection6Component {
   content: { title: string, content:{title:string, url:string}[] }[];
   constructor() {
     this.content = [
-      { title: "Lofty Performance Report", content: [{title:"Read the Report arrow",url:""}] },
+      { title: "Qisma Performance Report", content: [{title:"Read the Report arrow",url:""}] },
       { title: "FAQ", content: 
       [
-        {title:"How Lofty Works",url:""},
-        {title:"How to Buy Lofty Properties",url:""},
+        {title:"How Qisma Works",url:""},
+        {title:"How to Buy Qisma Properties",url:""},
         {title:"How to Conduct Due Diligence",url:""},
-        {title:"How Lofty Makes Money",url:""},
+        {title:"How Qisma Makes Money",url:""},
       ] },
       { title: "Topics", content: [
         {title:"Real Estate Investing 101",url:""},
-        {title:"Lofty News",url:""},
+        {title:"Qisma News",url:""},
         {title:"Investment Markets",url:""},
       ] },
     ]
