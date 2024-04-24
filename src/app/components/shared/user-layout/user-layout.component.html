@@ -2,22 +2,19 @@
     <div class="navbar-container bg-white border border-1 sticky-top">
         <div class="container">
             <app-navbar [(collapse)]="collapse" [showSidebarMenuButton]="true">
+                <i class="material-icons fs-5 cursor-pointer" (click)="toggleCollapse(!collapse)">menu</i>
             </app-navbar>
         </div>
     </div>
     <div>
         <div class="transition sidenav-container bg-white h-100 overflow-x-hidden sticky-top border border-1 z-2"
             [ngClass]="{ expanded: !collapse}">
-            <app-sidebar [(collapse)]="collapse" >
-                <div style="cursor: pointer;" class="ps-3 py-2 d-flex align-items-center gap-3 w-100" (click)="toggleCollapse(!collapse)">
-                    <i class="material-icons fs-5">menu</i>
-                    Collapse
-                </div>
+            <app-sidebar [(collapse)]="collapse">
             </app-sidebar>
         </div>
 
     </div>
-    
+
     <div class="container min-vh-100">
         <router-outlet></router-outlet>
     </div>

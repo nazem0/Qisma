@@ -393,3 +393,7 @@ table td {
 .td-min-width-15{
     min-width: 15rem;
 }
+
+.cursor-pointer{
+    cursor: pointer;
+}

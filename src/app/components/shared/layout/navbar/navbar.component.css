@@ -4,3 +4,8 @@
 .collapsed{
     height: 0px !important;
 }
+
+.logo{
+    height: 40px;
+    object-fit: contain;
+}

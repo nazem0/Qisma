@@ -2,7 +2,7 @@
     min-height:100vh;
     height: 100%;
     position: fixed;
-    width: 60px;
+    width: 0px;
     padding-top: calc(var(--navbar-container-height) + 20px);
 }
 
