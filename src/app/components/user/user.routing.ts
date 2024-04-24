@@ -15,6 +15,7 @@ export const userRoutes: Routes = [
   },
   {
     path: "profile", component: UserLayoutComponent, children: [
+      { path: "", redirectTo: "portfolio", pathMatch: "full" },
       { path: "orders", component: UserOrdersComponent, title: "Orders" },
       { path: "info", component: ProfileInfoComponent, title: "Profile Info" },
       { path :"portfolio", component:PortfolioComponent, title:"Portfolio"}

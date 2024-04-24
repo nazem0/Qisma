@@ -10,6 +10,7 @@ import { PropertyActionsComponent } from './property-actions/property-actions.co
 export const adminRoutes: Routes = [
   {
     path: "admin", component: UserLayoutComponent, children: [
+      { path: "", redirectTo: "marketplace", pathMatch: "full" },
       { path: "orders", component: AdminOrdersComponent, title: "Orders" },
       { path: "marketplace", component: MarketplaceComponent, title: "Marketplace" },
       { path: "marketplace/property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
