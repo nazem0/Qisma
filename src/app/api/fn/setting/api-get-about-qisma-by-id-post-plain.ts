@@ -8,16 +8,14 @@ import { RequestBuilder } from '../../request-builder';
 
 import { StringApiResult } from '../../models/string-api-result';
 
-export interface ApiDashboardOrdersConfirmOrderPost$Plain$Params {
-  OrderId: number;
-  ConfirmedOrRejected: boolean;
+export interface ApiGetAboutQismaByIdPost$Plain$Params {
+  id: number;
 }
 
-export function apiDashboardOrdersConfirmOrderPost$Plain(http: HttpClient, rootUrl: string, params: ApiDashboardOrdersConfirmOrderPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiDashboardOrdersConfirmOrderPost$Plain.PATH, 'post');
+export function apiGetAboutQismaByIdPost$Plain(http: HttpClient, rootUrl: string, params: ApiGetAboutQismaByIdPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiGetAboutQismaByIdPost$Plain.PATH, 'post');
   if (params) {
-    rb.query('OrderId', params.OrderId, {"style":"form"});
-    rb.query('ConfirmedOrRejected', params.ConfirmedOrRejected, {"style":"form"});
+    rb.query('id', params.id, {"style":"form"});
   }
 
   return http.request(
@@ -30,4 +28,4 @@ export function apiDashboardOrdersConfirmOrderPost$Plain(http: HttpClient, rootU
   );
 }
 
-apiDashboardOrdersConfirmOrderPost$Plain.PATH = '/api/Dashboard/Orders/ConfirmOrder';
+apiGetAboutQismaByIdPost$Plain.PATH = '/api/GetAboutQismaById';

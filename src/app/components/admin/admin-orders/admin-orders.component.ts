@@ -70,7 +70,8 @@ export class AdminOrdersComponent implements OnInit {
     this
       .orderService
       .apiDashboardOrdersConfirmOrderPost$Json({
-        OrderId: orderId
+        OrderId: orderId,
+        ConfirmedOrRejected:true
       })
       .subscribe({
         next: () => {

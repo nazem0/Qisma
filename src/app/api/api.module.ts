@@ -8,6 +8,7 @@ import { GovernorateAndCityService } from './services/governorate-and-city.servi
 import { OrderService } from './services/order.service';
 import { PropertyService } from './services/property.service';
 import { PropertyForAdminService } from './services/property-for-admin.service';
+import { SettingService } from './services/setting.service';
 import { UserAccountService } from './services/user-account.service';
 
 /**
@@ -22,6 +23,7 @@ import { UserAccountService } from './services/user-account.service';
     OrderService,
     PropertyService,
     PropertyForAdminService,
+    SettingService,
     UserAccountService,
     ApiConfiguration
   ],

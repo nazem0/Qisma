@@ -1,5 +1,6 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { UserStakesComponent } from './user-stakes/user-stakes.component';
 
 @Component({
   selector: 'app-portfolio',
@@ -8,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
   standalone:true,
   imports:[
     CurrencyPipe,
-    DatePipe
+    DatePipe,
+    UserStakesComponent
   ]
 })
 export class PortfolioComponent implements OnInit {

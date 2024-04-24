@@ -1,4 +1,4 @@
-<a [routerLink]="['property-details', property.propertyId]" class="shadow-sm property-card bg-white shadow-sm rounded-3 overflow-hidden">
+<div [routerLink]="['property-details', property.propertyId]" class="shadow-sm property-card bg-white shadow-sm rounded-3 overflow-hidden">
 
     <div class="img-container">
         <div class="position-absolute badge badge-top">
@@ -37,7 +37,7 @@
         </p-button>
     </a>
     }
-</a>
+</div>
 @if(isInAdminPanel){
     <app-confirm [label]="property.isDeleted ? 'Activate' :'Deactivate' + 'property'" [severity]="property.isDeleted?'success':'danger'" [title]="property.address+' property'"
     [description]="'Are you sure you want to '+ (property.isDeleted ? 'activate' :'deactivate') +' this property?'"

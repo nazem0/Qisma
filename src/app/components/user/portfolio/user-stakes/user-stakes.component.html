@@ -1,3 +1,28 @@
-<p>
-  user-stakes works!
-</p>
+<div>
+  <h3>My Stakes</h3>
+  <p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Property</th>
+        <th>Location</th>
+        <th>Investment Value</th>
+        <th>Total Retnal Income</th>
+        <th>Status</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-stake>
+      <tr>
+        <td>{{stake.propertyId}}</td>
+        <td>{{stake.propertyLocation}}</td>
+        <td>{{stake.investmentValue | currency}}</td>
+        <td>{{stake.totalRentalIncome | currency}}</td>
+        <td
+        [ngClass]="{
+          'text-danger': stake.statusId==1,
+          'text-success': stake.statusId==2,
+          'text-info': stake.statusId==3}"
+        >{{stake.status}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

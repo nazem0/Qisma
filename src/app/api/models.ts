@@ -41,3 +41,6 @@ export { UserDataViewModelApiResult } from './models/user-data-view-model-api-re
 export { UserFullInformationViewModel } from './models/user-full-information-view-model';
 export { UserFullInformationViewModelApiResult } from './models/user-full-information-view-model-api-result';
 export { UserInformationForOrderPreviewViewModel } from './models/user-information-for-order-preview-view-model';
+export { UserPortfolioViewModel } from './models/user-portfolio-view-model';
+export { UserPortfolioViewModelApiResult } from './models/user-portfolio-view-model-api-result';
+export { UserPropertiesInPortfolioViewModel } from './models/user-properties-in-portfolio-view-model';

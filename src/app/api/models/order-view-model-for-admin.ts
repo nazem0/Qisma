@@ -6,6 +6,7 @@ import { PropertyViewModelInListView } from '../models/property-view-model-in-li
 import { UserFullInformationViewModel } from '../models/user-full-information-view-model';
 export interface OrderViewModelForAdmin {
   orderFinancialDetails?: OrderFinancialDetailsViewModel;
+  orderPdfUrl?: string | null;
   orderStatus?: OrderStatus;
   orderStatusName?: string | null;
   property?: PropertyViewModelInListView;

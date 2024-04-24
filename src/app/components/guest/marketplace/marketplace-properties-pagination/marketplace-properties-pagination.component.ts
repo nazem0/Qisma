@@ -28,7 +28,7 @@ import { Roles } from '../../../../enums/roles.enum';
     RouterModule,
     PropertyCard2Component,
     NzPaginationModule,
-    NgClass
+    NgClass,
   ]
 })
 export class MarketplacePropertiesPaginationComponent implements OnInit {

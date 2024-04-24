@@ -41,6 +41,7 @@ export const appConfig: ApplicationConfig = {
       multi: true,
     },
     Helper,
+    BusinessHelper,
     AuthHelper,
     AdminAuthGuard,
     UserAuthGuard,

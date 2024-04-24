@@ -8,13 +8,12 @@
   (onClear)="getOrders()"
   styleClass="w-100"
   ></p-dropdown>
-  <p-table [value]="orders??[]" [rows]="pagination.size" [totalRecords]="pagination.total">
+  <p-table [value]="orders??[]" [rows]="pagination.size" [totalRecords]="pagination.total" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
       <tr>
         <th>Order Financial Details</th>
         <th>Property Details</th>
         <th>Status</th>
-        <th></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-order>

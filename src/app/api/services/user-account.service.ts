@@ -21,8 +21,13 @@ import { apiUserGetFullInformationGet$Json } from '../fn/user-account/api-user-g
 import { ApiUserGetFullInformationGet$Json$Params } from '../fn/user-account/api-user-get-full-information-get-json';
 import { apiUserGetFullInformationGet$Plain } from '../fn/user-account/api-user-get-full-information-get-plain';
 import { ApiUserGetFullInformationGet$Plain$Params } from '../fn/user-account/api-user-get-full-information-get-plain';
+import { apiUserGetPortfolioGet$Json } from '../fn/user-account/api-user-get-portfolio-get-json';
+import { ApiUserGetPortfolioGet$Json$Params } from '../fn/user-account/api-user-get-portfolio-get-json';
+import { apiUserGetPortfolioGet$Plain } from '../fn/user-account/api-user-get-portfolio-get-plain';
+import { ApiUserGetPortfolioGet$Plain$Params } from '../fn/user-account/api-user-get-portfolio-get-plain';
 import { UserDataViewModelApiResult } from '../models/user-data-view-model-api-result';
 import { UserFullInformationViewModelApiResult } from '../models/user-full-information-view-model-api-result';
+import { UserPortfolioViewModelApiResult } from '../models/user-portfolio-view-model-api-result';
 
 @Injectable({ providedIn: 'root' })
 export class UserAccountService extends BaseService {
@@ -216,6 +221,69 @@ export class UserAccountService extends BaseService {
   apiUserGetFullInformationGet$Json(params?: ApiUserGetFullInformationGet$Json$Params, context?: HttpContext): Observable<UserFullInformationViewModelApiResult> {
     return this.apiUserGetFullInformationGet$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<UserFullInformationViewModelApiResult>): UserFullInformationViewModelApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiUserGetPortfolioGet()` */
+  static readonly ApiUserGetPortfolioGetPath = '/api/User/GetPortfolio';
+
+  /**
+   * Get user portfolio.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserGetPortfolioGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetPortfolioGet$Plain$Response(params?: ApiUserGetPortfolioGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<UserPortfolioViewModelApiResult>> {
+    return apiUserGetPortfolioGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Get user portfolio.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserGetPortfolioGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetPortfolioGet$Plain(params?: ApiUserGetPortfolioGet$Plain$Params, context?: HttpContext): Observable<UserPortfolioViewModelApiResult> {
+    return this.apiUserGetPortfolioGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<UserPortfolioViewModelApiResult>): UserPortfolioViewModelApiResult => r.body)
+    );
+  }
+
+  /**
+   * Get user portfolio.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserGetPortfolioGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetPortfolioGet$Json$Response(params?: ApiUserGetPortfolioGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<UserPortfolioViewModelApiResult>> {
+    return apiUserGetPortfolioGet$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Get user portfolio.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserGetPortfolioGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiUserGetPortfolioGet$Json(params?: ApiUserGetPortfolioGet$Json$Params, context?: HttpContext): Observable<UserPortfolioViewModelApiResult> {
+    return this.apiUserGetPortfolioGet$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<UserPortfolioViewModelApiResult>): UserPortfolioViewModelApiResult => r.body)
     );
   }
 
