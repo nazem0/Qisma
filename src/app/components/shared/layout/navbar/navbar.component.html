@@ -25,7 +25,7 @@
 
       <img [matMenuTriggerFor]="userMenu" [src]="helper.generateAvatar(authHelper.getUserName()!)"
         style="cursor: pointer" height="40" class="rounded-circle" />
-      <mat-menu #userMenu="matMenu">
+      <mat-menu #userMenu="matMenu" class="d-lg-block d-none">
         @if(authHelper.hasRole(roles.Admin)){
         @for (link of adminLinks; track $index) {
         <button mat-menu-item [routerLink]="link.routerLink">
