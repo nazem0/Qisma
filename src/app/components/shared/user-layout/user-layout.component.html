@@ -1,9 +1,10 @@
 <div>
-    <div class="navbar-container bg-white border border-1 sticky-top container-fluid">
-        <app-navbar [(collapse)]="collapse" [showSidebarMenuButton]="true">
-        </app-navbar>
+    <div class="navbar-container bg-white border border-1 sticky-top">
+        <div class="container">
+            <app-navbar [(collapse)]="collapse" [showSidebarMenuButton]="true">
+            </app-navbar>
+        </div>
     </div>
-    @if(authHelper.isLoggedIn | async){
     <div>
         <div class="transition sidenav-container bg-white h-100 overflow-x-hidden sticky-top border border-1 z-2"
             [ngClass]="{ expanded: !collapse}">
@@ -16,12 +17,12 @@
         </div>
 
     </div>
-    }
-    <div class="container-fluid min-vh-100">
+    
+    <div class="container min-vh-100">
         <router-outlet></router-outlet>
     </div>
     <div class="bg-dark-blue py-5 mt-5">
-        <div class="container-fluid">
+        <div class="container">
             <app-footer></app-footer>
         </div>
     </div>
