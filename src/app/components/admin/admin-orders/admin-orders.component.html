@@ -1,12 +1,12 @@
 <div class="container-sm">
   <p-dropdown
-  [optionLabel]="'name'"
-  [options]="orderStatusArray"
-  placeholder="Filter By Order Status"
-  (onChange)="getOrders($event.value.id)"
-  (onClear)="getOrders()"
-  styleClass="w-100"
-  [showClear]="true"
+    [optionLabel]="'name'"
+    [options]="orderStatusArray"
+    placeholder="Filter By Order Status"
+    (onChange)="getOrders($event.value.id)"
+    (onClear)="getOrders()"
+    styleClass="w-100"
+    [showClear]="true"
   ></p-dropdown>
   <p-table
     [value]="orders ?? []"
@@ -153,14 +153,28 @@
           </p-accordion>
         </td>
         <td>
-          <p-button
+          
+          @if(order.orderStatus != 2) {
+            <p-button
             [raised]="true"
-            (onClick)="confirmOrder(order.orderFinancialDetails.orderId)"
+            (onClick)="confirmOrRejectOrder(order.orderFinancialDetails.orderId, true)"
           >
             <span class="text-white mx-auto">
               <i class="pi pi-check"></i>
             </span>
           </p-button>
+          }
+          @else {
+            <p-button
+            [raised]="true"
+            [severity]="'danger'"
+            (onClick)="confirmOrRejectOrder(order.orderFinancialDetails.orderId, false)"
+          >
+            <span class="text-white mx-auto">
+              <i class="pi pi-times"></i>
+            </span>
+          </p-button>
+          }
         </td>
       </tr>
     </ng-template>

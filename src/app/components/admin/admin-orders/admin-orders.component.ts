@@ -64,14 +64,14 @@ export class AdminOrdersComponent implements OnInit {
     this.getOrders();
   }
 
-  confirmOrder(orderId: number) {
+  confirmOrRejectOrder(orderId: number, action:boolean) {
     console.log(orderId);
     
     this
       .orderService
       .apiDashboardOrdersConfirmOrderPost$Json({
         OrderId: orderId,
-        ConfirmedOrRejected:true
+        ConfirmedOrRejected:action
       })
       .subscribe({
         next: () => {
