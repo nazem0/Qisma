@@ -63,7 +63,9 @@ export class AdminOrdersComponent implements OnInit {
     this.pagination.index = $event - 1;
     this.getOrders();
   }
-
+  resetPage(){
+    this.pagination.index = 0
+  }
   confirmOrRejectOrder(orderId: number, action:boolean) {
     console.log(orderId);
     

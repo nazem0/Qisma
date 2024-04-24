@@ -3,8 +3,8 @@
     [optionLabel]="'name'"
     [options]="orderStatusArray"
     placeholder="Filter By Order Status"
-    (onChange)="getOrders($event.value.id)"
-    (onClear)="getOrders()"
+    (onChange)="resetPage(); getOrders($event.value.id)"
+    (onClear)="resetPage(); getOrders()"
     styleClass="w-100"
     [showClear]="true"
   ></p-dropdown>

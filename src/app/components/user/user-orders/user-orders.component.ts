@@ -45,6 +45,9 @@ export class UserOrdersComponent implements OnInit {
     this.getOrders();
   }
 
+  resetPage(){
+    this.pagination.index = 0
+  }
   getOrders(status?:number){
     this
     .orderService

@@ -3,9 +3,9 @@
   [optionLabel]="'name'"
   [options]="orderStatusArray"
   placeholder="Filter By Order Status"
-  (onChange)="getOrders($event.value.id)"
+  (onChange)="resetPage(); getOrders($event.value.id)"
   [showClear]="true"
-  (onClear)="getOrders()"
+  (onClear)="resetPage(); getOrders()"
   styleClass="w-100"
   ></p-dropdown>
   <p-table [value]="orders??[]" [rows]="pagination.size" [totalRecords]="pagination.total" [tableStyle]="{ 'min-width': '50rem' }">
