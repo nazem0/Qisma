@@ -384,3 +384,7 @@ table td {
 .sticky-top {
     z-index: 1000;
 }
+
+.text-justify{
+    text-align: justify;
+}
