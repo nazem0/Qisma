@@ -358,8 +358,9 @@ ngx-intl-tel-input {
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+    width: 8px;
+    /* height: 10px; */
+    background:var(--primary-200);
 }
 
 /* Track
@@ -368,7 +369,7 @@ ngx-intl-tel-input {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: var(--primary-500);
+    background: var(--primary-600);
 
 }
 

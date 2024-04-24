@@ -1,17 +1,12 @@
 .sidenav-container {
-    min-height:100vh;
-    height: 100%;
-    position: fixed;
     width: 60px;
-    padding-top: calc(var(--navbar-container-height) + 20px);
+}
+
+
+.sidenav{
+    padding: calc(var(--navbar-container-height) + 20px) 0px;
 }
 
 .expanded {
     width: 280px;
 }
-
-/* .sidebar-button{
-    top: 295px;
-    left:100px;
-    
-} */
