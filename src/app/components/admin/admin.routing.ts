@@ -1,0 +1,21 @@
+import { Routes, RouterModule } from '@angular/router';
+import { AdminAuthGuard } from '../../guards/admin.guard';
+import { MarketplaceComponent } from '../guest/marketplace/marketplace.component';
+import { PropertyDetailsComponent } from '../guest/property-details/property-details.component';
+import { UserLayoutComponent } from '../shared/user-layout/user-layout.component';
+import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
+import { EditImagesComponent } from './edit-images/edit-images.component';
+import { PropertyActionsComponent } from './property-actions/property-actions.component';
+
+export const adminRoutes: Routes = [
+  {
+    path: "admin", component: UserLayoutComponent, children: [
+      { path: "orders", component: AdminOrdersComponent, title: "Orders" },
+      { path: "marketplace", component: MarketplaceComponent, title: "Marketplace" },
+      { path: "marketplace/property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
+      { path: "marketplace/property-images/:id", component: EditImagesComponent, title: "Property Images" },
+      { path: "marketplace/property-actions", component: PropertyActionsComponent, title: "Property Actions" },
+      { path: "marketplace/property-actions/:id", component: PropertyActionsComponent, title: "Property Actions" },
+    ], canActivate: [AdminAuthGuard]
+  }
+];

@@ -19,6 +19,7 @@ import { ApiModule } from './api/api.module';
 import { environment } from '../environments/environment';
 import { ApiConfiguration } from './api/api-configuration';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { adminRoutes } from './components/admin/admin.routing';
 
 registerLocaleData(en);
 
