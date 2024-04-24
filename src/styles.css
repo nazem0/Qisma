@@ -369,7 +369,7 @@ ngx-intl-tel-input {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: var(--primary-600);
+    background: var(--primary-500);
 
 }
 
