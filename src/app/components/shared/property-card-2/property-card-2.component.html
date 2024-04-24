@@ -1,36 +1,37 @@
-<div [routerLink]="['property-details', property.propertyId]"
-    class="shadow-sm property-card bg-white shadow-sm rounded-3 overflow-hidden">
+<div class="shadow-sm property-card bg-white shadow-sm rounded-3 overflow-hidden">
 
-    <div class="img-container">
-        <!-- <div class="position-absolute badge badge-top">
-            <span class="text-white">
-                Featured
-            </span>
-        </div> -->
-        <!-- <div class="position-absolute badge badge-bottom"><small class="mat-small">New Listing</small></div> -->
-        <img class="w-100"
-            [src]="property.imageUrl ? helper.processFileUrl(property.imageUrl) : 'https://placehold.co/200?text=Add+Photos'"
-            [alt]="property.address">
-    </div>
-    <div class="p-3">
-        <div class="d-flex flex-column">
-            <small class="fw-semibold">{{property.address}}</small>
-            <small class="mat-small text-muted">{{property.city}}</small>
+    <a [routerLink]="['property-details', property.propertyId]">
+        <div class="img-container">
+            <!-- <div class="position-absolute badge badge-top">
+                <span class="text-white">
+                    Featured
+                </span>
+            </div> -->
+            <!-- <div class="position-absolute badge badge-bottom"><small class="mat-small">New Listing</small></div> -->
+            <img class="w-100"
+                [src]="property.imageUrl ? helper.processFileUrl(property.imageUrl) : 'https://placehold.co/200?text=Add+Photos'"
+                [alt]="property.address">
         </div>
-        <div class="d-flex gap-2 text-primary-subtle">
-            <small class="fw-semibold">{{property.projectedRentalYield | percent : '1.0-3'}}</small>
-            <small class="mat-small fw-semibold">Projected Rental Yield</small>
+        <div class="p-3">
+            <div class="d-flex flex-column">
+                <small class="fw-semibold">{{property.address}}</small>
+                <small class="mat-small text-muted">{{property.city}}</small>
+            </div>
+            <div class="d-flex gap-2 text-primary-subtle">
+                <small class="fw-semibold">{{property.projectedRentalYield | percent : '1.0-3'}}</small>
+                <small class="mat-small fw-semibold">Projected Rental Yield</small>
+            </div>
+            <div class="d-flex gap-2">
+                <small class="fw-semibold">{{property.projectedAnnualReturn | percent : '1.0-3'}}</small>
+                <small class="mat-small">Projected Annual Return</small>
+            </div>
         </div>
-        <div class="d-flex gap-2">
-            <small class="fw-semibold">{{property.projectedAnnualReturn | percent : '1.0-3'}}</small>
-            <small class="mat-small">Projected Annual Return</small>
+    
+        <div class="bg-primary p-3 text-center text-white">
+            <small class="mat-small">Available: {{property.availableTokens}} shares at {{property.tokenPrice | currency
+                : "EGP" : "symbol" : "1.0-0"}}</small>
         </div>
-    </div>
-
-    <div class="bg-primary p-3 text-center text-white">
-        <small class="mat-small">Available: {{property.availableTokens}} shares at {{property.tokenPrice | currency
-            : "EGP" : "symbol" : "1.0-0"}}</small>
-    </div>
+    </a>
     @if(isInAdminPanel){
     <a [routerLink]="'/admin/marketplace/property-actions/' + property.propertyId">
         <p-button [raised]="true" styleClass="bg-white text-primary border-0 px-2 py-0 w-100 rounded-0">
