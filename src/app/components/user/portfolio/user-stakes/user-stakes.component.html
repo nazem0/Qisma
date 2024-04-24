@@ -1,6 +1,6 @@
 <div>
   <h3>My Stakes</h3>
-  <p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table *ngIf="data" [value]="data" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
       <tr>
         <th>Property</th>

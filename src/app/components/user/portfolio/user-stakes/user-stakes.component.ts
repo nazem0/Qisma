@@ -1,31 +1,24 @@
-import { CurrencyPipe, NgClass, NgFor } from '@angular/common';
+import { CurrencyPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
+import { UserPropertiesInPortfolioViewModel } from '../../../../api/models';
 
 @Component({
   selector: 'app-user-stakes',
   templateUrl: './user-stakes.component.html',
   styleUrls: ['./user-stakes.component.css'],
-  standalone:true,
-  imports:[
+  standalone: true,
+  imports: [
     TableModule,
     NgFor,
     CurrencyPipe,
-    NgClass
+    NgClass,
+    NgIf
   ]
 
 })
 export class UserStakesComponent implements OnInit {
-  @Input() data = [
-    {
-      "propertyId": "167850486",
-      "propertyLocation": "Dummy Location",
-      "investmentValue": 22680000,
-      "totalRentalIncome": 0,
-      "statusId": 2,
-      "status": "Ready To Move"
-    }
-  ]
+  @Input() data?: UserPropertiesInPortfolioViewModel[];
   constructor() { }
 
   ngOnInit() {
