@@ -19,7 +19,7 @@
         <th>Order Financial Details</th>
         <th>Property Details</th>
         <th>Status</th>
-        <th>Action</th>
+        <th colspan="2">Action</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-order>
@@ -152,9 +152,8 @@
             </p-accordionTab>
           </p-accordion>
         </td>
-        <td>
-          
-          @if(order.orderStatus != 2) {
+        @if (order.orderStatus != 2) {
+          <td>
             <p-button
             [raised]="true"
             (onClick)="confirmOrRejectOrder(order.orderFinancialDetails.orderId, true)"
@@ -163,9 +162,9 @@
               <i class="pi pi-check"></i>
             </span>
           </p-button>
-          }
-          @else {
-            <p-button
+        </td>
+        <td>
+          <p-button
             [raised]="true"
             [severity]="'danger'"
             (onClick)="confirmOrRejectOrder(order.orderFinancialDetails.orderId, false)"
@@ -174,8 +173,8 @@
               <i class="pi pi-times"></i>
             </span>
           </p-button>
-          }
         </td>
+        }
       </tr>
     </ng-template>
   </p-table>
