@@ -4,7 +4,9 @@
             <p>All without leaving your living room. No experience, connections, or down payments required.</p>
         </div>
     <div class="mx-auto row row-cols-lg-3 g-3">
-        <app-property-card *ngFor="let item of [].constructor(3)"></app-property-card>
+        @for (property of properties; track $index) {
+            <app-property-card [property]="property"></app-property-card>
+        }
     </div>
 
     <div class="d-flex justify-content-center pt-5">
