@@ -1,12 +1,16 @@
 <div class="row row-cols-lg-3 g-2">
     @for (item of content; track $index) {
     <div>
-        <div class="bg-white shadow-sm p-2 rounded-3">
-            <h2>{{item.title}}</h2>
+        <div class="bg-white shadow-sm p-3 rounded-3 card-container">
+            <h3 class="fs-3">{{item.title}}</h3>
         <div class="d-flex flex-column gap-2">
-            @for (content of item.content; track $index) {
-                <a [routerLink]="content.url">{{content.title}}</a>
-            }
+            <ul>
+                @for (content of item.content; track $index) {
+                        <li>
+                        <a [routerLink]="content.url">{{content.title}}</a>
+                    </li>
+                    }
+            </ul>
         </div>
         </div>
     </div>

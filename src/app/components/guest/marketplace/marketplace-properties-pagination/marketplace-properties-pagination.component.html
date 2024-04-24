@@ -10,87 +10,91 @@
     </div>
 </div>
 }
-<div class="filters row row-cols-lg-5 row-cols-md-3 gx-4 justify-content-center">
-    <div>
-        <small class="mat-small d-block mt-2 mb-1">Governorate</small>
+<div class="p-3 bg-white rounded-3 shadow-sm my-4">
+    <div class="filters row row-cols-lg-5 row-cols-md-3 gx-4 justify-content-center">
         <div>
-            <p-dropdown [filter]="true" filterBy="name" [options]="governorates" [optionLabel]="'name'"
-                [showClear]="true" [(ngModel)]="selectedGov" (onChange)="initCity()" placeholder="All Governorates"
-                styleClass="w-100">
-            </p-dropdown>
+            <small class="mat-small d-block mt-2 mb-1">Governorate</small>
+            <div>
+                <p-dropdown [filter]="true" filterBy="name" [options]="governorates" [optionLabel]="'name'"
+                    [showClear]="true" [(ngModel)]="selectedGov" (onChange)="initCity()" placeholder="All Governorates"
+                    styleClass="w-100">
+                </p-dropdown>
+            </div>
         </div>
-    </div>
-    <div>
-        <small class="mat-small d-block mt-2 mb-1">City</small>
         <div>
-            <p-dropdown [filter]="true" filterBy="name" [(ngModel)]="selectedCity" [disabled]="!selectedGov"
-                [options]="cities" [optionLabel]="'name'" [showClear]="true" placeholder="All Cities"
-                styleClass="w-100"></p-dropdown>
+            <small class="mat-small d-block mt-2 mb-1">City</small>
+            <div>
+                <p-dropdown [filter]="true" filterBy="name" [(ngModel)]="selectedCity" [disabled]="!selectedGov"
+                    [options]="cities" [optionLabel]="'name'" [showClear]="true" placeholder="All Cities"
+                    styleClass="w-100"></p-dropdown>
+            </div>
         </div>
-    </div>
-    <div>
-        <small class="mat-small d-block mt-2 mb-1">Property type</small>
         <div>
-            <p-dropdown [(ngModel)]="selectedProperty" [showClear]="true" placeholder="All Properties" styleClass="w-100" [options]="propertyTypes"
-                optionLabel="name">
-            </p-dropdown>
+            <small class="mat-small d-block mt-2 mb-1">Property type</small>
+            <div>
+                <p-dropdown [(ngModel)]="selectedProperty" [showClear]="true" placeholder="All Properties" styleClass="w-100" [options]="propertyTypes"
+                    optionLabel="name">
+                </p-dropdown>
+            </div>
         </div>
-    </div>
-    <div>
-        <small class="mat-small">Property Price Range In EGP</small>
         <div>
-            <p class="mb-1 text-end mat-small">
-                {{
-                filters.propertyPriceRange[0]
-                | currency : "EGP" : "" : "1.0-0"
-                }}
-                -
-                {{
-                filters.propertyPriceRange[1]
-                | currency : "EGP" : "" : "1.0-0"
-                }}
-            </p>
-
-            <p-slider [min]="1 * math.pow(10, 6)" [max]="100 * math.pow(10, 6)" [step]="1 * math.pow(10, 6)"
-                [(ngModel)]="filters.propertyPriceRange" [animate]="true" [range]="true"></p-slider>
-            <div class="mt-1 d-flex justify-content-between">
-                <span class="mat-small">1M</span>
-                <span class="mat-small">100M</span>
+            <small class="mat-small">Property Price Range In EGP</small>
+            <div>
+                <p class="mb-1 text-end mat-small">
+                    {{
+                    filters.propertyPriceRange[0]
+                    | currency : "EGP" : "" : "1.0-0"
+                    }}
+                    -
+                    {{
+                    filters.propertyPriceRange[1]
+                    | currency : "EGP" : "" : "1.0-0"
+                    }}
+                </p>
+    
+                <p-slider [min]="1 * math.pow(10, 6)" [max]="100 * math.pow(10, 6)" [step]="1 * math.pow(10, 6)"
+                    [(ngModel)]="filters.propertyPriceRange" [animate]="true" [range]="true"></p-slider>
+                <div class="mt-1 d-flex justify-content-between">
+                    <span class="mat-small">1M</span>
+                    <span class="mat-small">100M</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <small class="mat-small">Share Price Range In EGP</small>
+            <div>
+                <p class="mb-1 text-end mat-small">
+                    {{
+                    filters.sharePriceRange[0] | currency : "EGP" : "" : "1.0-0"
+                    }}
+                    -
+                    {{
+                    filters.sharePriceRange[1] | currency : "EGP" : "" : "1.0-0"
+                    }}
+                </p>
+                <p-slider [min]="500 * math.pow(10, 3)" [max]="20*math.pow(10,6)" [step]="500 * math.pow(10, 3)"
+                    [(ngModel)]="filters.sharePriceRange" [animate]="true" [range]="true"></p-slider>
+                <div class="mt-1 d-flex justify-content-between">
+                    <span class="mat-small">500K</span>
+                    <span class="mat-small">20M</span>
+                </div>
             </div>
         </div>
     </div>
-    <div>
-        <small class="mat-small">Share Price Range In EGP</small>
-        <div>
-            <p class="mb-1 text-end mat-small">
-                {{
-                filters.sharePriceRange[0] | currency : "EGP" : "" : "1.0-0"
-                }}
-                -
-                {{
-                filters.sharePriceRange[1] | currency : "EGP" : "" : "1.0-0"
-                }}
-            </p>
-            <p-slider [min]="500 * math.pow(10, 3)" [max]="20*math.pow(10,6)" [step]="500 * math.pow(10, 3)"
-                [(ngModel)]="filters.sharePriceRange" [animate]="true" [range]="true"></p-slider>
-            <div class="mt-1 d-flex justify-content-between">
-                <span class="mat-small">500K</span>
-                <span class="mat-small">20M</span>
-            </div>
-        </div>
+    <div class="row justify-content-center align-items-center">
+       <div class="col-6 my-3">
+        <p-button (onClick)="resetPagination();getProperties()" styleClass="w-100">
+            <span class="mx-auto text-white">
+                <i class="pi pi-search"></i></span>
+        </p-button>
+       </div>
     </div>
 </div>
-<div class="row justify-content-center align-items-center">
-   <div class="col-6 my-3">
-    <p-button (onClick)="resetPagination();getProperties()" styleClass="w-100">
-        <span class="mx-auto text-white">
-            <i class="pi pi-search"></i></span>
-    </p-button>
-   </div>
-</div>
-<div *ngIf="properties" class="row row-cols-md-4 g-3 justify-content-center">
+<div *ngIf="properties" class="row row-cols-md-3 g-3 justify-content-center">
     @for (item of properties; track $index) {
-        <app-property-card-2 [property]="item" (refresh)="getProperties()"></app-property-card-2>
+        <div>
+            <app-property-card-2 [property]="item" (refresh)="getProperties()"></app-property-card-2>
+        </div>
     }
     <!-- <a [routerLink]="['/property-details']" *ngFor="let item of [].constructor(8)">
     </a> -->

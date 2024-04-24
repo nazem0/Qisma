@@ -1,12 +1,13 @@
-<div [routerLink]="['property-details', property.propertyId]" class="shadow-sm property-card bg-white shadow-sm rounded-3 overflow-hidden">
+<div [routerLink]="['property-details', property.propertyId]"
+    class="shadow-sm property-card bg-white shadow-sm rounded-3 overflow-hidden">
 
     <div class="img-container">
-        <div class="position-absolute badge badge-top">
+        <!-- <div class="position-absolute badge badge-top">
             <span class="text-white">
                 Featured
             </span>
-        </div>
-        <div class="position-absolute badge badge-bottom"><small class="mat-small">New Listing</small></div>
+        </div> -->
+        <!-- <div class="position-absolute badge badge-bottom"><small class="mat-small">New Listing</small></div> -->
         <img class="w-100"
             [src]="property.imageUrl ? helper.processFileUrl(property.imageUrl) : 'https://placehold.co/200?text=Add+Photos'"
             [alt]="property.address">
@@ -36,11 +37,10 @@
             <span class="mx-auto">Edit Property</span>
         </p-button>
     </a>
+    <app-confirm [label]="property.isDeleted ? 'Activate' :'Deactivate' + 'property'"
+        [severity]="property.isDeleted?'success':'danger'" [title]="property.address+' property'"
+        [description]="'Are you sure you want to '+ (property.isDeleted ? 'activate' :'deactivate') +' this property?'"
+        (confirmation)="togglePropertyActivation(property.propertyId!)"></app-confirm>
+
     }
 </div>
-@if(isInAdminPanel){
-    <app-confirm [label]="property.isDeleted ? 'Activate' :'Deactivate' + 'property'" [severity]="property.isDeleted?'success':'danger'" [title]="property.address+' property'"
-    [description]="'Are you sure you want to '+ (property.isDeleted ? 'activate' :'deactivate') +' this property?'"
-    (confirmation)="togglePropertyActivation(property.propertyId!)"></app-confirm>
-}
-
