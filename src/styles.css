@@ -359,7 +359,7 @@ ngx-intl-tel-input {
 
 ::-webkit-scrollbar {
     width: 8px;
-    /* height: 10px; */
+    height: 8px;
     background:var(--primary-200);
 }
 
@@ -388,4 +388,8 @@ table td {
 
 .text-justify{
     text-align: justify;
+}
+
+.td-min-width-15{
+    min-width: 15rem;
 }

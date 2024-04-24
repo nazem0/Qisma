@@ -12,6 +12,7 @@
     [value]="orders ?? []"
     [rows]="pagination.size"
     [totalRecords]="pagination.total"
+    [tableStyle]="{ 'min-width': '50rem' }"
   >
     <ng-template pTemplate="header">
       <tr>
@@ -19,7 +20,6 @@
         <th>Order Financial Details</th>
         <th>Property Details</th>
         <th>Status</th>
-        <th colspan="2">Action</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-order>
@@ -109,17 +109,24 @@
             </p-accordionTab>
           </p-accordion>
         </td>
-        <td>
+        <td class="td-min-width-15">
           <p-accordion>
             <p-accordionTab [header]="order.property.address">
-              <div>Property ID: {{ order.property.propertyId }}</div>
-              <div>
-                <img
-                  [src]="helper.processFileUrl(order.property.imageUrl)"
-                  alt="Property Image"
-                  style="width: 100px; height: auto"
-                />
+              <!-- <ng-template pTemplate="header">
+                <div class="d-flex justify-content-between align-items-center gap-2">
+                  <div>
+                    <img class="property-image-preview rounded-circle" [src]="helper.processFileUrl(order.property.imageUrl)" alt="Property Image">
+                  </div>
+                  <span>
+                    {{order.property.address}}
+                  </span>
+                </div>
+              </ng-template> -->
+              <div class="d-flex justify-content-center mb-2">
+                <img class="property-image-preview rounded-circle" [src]="helper.processFileUrl(order.property.imageUrl)" alt="Property Image">
               </div>
+              <hr>
+              <div>Property ID: {{ order.property.propertyId }}</div>
               <div>Address: {{ order.property.address }}</div>
               <div>City: {{ order.property.city }}</div>
               <div>
@@ -149,22 +156,18 @@
                     | date : "mediumDate"
                 }}
               </div>
-            </p-accordionTab>
-          </p-accordion>
-        </td>
-        @if (order.orderStatus != 2) {
-          <td>
-            <p-button
+              @if (order.orderStatus != 2) {
+              <div class="d-flex gap-2 justify-content-center mt-2">
+                <p-button
             [raised]="true"
+            [severity]="'success'"
             (onClick)="confirmOrRejectOrder(order.orderFinancialDetails.orderId, true)"
           >
             <span class="text-white mx-auto">
               <i class="pi pi-check"></i>
             </span>
           </p-button>
-        </td>
-        <td>
-          <p-button
+                <p-button
             [raised]="true"
             [severity]="'danger'"
             (onClick)="confirmOrRejectOrder(order.orderFinancialDetails.orderId, false)"
@@ -173,12 +176,11 @@
               <i class="pi pi-times"></i>
             </span>
           </p-button>
+              </div>
+            }
+            </p-accordionTab>
+          </p-accordion>
         </td>
-        }
-        @else {
-          <td></td>
-          <td></td>
-        }
       </tr>
     </ng-template>
   </p-table>
