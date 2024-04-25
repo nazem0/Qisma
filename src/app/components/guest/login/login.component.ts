@@ -52,13 +52,17 @@ export class LoginComponent {
           let previousUrl = sessionStorage.getItem("previous-url")
           if (previousUrl) {
             sessionStorage.removeItem("previous-url")
-            this.router.navigateByUrl(previousUrl);
           }
-          else if (this._authHelper.hasRole(Roles.Admin)) {
+          if (this._authHelper.hasRole(Roles.Admin)) {
             this.router.navigate(["/admin/"]);
           }
           else if (this._authHelper.hasRole(Roles.Customer)) {
-            this.router.navigate(["/profile/"]);
+            if (previousUrl) {
+              this.router.navigateByUrl(previousUrl);
+            }
+            else{
+              this.router.navigate(["/profile/"]);
+            }
           }
         }
       })
