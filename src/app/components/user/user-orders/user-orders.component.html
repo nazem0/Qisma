@@ -14,6 +14,7 @@
         <th>Order Financial Details</th>
         <th>Property Details</th>
         <th>Status</th>
+        <th>PDF</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-order>
@@ -73,6 +74,13 @@
               <div *ngIf="order.orderFinancialDetails.confirmationDate">Confirmation Date: {{order.orderFinancialDetails.confirmationDate | date:'mediumDate'}}</div>
             </p-accordionTab>
           </p-accordion>
+        </td>
+        <td>
+          <div class="mt-2">
+            <a [href]="helper.processOrderPdfFileUrl(order.orderPdfUrl)">
+              <i class="pi pi-file-pdf fs-1"></i>
+            </a>
+          </div>
         </td>
       </tr>
     </ng-template>
