@@ -35,19 +35,34 @@
             </p-accordionTab>
           </p-accordion>
         </td>
-        <td>
+        <td class="td-min-width-15">
           <p-accordion>
             <p-accordionTab [header]="order.property.address">
-              <div>Property ID: {{order.property.propertyId}}</div>
-              <div>
-                <img [src]="helper.processFileUrl(order.property.imageUrl)" alt="Property Image" style="width:100px;height:auto;">
+              <!-- <ng-template pTemplate="header">
+                <div class="d-flex justify-content-between align-items-center gap-2">
+                  <div>
+                    <img class="property-image-preview rounded-circle" [src]="helper.processFileUrl(order.property.imageUrl)" alt="Property Image">
+                  </div>
+                  <span>
+                    {{order.property.address}}
+                  </span>
+                </div>
+              </ng-template> -->
+              <div class="d-flex justify-content-center mb-2">
+                <img class="property-image-preview rounded-circle" [src]="helper.processFileUrl(order.property.imageUrl)" alt="Property Image">
               </div>
-              <div>Address: {{order.property.address}}</div>
-              <div>City: {{order.property.city}}</div>
-              <div>Annual Return: {{order.property.projectedAnnualReturn}}%</div>
-              <div>Rental Yield: {{order.property.projectedRentalYield}}%</div>
-              <div>Token Price: {{order.property.tokenPrice | currency}}</div>
-              <div>Available Tokens: {{order.property.availableTokens}}</div>
+              <hr>
+              <div>Property ID: {{ order.property.propertyId }}</div>
+              <div>Address: {{ order.property.address }}</div>
+              <div>City: {{ order.property.city }}</div>
+              <div>
+                Annual Return: {{ order.property.projectedAnnualReturn }}%
+              </div>
+              <div>
+                Rental Yield: {{ order.property.projectedRentalYield }}%
+              </div>
+              <div>Token Price: {{ order.property.tokenPrice | currency }}</div>
+              <div>Available Tokens: {{ order.property.availableTokens }}</div>
             </p-accordionTab>
           </p-accordion>
         </td>

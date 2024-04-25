@@ -397,3 +397,9 @@ table td {
 .cursor-pointer{
     cursor: pointer;
 }
+
+.property-image-preview{
+    aspect-ratio: 1;
+    object-fit: cover;
+    height:70px;
+}
