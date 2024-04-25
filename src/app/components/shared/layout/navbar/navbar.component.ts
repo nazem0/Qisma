@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Helper } from '../../../../services/helper';
 import { AuthHelper } from '../../../../services/auth-helper';
 import { Roles } from '../../../../enums/roles.enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -40,6 +41,7 @@ export class NavbarComponent {
   userLinks: MenuItem[] = []
   constructor(
     public authHelper: AuthHelper,
+    private router:Router
   ) {
     this.links = [
       { label: 'Staking', routerLink: '/staking' },
@@ -64,5 +66,10 @@ export class NavbarComponent {
 
   toggleNavbarCollapse() {
     this.navbarCollapse = !this.navbarCollapse;
+  }
+
+  logout(){
+    this.authHelper.logout();
+    this.router.navigate(["login"]);
   }
 }

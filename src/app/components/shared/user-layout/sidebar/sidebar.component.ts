@@ -95,5 +95,6 @@ export class SidebarComponent {
   }
   logout() {
     this._authHelper.logout();
+    this.login()
   }
 }

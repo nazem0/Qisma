@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AuthHelper } from '../services/auth-helper';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { IndexableObject } from 'ng-zorro-antd/core/types';
 @Injectable()
 export class UserAuthGuard implements CanActivate, CanActivateChild {
   constructor(
@@ -25,6 +26,7 @@ export class UserAuthGuard implements CanActivate, CanActivateChild {
     } else {
       this._snackbar.open("You are not allowed to view this page, please login first.", 'ok', {duration:10000})
       this.router.navigate(['/login'])
+      sessionStorage.setItem("previous-url",(route.root as IndexableObject)['_routerState'].url);
       return false;
     }
   }

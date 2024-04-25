@@ -7,14 +7,15 @@ import { AuthHelper } from '../../../services/auth-helper';
 import { NgIf } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { Roles } from '../../../enums/roles.enum';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  standalone:true,
-  imports:[
+  standalone: true,
+  imports: [
     NgIf,
     ReactiveFormsModule,
     ButtonModule,
@@ -28,8 +29,9 @@ export class LoginComponent {
   helper = Helper;
   constructor(
     private _formbuilder: FormBuilder,
-    private _userAccountService:UserAccountService,
-    private _authHelper:AuthHelper
+    private _userAccountService: UserAccountService,
+    private _authHelper: AuthHelper,
+    private router: Router
   ) {
 
     this.form = this._formbuilder.group({
@@ -41,13 +43,25 @@ export class LoginComponent {
 
   login(): void {
     this
-    ._userAccountService
-    .apiSignInPost$Json({body:this.form.value})
-    .subscribe({
-      next:next=>{
-        this._authHelper.login(next.data!);
-      }
-    })
+      ._userAccountService
+      .apiSignInPost$Json({ body: this.form.value })
+      .subscribe({
+        next: next => {
+          this._authHelper.login(next.data!);
+
+          let previousUrl = sessionStorage.getItem("previous-url")
+          if (previousUrl) {
+            sessionStorage.removeItem("previous-url")
+            this.router.navigateByUrl(previousUrl);
+          }
+          else if (this._authHelper.hasRole(Roles.Admin)) {
+            this.router.navigate(["/admin/"]);
+          }
+          else if (this._authHelper.hasRole(Roles.Customer)) {
+            this.router.navigate(["/profile/"]);
+          }
+        }
+      })
   }
 
   toggleHidePassword(): void {

@@ -14,6 +14,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { InvestorType } from '../../../api/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -52,7 +53,8 @@ export class RegisterComponent {
   constructor(
     private _formbuilder: FormBuilder,
     private _userAccountService:UserAccountService,
-    private _snackbar:MatSnackBar
+    private _snackbar:MatSnackBar,
+    private router:Router
   ) {
     this.form = this._formbuilder.group({
       firstName: new FormControl<string>("", [Validators.required]),
@@ -106,7 +108,9 @@ export class RegisterComponent {
     this
     ._userAccountService
     .apiSignUpForCustomerPost$Json({body:this.form.value})
-    .subscribe()
+    .subscribe({
+      next:()=>this.router.navigate(['/login'])
+    })
   }
 
   setDateOfBirth(date: Date) {    

@@ -18,21 +18,13 @@ export class AuthHelper {
     public login(auth: UserDataViewModel): void {
         localStorage.setItem(AuthHelper.authKey, JSON.stringify(auth));
         this._isLoggedIn.next(true);
-        this.$rolesObservable.next(this.getRoles())
-        if(this.hasRole(Roles.Admin)){
-            this.router.navigate(["/admin/"]);
-        }
-        else if(this.hasRole(Roles.Customer)){
-            this.router.navigate(["/profile/"]);
-        }
-
+        this.$rolesObservable.next(this.getRoles());
     }
     public logout(): void {
 
         localStorage.removeItem(AuthHelper.authKey);
         this._isLoggedIn.next(false);
         this.$rolesObservable.next([])
-        this.router.navigate(["login"]);
     }
 
     public getAuth(): UserDataViewModel | void {

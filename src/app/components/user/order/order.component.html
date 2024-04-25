@@ -1,36 +1,43 @@
-<div class="">
+<div class="d-flex flex-column gap-3">
+  <header class="text-center">
+    <h2>
+      Place Order
+    </h2>
+  </header>
   @if(originalProperty && clonedProperty){
-  <div>
-    <div class="d-flex justify-content-between mt-3">
-      <p>Minimum Number Of Shares</p>
-      <p class="text-center">{{ originalProperty.minNumberOfShares }}</p>
+  <div class="bg-white rounded-3 p-3 shadow-sm">
+    <div>
+      <div class="d-flex justify-content-between mt-3">
+        <p>Minimum Number Of Shares</p>
+        <p class="text-center">{{ originalProperty.minNumberOfShares }}</p>
+      </div>
+      <div class="d-flex justify-content-between">
+        <p>Availiable Shares</p>
+        <p class="text-center">{{ originalProperty.availableShares }}</p>
+      </div>
     </div>
+  
     <div class="d-flex justify-content-between">
-      <p>Availiable Shares</p>
-      <p class="text-center">{{ originalProperty.availableShares }}</p>
+      <p>Number Of Shares To Order</p>
+      <p class="text-center">{{ numberOfShares }}</p>
+    </div>
+    <div class="mb-4">
+      <p-slider
+        [min]="originalProperty.minNumberOfShares!"
+        [max]="originalProperty.availableShares!"
+        [step]="1"
+        [(ngModel)]="numberOfShares"
+        (ngModelChange)="updatePaymentInfoByNumberOfShares()"
+        [animate]="true"
+      >
+      </p-slider>
     </div>
   </div>
 
-  <div class="d-flex justify-content-between">
-    <p>Number Of Shares To Order</p>
-    <p class="text-center">{{ numberOfShares }}</p>
-  </div>
-  <div class="mb-4">
-    <p-slider
-      [min]="originalProperty.minNumberOfShares!"
-      [max]="originalProperty.availableShares!"
-      [step]="1"
-      [(ngModel)]="numberOfShares"
-      (ngModelChange)="updatePaymentInfoByNumberOfShares()"
-      [animate]="true"
-    >
-    </p-slider>
-  </div>
-
-  <div class="shadow-sm p-3 rounded-3 mb-2 bg-white">
+  <div class="shadow-sm p-3 rounded-3 bg-white">
     <app-payment-plan [property]="clonedProperty"></app-payment-plan>
   </div>
-  <div class="bg-white shadow-sm px-3 py-2 mb-3">
+  <div class="bg-white shadow-sm p-3 rounded-3">
     <div class="d-flex justify-content-between">
       <label>Share Price:</label>
       <span>{{
