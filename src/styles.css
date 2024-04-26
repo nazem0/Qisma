@@ -41,7 +41,7 @@ img {
     --nav-logo-height: 40px;
 
     --bs-primary: var(--primary-600);
-    --bs-primary-rgb: 54, 69, 154;
+    --bs-primary-rgb: 14, 157, 110;
     --bs-primary-text-emphasis: var(--primary-700);
     --bs-primary-bg-subtle: var(--primary-400);
     --bs-primary-border-subtle: var(--primary-500);
@@ -66,7 +66,7 @@ body::before {
 body {
     margin: 0;
     padding: 0;
-    background-color: #F3F2FF;
+    background-color: #d6d7b2;
     overflow-x: hidden;
     scroll-behavior: smooth;
     font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -83,7 +83,7 @@ body {
     a,
     small,
     button {
-        color: #08165d;
+        color: var(--primary-900);
     }
 }
 
@@ -146,7 +146,7 @@ a,
 a:hover,
 .p-menuitem-text:hover,
 .purble-link:hover {
-    color: #9286FD !important;
+    color: var(--primary-500) !important;
 }
 
 .bg-primary {
@@ -270,14 +270,14 @@ input,
 
 .gradient-background-dark {
     -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(131deg, #9383ff 25%, #08165d 66%);
+    background-image: linear-gradient(131deg, var(--primary-400) 25%, var(--primary-800) 66%);
     -webkit-background-clip: text;
     background-clip: text;
 }
 
 .gradient-background-light {
     -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(110deg, #9383ff, #fff);
+    background-image: linear-gradient(110deg, var(--primary-400), #fff);
     -webkit-background-clip: text;
     background-clip: text;
 }
