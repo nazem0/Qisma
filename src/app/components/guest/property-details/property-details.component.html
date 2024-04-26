@@ -370,7 +370,7 @@
 
         <div class="row row-cols-2 justify-content-center">
           <div>
-            <p-button styleClass="w-100" [routerLink]="'/order/' + propertyId">
+            <p-button styleClass="w-100" (onClick)="buy(property.propertyId!)">
               <span class="mx-auto text-white">Buy</span>
             </p-button>
           </div>

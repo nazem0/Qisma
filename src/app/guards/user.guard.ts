@@ -28,7 +28,6 @@ export class UserAuthGuard implements CanActivate, CanActivateChild {
     } else {
       this._snackbar.open("You are not allowed to view this page, please login first.", 'ok', { duration: 10000 })
       this.router.navigate(['/login'])
-      sessionStorage.setItem("previous-url", state.url);
       return false;
     }
   }

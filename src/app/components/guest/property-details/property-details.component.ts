@@ -36,10 +36,10 @@ import { PaymentPlanComponent } from '../../shared/payment-plan/payment-plan.com
     TooltipModule,
     ConfirmComponent,
     PaymentPlanComponent,
-    
+
   ],
   providers: [CurrencyPipe],
-  encapsulation:ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None
 })
 export class PropertyDetailsComponent implements OnInit {
   propertyStatuses = BusinessHelper.propertyStatuses;
@@ -73,13 +73,13 @@ export class PropertyDetailsComponent implements OnInit {
     private propertyService: PropertyService,
     private route: ActivatedRoute,
     private currency: CurrencyPipe,
-    public authHelper:AuthHelper,
-    public router:Router,
-    private _propertyForAdminService : PropertyForAdminService
+    public authHelper: AuthHelper,
+    public router: Router,
+    private _propertyForAdminService: PropertyForAdminService
   ) {
     this.isInAdminPanel = authHelper.isInAdminPanel(route)
   }
-  
+
   ngOnInit(): void {
 
 
@@ -202,8 +202,8 @@ export class PropertyDetailsComponent implements OnInit {
     })
   }
 
-  goToPropertiesPage(){
-    this.router.navigate(['../..'], {relativeTo:this.route})
+  goToPropertiesPage() {
+    this.router.navigate(['../..'], { relativeTo: this.route })
   }
 
   togglePropertyActivation(propertyId: string) {
@@ -212,7 +212,7 @@ export class PropertyDetailsComponent implements OnInit {
       .apiDashboardPropertyEnableAndDisablePut$Json({
         PropertyId: propertyId
       }).subscribe({
-        next:()=>{
+        next: () => {
           this.initProperty()
         }
       })
@@ -220,6 +220,13 @@ export class PropertyDetailsComponent implements OnInit {
 
   showOrderModal() {
     this.displayModal = true;
+  }
+
+  buy(propertyId: string) {
+    if (!this.authHelper.checkLogin()) {
+      sessionStorage.setItem("previous-url", this.router.url);
+    }
+    this.router.navigate(['/order/' + propertyId]);
   }
 }
 
