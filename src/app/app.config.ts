@@ -23,7 +23,6 @@ export const appConfig: ApplicationConfig = {
     {provide:ApiConfiguration, useValue:{rootUrl:environment.api}},
     importProvidersFrom(LoadingBarHttpClientModule),
     provideRouter(routes, withInMemoryScrolling({scrollPositionRestoration:'enabled'})),
-    provideClientHydration(),
     provideAnimations(),
     provideHttpClient(),
     {
