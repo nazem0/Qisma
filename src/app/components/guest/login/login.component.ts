@@ -61,7 +61,7 @@ export class LoginComponent {
               this.router.navigateByUrl(previousUrl);
             }
             else{
-              this.router.navigate(["/profile/"]);
+              this.router.navigate(["/marketplace/"]);
             }
           }
         }
