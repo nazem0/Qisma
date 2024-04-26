@@ -1,8 +1,9 @@
+import { AuthHelper } from './../../../helpers/auth-helper';
 import { UserAccountService } from './../../../api/services/user-account.service';
-import { BusinessHelper } from './../../../services/business-helper';
+import { BusinessHelper } from '../../../helpers/business-helper';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Helper } from '../../../services/helper';
+import { Helper } from '../../../helpers/helper';
 import { CountryISO, NgxIntlTelInputModule } from 'ngx-intl-tel-input-gg';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IconFieldModule } from 'primeng/iconfield';
@@ -54,7 +55,7 @@ export class RegisterComponent {
     private _formbuilder: FormBuilder,
     private _userAccountService:UserAccountService,
     private _snackbar:MatSnackBar,
-    private router:Router
+    private _authHelper :AuthHelper
   ) {
     this.form = this._formbuilder.group({
       firstName: new FormControl<string>("", [Validators.required]),
@@ -100,16 +101,15 @@ export class RegisterComponent {
     this.hidePassword = !this.hidePassword;
   }
 
-  test(){
-    console.log(this.form.value);
-  }
   submit() {
     if(this.form.invalid) return;
     this
     ._userAccountService
     .apiSignUpForCustomerPost$Json({body:this.form.value})
     .subscribe({
-      next:()=>this.router.navigate(['/login'])
+      next:next=>{
+        this._authHelper.handleLogin(next.data!);
+      }
     })
   }
 
