@@ -1,9 +1,11 @@
+import { Helper } from './../../../helpers/helper';
 import { UserAccountService } from './../../../api/services/user-account.service';
 import { DatePipe, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { UserFullInformationViewModel } from '../../../api/models';
+import { Dialog, DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-profile-info',
@@ -14,11 +16,14 @@ import { UserFullInformationViewModel } from '../../../api/models';
     CardModule,
     ButtonModule,
     DatePipe,
-    NgIf
+    NgIf,
+    DialogModule,
   ]
 })
 export class ProfileInfoComponent implements OnInit {
   user?: UserFullInformationViewModel;
+  showIdImage = false;
+  helper = Helper
   constructor(
     private userAccountService:UserAccountService
   ) { }
@@ -36,6 +41,10 @@ export class ProfileInfoComponent implements OnInit {
         this.user = next.data
       }
     })
+  }
+
+  showDialog(){
+    this.showIdImage = true
   }
 
 }
