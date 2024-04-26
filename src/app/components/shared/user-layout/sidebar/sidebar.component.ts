@@ -5,8 +5,8 @@ import { AsyncPipe, NgIf } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { TooltipModule } from 'primeng/tooltip';
-import { AuthHelper } from '../../../../services/auth-helper';
-import { Helper } from '../../../../services/helper';
+import { AuthHelper } from '../../../../helpers/auth-helper';
+import { Helper } from '../../../../helpers/helper';
 import { Roles } from '../../../../enums/roles.enum';
 
 @Component({

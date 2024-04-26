@@ -1,4 +1,4 @@
-import { AuthHelper } from './../../../../services/auth-helper';
+import { AuthHelper } from '../../../../helpers/auth-helper';
 import { CurrencyPipe, NgIf, NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -10,7 +10,7 @@ import { SliderModule } from 'primeng/slider';
 import { PropertyCard2Component } from '../../../shared/property-card-2/property-card-2.component';
 import { GovernorateAndCityViewModel, PropertyViewModelInListView } from '../../../../api/models';
 import { PropertyService, GovernorateAndCityService } from '../../../../api/services';
-import { BusinessHelper } from '../../../../services/business-helper';
+import { BusinessHelper } from '../../../../helpers/business-helper';
 import { Roles } from '../../../../enums/roles.enum';
 
 @Component({

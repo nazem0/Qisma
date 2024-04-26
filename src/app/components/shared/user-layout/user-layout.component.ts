@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../layout/footer/footer.component';
 import { NavbarComponent } from '../layout/navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { AuthHelper } from '../../../services/auth-helper';
+import { AuthHelper } from '../../../helpers/auth-helper';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({

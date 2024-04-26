@@ -5,7 +5,7 @@ import { DialogComponent } from '../components/shared/dialog/dialog.component';
 @Injectable({
   providedIn: 'root'
 })
-export class DialogService {
+export class DialogHelper {
 
   constructor(private dialog:MatDialog) {}
   open(title:string, messages:string[][],img?:string) {

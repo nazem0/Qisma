@@ -4,11 +4,11 @@ import { Component, OnInit } from '@angular/core';
 import { OrderViewModelForAdmin } from '../../../api/models';
 import { CurrencyPipe, DatePipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { TableModule } from 'primeng/table'
-import { Helper } from '../../../services/helper';
+import { Helper } from '../../../helpers/helper';
 import { ButtonModule } from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion';
 import { DropdownModule } from 'primeng/dropdown';
-import { BusinessHelper } from '../../../services/business-helper';
+import { BusinessHelper } from '../../../helpers/business-helper';
 @Component({
   selector: 'app-admin-orders',
   templateUrl: './admin-orders.component.html',

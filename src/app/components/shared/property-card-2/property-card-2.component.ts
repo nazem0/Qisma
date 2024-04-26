@@ -1,11 +1,11 @@
 import { Roles } from './../../../enums/roles.enum';
-import { BusinessHelper } from './../../../services/business-helper';
-import { Helper } from '../../../services/helper';
+import { BusinessHelper } from '../../../helpers/business-helper';
+import { Helper } from '../../../helpers/helper';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CurrencyPipe, PercentPipe } from '@angular/common';
-import { AuthHelper } from '../../../services/auth-helper';
+import { AuthHelper } from '../../../helpers/auth-helper';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { PropertyViewModelInListView } from '../../../api/models';
 import { PropertyForAdminService } from '../../../api/services';
@@ -30,7 +30,6 @@ export class PropertyCard2Component {
   isInAdminPanel : boolean;
   constructor(
     public authHelper: AuthHelper,
-    public businessHelper:BusinessHelper,
     private activatedRoute:ActivatedRoute,
     private _propertyForAdminService: PropertyForAdminService
   ) {

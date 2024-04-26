@@ -17,9 +17,8 @@ import {
   GovernorateAndCityViewModel,
   PropertyDetailsViewModelForAdmin,
 } from '../../../api/models';
-import { BusinessHelper } from '../../../services/business-helper';
-import { Helper } from '../../../services/helper';
-import { DialogService } from '../../../services/dialog.service';
+import { BusinessHelper } from '../../../helpers/business-helper';
+import { Helper } from '../../../helpers/helper';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { IndexableObject } from 'ng-zorro-antd/core/types';
@@ -33,6 +32,7 @@ import { SliderModule } from 'primeng/slider';
 import { InputTextModule } from 'primeng/inputtext';
 import { EditorModule } from 'primeng/editor';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { DialogHelper } from '../../../helpers/dialog.service';
 
 @Component({
   selector: 'app-property-actions',
@@ -99,7 +99,7 @@ export class PropertyActionsComponent implements OnInit {
     private propertyForAdminService: PropertyForAdminService,
     private customPropertyForAdminService: CustomPropertyForAdminService,
     private governorateAndCityService: GovernorateAndCityService,
-    private dialog: DialogService,
+    private dialog: DialogHelper,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute
   ) { }

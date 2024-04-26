@@ -1,7 +1,7 @@
 import { PropertyForAdminService } from './../../../api/services/property-for-admin.service';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Helper } from '../../../services/helper';
+import { Helper } from '../../../helpers/helper';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ButtonModule } from 'primeng/button';
 import { NgFor, NgIf } from '@angular/common';

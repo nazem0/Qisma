@@ -9,17 +9,12 @@ import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { AdminAuthGuard } from './guards/admin.guard';
 import { UserAuthGuard } from './guards/user.guard';
 import { Http } from './interceptors/http.interceptor';
-import { AuthHelper } from './services/auth-helper';
-import { BusinessHelper } from './services/business-helper';
-import { Helper } from './services/helper';
 import en from '@angular/common/locales/en';
 import { registerLocaleData } from '@angular/common';
 import { routes } from './app.routes';
-import { ApiModule } from './api/api.module';
 import { environment } from '../environments/environment';
 import { ApiConfiguration } from './api/api-configuration';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
-import { adminRoutes } from './components/admin/admin.routing';
 
 registerLocaleData(en);
 
@@ -41,9 +36,6 @@ export const appConfig: ApplicationConfig = {
       useClass: Http,
       multi: true,
     },
-    Helper,
-    BusinessHelper,
-    AuthHelper,
     AdminAuthGuard,
     UserAuthGuard,
     { provide: NZ_I18N, useValue: en_US },

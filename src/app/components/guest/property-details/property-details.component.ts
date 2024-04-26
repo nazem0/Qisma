@@ -1,6 +1,6 @@
-import { BusinessHelper } from './../../../services/business-helper';
+import { BusinessHelper } from '../../../helpers/business-helper';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { Helper } from '../../../services/helper';
+import { Helper } from '../../../helpers/helper';
 import { ChartModule, UIChart } from 'primeng/chart';
 import { PropertyForAdminService, PropertyService } from '../../../api/services';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -14,7 +14,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { SliderModule } from 'primeng/slider';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule } from 'primeng/tooltip';
-import { AuthHelper } from '../../../services/auth-helper';
+import { AuthHelper } from '../../../helpers/auth-helper';
 import { ConfirmComponent } from '../../shared/confirm/confirm.component';
 import { PaymentPlanComponent } from '../../shared/payment-plan/payment-plan.component';
 
@@ -74,7 +74,6 @@ export class PropertyDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private currency: CurrencyPipe,
     public authHelper:AuthHelper,
-    public businessHelper:BusinessHelper,
     public router:Router,
     private _propertyForAdminService : PropertyForAdminService
   ) {

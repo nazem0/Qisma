@@ -1,6 +1,6 @@
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
-import { Helper } from '../../../services/helper';
+import { Helper } from '../../../helpers/helper';
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { ButtonModule } from 'primeng/button';

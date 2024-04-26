@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { PropertyViewModelInListView } from '../../../api/models';
-import { Helper } from '../../../services/helper';
+import { Helper } from '../../../helpers/helper';
 
 @Component({
   selector: 'app-property-card',

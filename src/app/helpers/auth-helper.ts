@@ -4,7 +4,9 @@ import { BehaviorSubject } from "rxjs";
 import { UserDataViewModel } from "../api/models";
 import { Roles } from "../enums/roles.enum";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 
 export class AuthHelper {
     private _isLoggedIn = new BehaviorSubject<boolean>(this.checkLogin());
@@ -14,6 +16,27 @@ export class AuthHelper {
     $rolesObservable = new BehaviorSubject<string[]>(this.roles)
     constructor(private router: Router) {}
     public static readonly authKey = "auth";
+
+    public handleLogin(auth : UserDataViewModel){
+        this.login(auth);
+
+          let previousUrl = sessionStorage.getItem("previous-url")
+          if (previousUrl) {
+            sessionStorage.removeItem("previous-url")
+          }
+          if (this.hasRole(Roles.Admin)) {
+            this.router.navigate(["/admin/"]);
+          }
+          else if (this.hasRole(Roles.Customer)) {
+            if (previousUrl) {
+              this.router.navigateByUrl(previousUrl);
+            }
+            else{
+              this.router.navigate(["/marketplace/"]);
+            }
+          }
+    }
+
 
     public login(auth: UserDataViewModel): void {
         localStorage.setItem(AuthHelper.authKey, JSON.stringify(auth));

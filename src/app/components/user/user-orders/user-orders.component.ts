@@ -5,10 +5,10 @@ import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { OrderViewModelForUser } from '../../../api/models';
-import { Helper } from '../../../services/helper';
+import { Helper } from '../../../helpers/helper';
 import { OrderService } from '../../../api/services';
 import { DropdownModule } from 'primeng/dropdown';
-import { BusinessHelper } from '../../../services/business-helper';
+import { BusinessHelper } from '../../../helpers/business-helper';
 
 @Component({
   selector: 'app-user-orders',

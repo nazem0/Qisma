@@ -6,8 +6,8 @@ import { AsyncPipe, NgClass } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { Helper } from '../../../../services/helper';
-import { AuthHelper } from '../../../../services/auth-helper';
+import { Helper } from '../../../../helpers/helper';
+import { AuthHelper } from '../../../../helpers/auth-helper';
 import { Roles } from '../../../../enums/roles.enum';
 import { Router } from '@angular/router';
 

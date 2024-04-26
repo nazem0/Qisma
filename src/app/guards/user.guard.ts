@@ -7,7 +7,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { AuthHelper } from '../services/auth-helper';
+import { AuthHelper } from '../helpers/auth-helper';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IndexableObject } from 'ng-zorro-antd/core/types';
 @Injectable()

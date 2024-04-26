@@ -1,10 +1,12 @@
 import { AbstractControl, FormControl, FormGroup } from "@angular/forms";
-import { DialogService } from "./dialog.service";
+import { DialogHelper } from "./dialog.service";
 import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class Helper {
-    constructor(private dialog: DialogService) { }
+    constructor(private dialog: DialogHelper) { }
     public static onFileUpload(file: File, formControl: FormControl | AbstractControl): void {
         formControl.setValue(file);
     }

@@ -1,7 +1,7 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from "@angular/common/http";
 import { Observable, catchError, tap, throwError } from "rxjs";
 import { Injectable } from "@angular/core";
-import { AuthHelper } from "../services/auth-helper";
+import { AuthHelper } from "../helpers/auth-helper";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Injectable()
