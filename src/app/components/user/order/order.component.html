@@ -17,21 +17,21 @@
       </div>
     </div>
   
-    <div class="d-flex justify-content-between">
-      <p>Number Of Shares To Order</p>
-      <p class="text-center">{{ numberOfShares }}</p>
+    <div>
+      <p class="text-center fw-bold">Number Of Shares To Order</p>
+      <p-inputNumber
+      styleClass="w-100"
+      class="w-100"
+      [(ngModel)]="numberOfShares"
+      (ngModelChange)="updatePaymentInfoByNumberOfShares()"
+      inputId="minmax" mode="decimal"
+      [min]="originalProperty.minNumberOfShares!"
+      [max]="originalProperty.availableShares!"
+      [step]="1"
+      [showButtons]="true"
+      [buttonLayout]="'horizontal'"> </p-inputNumber>
     </div>
-    <div class="mb-4">
-      <p-slider
-        [min]="originalProperty.minNumberOfShares!"
-        [max]="originalProperty.availableShares!"
-        [step]="1"
-        [(ngModel)]="numberOfShares"
-        (ngModelChange)="updatePaymentInfoByNumberOfShares()"
-        [animate]="true"
-      >
-      </p-slider>
-    </div>
+    
   </div>
 
   <div class="shadow-sm p-3 rounded-3 bg-white">

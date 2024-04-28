@@ -12,6 +12,7 @@ import { DialogModule } from 'primeng/dialog';
 import { OrderPreviewComponent } from '../order-preview/order-preview.component';
 import { OrderConfirmationComponent } from '../order-confirmation/order-confirmation.component';
 import { CheckboxModule } from 'primeng/checkbox';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 
 @Component({
@@ -30,6 +31,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     OrderPreviewComponent,
     OrderConfirmationComponent,
     CheckboxModule,
+    InputNumberModule
   ]
 })
 export class OrderComponent implements OnInit {
