@@ -228,6 +228,10 @@ export class PropertyDetailsComponent implements OnInit {
     }
     this.router.navigate(['/order/' + propertyId]);
   }
+
+  getBackgroundImage(imageUrl: string) {
+    return `url('${this.helper.processFileUrl(imageUrl)}')`
+  }
 }
 
 

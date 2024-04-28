@@ -3,9 +3,7 @@
   <p-carousel [value]="property.propertyImages!.slice(0, 3)" [responsiveOptions]="responsiveOptions"
     [showIndicators]="false" [showNavigators]="false">
     <ng-template let-image pTemplate="item" let-index="image.index">
-      <div class="property-image" [ngStyle]="{
-          'background-image': 'url(' + helper.processFileUrl(image) + ')'
-        }"></div>
+      <div class="property-image" [style.background-image]="getBackgroundImage(image)"></div>
     </ng-template>
   </p-carousel>
 
