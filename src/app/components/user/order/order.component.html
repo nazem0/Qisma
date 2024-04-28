@@ -1,8 +1,6 @@
 <div class="d-flex flex-column gap-3">
   <header class="text-center">
-    <h2>
-      Place Order
-    </h2>
+    <h2>Place Order</h2>
   </header>
   @if(originalProperty && clonedProperty){
   <div class="bg-white rounded-3 p-3 shadow-sm">
@@ -16,22 +14,28 @@
         <p class="text-center">{{ originalProperty.availableShares }}</p>
       </div>
     </div>
-  
+
     <div>
       <p class="text-center fw-bold">Number Of Shares To Order</p>
       <p-inputNumber
-      styleClass="w-100"
-      class="w-100"
-      [(ngModel)]="numberOfShares"
-      (ngModelChange)="updatePaymentInfoByNumberOfShares()"
-      inputId="minmax" mode="decimal"
-      [min]="originalProperty.minNumberOfShares!"
-      [max]="originalProperty.availableShares!"
-      [step]="1"
-      [showButtons]="true"
-      [buttonLayout]="'horizontal'"> </p-inputNumber>
+        styleClass="w-100"
+        class="w-100"
+        [(ngModel)]="numberOfShares"
+        (ngModelChange)="updatePaymentInfoByNumberOfShares()"
+        inputId="minmax"
+        mode="decimal"
+        [min]="originalProperty.minNumberOfShares!"
+        [max]="originalProperty.availableShares!"
+        [step]="1"
+        [showButtons]="true"
+        decrementButtonClass="p-button-danger"
+        incrementButtonClass="p-button-success"
+        incrementButtonIcon="pi pi-plus"
+        decrementButtonIcon="pi pi-minus"
+        [buttonLayout]="'horizontal'"
+      >
+      </p-inputNumber>
     </div>
-    
   </div>
 
   <div class="shadow-sm p-3 rounded-3 bg-white">
