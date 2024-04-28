@@ -28,9 +28,10 @@
     </a>
 
     <div class="rounded-3 overflow-hidden shadow-sm">
-      <app-confirm [label]="'Delete Property'" [severity]="'danger'" [title]="property.location+' property'"
-      [description]="'Are you sure you want to delete this property?'"
-      (confirmation)="togglePropertyActivation(propertyId!);"></app-confirm>
+      <app-confirm [label]="property.isDeleted ? 'Activate' :'Deactivate' + ' Property'"
+        [severity]="property.isDeleted?'success':'danger'" [title]="property.location+' property'"
+        [description]="'Are you sure you want to '+ (property.isDeleted ? 'activate' :'deactivate') +' this property?'"
+        (confirmation)="togglePropertyActivation(property.propertyId!)"></app-confirm>
     </div>
     }
   </div>

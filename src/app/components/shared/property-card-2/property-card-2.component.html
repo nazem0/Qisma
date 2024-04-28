@@ -26,7 +26,7 @@
                 <small class="mat-small">Projected Annual Return</small>
             </div>
         </div>
-    
+
         <div class="bg-primary p-3 text-center text-white">
             <small class="mat-small">Available: {{property.availableTokens}} shares at {{property.tokenPrice | currency
                 : "EGP" : "symbol" : "1.0-0"}}</small>
@@ -38,7 +38,7 @@
             <span class="mx-auto">Edit Property</span>
         </p-button>
     </a>
-    <app-confirm [label]="property.isDeleted ? 'Activate' :'Deactivate' + 'property'"
+    <app-confirm [label]="property.isDeleted ? 'Activate' :'Deactivate' + ' Property'"
         [severity]="property.isDeleted?'success':'danger'" [title]="property.address+' property'"
         [description]="'Are you sure you want to '+ (property.isDeleted ? 'activate' :'deactivate') +' this property?'"
         (confirmation)="togglePropertyActivation(property.propertyId!)"></app-confirm>
