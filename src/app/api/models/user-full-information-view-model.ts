@@ -15,5 +15,6 @@ export interface UserFullInformationViewModel {
   middleName?: string | null;
   occupation?: string | null;
   phoneNumber?: string | null;
+  reciveEmails?: boolean | null;
   userId?: string | null;
 }

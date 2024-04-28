@@ -25,6 +25,11 @@ import { apiUserGetPortfolioGet$Json } from '../fn/user-account/api-user-get-por
 import { ApiUserGetPortfolioGet$Json$Params } from '../fn/user-account/api-user-get-portfolio-get-json';
 import { apiUserGetPortfolioGet$Plain } from '../fn/user-account/api-user-get-portfolio-get-plain';
 import { ApiUserGetPortfolioGet$Plain$Params } from '../fn/user-account/api-user-get-portfolio-get-plain';
+import { apiUserUpdateInformationPut$Json } from '../fn/user-account/api-user-update-information-put-json';
+import { ApiUserUpdateInformationPut$Json$Params } from '../fn/user-account/api-user-update-information-put-json';
+import { apiUserUpdateInformationPut$Plain } from '../fn/user-account/api-user-update-information-put-plain';
+import { ApiUserUpdateInformationPut$Plain$Params } from '../fn/user-account/api-user-update-information-put-plain';
+import { StringApiResult } from '../models/string-api-result';
 import { UserDataViewModelApiResult } from '../models/user-data-view-model-api-result';
 import { UserFullInformationViewModelApiResult } from '../models/user-full-information-view-model-api-result';
 import { UserPortfolioViewModelApiResult } from '../models/user-portfolio-view-model-api-result';
@@ -284,6 +289,69 @@ export class UserAccountService extends BaseService {
   apiUserGetPortfolioGet$Json(params?: ApiUserGetPortfolioGet$Json$Params, context?: HttpContext): Observable<UserPortfolioViewModelApiResult> {
     return this.apiUserGetPortfolioGet$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<UserPortfolioViewModelApiResult>): UserPortfolioViewModelApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiUserUpdateInformationPut()` */
+  static readonly ApiUserUpdateInformationPutPath = '/api/User/UpdateInformation';
+
+  /**
+   * Update user porfile informations.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserUpdateInformationPut$Plain()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiUserUpdateInformationPut$Plain$Response(params?: ApiUserUpdateInformationPut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiUserUpdateInformationPut$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Update user porfile informations.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserUpdateInformationPut$Plain$Response()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiUserUpdateInformationPut$Plain(params?: ApiUserUpdateInformationPut$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiUserUpdateInformationPut$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /**
+   * Update user porfile informations.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiUserUpdateInformationPut$Json()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiUserUpdateInformationPut$Json$Response(params?: ApiUserUpdateInformationPut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiUserUpdateInformationPut$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Update user porfile informations.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiUserUpdateInformationPut$Json$Response()` instead.
+   *
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
+   */
+  apiUserUpdateInformationPut$Json(params?: ApiUserUpdateInformationPut$Json$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiUserUpdateInformationPut$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
     );
   }
 

@@ -16,9 +16,7 @@ export interface ApiPropertyGetAllGet$Plain$Params {
   CityId?: number;
   PropertyType?: Type;
   MinUnitPrice?: number;
-  MaxUnitPrice?: number;
   MinSharePrice?: number;
-  MaxSharePrice?: number;
 }
 
 export function apiPropertyGetAllGet$Plain(http: HttpClient, rootUrl: string, params: ApiPropertyGetAllGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<PropertyViewModelInListViewPaginationViewModelApiResult>> {
@@ -30,9 +28,7 @@ export function apiPropertyGetAllGet$Plain(http: HttpClient, rootUrl: string, pa
     rb.query('CityId', params.CityId, {"style":"form"});
     rb.query('PropertyType', params.PropertyType, {"style":"form"});
     rb.query('MinUnitPrice', params.MinUnitPrice, {"style":"form"});
-    rb.query('MaxUnitPrice', params.MaxUnitPrice, {"style":"form"});
     rb.query('MinSharePrice', params.MinSharePrice, {"style":"form"});
-    rb.query('MaxSharePrice', params.MaxSharePrice, {"style":"form"});
   }
 
   return http.request(
