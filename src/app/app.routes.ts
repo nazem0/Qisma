@@ -12,9 +12,9 @@ import { guestRoutes } from './components/guest/guest.routing';
 import { userRoutes } from './components/user/user.routing';
 
 export const routes: Routes = [
-  { path: 'admin', loadChildren: () => import('./components/admin/admin.routing').then(mod => mod.adminRoutes) },
   ...guestRoutes,
   ...userRoutes,
+  ...adminRoutes,
   { path: '**', component: PageNotFoundComponent },
 
 ];

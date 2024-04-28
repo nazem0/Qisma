@@ -75,6 +75,8 @@ export class AuthHelper {
     }
 
     public isInAdminPanel(route:ActivatedRoute){
+      console.log(route);
+
         return route.snapshot.parent?.url[0]?.path == Roles.Admin.toLowerCase();
     }
 }
