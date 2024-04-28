@@ -1,118 +1,145 @@
 @if(isInAdminPanel){
 <div class="row justify-content-center mt-2">
-    <div class="col-6">
-        <p-button styleClass="w-100" [routerLink]="['/admin/marketplace/property-actions']">
-            <span class="mx-auto text-white">
-                <i class="pi pi-plus"></i>
-                Add Property
-            </span>
-        </p-button>
-    </div>
+  <div class="col-6">
+    <p-button
+      styleClass="w-100"
+      [routerLink]="['/admin/marketplace/property-actions']"
+    >
+      <span class="mx-auto text-white">
+        <i class="pi pi-plus"></i>
+        Add Property
+      </span>
+    </p-button>
+  </div>
 </div>
 }
 <div class="p-3 bg-white rounded-3 shadow-sm my-4">
-    <div class="filters row row-cols-lg-5 row-cols-md-3 gx-4 justify-content-center">
-        <div>
-            <small class="mat-small d-block mt-2 mb-1">Governorate</small>
-            <div>
-                <p-dropdown [filter]="true" filterBy="name" [options]="governorates" [optionLabel]="'name'"
-                    [showClear]="true" [(ngModel)]="selectedGov" (onChange)="initCity()" placeholder="All Governorates"
-                    styleClass="w-100">
-                </p-dropdown>
-            </div>
-        </div>
-        <div>
-            <small class="mat-small d-block mt-2 mb-1">City</small>
-            <div>
-                <p-dropdown [filter]="true" filterBy="name" [(ngModel)]="selectedCity" [disabled]="!selectedGov"
-                    [options]="cities" [optionLabel]="'name'" [showClear]="true" placeholder="All Cities"
-                    styleClass="w-100"></p-dropdown>
-            </div>
-        </div>
-        <div>
-            <small class="mat-small d-block mt-2 mb-1">Property type</small>
-            <div>
-                <p-dropdown [(ngModel)]="selectedProperty" [showClear]="true" placeholder="All Properties" styleClass="w-100" [options]="propertyTypes"
-                    optionLabel="name">
-                </p-dropdown>
-            </div>
-        </div>
-        <div>
-            <small class="mat-small">Property Price Range In EGP</small>
-            <div>
-                <p class="mb-1 text-end mat-small">
-                    {{
-                    filters.propertyPriceRange[0]
-                    | currency : "EGP" : "" : "1.0-0"
-                    }}
-                    -
-                    {{
-                    filters.propertyPriceRange[1]
-                    | currency : "EGP" : "" : "1.0-0"
-                    }}
-                </p>
-    
-                <p-slider [min]="1 * math.pow(10, 6)" [max]="100 * math.pow(10, 6)" [step]="1 * math.pow(10, 6)"
-                    [(ngModel)]="filters.propertyPriceRange" [animate]="true" [range]="true"></p-slider>
-                <div class="mt-1 d-flex justify-content-between">
-                    <span class="mat-small">1M</span>
-                    <span class="mat-small">100M</span>
-                </div>
-            </div>
-        </div>
-        <div>
-            <small class="mat-small">Share Price Range In EGP</small>
-            <div>
-                <p class="mb-1 text-end mat-small">
-                    {{
-                    filters.sharePriceRange[0] | currency : "EGP" : "" : "1.0-0"
-                    }}
-                    -
-                    {{
-                    filters.sharePriceRange[1] | currency : "EGP" : "" : "1.0-0"
-                    }}
-                </p>
-                <p-slider [min]="500 * math.pow(10, 3)" [max]="20*math.pow(10,6)" [step]="500 * math.pow(10, 3)"
-                    [(ngModel)]="filters.sharePriceRange" [animate]="true" [range]="true"></p-slider>
-                <div class="mt-1 d-flex justify-content-between">
-                    <span class="mat-small">500K</span>
-                    <span class="mat-small">20M</span>
-                </div>
-            </div>
-        </div>
+  <div
+    class="filters row row-cols-lg-5 row-cols-md-3 gx-4 justify-content-center"
+  >
+    <div>
+      <small class="mat-small d-block mt-2 mb-1">Governorate</small>
+      <div>
+        <p-dropdown
+          [filter]="true"
+          filterBy="name"
+          [options]="governorates"
+          [optionLabel]="'name'"
+          [showClear]="true"
+          [(ngModel)]="selectedGov"
+          (onChange)="initCity()"
+          placeholder="All Governorates"
+          styleClass="w-100"
+        >
+        </p-dropdown>
+      </div>
     </div>
-    <div class="row justify-content-center align-items-center">
-       <div class="col-6 my-3">
-        <p-button (onClick)="resetPagination();getProperties()" styleClass="w-100">
-            <span class="mx-auto text-white">
-                <i class="pi pi-search"></i></span>
-        </p-button>
-       </div>
+    <div>
+      <small class="mat-small d-block mt-2 mb-1">City</small>
+      <div>
+        <p-dropdown
+          [filter]="true"
+          filterBy="name"
+          [(ngModel)]="selectedCity"
+          [disabled]="!selectedGov"
+          [options]="cities"
+          [optionLabel]="'name'"
+          [showClear]="true"
+          placeholder="All Cities"
+          styleClass="w-100"
+        ></p-dropdown>
+      </div>
     </div>
+    <div>
+      <small class="mat-small d-block mt-2 mb-1">Property type</small>
+      <div>
+        <p-dropdown
+          [(ngModel)]="selectedProperty"
+          [showClear]="true"
+          placeholder="All Properties"
+          styleClass="w-100"
+          [options]="propertyTypes"
+          optionLabel="name"
+        >
+        </p-dropdown>
+      </div>
+    </div>
+    <!-- [Price Filters!] -->
+    <div>
+      <small class="mat-small">Property Price Range In EGP</small>
+      <div>
+        <p class="mb-1 text-end mat-small">
+          {{ filters.propertyPriceRange | currency : "EGP" : "" : "1.0-0" }}
+        </p>
+
+        <p-slider
+          [min]="this.propertyPriceRange.min"
+          [max]="this.propertyPriceRange.max"
+          [step]="this.propertyPriceRange.min"
+          [(ngModel)]="filters.propertyPriceRange"
+          [animate]="true"
+        ></p-slider>
+        <div class="mt-1 d-flex justify-content-between">
+          <span class="mat-small">1M</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <small class="mat-small">Share Price Range In EGP</small>
+      <div>
+        <p class="mb-1 text-end mat-small">
+          {{ filters.sharePriceRange | currency : "EGP" : "" : "1.0-0" }}
+        </p>
+        <p-slider
+          [min]="this.sharePriceRange.min"
+          [max]="this.sharePriceRange.max"
+          [step]="this.sharePriceRange.min"
+          [(ngModel)]="filters.sharePriceRange"
+          [animate]="true"
+        ></p-slider>
+        <div class="mt-1 d-flex justify-content-between">
+          <span class="mat-small">50K</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center">
+    <div class="col-6 my-3">
+      <p-button
+        (onClick)="resetPagination(); getProperties()"
+        styleClass="w-100"
+      >
+        <span class="mx-auto text-white"> <i class="pi pi-search"></i></span>
+      </p-button>
+    </div>
+  </div>
 </div>
 <div *ngIf="properties" class="row row-cols-md-3 g-3 justify-content-center">
-    @for (item of properties; track $index) {
-        <div>
-            <app-property-card-2 [property]="item" (refresh)="getProperties()"></app-property-card-2>
-        </div>
-    }
-    <!-- <a [routerLink]="['/property-details']" *ngFor="let item of [].constructor(8)">
+  @for (item of properties; track $index) {
+  <div>
+    <app-property-card-2
+      [property]="item"
+      (refresh)="getProperties()"
+    ></app-property-card-2>
+  </div>
+  }
+  <!-- <a [routerLink]="['/property-details']" *ngFor="let item of [].constructor(8)">
     </a> -->
 </div>
 <div class="text-center my-3">
-    <div class="spinner" [ngClass]="{ 'hidden': !properties }"></div>
-    <nz-pagination
+  <div class="spinner" [ngClass]="{ hidden: !properties }"></div>
+  <nz-pagination
     [nzPageIndex]="2"
     [nzTotal]="500"
     nzShowQuickJumper
     nzShowSizeChanger
-    [nzPageSizeOptions]="[12,18,24]"
+    [nzPageSizeOptions]="[12, 18, 24]"
     [nzPageSize]="pagination.size"
     [nzPageIndex]="pagination.index"
     [nzTotal]="pagination.total"
     (nzPageIndexChange)="getPage($event)"
     [(nzPageSize)]="pagination.size"
     (nzPageSizeChange)="getProperties()"
-    [nzPageIndex]="pagination.index+1"
-    ></nz-pagination>
+    [nzPageIndex]="pagination.index + 1"
+  ></nz-pagination>
 </div>

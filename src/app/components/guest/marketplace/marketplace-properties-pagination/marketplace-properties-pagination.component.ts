@@ -37,13 +37,23 @@ export class MarketplacePropertiesPaginationComponent implements OnInit {
   cities: GovernorateAndCityViewModel[] = [];
   properties?: PropertyViewModelInListView[] | null;
   math=Math;
-  propertyTypes = BusinessHelper.propertyTypes
+  propertyTypes = BusinessHelper.propertyTypes;
+  propertyPriceRange = {
+    min:1*Math.pow(10,6),
+    max:100*Math.pow(10,6)
+  }
+
+  sharePriceRange = {
+    min:50*Math.pow(10,3),
+    max:20*Math.pow(10,6)
+  }
+
   filters: {
-    propertyPriceRange:number[]
-    sharePriceRange:number[]
+    propertyPriceRange:number
+    sharePriceRange:number
   }={
-    propertyPriceRange : [1*Math.pow(10,6),100*Math.pow(10,6)],
-    sharePriceRange:[500*Math.pow(10,3),20*Math.pow(10,6)]
+    propertyPriceRange : this.propertyPriceRange.min,
+    sharePriceRange:this.sharePriceRange.min
   }
   selectedGov?: GovernorateAndCityViewModel
   selectedCity?: GovernorateAndCityViewModel
@@ -99,10 +109,8 @@ export class MarketplacePropertiesPaginationComponent implements OnInit {
       PageSize:this.pagination.size,
       GovernorateId:this.selectedGov?.id,
       CityId:this.selectedCity?.id,
-      MinSharePrice:this.filters.sharePriceRange[0],
-      MaxSharePrice:this.filters.sharePriceRange[1],
-      MinUnitPrice:this.filters.propertyPriceRange[0],
-      MaxUnitPrice:this.filters.propertyPriceRange[1],
+      MinSharePrice:this.filters.sharePriceRange,
+      MinUnitPrice:this.filters.propertyPriceRange,
       PropertyType:this.selectedProperty?.id,
     }).subscribe({
       next: next => {
