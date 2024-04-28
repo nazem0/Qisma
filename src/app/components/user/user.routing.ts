@@ -16,9 +16,9 @@ export const userRoutes: Routes = [
   {
     path: "profile", component: UserLayoutComponent, children: [
       { path: "", redirectTo: "portfolio", pathMatch: "full" },
-      { path: "orders", component: UserOrdersComponent, title: "Orders" },
-      { path: "info", component: ProfileInfoComponent, title: "Profile Info" },
-      { path :"portfolio", component:PortfolioComponent, title:"Portfolio"}
+      { path: "orders", loadComponent: () => import('./user-orders/user-orders.component').then(m => m.UserOrdersComponent), title: "Orders" },
+      { path: "info", loadComponent: () => import('./profile-info/profile-info.component').then(m => m.ProfileInfoComponent) , title: "Profile Info" },
+      { path: "portfolio", loadComponent: () => import('./portfolio/portfolio.component').then(m => m.PortfolioComponent) , title: "Portfolio" },
     ], canActivate: [UserAuthGuard]
   }
 ];
