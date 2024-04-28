@@ -1,6 +1,6 @@
 <div>
   <h3>My Stakes</h3>
-  <p-table *ngIf="data" [value]="data" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table [value]="data??[]" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
       <tr>
         <th>Property</th>
@@ -25,4 +25,9 @@
       </tr>
     </ng-template>
   </p-table>
+  @if(data?.length==0){
+    <div class="bg-white p-3 text-center">
+      You have no stakes
+    </div>
+  }
 </div>
