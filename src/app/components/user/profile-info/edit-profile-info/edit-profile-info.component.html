@@ -1,0 +1,318 @@
+<div class="mt-2">
+  <form *ngIf="form" [formGroup]="form" class="d-flex flex-column gap-2">
+    <div class="row row-cols-3 gx-0">
+      <div>
+        <p-iconField iconPosition="left">
+          <p-inputIcon styleClass="pi pi-user"></p-inputIcon>
+          <input
+            type="text"
+            pInputText
+            formControlName="firstName"
+            placeholder="First Name"
+            required
+          />
+        </p-iconField>
+        <small
+          *ngIf="
+            form.get('firstName')?.invalid && form.get('firstName')?.touched
+          "
+          class="my-2 text-danger"
+          >First Name is required.</small
+        >
+      </div>
+
+      <div>
+        <input
+          type="text"
+          pInputText
+          formControlName="middleName"
+          placeholder="Middle Name"
+        />
+        <small
+          *ngIf="
+            form.get('middleName')?.invalid && form.get('middleName')?.touched
+          "
+          class="my-2 text-danger"
+          >Middle Name is required.</small
+        >
+      </div>
+
+      <div>
+        <input
+          type="text"
+          pInputText
+          formControlName="lastName"
+          placeholder="Last Name"
+          required
+        />
+        <small
+          *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched"
+          class="my-2 text-danger"
+          >Last Name is required.</small
+        >
+      </div>
+    </div>
+
+    <div>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-envelope"></p-inputIcon>
+        <input
+          type="email"
+          pInputText
+          formControlName="email"
+          placeholder="Email"
+          required
+        />
+      </p-iconField>
+      <small
+        *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+        class="my-2 text-danger"
+        >Email is required.</small
+      >
+    </div>
+
+    <div>
+      <div class="w-100 input-w-icon">
+        <span class="pi pi-calendar"></span>
+        <p-calendar
+          [ngModel]="selectedBirthDate"
+          [ngModelOptions]="{ standalone: true }"
+          [dateFormat]="'dd/mm/yy'"
+          [touchUI]="true"
+          [iconDisplay]="'input'"
+          [showIcon]="false"
+          placeholder="Date Of Birth"
+          [defaultDate]="defaultDate"
+          [minDate]="minDate"
+          (onFocus)="
+            form.get('dateOfBirth')?.markAsTouched();
+            form.get('dateOfBirth')?.markAsDirty()
+          "
+          (onSelect)="setDateOfBirth($event)"
+        ></p-calendar>
+      </div>
+      <small
+        *ngIf="
+          form.get('dateOfBirth')?.invalid && form.get('dateOfBirth')?.touched
+        "
+        class="my-2 text-danger"
+        >Date of Birth is required.</small
+      >
+    </div>
+
+    <div>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-map-marker"></p-inputIcon>
+        <input
+          type="text"
+          pInputText
+          formControlName="address"
+          placeholder="Address"
+          required
+        />
+      </p-iconField>
+      <small
+        *ngIf="form.get('address')?.invalid && form.get('address')?.touched"
+        class="my-2 text-danger"
+        >Address is required.</small
+      >
+    </div>
+
+    <div>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-id-card"></p-inputIcon>
+        <input
+          type="text"
+          pInputText
+          formControlName="identityNumber"
+          placeholder="Identity Number"
+          required
+        />
+      </p-iconField>
+      <small
+        *ngIf="
+          form.get('identityNumber')?.invalid &&
+          form.get('identityNumber')?.touched
+        "
+        class="my-2 text-danger"
+        >Identity Number is required.</small
+      >
+    </div>
+
+    <ngx-intl-tel-input
+      [selectedCountryISO]="countryISO.Egypt"
+      [enablePlaceholder]="true"
+      [searchCountryFlag]="true"
+      [maxLength]="15"
+      [phoneValidation]="true"
+      [(ngModel)]="phoneNumber"
+      [ngModelOptions]="{ standalone: true }"
+      (ngModelChange)="
+        form.controls['phoneNumber'].setValue(phoneNumber.e164Number)
+      "
+      pInputText
+    ></ngx-intl-tel-input>
+    <small
+      *ngIf="
+        form.get('phoneNumber')!.invalid && form.get('phoneNumber')!.touched
+      "
+      class="my-2 text-danger"
+      >Phone Number is required.</small
+    >
+
+    <div>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-briefcase"></p-inputIcon>
+        <input
+          type="text"
+          pInputText
+          formControlName="occupation"
+          placeholder="Occupation (Optional)"
+        />
+      </p-iconField>
+    </div>
+
+    <div>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-building"></p-inputIcon>
+        <input
+          type="text"
+          pInputText
+          formControlName="companyName"
+          placeholder="Company Name (Optional)"
+        />
+      </p-iconField>
+    </div>
+
+    <div>
+      <div class="w-100 input-w-icon">
+        <span class="pi pi-th-large"></span>
+        <div>
+          <p-dropdown
+            [ngModel]="selectedInvestorType"
+            [ngModelOptions]="{ standalone: true }"
+            [filter]="true"
+            filterBy="name"
+            [options]="investorTypes"
+            [optionLabel]="'name'"
+            [showClear]="true"
+            placeholder="Investor Type"
+            styleClass="w-100"
+            (onFocus)="
+              form.get('investorType')?.markAsTouched();
+              form.get('investorType')?.markAsDirty()
+            "
+            (onChange)="form.controls['investorType'].setValue($event.value.id)"
+          ></p-dropdown>
+        </div>
+      </div>
+      <small
+        *ngIf="
+          form.get('investorType')!.invalid && form.get('investorType')!.touched
+        "
+        class="my-2 text-danger"
+        >Investor Type is required.</small
+      >
+    </div>
+
+    <div>
+      <div class="w-100 input-w-icon">
+        <span class="pi pi-envelope"></span>
+        <div>
+          <p-dropdown
+            [ngModel]="receiveEmailSelectedOption"
+            [ngModelOptions]="{ standalone: true }"
+            [options]="['Yes', 'No']"
+            [showClear]="true"
+            placeholder="Receive Emails"
+            styleClass="w-100"
+            (onFocus)="
+              form.get('receiveEmails')?.markAsTouched();
+              form.get('receiveEmails')?.markAsDirty()
+            "
+            (onChange)="
+              this.form.controls['receiveEmails'].setValue(
+                $event.value == 'Yes' ? true : false
+              )
+            "
+          ></p-dropdown>
+        </div>
+      </div>
+      <small
+        *ngIf="
+          form.get('receiveEmails')!.invalid &&
+          form.get('receiveEmails')!.touched
+        "
+        class="my-2 text-danger"
+        >Please select an option whether you want to receive emails from us or
+        not</small
+      >
+    </div>
+
+    <div>
+      <!-- <div class="row row-cols-md-2"> -->
+      <div>
+        <div>
+          <label for="national-id-image" pButton class="p-button-raised w-100">
+            <span class="text-white mx-auto">
+              <i class="pi pi-id-card"></i>
+              Upload ID Image</span
+            >
+          </label>
+          <input
+            #nationalIdImageInputElement
+            hidden
+            id="national-id-image"
+            type="file"
+            (change)="nationalIdImageInput($event)"
+            accept="image/*"
+            (click)="
+              nationalIdImageInputElement.value = ''; nationalIdImage = ''
+            "
+          />
+        </div>
+        <!-- <div>
+          <button
+          pButton
+            class="w-100"
+            [raised]="true"
+            (click)="showIdImageModal()"
+            type="button"
+          >
+            <span class="text-white mx-auto fs-6"
+              >Preview Uploaded ID Image</span
+            >
+          </button>
+        </div> -->
+      </div>
+      <small
+        *ngIf="
+          form.get('identityImage')?.invalid &&
+          form.get('identityImage')?.touched
+        "
+        class="my-2 text-danger"
+        >Identity Number is required.</small
+      >
+    </div>
+
+    <p-button
+      styleClass="w-100"
+      [raised]="this.form.valid"
+      [disabled]="this.form.invalid"
+      (click)="submit()"
+      type="submit"
+    >
+      <span class="text-white mx-auto">Submit</span>
+    </p-button>
+  </form>
+</div>
+
+<p-dialog
+  [(visible)]="showIdImage"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <img [src]="helper.processFileUrl(user.identityImageUrl)" alt="ID Image" />
+</p-dialog>

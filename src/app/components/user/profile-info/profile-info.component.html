@@ -1,84 +1,117 @@
 <div>
-  <div class="p-fluid">
-    <h2>Account Information</h2>
-    <!-- Existing fields -->
-    <div class="bg-white p-3 shadow-sm rounded-3 d-flex flex-column gap-2">
-      <div class="d-flex justify-content-between">
-        <p>Name</p>
-        <p>{{ user?.firstName }} {{ user?.middleName }} {{ user?.lastName }}</p>
-      </div>
-      <div class="d-flex justify-content-between">
-        <p>Email</p>
-        <p>{{ user?.email }}</p>
-      </div>
-      <div class="d-flex justify-content-between">
-        <p>Phone Number</p>
-        <p>{{ user?.phoneNumber }}</p>
-      </div>
-      <div class="d-flex justify-content-between">
-        <p>Investor Type</p>
-        <p>{{ user?.investorType }}</p>
-      </div>
-      <!-- New fields -->
-      <div class="d-flex justify-content-between">
-        <p>Date of Birth</p>
-        <p>{{ user?.dateOfBirth | date : "mediumDate" }}</p>
-      </div>
-      <div class="d-flex justify-content-between">
-        <p>Address</p>
-        <p>{{ user?.address }}</p>
-      </div>
-      <div class="d-flex justify-content-between">
-        <p>ID or Passport Number</p>
-        <p>{{ user?.identityNumber }}</p>
-      </div>
-      <div class="d-flex justify-content-between">
-        <p>ID Image</p>
-        <div>
-          <p-button (click)="showDialog()">
-            <i class="text-white pi pi-id-card">
-
-            </i>
-          </p-button>
-          <p-dialog [(visible)]="showIdImage" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false"
-            [resizable]="false">
-            <img [src]="helper.processFileUrl(user?.identityImageUrl)" alt="ID Image">
-          </p-dialog>
+  <div>
+    <div class="p-fluid">
+      <h2>Account Information</h2>
+      <!-- Existing fields -->
+      <div class="bg-white p-3 shadow-sm rounded-3 d-flex flex-column gap-2">
+        <div class="d-flex justify-content-between">
+          <p>Name</p>
+          <p>
+            {{ user?.firstName }} {{ user?.middleName }} {{ user?.lastName }}
+          </p>
         </div>
-      </div>
+        <div class="d-flex justify-content-between">
+          <p>Email</p>
+          <p>{{ user?.email }}</p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p>Phone Number</p>
+          <p>{{ user?.phoneNumber }}</p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p>Investor Type</p>
+          <p>{{ user?.investorType }}</p>
+        </div>
+        <!-- New fields -->
+        <div class="d-flex justify-content-between">
+          <p>Date of Birth</p>
+          <p>{{ user?.dateOfBirth | date : "mediumDate" }}</p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p>Address</p>
+          <p>{{ user?.address }}</p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p>ID or Passport Number</p>
+          <p>{{ user?.identityNumber }}</p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p>ID Image</p>
+          <div>
+            <p-button (click)="showDialog()">
+              <i class="text-white pi pi-id-card"> </i>
+            </p-button>
+            <p-dialog
+              [(visible)]="showIdImage"
+              [modal]="true"
+              [style]="{ width: '50vw' }"
+              [draggable]="false"
+              [resizable]="false"
+            >
+              <img
+                [src]="helper.processFileUrl(user?.identityImageUrl)"
+                alt="ID Image"
+              />
+            </p-dialog>
+          </div>
+        </div>
 
-      <div class="d-flex justify-content-between">
-        <p>Occupation</p>
-        <p>{{ user?.occupation }}</p>
+        <div class="d-flex justify-content-between">
+          <p>Occupation</p>
+          <p>{{ user?.occupation }}</p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <p>Company Name</p>
+          <p>{{ user?.companyName }}</p>
+        </div>
+        <!-- Assuming you have a method to handle file uploads -->
+        <!-- <div class="d-flex justify-content-between">
+          <p>Upload ID Copies</p>
+          <input type="file" (change)="onFileSelected($event)" accept=".png,.jpg,.jpeg,.pdf">
+        </div> -->
+        <!-- Checkboxes -->
+        <!-- <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="termsAndConditions">
+          <label class="form-check-label" for="termsAndConditions">
+            Agree to Terms & Conditions
+          </p>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="receiveEmails">
+          <label class="form-check-label" for="receiveEmails">
+            Receive Emails
+          </p>
+        </div> -->
+        <!-- Existing buttons -->
+        <p-button styleClass="w-100">
+          <span class="text-white mx-auto">
+            <i class="pi pi-info-circle"></i> Help and support
+          </span>
+        </p-button>
+        <p-button
+          styleClass="w-100"
+          severity="warning"
+          (onClick)="showEditProfileInfoDialog()"
+        >
+          <span class="text-white mx-auto">
+            <i class="pi pi-pencil"></i> Edit Profile Info
+          </span>
+        </p-button>
       </div>
-      <div class="d-flex justify-content-between">
-        <p>Company Name</p>
-        <p>{{ user?.companyName }}</p>
-      </div>
-      <!-- Assuming you have a method to handle file uploads -->
-      <!-- <div class="d-flex justify-content-between">
-        <p>Upload ID Copies</p>
-        <input type="file" (change)="onFileSelected($event)" accept=".png,.jpg,.jpeg,.pdf">
-      </div> -->
-      <!-- Checkboxes -->
-      <!-- <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="termsAndConditions">
-        <label class="form-check-label" for="termsAndConditions">
-          Agree to Terms & Conditions
-        </p>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="receiveEmails">
-        <label class="form-check-label" for="receiveEmails">
-          Receive Emails
-        </p>
-      </div> -->
-      <!-- Existing buttons -->
-      <p-button styleClass="w-100">
-        <span class="text-white mx-auto">
-          <i class="pi pi-info-circle"></i> Help and support
-        </span>
-      </p-button>
     </div>
+  </div>
+
+  <div *ngIf="editProfileDialog">
+    <p-dialog
+      header="Edit Profile Info"
+      [(visible)]="editProfileDialog"
+      [modal]="true"
+    >
+      <app-edit-profile-info
+        *ngIf="user"
+        [user]="user"
+        (dataChangedEvent)="editProfileDialog = false; getUserInfo()"
+      ></app-edit-profile-info>
+    </p-dialog>
   </div>
 </div>
