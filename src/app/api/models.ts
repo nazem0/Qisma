@@ -4,6 +4,8 @@ export { AddNewPropertyViewModel } from './models/add-new-property-view-model';
 export { AddPropertyFacilityViewModel } from './models/add-property-facility-view-model';
 export { FacilityViewModelForAdmin } from './models/facility-view-model-for-admin';
 export { FacilityViewModelForAdminListApiResult } from './models/facility-view-model-for-admin-list-api-result';
+export { FaqViewModel } from './models/faq-view-model';
+export { FaqViewModelListApiResult } from './models/faq-view-model-list-api-result';
 export { GovernorateAndCityViewModel } from './models/governorate-and-city-view-model';
 export { GovernorateAndCityViewModelListApiResult } from './models/governorate-and-city-view-model-list-api-result';
 export { InvestorType } from './models/investor-type';
