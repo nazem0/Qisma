@@ -1,0 +1,9 @@
+<div class="my-3 d-flex flex-column gap-2">
+    @for (faq of faqList; track $index) {
+      <p-accordion>
+        <p-accordionTab tabStyleClass="shadow-sm rounded-2" [header]="faq.question!">
+          {{ faq.answer }}
+        </p-accordionTab>
+      </p-accordion>
+    }
+</div>
