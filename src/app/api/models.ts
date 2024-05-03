@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+export { AddFaqViewModel } from './models/add-faq-view-model';
 export { AddNewPropertyViewModel } from './models/add-new-property-view-model';
 export { AddPropertyFacilityViewModel } from './models/add-property-facility-view-model';
 export { FacilityViewModelForAdmin } from './models/facility-view-model-for-admin';
@@ -36,6 +37,8 @@ export { PropertyViewModelInListViewPaginationViewModelApiResult } from './model
 export { Status } from './models/status';
 export { StringApiResult } from './models/string-api-result';
 export { StringListApiResult } from './models/string-list-api-result';
+export { SupportViewModel } from './models/support-view-model';
+export { SupportViewModelApiResult } from './models/support-view-model-api-result';
 export { Type } from './models/type';
 export { UpdatePropertyViewModel } from './models/update-property-view-model';
 export { UserDataViewModel } from './models/user-data-view-model';

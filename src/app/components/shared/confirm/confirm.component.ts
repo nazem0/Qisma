@@ -11,7 +11,6 @@ import { AvatarModule } from 'primeng/avatar';
   imports:[ButtonModule, DialogModule, AvatarModule],
 })
 export class ConfirmComponent {
-  @Input() label:string="";
   @Input() severity:string="primary"
   @Input() title:string=""
   @Input() description:string=""

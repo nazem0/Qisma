@@ -242,13 +242,14 @@ input,
   font-size: 8.65px;
 }
 
-.p-accordion a {
-  border: var(--primary-700);
-  background: var(--primary-600);
-}
-
-.p-accordion * {
-  color: white;
+.p-accordion {
+  a {
+    border: var(--primary-700);
+    background: var(--primary-600);
+  }
+  :not(p-dialog *, app-confirm *) {
+    color: white;
+  }
 }
 
 .p-accordion .p-accordion-content {
@@ -400,4 +401,8 @@ table td {
   aspect-ratio: 1;
   object-fit: cover;
   height: 70px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

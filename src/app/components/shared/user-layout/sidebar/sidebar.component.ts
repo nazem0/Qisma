@@ -44,7 +44,13 @@ export class SidebarComponent {
         title:"Orders",
         url:"orders",
         iconClass:"pi-money-bill"
-      }]);
+      },
+      {
+        title:"FAQ",
+        url:"faq",
+        iconClass:"pi-question"
+      }
+    ]);
     }
     if(_authHelper.hasRole(Roles.Customer))
     {
@@ -82,7 +88,7 @@ export class SidebarComponent {
       ])
 
     }
-    
+
   }
   toggleCollapse(){
     if(this.collapse == false){

@@ -9,14 +9,63 @@ import { PropertyActionsComponent } from './property-actions/property-actions.co
 
 export const adminRoutes: Routes = [
   {
-    path: "admin", component: UserLayoutComponent, children: [
-      { path: "", redirectTo: "marketplace", pathMatch: "full" },
-      { path: "orders", loadComponent: () => import('./admin-orders/admin-orders.component').then(m => m.AdminOrdersComponent), title: "Orders" },
-      { path: "marketplace", loadComponent: () => import('../guest/marketplace/marketplace.component').then(m => m.MarketplaceComponent), title: "Marketplace" },
-      { path: "marketplace/property-details/:id", component: PropertyDetailsComponent, title: "Property Details" },
-      { path: "marketplace/property-images/:id", component: EditImagesComponent, title: "Property Images" },
-      { path: "marketplace/property-actions", component: PropertyActionsComponent, title: "Property Actions" },
-      { path: "marketplace/property-actions/:id", component: PropertyActionsComponent, title: "Property Actions" },
-    ], canActivate: [AdminAuthGuard]
-  }
+    path: 'admin',
+    component: UserLayoutComponent,
+    children: [
+      { path: '', redirectTo: 'marketplace', pathMatch: 'full' },
+      {
+        path: 'orders',
+        loadComponent: () =>
+          import('./admin-orders/admin-orders.component').then(
+            (m) => m.AdminOrdersComponent
+          ),
+        title: 'Orders',
+      },
+      {
+        path: 'marketplace',
+        loadComponent: () =>
+          import('../guest/marketplace/marketplace.component').then(
+            (m) => m.MarketplaceComponent
+          ),
+        title: 'Marketplace',
+      },
+      {
+        path: 'marketplace/property-details/:id',
+        component: PropertyDetailsComponent,
+        title: 'Property Details',
+      },
+      {
+        path: 'marketplace/property-images/:id',
+        component: EditImagesComponent,
+        title: 'Property Images',
+      },
+      {
+        path: 'marketplace/property-actions',
+        component: PropertyActionsComponent,
+        title: 'Property Actions',
+      },
+      {
+        path: 'marketplace/property-actions/:id',
+        component: PropertyActionsComponent,
+        title: 'Property Actions',
+      },
+      {
+        path: 'create-faq',
+        loadComponent: () =>
+          import('./create-faq/create-faq.component').then(
+            (c) => c.CreateFaqComponent
+          ),
+        title: 'Create FAQ',
+      },
+      {
+        path: 'faq',
+        loadComponent: () =>
+          import('../guest/faq/faq.component').then(
+            (c) => c.FaqComponent
+          ),
+        title: 'FAQ',
+      },
+    ],
+    canActivate: [AdminAuthGuard],
+  },
 ];

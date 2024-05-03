@@ -1,0 +1,42 @@
+<header class="text-center">
+  <h3>Create FAQ</h3>
+</header>
+<form [formGroup]="form" class="d-flex flex-column gap-3" (ngSubmit)="submit()">
+  <div>
+    <input
+      type="text"
+      pInputText
+      formControlName="question"
+      class="shadow-sm"
+      placeholder="Question"
+    />
+    @if(form.get('question')?.touched){ @if
+    (form.get('question')?.getError('required')) {
+    <small class="text-danger"> Question is required </small>
+    } }
+  </div>
+
+  <div>
+    <textarea
+      [rows]="1"
+      class="w-100 shadow-sm"
+      pInputTextarea
+      formControlName="answer"
+      placeholder="Answer"
+    ></textarea>
+    @if(form.get('answer')?.touched){ @if
+    (form.get('answer')?.getError('required')) {
+    <small class="text-danger"> Answer is required </small>
+    } }
+  </div>
+
+  <div>
+    <button
+      pButton
+      class="text-white w-100"
+      icon="pi pi-iconName"
+      label="Create"
+      type="submit"
+    ></button>
+  </div>
+</form>

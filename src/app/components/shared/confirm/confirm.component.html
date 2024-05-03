@@ -1,8 +1,7 @@
 <div class="text-center">
-  <p-button (click)="showDialog()" [severity]="severity"
-    styleClass="w-100 rounded-0">
-    <span class="text-white mx-auto">{{label}}</span>
-  </p-button>
+  <div (click)="showDialog()">
+    <ng-content></ng-content>
+  </div>
   <p-dialog #dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '50rem' }"
     [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
     <ng-template pTemplate="header">

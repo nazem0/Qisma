@@ -1,9 +1,27 @@
 <div class="my-3 d-flex flex-column gap-2">
-    @for (faq of faqList; track $index) {
-      <p-accordion>
-        <p-accordionTab tabStyleClass="shadow-sm rounded-2" [header]="faq.question!">
-          {{ faq.answer }}
-        </p-accordionTab>
-      </p-accordion>
-    }
+  @for (faq of faqList; track $index) {
+  <p-accordion>
+    <p-accordionTab tabStyleClass="shadow-sm rounded-2">
+      <ng-template pTemplate="header">
+        <div class="d-flex justify-content-between w-100 align-items-center">
+          <span>
+            {{ faq.question }}
+          </span>
+          @if (isInAdminPanel) {
+            <app-confirm
+            (confirmation)="deleteFaq(faq.id!)"
+            title="Delete"
+            [description]="'Are you sure you want to delete'"
+          >
+            <i class="pi pi-trash"></i>
+          </app-confirm>
+          }
+        </div>
+      </ng-template>
+      <span>
+        {{ faq.answer }}
+      </span>
+    </p-accordionTab>
+  </p-accordion>
+  }
 </div>

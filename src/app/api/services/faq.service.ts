@@ -41,9 +41,9 @@ export class FaqService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiDashboardFaqAddPost$Plain()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiDashboardFaqAddPost$Plain$Response(params: ApiDashboardFaqAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  apiDashboardFaqAddPost$Plain$Response(params?: ApiDashboardFaqAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
     return apiDashboardFaqAddPost$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -55,9 +55,9 @@ export class FaqService extends BaseService {
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiDashboardFaqAddPost$Plain$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiDashboardFaqAddPost$Plain(params: ApiDashboardFaqAddPost$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
+  apiDashboardFaqAddPost$Plain(params?: ApiDashboardFaqAddPost$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
     return this.apiDashboardFaqAddPost$Plain$Response(params, context).pipe(
       map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
     );
@@ -71,9 +71,9 @@ export class FaqService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiDashboardFaqAddPost$Json()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiDashboardFaqAddPost$Json$Response(params: ApiDashboardFaqAddPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  apiDashboardFaqAddPost$Json$Response(params?: ApiDashboardFaqAddPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
     return apiDashboardFaqAddPost$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -85,9 +85,9 @@ export class FaqService extends BaseService {
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiDashboardFaqAddPost$Json$Response()` instead.
    *
-   * This method doesn't expect any request body.
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiDashboardFaqAddPost$Json(params: ApiDashboardFaqAddPost$Json$Params, context?: HttpContext): Observable<StringApiResult> {
+  apiDashboardFaqAddPost$Json(params?: ApiDashboardFaqAddPost$Json$Params, context?: HttpContext): Observable<StringApiResult> {
     return this.apiDashboardFaqAddPost$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
     );

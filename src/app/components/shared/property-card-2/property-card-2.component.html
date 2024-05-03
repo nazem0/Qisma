@@ -35,13 +35,17 @@
     @if(isInAdminPanel){
     <a [routerLink]="'/admin/marketplace/property-actions/' + property.propertyId">
         <p-button [raised]="true" styleClass="bg-white text-primary border-0 w-100 rounded-0">
-            <span class="mx-auto">Edit Property</span>
+            <span class="mx-auto mat-small">Edit Property</span>
         </p-button>
     </a>
-    <app-confirm [label]="property.isDeleted ? 'Activate' :'Deactivate' + ' Property'"
+    <app-confirm
         [severity]="property.isDeleted?'success':'danger'" [title]="property.address+' property'"
         [description]="'Are you sure you want to '+ (property.isDeleted ? 'activate' :'deactivate') +' this property?'"
-        (confirmation)="togglePropertyActivation(property.propertyId!)"></app-confirm>
+        (confirmation)="togglePropertyActivation(property.propertyId!)">
+        <button pButton [raised]="true" class="w-100 text-white" severity="danger">
+          <span class="mat-small mx-auto">{{property.isDeleted ? 'Activate' :'Deactivate' + ' Property'}}</span>
+        </button>
+      </app-confirm>
 
     }
 </div>

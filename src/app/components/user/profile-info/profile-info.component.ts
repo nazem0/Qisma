@@ -7,6 +7,7 @@ import { CardModule } from 'primeng/card';
 import { UserFullInformationViewModel } from '../../../api/models';
 import { DialogModule } from 'primeng/dialog';
 import { EditProfileInfoComponent } from './edit-profile-info/edit-profile-info.component';
+import { DialogHelper } from '../../../helpers/dialog.service';
 
 @Component({
   selector: 'app-profile-info',
@@ -27,7 +28,11 @@ export class ProfileInfoComponent implements OnInit {
   showIdImage = false;
   helper = Helper;
   editProfileDialog = false;
-  constructor(private userAccountService: UserAccountService) {}
+  constructor(
+    private userAccountService: UserAccountService,
+    private dialog:DialogHelper,
+    // private
+  ) {}
 
   ngOnInit() {
     this.getUserInfo();
@@ -50,4 +55,8 @@ export class ProfileInfoComponent implements OnInit {
 
     this.editProfileDialog = true;
   }
+
+  // openSupportDialog(){
+  //   this.dialog.open("")
+  // }
 }
