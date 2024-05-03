@@ -7,17 +7,16 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 import { StringApiResult } from '../../models/string-api-result';
+import { SupportViewModel } from '../../models/support-view-model';
 
-export interface ApiDashboardUpdateAboutQismaByIdPost$Json$Params {
-  id: number;
-  content: string;
+export interface ApiDashboardAboutQismaUpdateSupportPut$Json$Params {
+      body?: SupportViewModel
 }
 
-export function apiDashboardUpdateAboutQismaByIdPost$Json(http: HttpClient, rootUrl: string, params: ApiDashboardUpdateAboutQismaByIdPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiDashboardUpdateAboutQismaByIdPost$Json.PATH, 'post');
+export function apiDashboardAboutQismaUpdateSupportPut$Json(http: HttpClient, rootUrl: string, params?: ApiDashboardAboutQismaUpdateSupportPut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiDashboardAboutQismaUpdateSupportPut$Json.PATH, 'put');
   if (params) {
-    rb.query('id', params.id, {"style":"form"});
-    rb.query('content', params.content, {"style":"form"});
+    rb.body(params.body, 'application/*+json');
   }
 
   return http.request(
@@ -30,4 +29,4 @@ export function apiDashboardUpdateAboutQismaByIdPost$Json(http: HttpClient, root
   );
 }
 
-apiDashboardUpdateAboutQismaByIdPost$Json.PATH = '/api/Dashboard/UpdateAboutQismaById';
+apiDashboardAboutQismaUpdateSupportPut$Json.PATH = '/api/Dashboard/AboutQisma/UpdateSupport';
