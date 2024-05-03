@@ -37,10 +37,8 @@ export class CreateFaqComponent implements OnInit {
   }
 
   submit(){
-    console.log("Here");
-
     this._faqService
-    .apiDashboardFaqAddPost$Json(this.form.value)
+    .apiDashboardFaqAddPost$Json({body:this.form.value})
     .subscribe()
   }
 
