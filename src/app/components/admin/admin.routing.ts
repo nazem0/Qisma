@@ -50,19 +50,9 @@ export const adminRoutes: Routes = [
         title: 'Property Actions',
       },
       {
-        path: 'create-faq',
-        loadComponent: () =>
-          import('./create-faq/create-faq.component').then(
-            (c) => c.CreateFaqComponent
-          ),
-        title: 'Create FAQ',
-      },
-      {
         path: 'faq',
         loadComponent: () =>
-          import('../guest/faq/faq.component').then(
-            (c) => c.FaqComponent
-          ),
+          import('../guest/faq/faq.component').then((c) => c.FaqComponent),
         title: 'FAQ',
       },
     ],

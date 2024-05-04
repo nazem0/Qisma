@@ -8,6 +8,8 @@ import { UserFullInformationViewModel } from '../../../api/models';
 import { DialogModule } from 'primeng/dialog';
 import { EditProfileInfoComponent } from './edit-profile-info/edit-profile-info.component';
 import { DialogHelper } from '../../../helpers/dialog.service';
+import { AboutQismaService } from '../../../api/services';
+import { SupportDialogComponent } from './support-dialog/support-dialog.component';
 
 @Component({
   selector: 'app-profile-info',
@@ -21,6 +23,7 @@ import { DialogHelper } from '../../../helpers/dialog.service';
     NgIf,
     DialogModule,
     EditProfileInfoComponent,
+    SupportDialogComponent
   ],
 })
 export class ProfileInfoComponent implements OnInit {
@@ -28,9 +31,11 @@ export class ProfileInfoComponent implements OnInit {
   showIdImage = false;
   helper = Helper;
   editProfileDialog = false;
+  showSupportDialog = false;
   constructor(
-    private userAccountService: UserAccountService,
-    private dialog:DialogHelper,
+    private _userAccountService: UserAccountService,
+    private _dialog:DialogHelper,
+    private _aboutQismaService:AboutQismaService
     // private
   ) {}
 
@@ -39,7 +44,7 @@ export class ProfileInfoComponent implements OnInit {
   }
 
   getUserInfo() {
-    this.userAccountService.apiUserGetFullInformationGet$Json().subscribe({
+    this._userAccountService.apiUserGetFullInformationGet$Json().subscribe({
       next: (next) => {
         this.user = next.data;
       },
@@ -51,12 +56,13 @@ export class ProfileInfoComponent implements OnInit {
   }
 
   showEditProfileInfoDialog() {
-    console.log(this.user);
-
     this.editProfileDialog = true;
   }
 
-  // openSupportDialog(){
-  //   this.dialog.open("")
-  // }
+
+  openSupportDialog() {
+    this.showSupportDialog = true;
+  }
+
+
 }

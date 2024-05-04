@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, input, output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FaqService } from '../../../api/services';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-create-faq',
@@ -14,14 +15,15 @@ import { FaqService } from '../../../api/services';
     ReactiveFormsModule,
     InputTextModule,
     InputTextareaModule,
-    ButtonModule
+    ButtonModule,
   ]
 })
 export class CreateFaqComponent implements OnInit {
+  @Output() createEvent = new EventEmitter();
   form!:FormGroup;
   constructor(
     private _fb:FormBuilder,
-    private _faqService:FaqService
+    private _faqService:FaqService,
   ) {
     this.initForm();
   }
@@ -39,7 +41,11 @@ export class CreateFaqComponent implements OnInit {
   submit(){
     this._faqService
     .apiDashboardFaqAddPost$Json({body:this.form.value})
-    .subscribe()
+    .subscribe({
+      next:()=>{
+        this.createEvent.emit();
+      }
+    })
   }
 
 }

@@ -83,7 +83,7 @@
           </p>
         </div> -->
         <!-- Existing buttons -->
-        <p-button styleClass="w-100">
+        <p-button styleClass="w-100" (onClick)="openSupportDialog()">
           <span class="text-white mx-auto">
             <i class="pi pi-info-circle"></i> Help and support
           </span>
@@ -115,3 +115,6 @@
     </p-dialog>
   </div>
 </div>
+
+
+<app-support-dialog *ngIf="showSupportDialog" [visible]="showSupportDialog"></app-support-dialog>
