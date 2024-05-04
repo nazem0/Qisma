@@ -1,12 +1,12 @@
 import { DialogHelper } from './../../../helpers/dialog.service';
 import { AccordionModule } from 'primeng/accordion';
-import { FaqViewModel } from '../../../api/models';
 import { FaqService } from './../../../api/services/faq.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthHelper } from '../../../helpers/auth-helper';
 import { Roles } from '../../../enums/roles.enum';
 import { ConfirmComponent } from '../../shared/confirm/confirm.component';
 import { ActivatedRoute } from '@angular/router';
+import { Faq } from '../../../api/models';
 
 @Component({
   selector: 'app-faq',
@@ -16,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
   imports: [AccordionModule, ConfirmComponent],
 })
 export class FaqComponent implements OnInit {
-  faqList: FaqViewModel[] = [];
+  faqList: Faq[] = [];
   adminRole = Roles.Admin;
   isInAdminPanel=false;
   constructor(
@@ -32,7 +32,7 @@ export class FaqComponent implements OnInit {
   }
 
   getFaqList() {
-    this._faqService.apiDashboardFaqGetAllGet$Json().subscribe({
+    this._faqService.apiFaqGetAllGet$Json().subscribe({
       next: (next) => {
         this.faqList = next.data ?? [];
       },

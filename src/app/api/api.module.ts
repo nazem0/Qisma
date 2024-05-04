@@ -4,12 +4,13 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
+import { AboutQismaService } from './services/about-qisma.service';
+import { BlogService } from './services/blog.service';
 import { FaqService } from './services/faq.service';
 import { GovernorateAndCityService } from './services/governorate-and-city.service';
 import { OrderService } from './services/order.service';
 import { PropertyService } from './services/property.service';
 import { PropertyForAdminService } from './services/property-for-admin.service';
-import { SettingService } from './services/setting.service';
 import { UserAccountService } from './services/user-account.service';
 
 /**
@@ -20,12 +21,13 @@ import { UserAccountService } from './services/user-account.service';
   exports: [],
   declarations: [],
   providers: [
+    AboutQismaService,
+    BlogService,
     FaqService,
     GovernorateAndCityService,
     OrderService,
     PropertyService,
     PropertyForAdminService,
-    SettingService,
     UserAccountService,
     ApiConfiguration
   ],

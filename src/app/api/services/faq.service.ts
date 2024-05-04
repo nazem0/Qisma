@@ -17,11 +17,11 @@ import { apiDashboardFaqDeleteDelete$Json } from '../fn/faq/api-dashboard-faq-de
 import { ApiDashboardFaqDeleteDelete$Json$Params } from '../fn/faq/api-dashboard-faq-delete-delete-json';
 import { apiDashboardFaqDeleteDelete$Plain } from '../fn/faq/api-dashboard-faq-delete-delete-plain';
 import { ApiDashboardFaqDeleteDelete$Plain$Params } from '../fn/faq/api-dashboard-faq-delete-delete-plain';
-import { apiDashboardFaqGetAllGet$Json } from '../fn/faq/api-dashboard-faq-get-all-get-json';
-import { ApiDashboardFaqGetAllGet$Json$Params } from '../fn/faq/api-dashboard-faq-get-all-get-json';
-import { apiDashboardFaqGetAllGet$Plain } from '../fn/faq/api-dashboard-faq-get-all-get-plain';
-import { ApiDashboardFaqGetAllGet$Plain$Params } from '../fn/faq/api-dashboard-faq-get-all-get-plain';
-import { FaqViewModelListApiResult } from '../models/faq-view-model-list-api-result';
+import { apiFaqGetAllGet$Json } from '../fn/faq/api-faq-get-all-get-json';
+import { ApiFaqGetAllGet$Json$Params } from '../fn/faq/api-faq-get-all-get-json';
+import { apiFaqGetAllGet$Plain } from '../fn/faq/api-faq-get-all-get-plain';
+import { ApiFaqGetAllGet$Plain$Params } from '../fn/faq/api-faq-get-all-get-plain';
+import { FaqListApiResult } from '../models/faq-list-api-result';
 import { StringApiResult } from '../models/string-api-result';
 
 @Injectable({ providedIn: 'root' })
@@ -156,8 +156,8 @@ export class FaqService extends BaseService {
     );
   }
 
-  /** Path part for operation `apiDashboardFaqGetAllGet()` */
-  static readonly ApiDashboardFaqGetAllGetPath = '/api/Dashboard/FAQ/GetAll';
+  /** Path part for operation `apiFaqGetAllGet()` */
+  static readonly ApiFaqGetAllGetPath = '/api/FAQ/GetAll';
 
   /**
    * Get all FAQs.
@@ -165,12 +165,12 @@ export class FaqService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiDashboardFaqGetAllGet$Plain()` instead.
+   * To access only the response body, use `apiFaqGetAllGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiDashboardFaqGetAllGet$Plain$Response(params?: ApiDashboardFaqGetAllGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<FaqViewModelListApiResult>> {
-    return apiDashboardFaqGetAllGet$Plain(this.http, this.rootUrl, params, context);
+  apiFaqGetAllGet$Plain$Response(params?: ApiFaqGetAllGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<FaqListApiResult>> {
+    return apiFaqGetAllGet$Plain(this.http, this.rootUrl, params, context);
   }
 
   /**
@@ -179,13 +179,13 @@ export class FaqService extends BaseService {
    *
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiDashboardFaqGetAllGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiFaqGetAllGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiDashboardFaqGetAllGet$Plain(params?: ApiDashboardFaqGetAllGet$Plain$Params, context?: HttpContext): Observable<FaqViewModelListApiResult> {
-    return this.apiDashboardFaqGetAllGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<FaqViewModelListApiResult>): FaqViewModelListApiResult => r.body)
+  apiFaqGetAllGet$Plain(params?: ApiFaqGetAllGet$Plain$Params, context?: HttpContext): Observable<FaqListApiResult> {
+    return this.apiFaqGetAllGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<FaqListApiResult>): FaqListApiResult => r.body)
     );
   }
 
@@ -195,12 +195,12 @@ export class FaqService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiDashboardFaqGetAllGet$Json()` instead.
+   * To access only the response body, use `apiFaqGetAllGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiDashboardFaqGetAllGet$Json$Response(params?: ApiDashboardFaqGetAllGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<FaqViewModelListApiResult>> {
-    return apiDashboardFaqGetAllGet$Json(this.http, this.rootUrl, params, context);
+  apiFaqGetAllGet$Json$Response(params?: ApiFaqGetAllGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<FaqListApiResult>> {
+    return apiFaqGetAllGet$Json(this.http, this.rootUrl, params, context);
   }
 
   /**
@@ -209,13 +209,13 @@ export class FaqService extends BaseService {
    *
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiDashboardFaqGetAllGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiFaqGetAllGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiDashboardFaqGetAllGet$Json(params?: ApiDashboardFaqGetAllGet$Json$Params, context?: HttpContext): Observable<FaqViewModelListApiResult> {
-    return this.apiDashboardFaqGetAllGet$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<FaqViewModelListApiResult>): FaqViewModelListApiResult => r.body)
+  apiFaqGetAllGet$Json(params?: ApiFaqGetAllGet$Json$Params, context?: HttpContext): Observable<FaqListApiResult> {
+    return this.apiFaqGetAllGet$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<FaqListApiResult>): FaqListApiResult => r.body)
     );
   }
 

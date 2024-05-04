@@ -6,13 +6,13 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { FaqViewModelListApiResult } from '../../models/faq-view-model-list-api-result';
+import { FaqListApiResult } from '../../models/faq-list-api-result';
 
-export interface ApiDashboardFaqGetAllGet$Json$Params {
+export interface ApiFaqGetAllGet$Json$Params {
 }
 
-export function apiDashboardFaqGetAllGet$Json(http: HttpClient, rootUrl: string, params?: ApiDashboardFaqGetAllGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<FaqViewModelListApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiDashboardFaqGetAllGet$Json.PATH, 'get');
+export function apiFaqGetAllGet$Json(http: HttpClient, rootUrl: string, params?: ApiFaqGetAllGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<FaqListApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiFaqGetAllGet$Json.PATH, 'get');
   if (params) {
   }
 
@@ -21,9 +21,9 @@ export function apiDashboardFaqGetAllGet$Json(http: HttpClient, rootUrl: string,
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<FaqViewModelListApiResult>;
+      return r as StrictHttpResponse<FaqListApiResult>;
     })
   );
 }
 
-apiDashboardFaqGetAllGet$Json.PATH = '/api/Dashboard/FAQ/GetAll';
+apiFaqGetAllGet$Json.PATH = '/api/FAQ/GetAll';

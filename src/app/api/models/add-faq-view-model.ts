@@ -2,5 +2,5 @@
 /* eslint-disable */
 export interface AddFaqViewModel {
   answer: string;
-  qusetion: string;
+  question: string;
 }

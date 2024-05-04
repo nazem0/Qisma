@@ -1,12 +1,16 @@
 /* tslint:disable */
 /* eslint-disable */
+export { AboutUsViewModel } from './models/about-us-view-model';
+export { AboutUsViewModelApiResult } from './models/about-us-view-model-api-result';
 export { AddFaqViewModel } from './models/add-faq-view-model';
 export { AddNewPropertyViewModel } from './models/add-new-property-view-model';
 export { AddPropertyFacilityViewModel } from './models/add-property-facility-view-model';
+export { Blog } from './models/blog';
+export { BlogListApiResult } from './models/blog-list-api-result';
 export { FacilityViewModelForAdmin } from './models/facility-view-model-for-admin';
 export { FacilityViewModelForAdminListApiResult } from './models/facility-view-model-for-admin-list-api-result';
-export { FaqViewModel } from './models/faq-view-model';
-export { FaqViewModelListApiResult } from './models/faq-view-model-list-api-result';
+export { Faq } from './models/faq';
+export { FaqListApiResult } from './models/faq-list-api-result';
 export { GovernorateAndCityViewModel } from './models/governorate-and-city-view-model';
 export { GovernorateAndCityViewModelListApiResult } from './models/governorate-and-city-view-model-list-api-result';
 export { InvestorType } from './models/investor-type';
@@ -39,6 +43,8 @@ export { StringApiResult } from './models/string-api-result';
 export { StringListApiResult } from './models/string-list-api-result';
 export { SupportViewModel } from './models/support-view-model';
 export { SupportViewModelApiResult } from './models/support-view-model-api-result';
+export { TeamMember } from './models/team-member';
+export { TeamMemberListApiResult } from './models/team-member-list-api-result';
 export { Type } from './models/type';
 export { UpdatePropertyViewModel } from './models/update-property-view-model';
 export { UserDataViewModel } from './models/user-data-view-model';
