@@ -55,6 +55,14 @@ export const adminRoutes: Routes = [
           import('../guest/faq/faq.component').then((c) => c.FaqComponent),
         title: 'FAQ',
       },
+      {
+        path: 'support',
+        loadComponent: () =>
+          import('./edit-support/edit-support.component').then(
+            (c) => c.EditSupportComponent
+          ),
+        title: 'Support Data',
+      },
     ],
     canActivate: [AdminAuthGuard],
   },

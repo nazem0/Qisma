@@ -1,0 +1,46 @@
+<header class="my-3">
+  <h3>Support Data</h3>
+</header>
+@if (form) {
+  <form [formGroup]="form" class="d-flex flex-column gap-3" (ngSubmit)="sumbit()">
+    <div>
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-envelope"></p-inputIcon>
+        <input
+          type="email"
+          pInputText
+          formControlName="supportEmail"
+          placeholder="Email"
+          required
+        />
+      </p-iconField>
+      @if(form.get('supportEmail')?.invalid && form.get('supportEmail')?.touched){
+
+      <small class="my-2 text-danger">Email is required.</small>
+      }
+    </div>
+    <div>
+      <ngx-intl-tel-input
+        [selectedCountryISO]="countryISO.Egypt"
+        [enablePlaceholder]="true"
+        [searchCountryFlag]="true"
+        [maxLength]="15"
+        [phoneValidation]="true"
+        [(ngModel)]="phoneNumber"
+        [ngModelOptions]="{ standalone: true }"
+        (ngModelChange)="
+          form.controls['supportPhoneNumber'].setValue(phoneNumber?.e164Number)
+        "
+        pInputText
+      ></ngx-intl-tel-input>
+      @if ( form.get('supportPhoneNumber')!.invalid &&
+      form.get('supportPhoneNumber')!.touched) {
+
+      <small class="my-2 text-danger">Phone Number is required.</small>
+      }
+    </div>
+    <button class="w-100 text-white" pButton type="submit">
+      <span class="mx-auto">Sumbit</span>
+    </button>
+  </form>
+}
