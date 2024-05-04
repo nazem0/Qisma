@@ -48,8 +48,13 @@ export class SidebarComponent {
       {
         title:"FAQ",
         url:"faq",
-        iconClass:"pi-question"
-      }
+        iconClass:"pi-question-circle"
+      },
+      {
+        title:"Support",
+        url:"support",
+        iconClass:"pi-info-circle"
+      },
     ]);
     }
     if(_authHelper.hasRole(Roles.Customer))
