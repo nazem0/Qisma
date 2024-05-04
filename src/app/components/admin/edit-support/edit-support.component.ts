@@ -17,6 +17,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { SupportViewModel } from '../../../api/models';
 import { AboutQismaService } from '../../../api/services';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-support',
@@ -49,12 +50,15 @@ export class EditSupportComponent implements OnInit {
   };
   constructor(
     private _aboutQismaService: AboutQismaService,
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    private _route:ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.initForm();
     this.getSupportData();
+    console.log(this._route);
+
   }
 
   getSupportData() {

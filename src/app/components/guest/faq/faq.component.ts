@@ -34,7 +34,7 @@ export class FaqComponent implements OnInit {
     private _faqService: FaqService,
     private _route: ActivatedRoute,
   ) {
-    this.isInAdminPanel = _authHelper.isInAdminPanel(this._route);
+    this.isInAdminPanel = this._route.snapshot.data['isAdmin'];
   }
 
   ngOnInit() {

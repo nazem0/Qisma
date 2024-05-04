@@ -60,14 +60,14 @@ export class MarketplacePropertiesPaginationComponent implements OnInit {
   selectedProperty?:{id:number, name:string};
 
   isInAdminPanel : boolean;
-  
+
   constructor(
     private propertyService: PropertyService,
     private governorateAndCityService: GovernorateAndCityService,
     public authHelper:AuthHelper,
     private activatedRoute:ActivatedRoute
   ) {
-    this.isInAdminPanel = authHelper.isInAdminPanel(this.activatedRoute);
+    this.isInAdminPanel = this.activatedRoute.snapshot.data['isAdmin'];
   }
   pagination = {
     index: 0,
@@ -77,7 +77,7 @@ export class MarketplacePropertiesPaginationComponent implements OnInit {
   ngOnInit(): void {
     this.initGovs();
     this.getProperties();
-    
+
   }
   resetPagination(){
     this.pagination.index=0;

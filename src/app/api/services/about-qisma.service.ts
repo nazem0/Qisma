@@ -14,10 +14,14 @@ import { apiAboutQismaGetAboutUsGet$Json } from '../fn/about-qisma/api-about-qis
 import { ApiAboutQismaGetAboutUsGet$Json$Params } from '../fn/about-qisma/api-about-qisma-get-about-us-get-json';
 import { apiAboutQismaGetAboutUsGet$Plain } from '../fn/about-qisma/api-about-qisma-get-about-us-get-plain';
 import { ApiAboutQismaGetAboutUsGet$Plain$Params } from '../fn/about-qisma/api-about-qisma-get-about-us-get-plain';
-import { apiAboutQismaGetAllTeamMembersGet$Json } from '../fn/about-qisma/api-about-qisma-get-all-team-members-get-json';
-import { ApiAboutQismaGetAllTeamMembersGet$Json$Params } from '../fn/about-qisma/api-about-qisma-get-all-team-members-get-json';
-import { apiAboutQismaGetAllTeamMembersGet$Plain } from '../fn/about-qisma/api-about-qisma-get-all-team-members-get-plain';
-import { ApiAboutQismaGetAllTeamMembersGet$Plain$Params } from '../fn/about-qisma/api-about-qisma-get-all-team-members-get-plain';
+import { apiAboutQismaGetAllManagersGet$Json } from '../fn/about-qisma/api-about-qisma-get-all-managers-get-json';
+import { ApiAboutQismaGetAllManagersGet$Json$Params } from '../fn/about-qisma/api-about-qisma-get-all-managers-get-json';
+import { apiAboutQismaGetAllManagersGet$Plain } from '../fn/about-qisma/api-about-qisma-get-all-managers-get-plain';
+import { ApiAboutQismaGetAllManagersGet$Plain$Params } from '../fn/about-qisma/api-about-qisma-get-all-managers-get-plain';
+import { apiAboutQismaGetAllMembersGet$Json } from '../fn/about-qisma/api-about-qisma-get-all-members-get-json';
+import { ApiAboutQismaGetAllMembersGet$Json$Params } from '../fn/about-qisma/api-about-qisma-get-all-members-get-json';
+import { apiAboutQismaGetAllMembersGet$Plain } from '../fn/about-qisma/api-about-qisma-get-all-members-get-plain';
+import { ApiAboutQismaGetAllMembersGet$Plain$Params } from '../fn/about-qisma/api-about-qisma-get-all-members-get-plain';
 import { apiAboutQismaGetSupportGet$Json } from '../fn/about-qisma/api-about-qisma-get-support-get-json';
 import { ApiAboutQismaGetSupportGet$Json$Params } from '../fn/about-qisma/api-about-qisma-get-support-get-json';
 import { apiAboutQismaGetSupportGet$Plain } from '../fn/about-qisma/api-about-qisma-get-support-get-plain';
@@ -367,8 +371,8 @@ export class AboutQismaService extends BaseService {
     );
   }
 
-  /** Path part for operation `apiAboutQismaGetAllTeamMembersGet()` */
-  static readonly ApiAboutQismaGetAllTeamMembersGetPath = '/api/AboutQisma/GetAllTeamMembers';
+  /** Path part for operation `apiAboutQismaGetAllManagersGet()` */
+  static readonly ApiAboutQismaGetAllManagersGetPath = '/api/AboutQisma/GetAllManagers';
 
   /**
    * Get all team members.
@@ -376,12 +380,12 @@ export class AboutQismaService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAboutQismaGetAllTeamMembersGet$Plain()` instead.
+   * To access only the response body, use `apiAboutQismaGetAllManagersGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAboutQismaGetAllTeamMembersGet$Plain$Response(params?: ApiAboutQismaGetAllTeamMembersGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamMemberListApiResult>> {
-    return apiAboutQismaGetAllTeamMembersGet$Plain(this.http, this.rootUrl, params, context);
+  apiAboutQismaGetAllManagersGet$Plain$Response(params?: ApiAboutQismaGetAllManagersGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamMemberListApiResult>> {
+    return apiAboutQismaGetAllManagersGet$Plain(this.http, this.rootUrl, params, context);
   }
 
   /**
@@ -390,12 +394,12 @@ export class AboutQismaService extends BaseService {
    *
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiAboutQismaGetAllTeamMembersGet$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiAboutQismaGetAllManagersGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAboutQismaGetAllTeamMembersGet$Plain(params?: ApiAboutQismaGetAllTeamMembersGet$Plain$Params, context?: HttpContext): Observable<TeamMemberListApiResult> {
-    return this.apiAboutQismaGetAllTeamMembersGet$Plain$Response(params, context).pipe(
+  apiAboutQismaGetAllManagersGet$Plain(params?: ApiAboutQismaGetAllManagersGet$Plain$Params, context?: HttpContext): Observable<TeamMemberListApiResult> {
+    return this.apiAboutQismaGetAllManagersGet$Plain$Response(params, context).pipe(
       map((r: StrictHttpResponse<TeamMemberListApiResult>): TeamMemberListApiResult => r.body)
     );
   }
@@ -406,12 +410,12 @@ export class AboutQismaService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAboutQismaGetAllTeamMembersGet$Json()` instead.
+   * To access only the response body, use `apiAboutQismaGetAllManagersGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAboutQismaGetAllTeamMembersGet$Json$Response(params?: ApiAboutQismaGetAllTeamMembersGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamMemberListApiResult>> {
-    return apiAboutQismaGetAllTeamMembersGet$Json(this.http, this.rootUrl, params, context);
+  apiAboutQismaGetAllManagersGet$Json$Response(params?: ApiAboutQismaGetAllManagersGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamMemberListApiResult>> {
+    return apiAboutQismaGetAllManagersGet$Json(this.http, this.rootUrl, params, context);
   }
 
   /**
@@ -420,12 +424,75 @@ export class AboutQismaService extends BaseService {
    *
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiAboutQismaGetAllTeamMembersGet$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiAboutQismaGetAllManagersGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiAboutQismaGetAllTeamMembersGet$Json(params?: ApiAboutQismaGetAllTeamMembersGet$Json$Params, context?: HttpContext): Observable<TeamMemberListApiResult> {
-    return this.apiAboutQismaGetAllTeamMembersGet$Json$Response(params, context).pipe(
+  apiAboutQismaGetAllManagersGet$Json(params?: ApiAboutQismaGetAllManagersGet$Json$Params, context?: HttpContext): Observable<TeamMemberListApiResult> {
+    return this.apiAboutQismaGetAllManagersGet$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<TeamMemberListApiResult>): TeamMemberListApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiAboutQismaGetAllMembersGet()` */
+  static readonly ApiAboutQismaGetAllMembersGetPath = '/api/AboutQisma/GetAllMembers';
+
+  /**
+   * Get all members.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiAboutQismaGetAllMembersGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiAboutQismaGetAllMembersGet$Plain$Response(params?: ApiAboutQismaGetAllMembersGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamMemberListApiResult>> {
+    return apiAboutQismaGetAllMembersGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Get all members.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiAboutQismaGetAllMembersGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiAboutQismaGetAllMembersGet$Plain(params?: ApiAboutQismaGetAllMembersGet$Plain$Params, context?: HttpContext): Observable<TeamMemberListApiResult> {
+    return this.apiAboutQismaGetAllMembersGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<TeamMemberListApiResult>): TeamMemberListApiResult => r.body)
+    );
+  }
+
+  /**
+   * Get all members.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiAboutQismaGetAllMembersGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiAboutQismaGetAllMembersGet$Json$Response(params?: ApiAboutQismaGetAllMembersGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamMemberListApiResult>> {
+    return apiAboutQismaGetAllMembersGet$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Get all members.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiAboutQismaGetAllMembersGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiAboutQismaGetAllMembersGet$Json(params?: ApiAboutQismaGetAllMembersGet$Json$Params, context?: HttpContext): Observable<TeamMemberListApiResult> {
+    return this.apiAboutQismaGetAllMembersGet$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<TeamMemberListApiResult>): TeamMemberListApiResult => r.body)
     );
   }

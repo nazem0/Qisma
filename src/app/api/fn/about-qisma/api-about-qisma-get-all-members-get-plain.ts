@@ -8,16 +8,16 @@ import { RequestBuilder } from '../../request-builder';
 
 import { TeamMemberListApiResult } from '../../models/team-member-list-api-result';
 
-export interface ApiAboutQismaGetAllTeamMembersGet$Json$Params {
+export interface ApiAboutQismaGetAllMembersGet$Plain$Params {
 }
 
-export function apiAboutQismaGetAllTeamMembersGet$Json(http: HttpClient, rootUrl: string, params?: ApiAboutQismaGetAllTeamMembersGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamMemberListApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiAboutQismaGetAllTeamMembersGet$Json.PATH, 'get');
+export function apiAboutQismaGetAllMembersGet$Plain(http: HttpClient, rootUrl: string, params?: ApiAboutQismaGetAllMembersGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamMemberListApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiAboutQismaGetAllMembersGet$Plain.PATH, 'get');
   if (params) {
   }
 
   return http.request(
-    rb.build({ responseType: 'json', accept: 'text/json', context })
+    rb.build({ responseType: 'text', accept: 'text/plain', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
@@ -26,4 +26,4 @@ export function apiAboutQismaGetAllTeamMembersGet$Json(http: HttpClient, rootUrl
   );
 }
 
-apiAboutQismaGetAllTeamMembersGet$Json.PATH = '/api/AboutQisma/GetAllTeamMembers';
+apiAboutQismaGetAllMembersGet$Plain.PATH = '/api/AboutQisma/GetAllMembers';

@@ -33,9 +33,9 @@ export class PropertyCard2Component {
     private activatedRoute:ActivatedRoute,
     private _propertyForAdminService: PropertyForAdminService
   ) {
-    this.isInAdminPanel = authHelper.isInAdminPanel(this.activatedRoute);
+    this.isInAdminPanel = this.activatedRoute.snapshot.data['isAdmin'];
   }
-  
+
   togglePropertyActivation(propertyId: string) {
     this
       ._propertyForAdminService
@@ -47,6 +47,6 @@ export class PropertyCard2Component {
         }
       )
   }
-  
+
 
 }

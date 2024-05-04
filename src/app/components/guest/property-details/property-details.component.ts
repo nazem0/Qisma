@@ -77,7 +77,7 @@ export class PropertyDetailsComponent implements OnInit {
     public router: Router,
     private _propertyForAdminService: PropertyForAdminService
   ) {
-    this.isInAdminPanel = authHelper.isInAdminPanel(route)
+    this.isInAdminPanel = this.route.snapshot.data['isAdmin'];
   }
 
   ngOnInit(): void {

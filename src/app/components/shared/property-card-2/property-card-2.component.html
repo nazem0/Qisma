@@ -42,7 +42,7 @@
         [severity]="property.isDeleted?'success':'danger'" [title]="property.address+' property'"
         [description]="'Are you sure you want to '+ (property.isDeleted ? 'activate' :'deactivate') +' this property?'"
         (confirmation)="togglePropertyActivation(property.propertyId!)">
-        <button pButton [raised]="true" class="w-100 text-white" severity="danger">
+        <button pButton [raised]="true" class="w-100 text-white rounded-top-0" severity="danger">
           <span class="mat-small mx-auto">{{property.isDeleted ? 'Activate' :'Deactivate' + ' Property'}}</span>
         </button>
       </app-confirm>
