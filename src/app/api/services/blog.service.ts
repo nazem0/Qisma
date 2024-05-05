@@ -13,6 +13,10 @@ import { apiBlogGetAllGet$Json } from '../fn/blog/api-blog-get-all-get-json';
 import { ApiBlogGetAllGet$Json$Params } from '../fn/blog/api-blog-get-all-get-json';
 import { apiBlogGetAllGet$Plain } from '../fn/blog/api-blog-get-all-get-plain';
 import { ApiBlogGetAllGet$Plain$Params } from '../fn/blog/api-blog-get-all-get-plain';
+import { apiBlogGetByIdGet$Json } from '../fn/blog/api-blog-get-by-id-get-json';
+import { ApiBlogGetByIdGet$Json$Params } from '../fn/blog/api-blog-get-by-id-get-json';
+import { apiBlogGetByIdGet$Plain } from '../fn/blog/api-blog-get-by-id-get-plain';
+import { ApiBlogGetByIdGet$Plain$Params } from '../fn/blog/api-blog-get-by-id-get-plain';
 import { apiDashboardBlogAddPost$Json } from '../fn/blog/api-dashboard-blog-add-post-json';
 import { ApiDashboardBlogAddPost$Json$Params } from '../fn/blog/api-dashboard-blog-add-post-json';
 import { apiDashboardBlogAddPost$Plain } from '../fn/blog/api-dashboard-blog-add-post-plain';
@@ -25,7 +29,8 @@ import { apiDashboardBlogUpdatePut$Json } from '../fn/blog/api-dashboard-blog-up
 import { ApiDashboardBlogUpdatePut$Json$Params } from '../fn/blog/api-dashboard-blog-update-put-json';
 import { apiDashboardBlogUpdatePut$Plain } from '../fn/blog/api-dashboard-blog-update-put-plain';
 import { ApiDashboardBlogUpdatePut$Plain$Params } from '../fn/blog/api-dashboard-blog-update-put-plain';
-import { BlogListApiResult } from '../models/blog-list-api-result';
+import { BlogApiResult } from '../models/blog-api-result';
+import { BlogViewModelListApiResult } from '../models/blog-view-model-list-api-result';
 import { StringApiResult } from '../models/string-api-result';
 
 @Injectable({ providedIn: 'root' })
@@ -110,7 +115,7 @@ export class BlogService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiBlogGetAllGet$Plain$Response(params?: ApiBlogGetAllGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BlogListApiResult>> {
+  apiBlogGetAllGet$Plain$Response(params?: ApiBlogGetAllGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BlogViewModelListApiResult>> {
     return apiBlogGetAllGet$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -124,9 +129,9 @@ export class BlogService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiBlogGetAllGet$Plain(params?: ApiBlogGetAllGet$Plain$Params, context?: HttpContext): Observable<BlogListApiResult> {
+  apiBlogGetAllGet$Plain(params?: ApiBlogGetAllGet$Plain$Params, context?: HttpContext): Observable<BlogViewModelListApiResult> {
     return this.apiBlogGetAllGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<BlogListApiResult>): BlogListApiResult => r.body)
+      map((r: StrictHttpResponse<BlogViewModelListApiResult>): BlogViewModelListApiResult => r.body)
     );
   }
 
@@ -140,7 +145,7 @@ export class BlogService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiBlogGetAllGet$Json$Response(params?: ApiBlogGetAllGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BlogListApiResult>> {
+  apiBlogGetAllGet$Json$Response(params?: ApiBlogGetAllGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BlogViewModelListApiResult>> {
     return apiBlogGetAllGet$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -154,9 +159,72 @@ export class BlogService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiBlogGetAllGet$Json(params?: ApiBlogGetAllGet$Json$Params, context?: HttpContext): Observable<BlogListApiResult> {
+  apiBlogGetAllGet$Json(params?: ApiBlogGetAllGet$Json$Params, context?: HttpContext): Observable<BlogViewModelListApiResult> {
     return this.apiBlogGetAllGet$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<BlogListApiResult>): BlogListApiResult => r.body)
+      map((r: StrictHttpResponse<BlogViewModelListApiResult>): BlogViewModelListApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiBlogGetByIdGet()` */
+  static readonly ApiBlogGetByIdGetPath = '/api/Blog/GetById';
+
+  /**
+   * Get blog by id.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiBlogGetByIdGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBlogGetByIdGet$Plain$Response(params: ApiBlogGetByIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<BlogApiResult>> {
+    return apiBlogGetByIdGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Get blog by id.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiBlogGetByIdGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBlogGetByIdGet$Plain(params: ApiBlogGetByIdGet$Plain$Params, context?: HttpContext): Observable<BlogApiResult> {
+    return this.apiBlogGetByIdGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<BlogApiResult>): BlogApiResult => r.body)
+    );
+  }
+
+  /**
+   * Get blog by id.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiBlogGetByIdGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBlogGetByIdGet$Json$Response(params: ApiBlogGetByIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BlogApiResult>> {
+    return apiBlogGetByIdGet$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Get blog by id.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiBlogGetByIdGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBlogGetByIdGet$Json(params: ApiBlogGetByIdGet$Json$Params, context?: HttpContext): Observable<BlogApiResult> {
+    return this.apiBlogGetByIdGet$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<BlogApiResult>): BlogApiResult => r.body)
     );
   }
 

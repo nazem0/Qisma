@@ -75,7 +75,7 @@ body::before {
 body {
   margin: 0;
   padding: 0;
-  background-color: #f3f2ff;
+  background-color: var(--primary-50);
   overflow-x: hidden;
   scroll-behavior: smooth;
   font-family: Roboto, "Helvetica Neue", sans-serif;

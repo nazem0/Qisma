@@ -78,6 +78,10 @@ export class Helper {
         }
         return array;
     }
+
+    public static getBackgroundImage(imageUrl: string) {
+      return `url('${Helper.processFileUrl(imageUrl)}')`;
+    }
 }
 
 interface ascendingNumbersArrayParams { n?: number, fixedNumber?: number, step?: number }

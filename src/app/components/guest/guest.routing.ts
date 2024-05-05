@@ -62,6 +62,25 @@ export const guestRoutes: Routes = [
           ),
         title: 'About Us',
       },
+      {
+        path:"blog",
+        children:[
+          {
+            path:"",
+            loadComponent:()=>
+              import('./blog/blog.component').then(c=>c.BlogComponent),
+            title:"Blog"
+          },
+          {
+            path:"details/:id",
+            loadComponent:()=>
+              import('./blog-details/blog-details.component').then(c=>c.BlogDetailsComponent),
+            title:"Blog Details"
+          }
+        ]
+
+      },
+
     ],
   },
 ];

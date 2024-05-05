@@ -1,0 +1,8 @@
+app-blog-card {
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+}
+app-blog-card:hover {
+  top: -10px;
+}

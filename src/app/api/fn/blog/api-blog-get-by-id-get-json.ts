@@ -6,14 +6,16 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { BlogViewModelListApiResult } from '../../models/blog-view-model-list-api-result';
+import { BlogApiResult } from '../../models/blog-api-result';
 
-export interface ApiBlogGetAllGet$Json$Params {
+export interface ApiBlogGetByIdGet$Json$Params {
+  BlogId: number;
 }
 
-export function apiBlogGetAllGet$Json(http: HttpClient, rootUrl: string, params?: ApiBlogGetAllGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BlogViewModelListApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiBlogGetAllGet$Json.PATH, 'get');
+export function apiBlogGetByIdGet$Json(http: HttpClient, rootUrl: string, params: ApiBlogGetByIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<BlogApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiBlogGetByIdGet$Json.PATH, 'get');
   if (params) {
+    rb.query('BlogId', params.BlogId, {"style":"form"});
   }
 
   return http.request(
@@ -21,9 +23,9 @@ export function apiBlogGetAllGet$Json(http: HttpClient, rootUrl: string, params?
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<BlogViewModelListApiResult>;
+      return r as StrictHttpResponse<BlogApiResult>;
     })
   );
 }
 
-apiBlogGetAllGet$Json.PATH = '/api/Blog/GetAll';
+apiBlogGetByIdGet$Json.PATH = '/api/Blog/GetById';

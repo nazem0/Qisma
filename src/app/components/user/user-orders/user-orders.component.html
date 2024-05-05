@@ -32,7 +32,7 @@
               <div>Years: {{order.orderFinancialDetails.numberOfYears}}</div>
               <div>Maintenance Installment: {{order.orderFinancialDetails.maintenaceInstallment | currency}}</div>
               <div>Delivery Installment: {{order.orderFinancialDetails.deliveryInstallment | currency}}</div>
-              
+
             </p-accordionTab>
           </p-accordion>
         </td>
@@ -88,7 +88,7 @@
 
   <div class="text-center my-3">
     <div class="spinner" [ngClass]="{ 'hidden': !orders }"></div>
-    <nz-pagination [nzPageIndex]="2" [nzTotal]="500" nzShowQuickJumper nzShowSizeChanger
+    <nz-pagination nzShowQuickJumper nzShowSizeChanger
       [nzPageSizeOptions]="[12,18,24]" [nzPageSize]="pagination.size" [nzPageIndex]="pagination.index"
       [nzTotal]="pagination.total" (nzPageIndexChange)="getPage($event)" [(nzPageSize)]="pagination.size"
       (nzPageSizeChange)="getOrders()" [nzPageIndex]="pagination.index+1"></nz-pagination>

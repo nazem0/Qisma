@@ -1,0 +1,16 @@
+<div
+  class="blog-image mb-3 w-100"
+  [style.background-image]="helper.getBackgroundImage(blog?.imageUrl!)"
+></div>
+<a [routerLink]="['../../']" routerLinkActive="router-link-active" >
+<span><i class="pi pi-arrow-circle-left"></i> All Blogs</span>
+</a>
+<div class="text-center">
+  <h2>{{blog?.title}}</h2>
+</div>
+
+<div class="my-5">
+  <mat-divider></mat-divider>
+</div>
+
+<div [innerHTML]="blog?.description"></div>
