@@ -1,20 +1,33 @@
 <div class="my-3">
-  <button class="w-100 text-white" pButton [raised]="true" (click)="addTeamMemberModal = true">
+  <button
+    class="w-100 text-white"
+    pButton
+    [raised]="true"
+    (click)="addTeamMemberModal = true"
+  >
     <span class="mx-auto"> <i class="pi pi-plus"></i> Add Manager </span>
   </button>
 </div>
-
 
 <div class="text-center">
   <h3>Founding Team</h3>
   <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
   <div class="row row-cols-lg-3 justify-content-center">
     @for (manager of managers; track $index) {
-    <app-team-member-card [member]="manager"></app-team-member-card>
+    <app-team-member-card [member]="manager">
+      <app-confirm
+        (confirmation)="deleteManager(manager.id!)"
+        title="Delete"
+        [description]="'Are you sure you want to delete  ' + manager.name"
+      >
+        <button pButton severity="danger" class="text-white w-100">
+          <small class="mx-auto">Delete Manager</small>
+        </button>
+      </app-confirm>
+    </app-team-member-card>
     }
   </div>
 </div>
-
 
 <p-dialog
   header="Add Team Member"
@@ -25,5 +38,9 @@
   [maximizable]="true"
   [baseZIndex]="9000"
 >
-  <app-create-team-member [isManager]="false"></app-create-team-member>
+  <app-create-team-member
+    [isManager]="true"
+    (createEvent)="addTeamMemberModal = false; getAllManagers()"
+  >
+  </app-create-team-member>
 </p-dialog>

@@ -5,6 +5,7 @@ import { AboutQismaService } from '../../../api/services';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { CreateTeamMemberComponent } from '../create-team-member/create-team-member.component';
+import { ConfirmComponent } from '../../shared/confirm/confirm.component';
 
 @Component({
   selector: 'app-edit-managers',
@@ -16,6 +17,7 @@ import { CreateTeamMemberComponent } from '../create-team-member/create-team-mem
     ButtonModule,
     DialogModule,
     CreateTeamMemberComponent,
+    ConfirmComponent
   ]
 })
 export class EditManagersComponent implements OnInit {
@@ -34,5 +36,13 @@ export class EditManagersComponent implements OnInit {
         this.managers = next.data ?? [];
       },
     });
+  }
+
+  deleteManager(teamMemberId:number){
+    this._aboutService
+    .apiDashboardAboutQismaDeleteTeamMemberDelete$Json({TeamMemberId:teamMemberId})
+    .subscribe({
+      next:()=>this.getAllManagers()
+    })
   }
 }

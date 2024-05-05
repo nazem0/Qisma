@@ -63,15 +63,15 @@ export class SidebarComponent {
         iconClass:"pi-at"
       },
       {
-        title:"Edit About Us",
-        url:"edit-team-members",
+        title:"Edit Managers",
+        url:"edit-managers",
         iconClass:"pi-users"
       },
       {
-        title:"Edit About Us",
-        url:"edit-managers",
-        iconClass:"pi-client"
-      }
+        title:"Edit Team Members",
+        url:"edit-team-members",
+        iconClass:"pi-users"
+      },
     ]);
     }
     if(_authHelper.hasRole(Roles.Customer))

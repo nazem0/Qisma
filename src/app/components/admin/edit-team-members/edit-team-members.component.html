@@ -10,7 +10,18 @@
 
   <div class="row row-cols-lg-3 justify-content-center">
     @for (member of teamMembers; track $index) {
-    <app-team-member-card [member]="member"></app-team-member-card>
+      <app-team-member-card [member]="member">
+        <app-confirm
+        (confirmation)="deleteMember(member.id!)"
+        title="Delete"
+        [description]="'Are you sure you want to delete  ' + member.name"
+      >
+      <button pButton severity="danger" class="text-white w-100">
+        <small class="mx-auto">Delete Member</small>
+      </button>
+      </app-confirm>
+
+      </app-team-member-card>
     }
   </div>
 </div>
@@ -24,5 +35,7 @@
   [maximizable]="true"
   [baseZIndex]="9000"
 >
-  <app-create-team-member [isManager]="false"></app-create-team-member>
+  <app-create-team-member [isManager]="false"
+  (createEvent)="addTeamMemberModal = false; getAllMembers()"
+  ></app-create-team-member>
 </p-dialog>

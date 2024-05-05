@@ -5,6 +5,7 @@ import { TeamMemberCardComponent } from '../../shared/team-member-card/team-memb
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { CreateTeamMemberComponent } from '../create-team-member/create-team-member.component';
+import { ConfirmComponent } from '../../shared/confirm/confirm.component';
 
 @Component({
   selector: 'app-edit-team-members',
@@ -15,7 +16,8 @@ import { CreateTeamMemberComponent } from '../create-team-member/create-team-mem
     TeamMemberCardComponent,
     ButtonModule,
     DialogModule,
-    CreateTeamMemberComponent
+    CreateTeamMemberComponent,
+    ConfirmComponent
   ]
 })
 export class EditTeamMembersComponent implements OnInit {
@@ -38,5 +40,13 @@ export class EditTeamMembersComponent implements OnInit {
         this.teamMembers = next.data ?? [];
       },
     });
+  }
+
+  deleteMember(teamMemberId:number){
+    this._aboutService
+    .apiDashboardAboutQismaDeleteTeamMemberDelete$Json({TeamMemberId:teamMemberId})
+    .subscribe({
+      next:()=>this.getAllMembers()
+    })
   }
 }

@@ -1,5 +1,5 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, Input, OnInit, input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, input } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -31,6 +31,7 @@ import { AboutQismaService } from '../../../api/services';
 export class CreateTeamMemberComponent implements OnInit {
   form?: FormGroup;
   @Input() isManager = false;
+  @Output() createEvent =new EventEmitter()
   constructor(
     private _fb: FormBuilder,
     private _aboutService:AboutQismaService
@@ -55,7 +56,11 @@ export class CreateTeamMemberComponent implements OnInit {
   submit(){
     this._aboutService
     .apiDashboardAboutQismaAddTeamMemberPost$Json({body:this.form?.value})
-    .subscribe()
+    .subscribe({
+      next:()=>{
+        this.createEvent.emit()
+      }
+    })
   }
 
   setImageFile(event:Event){
