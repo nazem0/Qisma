@@ -8,20 +8,22 @@
   <h3>Board Of Directors & Advisors</h3>
   <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
 
-  <div class="row row-cols-lg-3 justify-content-center">
+  <div class="row row-cols-lg-3 justify-content-center g-5">
     @for (member of teamMembers; track $index) {
-      <app-team-member-card [member]="member">
-        <app-confirm
-        (confirmation)="deleteMember(member.id!)"
-        title="Delete"
-        [description]="'Are you sure you want to delete  ' + member.name"
-      >
-      <button pButton severity="danger" class="text-white w-100">
-        <small class="mx-auto">Delete Member</small>
-      </button>
-      </app-confirm>
+      <div>
+        <app-team-member-card [member]="member">
+          <app-confirm
+          (confirmation)="deleteMember(member.id!)"
+          title="Delete"
+          [description]="'Are you sure you want to delete  ' + member.name"
+        >
+        <button pButton severity="danger" class="text-white w-100">
+          <small class="mx-auto">Delete Member</small>
+        </button>
+        </app-confirm>
 
-      </app-team-member-card>
+        </app-team-member-card>
+      </div>
     }
   </div>
 </div>

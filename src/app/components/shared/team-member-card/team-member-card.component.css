@@ -1,6 +1,9 @@
-
-.member-img{
+.member-img {
   height: 140px;
   aspect-ratio: 1;
-  border: 5px solid rgba(0, 0, 0, 0.10);
+  border: 5px solid rgba(0, 0, 0, 0.1);
+}
+
+.member-card{
+  min-height: 400px;
 }

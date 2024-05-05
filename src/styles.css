@@ -406,7 +406,16 @@ table td {
   cursor: pointer;
 }
 
-
-.text-justified{
+.text-justified {
   text-align: justify;
+}
+
+.p-tooltip {
+  :nth-child(2) {
+    min-width: 260px !important;
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+  div{
+    text-shadow: 1px 2px black;
+  }
 }

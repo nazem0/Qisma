@@ -12,19 +12,21 @@
 <div class="text-center">
   <h3>Founding Team</h3>
   <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-  <div class="row row-cols-lg-3 justify-content-center">
+  <div class="row row-cols-lg-3 justify-content-center g-5">
     @for (manager of managers; track $index) {
-    <app-team-member-card [member]="manager">
-      <app-confirm
-        (confirmation)="deleteManager(manager.id!)"
-        title="Delete"
-        [description]="'Are you sure you want to delete  ' + manager.name"
-      >
-        <button pButton severity="danger" class="text-white w-100">
-          <small class="mx-auto">Delete Manager</small>
-        </button>
-      </app-confirm>
-    </app-team-member-card>
+      <div>
+        <app-team-member-card [member]="manager">
+          <app-confirm
+            (confirmation)="deleteManager(manager.id!)"
+            title="Delete"
+            [description]="'Are you sure you want to delete  ' + manager.name"
+          >
+            <button pButton severity="danger" class="text-white w-100">
+              <small class="mx-auto">Delete Manager</small>
+            </button>
+          </app-confirm>
+        </app-team-member-card>
+      </div>
     }
   </div>
 </div>

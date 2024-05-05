@@ -13,9 +13,11 @@
   <div class="text-center">
     <h3>Founding Team</h3>
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-    <div class="row row-cols-lg-3 justify-content-center">
+    <div class="row row-cols-lg-3 row-cols-sm-2 justify-content-center g-5">
       @for (manager of managers; track $index) {
-      <app-team-member-card [member]="manager"></app-team-member-card>
+      <div>
+        <app-team-member-card [member]="manager"></app-team-member-card>
+      </div>
       }
     </div>
   </div>
@@ -30,9 +32,11 @@
     <h3>Board Of Directors & Advisors</h3>
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
 
-    <div class="row row-cols-lg-3 justify-content-center">
+    <div class="row row-cols-lg-3 row-cols-sm-2 justify-content-center g-5">
       @for (member of teamMembers; track $index) {
-      <app-team-member-card [member]="member"></app-team-member-card>
+      <div>
+        <app-team-member-card [member]="member"></app-team-member-card>
+      </div>
       }
     </div>
   </div>
