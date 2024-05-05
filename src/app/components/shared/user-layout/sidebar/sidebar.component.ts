@@ -1,13 +1,14 @@
 import { AccordionModule } from 'primeng/accordion';
 import { Component, EventEmitter, Input, Output, ViewEncapsulation, output } from '@angular/core';
 import {  Router, RouterModule } from '@angular/router';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe, NgClass, NgIf } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { TooltipModule } from 'primeng/tooltip';
 import { AuthHelper } from '../../../../helpers/auth-helper';
 import { Helper } from '../../../../helpers/helper';
 import { Roles } from '../../../../enums/roles.enum';
+import { Title } from 'chart.js';
 
 @Component({
   selector: 'app-sidebar',
@@ -21,7 +22,8 @@ import { Roles } from '../../../../enums/roles.enum';
     AsyncPipe,
     ButtonModule,
     MatDividerModule,
-    TooltipModule
+    TooltipModule,
+    NgClass
   ]
 })
 export class SidebarComponent {
@@ -55,6 +57,11 @@ export class SidebarComponent {
         url:"support",
         iconClass:"pi-info-circle"
       },
+      {
+        title:"Edit About Us",
+        url:"edit-about-us",
+        iconClass:"pi-at"
+      }
     ]);
     }
     if(_authHelper.hasRole(Roles.Customer))

@@ -405,3 +405,8 @@ table td {
 .cursor-pointer {
   cursor: pointer;
 }
+
+
+.text-justified{
+  text-align: justify;
+}

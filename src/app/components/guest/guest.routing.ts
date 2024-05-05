@@ -35,19 +35,32 @@ export const guestRoutes: Routes = [
       { path: 'home', component: HomeComponent, title: 'Home' },
       {
         path: 'marketplace',
-        component: MarketplaceComponent,
-        title: 'Marketplace',
-      },
-      {
-        path: 'marketplace/property-details/:id',
-        component: PropertyDetailsComponent,
-        title: 'Property Details',
+        children: [
+          {
+            path: '',
+            component: MarketplaceComponent,
+            title: 'Marketplace',
+          },
+          {
+            path: 'property-details/:id',
+            component: PropertyDetailsComponent,
+            title: 'Property Details',
+          },
+        ],
       },
       {
         path: 'faq',
         loadComponent: () =>
           import('./faq/faq.component').then((c) => c.FaqComponent),
         title: 'FAQ',
+      },
+      {
+        path: 'about-us',
+        loadComponent: () =>
+          import('./about-us/about-us.component').then(
+            (c) => c.AboutUsComponent
+          ),
+        title: 'About Us',
       },
     ],
   },

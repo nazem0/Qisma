@@ -2,14 +2,21 @@
   <ng-content></ng-content>
 
   @for (link of links; track $index) {
-  <a class="ps-3 py-2 d-flex align-items-center gap-3 w-100" [routerLink]="link.url" [routerLinkActive]="'link-active'"
-    (click)="toggleCollapse()">
-    <i class="link-icon" [classList]="'fs-5 pi ' + link.iconClass"></i>
-    {{ link.title }}
+  <a
+    class="ps-3 py-2 d-flex align-items-center gap-3 w-100"
+    [routerLink]="link.url"
+    [routerLinkActive]="'link-active'"
+    (click)="toggleCollapse()"
+  >
+    <i [classList]="'link-icon fs-5 pi ' + link.iconClass"></i>
+    <span class="transition" [ngClass]="{'opacity-0': collapse}">{{ link.title }}</span>
   </a>
   }
   <mat-divider class="my-3"></mat-divider>
-  <a (click)="toggleCollapse();logout()" class="ps-3 py-2 d-flex align-items-center gap-3 w-100">
+  <a
+    (click)="toggleCollapse(); logout()"
+    class="ps-3 py-2 d-flex align-items-center gap-3 w-100"
+  >
     <i class="fs-5 pi pi-sign-out"></i>
     Logout
   </a>

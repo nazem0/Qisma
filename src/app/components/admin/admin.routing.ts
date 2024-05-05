@@ -75,6 +75,22 @@ export const adminRoutes: Routes = [
           ),
         title: 'Support Data',
       },
+      {
+        path: 'add-team-member',
+        loadComponent: () =>
+          import('./create-team-member/create-team-member.component').then(
+            (c) => c.CreateTeamMemberComponent
+          ),
+        title: 'Add Team Member',
+      },
+      {
+        path: 'edit-about-us',
+        loadComponent: () =>
+          import('./edit-about-us/edit-about-us.component').then(
+            (c) => c.EditAboutUsComponent
+          ),
+        title: 'Edit About Us',
+      },
     ],
     canActivate: [AdminAuthGuard],
   },
