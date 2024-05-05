@@ -1,5 +1,5 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, input } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -30,7 +30,7 @@ import { AboutQismaService } from '../../../api/services';
 })
 export class CreateTeamMemberComponent implements OnInit {
   form?: FormGroup;
-
+  @Input() isManager = false;
   constructor(
     private _fb: FormBuilder,
     private _aboutService:AboutQismaService
@@ -49,7 +49,7 @@ export class CreateTeamMemberComponent implements OnInit {
       xLink: new FormControl<string>(''),
       instagramLink: new FormControl<string>(''),
       linkedInLink: new FormControl<string>(''),
-      isManager: new FormControl<boolean>(false, [Validators.required]),
+      isManager: new FormControl<boolean>(this.isManager, [Validators.required]),
     });
   }
   submit(){

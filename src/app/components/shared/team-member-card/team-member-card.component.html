@@ -1,0 +1,29 @@
+<div class="bg-white shadow-sm p-3 rounded-3">
+  <div class="my-4">
+    <img
+      class="member-img rounded-circle object-fit-cover shadow"
+      [src]="helper.processFileUrl(member?.imageUrl)"
+      [alt]="member?.name"
+    />
+  </div>
+  <div class="fw-medium mb-2">
+    <span class="d-block text-uppercase">{{ member?.name }}</span>
+    <small>{{ member?.jobTitle }}</small>
+  </div>
+  <small class="text-muted"><em>{{ member?.summary }}</em></small>
+  <div>
+    <a *ngIf="member?.facebookLink" [href]="member?.facebookLink" target="_blank"
+      ><i class="pi pi-facebook"></i
+    ></a>
+    <a *ngIf="member?.xLink" [href]="member?.xLink" target="_blank"
+      ><i class="pi pi-twitter"></i
+    ></a>
+    <a *ngIf="member?.instagramLink" [href]="member?.instagramLink" target="_blank"
+      ><i class="pi pi-instagram"></i
+    ></a>
+    <a *ngIf="member?.linkedInLink" [href]="member?.linkedInLink" target="_blank"
+      ><i class="pi pi-linkedin"></i
+    ></a>
+  </div>
+  <ng-content></ng-content>
+</div>

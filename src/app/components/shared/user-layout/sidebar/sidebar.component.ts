@@ -61,6 +61,16 @@ export class SidebarComponent {
         title:"Edit About Us",
         url:"edit-about-us",
         iconClass:"pi-at"
+      },
+      {
+        title:"Edit About Us",
+        url:"edit-team-members",
+        iconClass:"pi-users"
+      },
+      {
+        title:"Edit About Us",
+        url:"edit-managers",
+        iconClass:"pi-client"
       }
     ]);
     }

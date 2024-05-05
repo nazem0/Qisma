@@ -1,0 +1,42 @@
+import { Component, OnInit } from '@angular/core';
+import { TeamMember } from '../../../api/models';
+import { AboutQismaService } from '../../../api/services';
+import { TeamMemberCardComponent } from '../../shared/team-member-card/team-member-card.component';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { CreateTeamMemberComponent } from '../create-team-member/create-team-member.component';
+
+@Component({
+  selector: 'app-edit-team-members',
+  templateUrl: './edit-team-members.component.html',
+  styleUrls: ['./edit-team-members.component.css'],
+  standalone:true,
+  imports:[
+    TeamMemberCardComponent,
+    ButtonModule,
+    DialogModule,
+    CreateTeamMemberComponent
+  ]
+})
+export class EditTeamMembersComponent implements OnInit {
+  addTeamMemberModal = false;
+  teamMembers: TeamMember[] = [];
+
+  constructor(
+    private _aboutService:AboutQismaService
+  ) {}
+
+  ngOnInit() {
+    this.getAllMembers();
+  }
+
+
+
+  getAllMembers() {
+    this._aboutService.apiAboutQismaGetAllMembersGet$Json().subscribe({
+      next: (next) => {
+        this.teamMembers = next.data ?? [];
+      },
+    });
+  }
+}

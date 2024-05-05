@@ -76,12 +76,20 @@ export const adminRoutes: Routes = [
         title: 'Support Data',
       },
       {
-        path: 'add-team-member',
+        path: 'edit-team-members',
         loadComponent: () =>
-          import('./create-team-member/create-team-member.component').then(
-            (c) => c.CreateTeamMemberComponent
+          import('./edit-team-members/edit-team-members.component').then(
+            (c) => c.EditTeamMembersComponent
           ),
-        title: 'Add Team Member',
+        title: 'Edit Team Members',
+      },
+      {
+        path: 'edit-managers',
+        loadComponent: () =>
+          import('./edit-managers/edit-managers.component').then(
+            (c) => c.EditManagersComponent
+          ),
+        title: 'Edit Managers',
       },
       {
         path: 'edit-about-us',

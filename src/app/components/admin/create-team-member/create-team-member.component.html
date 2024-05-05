@@ -1,9 +1,9 @@
-<header class="text-center my-3">
+<!-- <header class="text-center my-3">
   <h3>Add Team Member</h3>
-</header>
+</header> -->
 
 @if(form){
-<form [formGroup]="form" class="d-flex flex-column gap-3" (ngSubmit)="submit()">
+<form [formGroup]="form" class="d-flex flex-column gap-3 mt-3" (ngSubmit)="submit()">
   <div>
     <input pInputText formControlName="name" type="text" placeholder="Name" />
     @if(form.get('name')?.touched){
@@ -68,7 +68,7 @@
       placeholder="LinkedIn Link"
     />
   </div>
-  <div>
+  <!-- <div>
     <p-checkbox
       formControlName="isManager"
       [binary]="true"
@@ -76,7 +76,7 @@
       (onFocus)="form.get('isManager')?.markAsTouched()"
       (onChange)="form.get('isManager')?.markAsDirty()"
     ></p-checkbox>
-  </div>
+  </div> -->
   <div>
     <label for="image" pButton class="text-white w-100 p-button-raised">
       <span class="mx-auto"><i class="pi pi-image"></i> Image</span>

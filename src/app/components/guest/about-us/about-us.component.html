@@ -1,11 +1,39 @@
 <h1>
-  {{aboutUs?.firstFrame}}
+  {{ aboutUs?.firstFrame }}
 </h1>
 
 <div>
   <h2>
-    {{aboutUs?.secondFrameTitle}}
+    {{ aboutUs?.secondFrameTitle }}
   </h2>
-  <p class="text-justified" [innerHTML]="aboutUs?.secondFrameDescription">
-  </p>
+  <p class="text-justified" [innerHTML]="aboutUs?.secondFrameDescription"></p>
 </div>
+
+@if(managers.length){
+  <div class="text-center">
+    <h3>Founding Team</h3>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+    <div class="row row-cols-lg-3 justify-content-center">
+      @for (manager of managers; track $index) {
+      <app-team-member-card [member]="manager"></app-team-member-card>
+      }
+    </div>
+  </div>
+  <div class="my-5">
+    <mat-divider></mat-divider>
+  </div>
+}
+
+@if(teamMembers.length){
+
+  <div class="text-center">
+    <h3>Board Of Directors & Advisors</h3>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+
+    <div class="row row-cols-lg-3 justify-content-center">
+      @for (member of teamMembers; track $index) {
+      <app-team-member-card [member]="member"></app-team-member-card>
+      }
+    </div>
+  </div>
+}
