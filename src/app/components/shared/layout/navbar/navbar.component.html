@@ -11,7 +11,7 @@
           </a>
         </div>
         <img
-          [src]="helper.generateAvatar(authHelper.getUserName()!)"
+          [src]="helper.generateAvatar(authHelper.getUserName()??'')"
           style="cursor: pointer"
           height="40"
           class="d-lg-none ms-2 rounded-circle"
