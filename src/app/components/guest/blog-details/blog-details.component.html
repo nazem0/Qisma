@@ -1,10 +1,3 @@
-<div class="mb-3 w-100">
-  <img
-    class="blog-image w-100"
-    [src]="helper.processFileUrl(blog?.imageUrl!)"
-    alt=""
-  />
-</div>
 <div class="d-flex justify-content-between">
   <a [routerLink]="['../../']" routerLinkActive="router-link-active">
     <span><i class="pi pi-arrow-circle-left"></i> All Blogs</span>
@@ -21,12 +14,21 @@
   </app-confirm>
   }
 </div>
-<div class="text-center">
-  <h2>{{ blog?.title }}</h2>
-  @if(blog?.link){
+<div class="row row-cols-lg-2 align-items-center">
+  <div class="text-center">
+    <h2>{{ blog?.title }}</h2>
+    @if(blog?.link){
 
-  <a [href]="blog?.link" target="_blank"><small>Click here for more information</small></a>
-  }
+    <a [href]="blog?.link" target="_blank"><small>Click here for more information</small></a>
+    }
+  </div>
+  <div class="mb-3 d-flex justify-content-center">
+    <img
+      class="blog-image"
+      [src]="helper.processFileUrl(blog?.imageUrl!)"
+      alt=""
+    />
+  </div>
 </div>
 
 <div class="my-5">
