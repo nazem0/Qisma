@@ -1,7 +1,10 @@
 @import "bootstrap/dist/css/bootstrap-utilities.min.css"
   layer(bootstrap-utilities);
 @import "bootstrap/dist/css/bootstrap-grid.min.css" layer(bootstrap-grid);
-
+@font-face {
+  font-family: "Cairo";
+  src: url("/assets/fonts/cairo.ttf");
+}
 /* Set a base font size for the body */
 body {
   font-size: clamp(1rem, 2vw, 1.2rem);
@@ -78,7 +81,7 @@ body {
   background-color: var(--primary-50);
   overflow-x: hidden;
   scroll-behavior: smooth;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Cairo", Roboto, "Helvetica Neue", sans-serif;
 
   p,
   span,
@@ -415,7 +418,7 @@ table td {
     min-width: 260px !important;
     background-color: rgba(0, 0, 0, 0.75);
   }
-  div{
+  div {
     text-shadow: 1px 2px black;
   }
 }
