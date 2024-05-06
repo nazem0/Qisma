@@ -9,6 +9,8 @@ import { HomeSection6Component } from './home-section-6/home-section-6.component
 import { HeroSectionComponent } from './hero-section/hero-section.component';
 import { FaqComponent } from '../faq/faq.component';
 import { BlogComponent } from '../blog/blog.component';
+import { ButtonModule } from 'primeng/button';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +27,9 @@ import { BlogComponent } from '../blog/blog.component';
     HomeSection5Component,
     // HomeSection6Component,
     FaqComponent,
-    BlogComponent
+    BlogComponent,
+    ButtonModule,
+    RouterModule
   ]
 })
 export class HomeComponent {

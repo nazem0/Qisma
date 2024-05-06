@@ -1,5 +1,5 @@
 <div class="bg-white rounded-3 shadow-sm overflow-hidden">
-  <div [routerLink]="withRouterLink ? ['details/' + blog?.id] : null">
+  <div [routerLink]="isInAdminPanel ? ['/admin/blog/details/' + blog?.id] : ['/blog/details/' + blog?.id] ">
     <div
       class="blog-image"
       [style.background-image]="getBackgroundImage(blog?.imageUrl!)"

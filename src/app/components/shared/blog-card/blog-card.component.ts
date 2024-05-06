@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Blog } from '../../../api/models';
 import { Helper } from '../../../helpers/helper';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-blog-card',
@@ -11,9 +11,11 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule],
 })
 export class BlogCardComponent implements OnInit {
-  @Input() withRouterLink = true;
   @Input() blog?: Blog;
-  constructor() {}
+  isInAdminPanel : boolean;
+  constructor(private route:ActivatedRoute) {
+    this.isInAdminPanel = route.snapshot.data['isAdmin']
+  }
 
   ngOnInit() {}
   getBackgroundImage(imageUrl: string) {
