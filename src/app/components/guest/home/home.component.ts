@@ -21,7 +21,7 @@ import { RouterModule } from '@angular/router';
     HeroSectionComponent,
     HomeSection1Component,
     HomeSection2Component,
-    PropertyCardComponent,
+    // PropertyCardComponent,
     HomeSection3Component,
     // HomeSection4Component,
     HomeSection5Component,

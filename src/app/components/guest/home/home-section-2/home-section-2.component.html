@@ -5,7 +5,9 @@
         </div>
     <div class="mx-auto row row-cols-lg-3 g-3 justify-content-center">
         @for (property of properties; track $index) {
-            <app-property-card [property]="property"></app-property-card>
+            <div class="cursor-pointer" [routerLink]="['/marketplace/property-details/'+property.propertyId]">
+              <app-property-card [property]="property"></app-property-card>
+            </div>
         }
     </div>
 
