@@ -36,7 +36,10 @@ export class CreateBlogComponent implements OnInit {
   }
 
   sumbit() {
-    this.form?.markAllAsTouched();
+    if(this.form?.invalid){
+      this.form?.markAllAsTouched();
+      return;
+    }
     this._blog
       .apiDashboardBlogAddPost$Json({ body: this.form?.value })
       .subscribe({ next: () => this.createEvent.emit() });

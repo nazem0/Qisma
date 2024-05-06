@@ -54,6 +54,10 @@ export class CreateTeamMemberComponent implements OnInit {
     });
   }
   submit(){
+    if(this.form?.invalid){
+      this.form.markAllAsTouched();
+      return;
+    }
     this._aboutService
     .apiDashboardAboutQismaAddTeamMemberPost$Json({body:this.form?.value})
     .subscribe({

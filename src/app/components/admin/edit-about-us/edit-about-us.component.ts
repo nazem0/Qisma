@@ -63,6 +63,10 @@ export class EditAboutUsComponent implements OnInit {
   }
 
   sumbit() {
+    if(this.form?.invalid){
+      this.form.markAllAsTouched();
+      return;
+    }
     this._aboutService
     .apiDashboardAboutQismaUpdateAboutUsPut$Json({body:this.form?.value})
     .subscribe()
