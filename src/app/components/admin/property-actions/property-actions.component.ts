@@ -33,6 +33,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { EditorModule } from 'primeng/editor';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogHelper } from '../../../helpers/dialog.service';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-property-actions',
@@ -54,7 +55,8 @@ import { DialogHelper } from '../../../helpers/dialog.service';
     PercentPipe,
     InputTextModule,
     EditorModule,
-    InputNumberModule
+    InputNumberModule,
+    DialogModule
   ]
 })
 export class PropertyActionsComponent implements OnInit {
@@ -69,6 +71,7 @@ export class PropertyActionsComponent implements OnInit {
   propertyForm?: FormGroup;
   propertyTypes = BusinessHelper.propertyTypes;
   propertyStatuses = BusinessHelper.propertyStatuses;
+  errorsModal = false;
   text: string = `
   <h2>Title 1</h2>
   <ol>
@@ -382,7 +385,7 @@ export class PropertyActionsComponent implements OnInit {
   }
 
   openErrorsDialog() {
-    this.dialog.open('Property Addition Form Errors', [this.validationErros]);
+    this.errorsModal = true;
   }
 
   checkFormValidity() {
