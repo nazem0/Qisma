@@ -7,6 +7,7 @@ import { HomeSection4Component } from './home-section-4/home-section-4.component
 import { HomeSection5Component } from './home-section-5/home-section-5.component';
 import { HomeSection6Component } from './home-section-6/home-section-6.component';
 import { HeroSectionComponent } from './hero-section/hero-section.component';
+import { FaqComponent } from '../faq/faq.component';
 
 @Component({
   selector: 'app-home',
@@ -19,9 +20,10 @@ import { HeroSectionComponent } from './hero-section/hero-section.component';
     HomeSection2Component,
     PropertyCardComponent,
     HomeSection3Component,
-    HomeSection4Component,
+    // HomeSection4Component,
     HomeSection5Component,
-    HomeSection6Component,
+    // HomeSection6Component,
+    FaqComponent
   ]
 })
 export class HomeComponent {

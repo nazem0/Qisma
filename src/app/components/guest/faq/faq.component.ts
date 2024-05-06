@@ -9,6 +9,7 @@ import { Faq } from '../../../api/models';
 import { ButtonModule } from 'primeng/button';
 import { CreateFaqComponent } from '../../admin/create-faq/create-faq.component';
 import { DialogModule } from 'primeng/dialog';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-faq',
@@ -21,7 +22,8 @@ import { DialogModule } from 'primeng/dialog';
     ButtonModule,
     RouterModule,
     CreateFaqComponent,
-    DialogModule
+    DialogModule,
+    NgClass
   ],
 })
 export class FaqComponent implements OnInit {

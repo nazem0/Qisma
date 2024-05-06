@@ -1,4 +1,4 @@
-<header class="d-flex justify-content-between align-items-center my-3">
+<header class="d-flex align-items-center my-3" [ngClass]="{'justify-content-between': isInAdminPanel, 'justify-content-center':!isInAdminPanel}">
   <h3>FAQ</h3>
 
   @if (isInAdminPanel) {
