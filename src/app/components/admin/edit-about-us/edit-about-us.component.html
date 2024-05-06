@@ -4,26 +4,34 @@
 @if(form){
 <form class="d-flex flex-column gap-3" [formGroup]="form" (ngSubmit)="sumbit()">
   <div>
+    <label for="first-frame" class="fs-6">First Frame</label>
     <input
       type="text"
       formControlName="firstFrame"
       pInputText
       placeholder="First Frame"
+      id="first-frame"
     />
   </div>
+
   <div>
+    <label for="second-frame-title" class="fs-6">Second Frame Title</label>
     <input
       type="text"
       formControlName="secondFrameTitle"
       pInputText
       placeholder="Second Frame Title"
+      id="second-frame-title"
     />
+
   </div>
   <div>
+    <label for="second-frame-description" class="fs-6">Second Frame Description</label>
     <p-editor
       formControlName="secondFrameDescription"
       [style]="{ height: '320px' }"
       placeholder="Second Section"
+      id="second-frame-description"
     >
       <ng-template pTemplate="header">
         <span class="ql-formats">

@@ -9,11 +9,10 @@ import {
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { AboutQismaService } from '../../../api/services';
-import { AboutUsViewModel, TeamMember } from '../../../api/models';
+import { AboutUsViewModel } from '../../../api/models';
 import { ButtonModule } from 'primeng/button';
 import { EditorModule } from 'primeng/editor';
-import { TeamMemberCardComponent } from '../../shared/team-member-card/team-member-card.component';
-import { MatDividerModule } from '@angular/material/divider';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-edit-about-us',
@@ -26,6 +25,7 @@ import { MatDividerModule } from '@angular/material/divider';
     InputTextareaModule,
     ButtonModule,
     EditorModule,
+    FloatLabelModule
   ],
 })
 export class EditAboutUsComponent implements OnInit {
