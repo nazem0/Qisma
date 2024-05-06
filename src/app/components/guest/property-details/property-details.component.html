@@ -371,18 +371,9 @@
           </span>
         </div>
 
-        <div class="row row-cols-2 justify-content-center">
-          <div>
-            <p-button styleClass="w-100" (onClick)="buy(property.propertyId!)">
-              <span class="mx-auto text-white">Buy</span>
-            </p-button>
-          </div>
-          <div>
-            <p-button styleClass="w-100 bg-white border border-primary">
-              <span class="mx-auto">Sell</span>
-            </p-button>
-          </div>
-        </div>
+        <button pButton class="w-100" (click)="buy(property.propertyId!)">
+          <span class="mx-auto text-white">Buy</span>
+        </button>
       </div>
     </div>
   </div>
