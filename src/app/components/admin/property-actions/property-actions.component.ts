@@ -193,7 +193,7 @@ export class PropertyActionsComponent implements OnInit {
       ]),
       cityId: new FormControl<number | undefined>(undefined, [Validators.required]),
       description: new FormControl<string>(this.text, [Validators.required]),
-      unitPrice: new FormControl<number | undefined>(undefined, [Validators.required]),
+      unitPrice: new FormControl<number | undefined>(undefined, [Validators.required, Validators.min(1*Math.pow(10,6))]),
       maintenanceCost: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
@@ -206,7 +206,7 @@ export class PropertyActionsComponent implements OnInit {
       minNumberOfShares: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
-      sharePrice: new FormControl<number | undefined>(undefined, [Validators.required]),
+      sharePrice: new FormControl<number | undefined>(undefined, [Validators.required, Validators.min(50*Math.pow(10,3))]),
       annualRentalYield: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
@@ -359,7 +359,7 @@ export class PropertyActionsComponent implements OnInit {
       }
     );
     console.log(this.propertyForm?.controls['propertyImages'].value);
-    
+
     this.propertyForm?.controls['propertyImages'].value.forEach(
       (image: Blob) => {
         formData.append('propertyImages', image);
@@ -426,7 +426,7 @@ export class PropertyActionsComponent implements OnInit {
       this.initEmptyPropertyForm();
       return;
     }
-    
+
     this.propertyId = propertyIdParam;
     this.editPage = true;
     this.propertyForAdminService
