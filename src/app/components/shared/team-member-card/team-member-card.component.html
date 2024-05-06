@@ -1,54 +1,28 @@
 <div class="bg-white shadow-sm p-3 rounded-3 member-card">
   <div class="my-4">
-    <img
-      class="member-img rounded-circle object-fit-cover shadow"
-      [src]="helper.processFileUrl(member?.imageUrl)"
-      [alt]="member?.name"
-    />
+    <img class="member-img rounded-circle object-fit-cover shadow" [src]="helper.processFileUrl(member?.imageUrl)"
+      [alt]="member?.name" />
   </div>
   <div class="fw-medium mb-2">
     <span class="d-block text-uppercase">{{ member?.name }}</span>
     @if(member?.jobTitle!.length > 80){
-      <small class="cursor-pointer" [pTooltip]="member?.jobTitle!" tooltipPosition="left"
-        >{{ member?.jobTitle! | truncate : 80 }}</small
-      >
-    }
-    @else {
-      <small>{{ member?.jobTitle! }}</small
-    >
+    <small class="cursor-pointer" [pTooltip]="member?.jobTitle!" tooltipPosition="left">{{ member?.jobTitle! | truncate
+      : 80 }}</small>
+    } @else {
+    <small>{{ member?.jobTitle! }}</small>
     }
   </div>
-@if(member?.summary!.length > 100){
-  <small class="text-muted cursor-pointer" [pTooltip]="member?.summary!" tooltipPosition="left"
-    ><em>{{ member?.summary! | truncate : 100 }}</em></small
-  >
-}
-@else {
-  <small class="text-muted"><em>{{ member?.summary! }}</em></small
->
-}
-  <div>
-    <a
-      *ngIf="member?.facebookLink"
-      [href]="member?.facebookLink"
-      target="_blank"
-      ><i class="pi pi-facebook"></i
-    ></a>
-    <a *ngIf="member?.xLink" [href]="member?.xLink" target="_blank"
-      ><i class="pi pi-twitter"></i
-    ></a>
-    <a
-      *ngIf="member?.instagramLink"
-      [href]="member?.instagramLink"
-      target="_blank"
-      ><i class="pi pi-instagram"></i
-    ></a>
-    <a
-      *ngIf="member?.linkedInLink"
-      [href]="member?.linkedInLink"
-      target="_blank"
-      ><i class="pi pi-linkedin"></i
-    ></a>
+  @if(member?.summary!.length > 100){
+  <small class="text-muted cursor-pointer" [pTooltip]="member?.summary!" tooltipPosition="left"><em>{{ member?.summary!
+      | truncate : 100 }}</em></small>
+  } @else {
+  <small class="text-muted"><em>{{ member?.summary! }}</em></small>
+  }
+  <div class="d-flex justify-content-center gap-3 flex-wrap">
+    <a *ngIf="member?.facebookLink" [href]="member?.facebookLink" target="_blank"><i class="pi pi-facebook"></i></a>
+    <a *ngIf="member?.xLink" [href]="member?.xLink" target="_blank"><i class="pi pi-twitter"></i></a>
+    <a *ngIf="member?.instagramLink" [href]="member?.instagramLink" target="_blank"><i class="pi pi-instagram"></i></a>
+    <a *ngIf="member?.linkedInLink" [href]="member?.linkedInLink" target="_blank"><i class="pi pi-linkedin"></i></a>
   </div>
   <ng-content></ng-content>
 </div>
