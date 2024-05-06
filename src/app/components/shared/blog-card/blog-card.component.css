@@ -1,3 +1,7 @@
+.blog-card{
+  height: 340px;
+}
+
 .blog-image{
   background-position: center;
   height: 15rem;
