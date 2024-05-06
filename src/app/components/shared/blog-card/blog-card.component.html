@@ -1,6 +1,5 @@
 <div class="bg-white rounded-3 shadow-sm overflow-hidden">
-  <div
-  [routerLink]="['details/' + blog?.id]">
+  <div [routerLink]="withRouterLink ? ['details/' + blog?.id] : null">
     <div
       class="blog-image"
       [style.background-image]="getBackgroundImage(blog?.imageUrl!)"

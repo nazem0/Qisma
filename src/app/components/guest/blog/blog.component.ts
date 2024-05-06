@@ -1,7 +1,7 @@
 import { Blog } from '../../../api/models';
 import { BlogCardComponent } from '../../shared/blog-card/blog-card.component';
 import { BlogService } from '../../../api/services/blog.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -12,46 +12,41 @@ import { ConfirmComponent } from '../../shared/confirm/confirm.component';
   selector: 'app-blog',
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.css'],
-  standalone:true,
-  imports:[
+  standalone: true,
+  imports: [
     BlogCardComponent,
     RouterModule,
     ButtonModule,
     DialogModule,
     CreateBlogComponent,
-    ConfirmComponent
-  ]
+    ConfirmComponent,
+  ],
 })
 export class BlogComponent implements OnInit {
-  blogs:Blog[] = []
+  blogs: Blog[] = [];
   createBlogModal = false;
-  isInAdminPanel :boolean;
-  constructor(
-    private _blog:BlogService,
-    private _route:ActivatedRoute
-  ) {
-    this.isInAdminPanel = this._route.snapshot.data['isAdmin']
+  isInAdminPanel: boolean;
+  @Input() withRouterLink = true;
+  @Input() slice = 0;
+  constructor(private _blog: BlogService, private _route: ActivatedRoute) {
+    this.isInAdminPanel = this._route.snapshot.data['isAdmin'];
   }
 
   ngOnInit() {
     this.getBlogs();
   }
 
-  getBlogs(){
-    this._blog
-    .apiBlogGetAllGet$Json()
-    .subscribe({
-      next:next=>{
-        this.blogs = next.data ?? []
-      }
-    })
+  getBlogs() {
+    this._blog.apiBlogGetAllGet$Json().subscribe({
+      next: (next) => {
+        this.blogs = next.data ?? [];
+      },
+    });
   }
 
-  deleteBlog(id:number){
-    this._blog
-    .apiDashboardBlogDeleteDelete$Json({BlogId:id})
-    .subscribe({
-      next:()=>this.getBlogs()
-    })
+  deleteBlog(id: number) {
+    this._blog.apiDashboardBlogDeleteDelete$Json({ BlogId: id }).subscribe({
+      next: () => this.getBlogs(),
+    });
   }
 }

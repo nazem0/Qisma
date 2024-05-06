@@ -12,10 +12,10 @@
   </button>
 </div>
 }
-<div class="row row-cols-lg-3 row-cols-md-2 justify-content-center">
-  @for (blog of blogs; track $index) {
+<div class="row row-cols-lg-3 row-cols-md-2 justify-content-center g-5">
+  @for (blog of slice ? blogs.slice(0,slice): blogs; track $index) {
   <div class="blog-card">
-    <app-blog-card [blog]="blog">
+    <app-blog-card [blog]="blog" [withRouterLink]="withRouterLink">
       @if(isInAdminPanel){
       <app-confirm
         (confirmation)="deleteBlog(blog.id!)"

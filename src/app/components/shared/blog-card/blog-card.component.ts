@@ -7,11 +7,11 @@ import { RouterModule } from '@angular/router';
   selector: 'app-blog-card',
   templateUrl: './blog-card.component.html',
   styleUrls: ['./blog-card.component.css'],
-  standalone:true,
-  imports:[RouterModule]
+  standalone: true,
+  imports: [RouterModule],
 })
 export class BlogCardComponent implements OnInit {
-
+  @Input() withRouterLink = true;
   @Input() blog?: Blog;
   constructor() {}
 
