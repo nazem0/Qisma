@@ -35,7 +35,10 @@ export const adminRoutes: Routes = [
           },
           {
             path: 'property-details/:id',
-            component: PropertyDetailsComponent,
+            loadComponent: () =>
+              import(
+                '../guest/property-details/property-details.component'
+              ).then((c) => c.PropertyDetailsComponent),
             title: 'Property Details',
             resolve: {
               isAdmin: () => true,
@@ -43,17 +46,26 @@ export const adminRoutes: Routes = [
           },
           {
             path: 'property-images/:id',
-            component: EditImagesComponent,
+            loadComponent: () =>
+              import(
+                './edit-images/edit-images.component'
+              ).then((c) => c.EditImagesComponent),
             title: 'Property Images',
           },
           {
             path: 'property-actions',
-            component: PropertyActionsComponent,
+            loadComponent: () =>
+              import(
+                './property-actions/property-actions.component'
+              ).then((c) => c.PropertyActionsComponent),
             title: 'Property Actions',
           },
           {
             path: 'property-actions/:id',
-            component: PropertyActionsComponent,
+            loadComponent: () =>
+              import(
+                './property-actions/property-actions.component'
+              ).then((c) => c.PropertyActionsComponent),
             title: 'Property Actions',
           },
         ],
