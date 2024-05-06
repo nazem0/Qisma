@@ -163,7 +163,7 @@ a:hover,
 }
 
 .bg-dark-blue {
-  background-color: #05093e;
+  background-color: var(--primary-900);
 }
 
 .border-primary {

@@ -2,21 +2,27 @@ import { BlogService } from './../../../api/services/blog.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Blog } from '../../../api/models';
 import { Helper } from '../../../helpers/helper';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatDividerModule } from '@angular/material/divider';
+import { ConfirmComponent } from '../../shared/confirm/confirm.component';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-blog-details',
   templateUrl: './blog-details.component.html',
   styleUrls: ['./blog-details.component.css'],
   standalone: true,
-  imports:[MatDividerModule, RouterModule]
+  imports:[MatDividerModule, RouterModule, ConfirmComponent, ButtonModule]
 })
 export class BlogDetailsComponent implements OnInit {
   blog?: Blog;
   blogId?: number;
   helper = Helper;
-  constructor(private _route: ActivatedRoute, private _blog: BlogService) {}
+  isInAdminPanel :boolean;
+  constructor(private _route: ActivatedRoute, private _blog: BlogService, private _router:Router) {
+    this.isInAdminPanel = this._route.snapshot.data['isAdmin']
+
+  }
   ngOnInit() {
     this.getIdParam();
   }
@@ -35,5 +41,13 @@ export class BlogDetailsComponent implements OnInit {
         this.blog = next.data;
       },
     });
+  }
+
+  deleteBlog(id:number){
+    this._blog
+    .apiDashboardBlogDeleteDelete$Json({BlogId:id})
+    .subscribe({
+      next:()=>this._router.navigate(['../../'], {relativeTo:this._route})
+    })
   }
 }

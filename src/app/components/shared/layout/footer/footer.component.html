@@ -2,11 +2,11 @@
   <div
     class="d-lg-flex text-center justify-content-between align-items-center flex-wrap"
   >
-    <img class="mb-lg-0 mb-3" src="/assets/logos/logo-gray.svg" height="40" />
+    <img class="mb-lg-0 mb-3" src="/assets/logos/qisma-logo.png" height="40" />
     <div class="d-lg-flex gap-4 flex-wrap">
       @for (item of navLinks; track $index) {
-      <a class="d-block mb-lg-0 mb-3" [routerLink]="item.url">
-        <span class="purble-link">{{ item.title }}</span>
+      <a class="d-block mb-lg-0 mb-3" [routerLink]="item.routerLink">
+        <span class="purble-link">{{ item.label }}</span>
       </a>
       }
     </div>

@@ -2,7 +2,11 @@ import { Blog } from '../../../api/models';
 import { BlogCardComponent } from '../../shared/blog-card/blog-card.component';
 import { BlogService } from '../../../api/services/blog.service';
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { CreateBlogComponent } from '../../admin/create-blog/create-blog.component';
+import { ConfirmComponent } from '../../shared/confirm/confirm.component';
 
 @Component({
   selector: 'app-blog',
@@ -11,14 +15,23 @@ import { RouterModule } from '@angular/router';
   standalone:true,
   imports:[
     BlogCardComponent,
-    RouterModule
+    RouterModule,
+    ButtonModule,
+    DialogModule,
+    CreateBlogComponent,
+    ConfirmComponent
   ]
 })
 export class BlogComponent implements OnInit {
   blogs:Blog[] = []
+  createBlogModal = false;
+  isInAdminPanel :boolean;
   constructor(
-    private _blog:BlogService
-  ) { }
+    private _blog:BlogService,
+    private _route:ActivatedRoute
+  ) {
+    this.isInAdminPanel = this._route.snapshot.data['isAdmin']
+  }
 
   ngOnInit() {
     this.getBlogs();
@@ -31,6 +44,14 @@ export class BlogComponent implements OnInit {
       next:next=>{
         this.blogs = next.data ?? []
       }
+    })
+  }
+
+  deleteBlog(id:number){
+    this._blog
+    .apiDashboardBlogDeleteDelete$Json({BlogId:id})
+    .subscribe({
+      next:()=>this.getBlogs()
     })
   }
 }

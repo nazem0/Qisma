@@ -2,9 +2,26 @@
   class="blog-image mb-3 w-100"
   [style.background-image]="helper.getBackgroundImage(blog?.imageUrl!)"
 ></div>
-<a [routerLink]="['../../']" routerLinkActive="router-link-active" >
-<span><i class="pi pi-arrow-circle-left"></i> All Blogs</span>
-</a>
+<div class="d-flex justify-content-between">
+  <a [routerLink]="['../../']" routerLinkActive="router-link-active" >
+    <span><i class="pi pi-arrow-circle-left"></i> All Blogs</span>
+  </a>
+  @if(isInAdminPanel){
+    <app-confirm
+      (confirmation)="deleteBlog(blog?.id!)"
+      title="Delete"
+      [description]="'Are you sure you want to delete  ' + blog?.title"
+    >
+      <button
+        pButton
+        severity="danger"
+        class="text-white w-100"
+      >
+        <small class="mx-auto">Delete Blog</small>
+      </button>
+    </app-confirm>
+    }
+</div>
 <div class="text-center">
   <h2>{{blog?.title}}</h2>
 </div>

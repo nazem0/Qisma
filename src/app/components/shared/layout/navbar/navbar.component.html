@@ -1,5 +1,4 @@
 <div>
-  
   <div class="row justify-content-between align-items-center py-3">
     <div class="col-lg-2">
       <div class="d-flex justify-content-between align-items-center">
@@ -8,20 +7,23 @@
             <ng-content></ng-content>
           </div>
           <a [routerLink]="['/home']">
-            <img src="/assets/logos/qisma-logo.png"class="logo ms-2 me-auto" />
+            <img src="/assets/logos/qisma-logo.png" class="logo ms-2 me-auto" />
           </a>
         </div>
-        <img [src]="helper.generateAvatar(authHelper.getUserName()!)"
-        style="cursor: pointer" height="40" class="d-lg-none ms-2 rounded-circle" (click)="toggleNavbarCollapse();" />
+        <img
+          [src]="helper.generateAvatar(authHelper.getUserName()!)"
+          style="cursor: pointer"
+          height="40"
+          class="d-lg-none ms-2 rounded-circle"
+          (click)="toggleNavbarCollapse()"
+        />
       </div>
     </div>
 
-
-
-
-
     <!-- PC Navbar View -->
-    <div class="d-none d-lg-flex flex-row gap-4 justify-content-end align-items-center col-lg-10 transition">
+    <div
+      class="d-none d-lg-flex flex-row gap-4 justify-content-end align-items-center col-lg-10 transition"
+    >
       @for (link of links; track $index) {
       <a [routerLink]="link.routerLink">
         {{ link.label }}
@@ -29,26 +31,26 @@
       } @if(authHelper.isLoggedIn | async){
       <!-- Angular Material Menu -->
 
-      <img [matMenuTriggerFor]="userMenu" [src]="helper.generateAvatar(authHelper.getUserName()!)"
-        style="cursor: pointer" height="40" class="rounded-circle" />
+      <img
+        [matMenuTriggerFor]="userMenu"
+        [src]="helper.generateAvatar(authHelper.getUserName()!)"
+        style="cursor: pointer"
+        height="40"
+        class="rounded-circle"
+      />
       <mat-menu #userMenu="matMenu" class="d-lg-block d-none">
-        @if(authHelper.hasRole(roles.Admin)){
-        @for (link of adminLinks; track $index) {
+        @if(authHelper.hasRole(roles.Admin)){ @for (link of adminLinks; track
+        $index) {
         <button mat-menu-item [routerLink]="link.routerLink">
           {{ link.label }}
         </button>
-        }
-        }
-        @if(authHelper.hasRole(roles.Customer)){
-        @for (link of userLinks; track $index) {
+        } } @if(authHelper.hasRole(roles.Customer)){ @for (link of userLinks;
+        track $index) {
         <button mat-menu-item [routerLink]="link.routerLink">
           {{ link.label }}
         </button>
-        }
-        }
-        <button mat-menu-item (click)="logout()">
-          Logout
-        </button>
+        } }
+        <button mat-menu-item (click)="logout()">Logout</button>
       </mat-menu>
       } @else{ @for (link of guestLinks; track $index) {
       <a [routerLink]="link.routerLink">
@@ -57,44 +59,33 @@
       } }
     </div>
 
-
-
-
     <!-- Mobile View Navbar -->
-    <div class="d-flex d-lg-none flex-column gap-4 justify-content-center transition overflow-y-scroll" [ngClass]="{ expanded: !navbarCollapse, collapsed: navbarCollapse }">
+    <div
+      class="d-flex d-lg-none flex-column gap-4 justify-content-center transition overflow-y-scroll"
+      [ngClass]="{ expanded: !navbarCollapse, collapsed: navbarCollapse }"
+    >
       @for (link of links; track $index) {
       <a [routerLink]="link.routerLink" (click)="toggleNavbarCollapse()">
         {{ link.label }}
       </a>
       } @if(authHelper.isLoggedIn | async){
-      
-      @if(authHelper.hasRole(roles.Admin)){
-      @for (link of adminLinks; track $index) {
+      @if(authHelper.hasRole(roles.Admin)){ @for (link of adminLinks; track
+      $index) {
       <a [routerLink]="link.routerLink" (click)="toggleNavbarCollapse()">
         {{ link.label }}
       </a>
-      }
-      }
-      @if(authHelper.hasRole(roles.Customer)){
-      @for (link of userLinks; track $index) {
+      } } @if(authHelper.hasRole(roles.Customer)){ @for (link of userLinks;
+      track $index) {
       <a [routerLink]="link.routerLink" (click)="toggleNavbarCollapse()">
         {{ link.label }}
       </a>
-      }
-      }
-      <a (click)="logout()">
-        Logout
-      </a>
-      }
-
-      @else{
-
-      @for (link of guestLinks; track $index) {
+      } }
+      <a (click)="logout()"> Logout </a>
+      } @else{ @for (link of guestLinks; track $index) {
       <a [routerLink]="link.routerLink" (click)="toggleNavbarCollapse()">
         {{ link.label }}
       </a>
-      }
-      }
+      } }
     </div>
   </div>
 </div>

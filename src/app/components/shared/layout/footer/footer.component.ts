@@ -5,13 +5,13 @@ import { RouterModule } from '@angular/router';
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css',
-  standalone:true,
-  imports:[RouterModule]
+  standalone: true,
+  imports: [RouterModule],
 })
 export class FooterComponent {
-  footerText:string;
-  navLinks:{title:string, url:string}[];
-  constructor(){
+  footerText: string;
+  navLinks: { label: string; routerLink: string }[];
+  constructor() {
     this.footerText = `
     This site is operated by Qisma AI, Inc., which is not a registered
       broker-dealer or investment advisor. Qisma AI, Inc. does not provide
@@ -44,15 +44,14 @@ export class FooterComponent {
       information and accept no liability therefore. Hyperlinks to third-party
       sites, or reproduction of third-party articles, do not constitute an
       approval or endorsement by Qisma AI of the linked or reproduced
-      content.`
+      content.`;
     this.navLinks = [
-      {title:"About Us", url:""},
-      {title:"Learn", url:""},
-      {title:"Blog", url:""},
-      {title:"List Property", url:""},
-      {title:"Privacy Policy", url:""},
-      {title:"Terms of Service", url:""},
-      {title:"Contact Us", url:""},
-    ]
+      // { label: 'Staking', routerLink: '/staking' },
+      { label: 'Marketplace', routerLink: '/marketplace' },
+      { label: 'About Us', routerLink: '/about-us' },
+      // { label: 'Learn', routerLink: '/learn' },
+      { label: 'Blog', routerLink: '/blog' },
+      // { label: 'List Property', routerLink: 'property-actions' },
+    ];
   }
 }

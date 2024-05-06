@@ -53,24 +53,29 @@ export class SidebarComponent {
         iconClass:"pi-question-circle"
       },
       {
+        title:"Blog",
+        url:"blog",
+        iconClass:"pi-comments"
+      },
+      {
+        title:"Managers",
+        url:"edit-managers",
+        iconClass:"pi-users"
+      },
+      {
+        title:"Team Members",
+        url:"edit-team-members",
+        iconClass:"pi-users"
+      },
+      {
         title:"Support",
         url:"support",
         iconClass:"pi-info-circle"
       },
       {
-        title:"Edit About Us",
+        title:"About Us",
         url:"edit-about-us",
         iconClass:"pi-at"
-      },
-      {
-        title:"Edit Managers",
-        url:"edit-managers",
-        iconClass:"pi-users"
-      },
-      {
-        title:"Edit Team Members",
-        url:"edit-team-members",
-        iconClass:"pi-users"
       },
     ]);
     }

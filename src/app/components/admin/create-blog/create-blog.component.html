@@ -1,3 +1,74 @@
-<p>
-  create-blog works!
-</p>
+@if (form) {
+<form [formGroup]="form" class="mt-3 d-flex flex-column gap-3" (ngSubmit)="sumbit()">
+  <div>
+    <input type="text" formControlName="title" pInputText placeholder="Title" />
+    @if(form.get('title')?.touched){
+
+      @if (form.get('title')?.getError('required')) {
+        <small class="text-danger">Title is required</small>
+      }
+    }
+  </div>
+  <div>
+    <input type="text" formControlName="link" pInputText placeholder="Link" />
+    <!-- @if(form.get('image')?.touched){
+
+      @if (form.get('image')?.getError('required')) {
+        <small class="text-danger">Link is required</small>
+      }
+    } -->
+  </div>
+  <div>
+    <label class="w-100 text-white" for="image" pButton raised="true">
+      <span class="mx-auto">Image</span>
+    </label>
+    <input hidden type="file" id="image" (change)="setImageFile($event)" (click)="form.get('image')?.markAsTouched()" />
+
+    @if(form.get('image')?.touched){
+
+      @if (form.get('image')?.getError('required')) {
+        <small class="text-danger">Image is required</small>
+      }
+    }
+  </div>
+
+  <div>
+    <p-editor
+    formControlName="description"
+    [style]="{ height: '320px' }"
+    placeholder="Description"
+  >
+    <ng-template pTemplate="header">
+      <span class="ql-formats">
+        <button type="button" class="ql-bold" aria-label="Bold"></button>
+        <button type="button" class="ql-italic" aria-label="Italic"></button>
+        <button
+          type="button"
+          class="ql-underline"
+          aria-label="Underline"
+        ></button>
+        <button type="button" class="ql-link" aria-label="Link"></button>
+        <button
+          type="button"
+          class="ql-blockquote"
+          aria-label="Block Quote"
+        ></button>
+      </span>
+    </ng-template>
+  </p-editor>
+  @if(form.get('description')?.touched){
+
+
+    @if (form.get('description')?.getError('required')) {
+      <small class="text-danger">Description is required</small>
+    }
+  }
+  </div>
+
+  <div>
+    <button type="submit" class="w-100 text-white" pButton raised="true">
+      <span class="mx-auto">Sumbit</span>
+    </button>
+  </div>
+</form>
+}

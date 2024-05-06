@@ -99,6 +99,33 @@ export const adminRoutes: Routes = [
           ),
         title: 'Edit About Us',
       },
+      {
+        path: 'blog',
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('../guest/blog/blog.component').then(
+                (c) => c.BlogComponent
+              ),
+            title: 'Blog',
+            resolve: {
+              isAdmin: () => true,
+            },
+          },
+          {
+            path: 'details/:id',
+            loadComponent: () =>
+              import('../guest/blog-details/blog-details.component').then(
+                (c) => c.BlogDetailsComponent
+              ),
+            title: 'Blog Details',
+            resolve: {
+              isAdmin: () => true,
+            },
+          },
+        ],
+      },
     ],
     canActivate: [AdminAuthGuard],
   },
