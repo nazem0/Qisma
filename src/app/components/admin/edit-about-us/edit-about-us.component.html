@@ -5,24 +5,26 @@
 <form class="d-flex flex-column gap-3" [formGroup]="form" (ngSubmit)="sumbit()">
   <div>
     <label for="first-frame" class="fs-6">First Frame</label>
-    <input
+    <textarea
       type="text"
       formControlName="firstFrame"
-      pInputText
+      pInputTextarea
       placeholder="First Frame"
+      class="w-100"
       id="first-frame"
-    />
+    ></textarea>
   </div>
 
   <div>
     <label for="second-frame-title" class="fs-6">Second Frame Title</label>
-    <input
+    <textarea
       type="text"
       formControlName="secondFrameTitle"
-      pInputText
+      pInputTextarea
       placeholder="Second Frame Title"
+      class="w-100"
       id="second-frame-title"
-    />
+    ></textarea>
 
   </div>
   <div>
