@@ -15,35 +15,65 @@ export const guestRoutes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: 'login', component: LoginComponent, title: 'Login' },
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./login/login.component').then((c) => c.LoginComponent),
+        title: 'Login',
+      },
       {
         path: 'register',
-        component: RegisterComponent,
+        loadComponent: () =>
+          import('./register/register.component').then(
+            (c) => c.RegisterComponent
+          ),
         title: 'Create Account',
       },
       {
         path: 'forgot-password',
-        component: ForgotPasswordComponent,
+        loadComponent: () =>
+          import('./forgot-password/forgot-password.component').then(
+            (c) => c.ForgotPasswordComponent
+          ),
         title: 'Forgot Password',
       },
       {
         path: 'reset-password',
-        component: ResetPasswordComponent,
+        loadComponent: () =>
+          import('./reset-password/reset-password.component').then(
+            (c) => c.ResetPasswordComponent
+          ),
         title: 'Reset Password',
       },
-      { path: 'dev', component: DevComponent, title: 'Nazem' },
-      { path: 'home', component: HomeComponent, title: 'Home' },
+      {
+        path: 'dev',
+        loadComponent: () =>
+          import('./dev/dev.component').then((c) => c.DevComponent),
+        title: 'Nazem',
+      },
+      {
+        path: 'home',
+        loadComponent: () =>
+          import('./home/home.component').then((c) => c.HomeComponent),
+        title: 'Home',
+      },
       {
         path: 'marketplace',
         children: [
           {
             path: '',
-            component: MarketplaceComponent,
+            loadComponent: () =>
+              import('./marketplace/marketplace.component').then(
+                (c) => c.MarketplaceComponent
+              ),
             title: 'Marketplace',
           },
           {
             path: 'property-details/:id',
-            component: PropertyDetailsComponent,
+            loadComponent: () =>
+              import('./property-details/property-details.component').then(
+                (c) => c.PropertyDetailsComponent
+              ),
             title: 'Property Details',
           },
         ],
@@ -63,24 +93,24 @@ export const guestRoutes: Routes = [
         title: 'About Us',
       },
       {
-        path:"blog",
-        children:[
+        path: 'blog',
+        children: [
           {
-            path:"",
-            loadComponent:()=>
-              import('./blog/blog.component').then(c=>c.BlogComponent),
-            title:"Blog"
+            path: '',
+            loadComponent: () =>
+              import('./blog/blog.component').then((c) => c.BlogComponent),
+            title: 'Blog',
           },
           {
-            path:"details/:id",
-            loadComponent:()=>
-              import('./blog-details/blog-details.component').then(c=>c.BlogDetailsComponent),
-            title:"Blog Details"
-          }
-        ]
-
+            path: 'details/:id',
+            loadComponent: () =>
+              import('./blog-details/blog-details.component').then(
+                (c) => c.BlogDetailsComponent
+              ),
+            title: 'Blog Details',
+          },
+        ],
       },
-
     ],
   },
 ];
