@@ -10,6 +10,7 @@ import { Helper } from '../../../../helpers/helper';
 import { AuthHelper } from '../../../../helpers/auth-helper';
 import { Roles } from '../../../../enums/roles.enum';
 import { Router } from '@angular/router';
+import { BusinessHelper } from '../../../../helpers/business-helper';
 
 @Component({
   selector: 'app-navbar',
@@ -43,14 +44,7 @@ export class NavbarComponent {
     public authHelper: AuthHelper,
     private router:Router
   ) {
-    this.links = [
-      // { label: 'Staking', routerLink: '/staking' },
-      { label: 'Marketplace', routerLink: '/marketplace' },
-      { label: 'About Us', routerLink: '/about-us' },
-      // { label: 'Learn', routerLink: '/learn' },
-      { label: 'Blog', routerLink: '/blog' },
-      // { label: 'List Property', routerLink: 'property-actions' },
-    ];
+    this.links = BusinessHelper.navLinks;
     this.guestLinks = [
       { label: 'Login', routerLink: '/login' },
       { label: 'Sign Up', routerLink: '/register' }

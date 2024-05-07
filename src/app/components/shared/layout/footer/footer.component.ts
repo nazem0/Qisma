@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { BusinessHelper } from '../../../../helpers/business-helper';
 
 @Component({
   selector: 'app-footer',
@@ -45,13 +46,6 @@ export class FooterComponent {
       sites, or reproduction of third-party articles, do not constitute an
       approval or endorsement by Qisma AI of the linked or reproduced
       content.`;
-    this.navLinks = [
-      // { label: 'Staking', routerLink: '/staking' },
-      { label: 'Marketplace', routerLink: '/marketplace' },
-      { label: 'About Us', routerLink: '/about-us' },
-      // { label: 'Learn', routerLink: '/learn' },
-      { label: 'Blog', routerLink: '/blog' },
-      // { label: 'List Property', routerLink: 'property-actions' },
-    ];
+    this.navLinks =BusinessHelper.navLinks;
   }
 }

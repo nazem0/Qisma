@@ -46,4 +46,11 @@ export class BusinessHelper {
     return this.propertyStatuses.find(e => e.id == id)?.name
   }
 
+  public static navLinks = [
+    { label: 'Marketplace', routerLink: '/marketplace' },
+    { label: 'About Us', routerLink: '/about-us' },
+    { label: 'Blog', routerLink: '/blog' },
+    { label: 'FAQ', routerLink: '/faq' },
+  ];
+
 }
