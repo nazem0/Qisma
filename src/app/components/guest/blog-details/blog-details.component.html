@@ -3,11 +3,8 @@
     <span><i class="pi pi-arrow-circle-left"></i> All Blogs</span>
   </a>
   @if(isInAdminPanel){
-  <app-confirm
-    (confirmation)="deleteBlog(blog?.id!)"
-    title="Delete"
-    [description]="'Are you sure you want to delete  ' + blog?.title"
-  >
+  <app-confirm (confirmation)="deleteBlog(blog?.id!)" title="Delete"
+    [description]="'Are you sure you want to delete  ' + blog?.title">
     <button pButton severity="danger" class="text-white w-100">
       <small class="mx-auto">Delete Blog</small>
     </button>
@@ -19,16 +16,16 @@
     <h2>{{ blog?.title }}</h2>
     @if(blog?.link){
 
-    <a [href]="blog?.link" target="_blank"><small>Click here for more information</small></a>
+    <a class="d-none d-lg-block" [href]="blog?.link" target="_blank">Click here for more information</a>
     }
   </div>
   <div class="mb-3 d-flex justify-content-center">
-    <img
-      class="blog-image"
-      [src]="helper.processFileUrl(blog?.imageUrl!)"
-      alt=""
-    />
+    <img class="blog-image" [src]="helper.processFileUrl(blog?.imageUrl!)" alt="" />
   </div>
+  @if(blog?.link){
+
+    <a class="d-block d-lg-none text-center" [href]="blog?.link" target="_blank">Click here for more information</a>
+    }
 </div>
 
 <div class="my-5">
