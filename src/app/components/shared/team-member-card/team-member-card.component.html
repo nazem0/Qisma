@@ -12,9 +12,9 @@
     <small>{{ member?.jobTitle! }}</small>
     }
   </div>
-  @if(member?.summary!.length > 100){
+  @if(member?.summary!.length > 80){
   <small class="text-muted cursor-pointer" [pTooltip]="member?.summary!" tooltipPosition="left"><em>{{ member?.summary!
-      | truncate : 100 }}</em></small>
+      | truncate : 80 }}</em></small>
   } @else {
   <small class="text-muted"><em>{{ member?.summary! }}</em></small>
   }
