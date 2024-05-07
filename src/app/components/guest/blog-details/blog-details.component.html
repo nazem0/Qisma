@@ -20,12 +20,14 @@
     }
   </div>
   <div class="mb-3 d-flex justify-content-center">
-    <img class="blog-image" [src]="helper.processFileUrl(blog?.imageUrl!)" alt="" />
+    <a [href]="blog?.link" target="_blank"><img class="blog-image" [src]="helper.processFileUrl(blog?.imageUrl!)"
+        [alt]="blog?.title" /></a>
+
   </div>
   @if(blog?.link){
 
-    <a class="d-block d-lg-none text-center" [href]="blog?.link" target="_blank">Click here for more information</a>
-    }
+  <a class="d-block d-lg-none text-center" [href]="blog?.link" target="_blank">Click here for more information</a>
+  }
 </div>
 
 <div class="my-5">
