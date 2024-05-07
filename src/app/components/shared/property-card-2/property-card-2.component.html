@@ -17,13 +17,13 @@
                 <small class="fw-semibold">{{property.address}}</small>
                 <small class="mat-small text-muted">{{property.city}}</small>
             </div>
-            <div class="d-flex gap-2 text-primary-subtle">
-                <small class="fw-semibold">{{property.projectedRentalYield | percent : '1.0-3'}}</small>
-                <small class="mat-small fw-semibold">Projected Rental Yield</small>
+            <div class="d-flex gap-2 text-primary-subtle align-items-center">
+                <small class="fw-semibold">Projected Rental Yield</small>
+                <small>{{property.projectedRentalYield | percent : '1.0-3'}}</small>
             </div>
-            <div class="d-flex gap-2">
-                <small class="fw-semibold">{{property.projectedAnnualReturn | percent : '1.0-3'}}</small>
-                <small class="mat-small">Projected Annual Return</small>
+            <div class="d-flex gap-2 align-items-center">
+                <small class="fw-semibold">Projected Annual Return</small>
+                <small>{{property.projectedAnnualReturn | percent : '1.0-3'}}</small>
             </div>
         </div>
 
