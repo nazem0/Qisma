@@ -1,5 +1,5 @@
 <div class="bg-white rounded-3 shadow-sm overflow-hidden blog-card">
-  <div [routerLink]="isInAdminPanel ? ['/admin/blog/details/' + blog?.id] : ['/blog/details/' + blog?.id] ">
+  <div class="cursor-pointer" [routerLink]="isInAdminPanel ? ['/admin/blog/details/' + blog?.id] : ['/blog/details/' + blog?.id] ">
     <div
       class="blog-image"
       [style.background-image]="getBackgroundImage(blog?.imageUrl!)"
