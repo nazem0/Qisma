@@ -290,25 +290,25 @@ export class PropertyActionsComponent implements OnInit {
     this.facilitiesFormArray.value.push(addedFacility);
     this.selectedFacility = undefined;
     this.selectedFacilityValue = '';
-    if (this.editPage && this.propertyId) {
-      this.propertyForAdminService
-        .apiDashboardPropertyFacilityAddPost$Json({
-          Description: addedFacility.description,
-          FacilityId: addedFacility.facilityId,
-          PropertyId: this.propertyId,
-        })
-        .subscribe();
-    }
+    // if (this.editPage && this.propertyId) {
+    //   this.propertyForAdminService
+    //     .apiDashboardPropertyFacilityAddPost$Json({
+    //       Description: addedFacility.description,
+    //       FacilityId: addedFacility.facilityId,
+    //       PropertyId: this.propertyId,
+    //     })
+    //     .subscribe();
+    // }
   }
   removeFacility(index: number, id?: number): void {
     this.facilitiesFormArray.value.splice(index, 1);
-    if (id) {
-      this.propertyForAdminService
-        .apiDashboardPropertyFacilityDeleteDelete$Json({
-          PropertyFacilityId: id,
-        })
-        .subscribe();
-    }
+    // if (id) {
+    //   this.propertyForAdminService
+    //     .apiDashboardPropertyFacilityDeleteDelete$Json({
+    //       PropertyFacilityId: id,
+    //     })
+    //     .subscribe();
+    // }
   }
   fiterFacilities(id: number) {
     return this.facilities.find((e) => e.id == id);
