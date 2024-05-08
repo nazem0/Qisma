@@ -47,10 +47,18 @@
     ></p-checkbox>
   </div> -->
   <div>
-    <label for="image" pButton class="text-white w-100 p-button-raised">
-      <span class="mx-auto"><i class="pi pi-image"></i> Image</span>
-    </label>
-    <input hidden type="file" (change)="setImageFile($event)" id="image" />
+    <div>
+      <label for="image" pButton class="text-white w-100 p-button-raised">
+        <span class="mx-auto"><i class="pi pi-image"></i> Image</span>
+      </label>
+      <input hidden type="file" (click)="form.get('image')?.markAsTouched()" (change)="setImageFile($event)" id="image" />
+    </div>
+    <div>
+      @if(form.get('image')?.touched && form.get('image')?.getError('required')){
+        
+        <small class="text-danger">Image is Required</small>
+      }
+    </div>
   </div>
 
   <button pButton type="submit" class="text-white p-button-raised">

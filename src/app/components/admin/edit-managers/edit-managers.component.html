@@ -1,10 +1,6 @@
 <div class="my-3">
-  <button
-    class="w-100 text-white"
-    pButton
-    [raised]="true"
-    (click)="addTeamMemberModal = true"
-  >
+  <button class="w-100 text-white" pButton [raised]="true"
+    (click)="selectedTeamMember = undefined; addTeamMemberModal = true">
     <span class="mx-auto"> <i class="pi pi-plus"></i> Add Manager </span>
   </button>
 </div>
@@ -14,29 +10,26 @@
   <p>{{managers?.title}}</p>
   <div class="row row-cols-lg-3 justify-content-center g-5">
     @for (manager of managers?.teamMembers; track $index) {
-      <div>
-        <app-team-member-card [member]="manager">
-          <div class="row row-cols-2 g-3">
-            <div>
-              <button pButton severity="warning" class="w-100 text-white"
+    <div>
+      <app-team-member-card [member]="manager">
+        <div class="row row-cols-2 g-3">
+          <div>
+            <button pButton severity="warning" class="w-100 text-white"
               (click)="selectedTeamMember = manager; addTeamMemberModal = true">
-            <small class="mx-auto">Edit</small>
-          </button>
-        </div>
-        <div>
-          <app-confirm
-            (confirmation)="deleteManager(manager.id!)"
-            title="Delete"
-            [description]="'Are you sure you want to delete  ' + manager.name"
-            >
-            <button pButton severity="danger" class="text-white w-100">
-              <small class="mx-auto">Delete Manager</small>
+              <small class="mx-auto">Edit</small>
             </button>
-          </app-confirm>
+          </div>
+          <div>
+            <app-confirm (confirmation)="deleteManager(manager.id!)" title="Delete"
+              [description]="'Are you sure you want to delete  ' + manager.name">
+              <button pButton severity="danger" class="text-white w-100">
+                <small class="mx-auto">Delete Manager</small>
+              </button>
+            </app-confirm>
+          </div>
         </div>
-        </div>
-        </app-team-member-card>
-      </div>
+      </app-team-member-card>
+    </div>
     }
   </div>
 </div>
