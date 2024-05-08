@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AboutQismaService } from '../../../api/services';
-import { AboutUsViewModel, TeamMember } from '../../../api/models';
+import { AboutUsViewModel, TeamMember, TeamViewModel } from '../../../api/models';
 import { TeamMemberCardComponent } from '../../shared/team-member-card/team-member-card.component';
 import { MatDividerModule } from '@angular/material/divider';
 
@@ -13,8 +13,8 @@ import { MatDividerModule } from '@angular/material/divider';
 })
 export class AboutUsComponent implements OnInit {
   aboutUs?: AboutUsViewModel;
-  managers: TeamMember[] = [];
-  teamMembers: TeamMember[] = [];
+  managers?: TeamViewModel;
+  team?:TeamViewModel;
   constructor(private _aboutService: AboutQismaService) {}
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class AboutUsComponent implements OnInit {
   getAllManagers() {
     this._aboutService.apiAboutQismaGetAllManagersGet$Json().subscribe({
       next: (next) => {
-        this.managers = next.data??[];
+        this.managers = next.data;
       },
     });
   }
@@ -42,7 +42,7 @@ export class AboutUsComponent implements OnInit {
   getAllMembers() {
     this._aboutService.apiAboutQismaGetAllMembersGet$Json().subscribe({
       next: (next) => {
-        this.teamMembers = next.data??[];
+        this.team = next.data;
       },
     });
   }

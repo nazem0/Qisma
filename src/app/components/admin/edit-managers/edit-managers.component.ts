@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamMemberCardComponent } from '../../shared/team-member-card/team-member-card.component';
-import { TeamMember } from '../../../api/models';
+import { TeamMember, TeamViewModel } from '../../../api/models';
 import { AboutQismaService } from '../../../api/services';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -21,7 +21,7 @@ import { ConfirmComponent } from '../../shared/confirm/confirm.component';
   ]
 })
 export class EditManagersComponent implements OnInit {
-  managers: TeamMember[] = [];
+  managers?: TeamViewModel;
   addTeamMemberModal = false;
   constructor(
     private _aboutService:AboutQismaService
@@ -33,7 +33,7 @@ export class EditManagersComponent implements OnInit {
   getAllManagers() {
     this._aboutService.apiAboutQismaGetAllManagersGet$Json().subscribe({
       next: (next) => {
-        this.managers = next.data ?? [];
+        this.managers = next.data;
       },
     });
   }

@@ -21,6 +21,14 @@ import { apiFaqGetAllGet$Json } from '../fn/faq/api-faq-get-all-get-json';
 import { ApiFaqGetAllGet$Json$Params } from '../fn/faq/api-faq-get-all-get-json';
 import { apiFaqGetAllGet$Plain } from '../fn/faq/api-faq-get-all-get-plain';
 import { ApiFaqGetAllGet$Plain$Params } from '../fn/faq/api-faq-get-all-get-plain';
+import { apiFaqUpdateIndexPut$Json } from '../fn/faq/api-faq-update-index-put-json';
+import { ApiFaqUpdateIndexPut$Json$Params } from '../fn/faq/api-faq-update-index-put-json';
+import { apiFaqUpdateIndexPut$Plain } from '../fn/faq/api-faq-update-index-put-plain';
+import { ApiFaqUpdateIndexPut$Plain$Params } from '../fn/faq/api-faq-update-index-put-plain';
+import { apiFaqUpdatePut$Json } from '../fn/faq/api-faq-update-put-json';
+import { ApiFaqUpdatePut$Json$Params } from '../fn/faq/api-faq-update-put-json';
+import { apiFaqUpdatePut$Plain } from '../fn/faq/api-faq-update-put-plain';
+import { ApiFaqUpdatePut$Plain$Params } from '../fn/faq/api-faq-update-put-plain';
 import { FaqListApiResult } from '../models/faq-list-api-result';
 import { StringApiResult } from '../models/string-api-result';
 
@@ -216,6 +224,132 @@ export class FaqService extends BaseService {
   apiFaqGetAllGet$Json(params?: ApiFaqGetAllGet$Json$Params, context?: HttpContext): Observable<FaqListApiResult> {
     return this.apiFaqGetAllGet$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<FaqListApiResult>): FaqListApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiFaqUpdateIndexPut()` */
+  static readonly ApiFaqUpdateIndexPutPath = '/api/FAQ/UpdateIndex';
+
+  /**
+   * Update faq index.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiFaqUpdateIndexPut$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiFaqUpdateIndexPut$Plain$Response(params: ApiFaqUpdateIndexPut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiFaqUpdateIndexPut$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Update faq index.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiFaqUpdateIndexPut$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiFaqUpdateIndexPut$Plain(params: ApiFaqUpdateIndexPut$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiFaqUpdateIndexPut$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /**
+   * Update faq index.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiFaqUpdateIndexPut$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiFaqUpdateIndexPut$Json$Response(params: ApiFaqUpdateIndexPut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiFaqUpdateIndexPut$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Update faq index.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiFaqUpdateIndexPut$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiFaqUpdateIndexPut$Json(params: ApiFaqUpdateIndexPut$Json$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiFaqUpdateIndexPut$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiFaqUpdatePut()` */
+  static readonly ApiFaqUpdatePutPath = '/api/FAQ/Update';
+
+  /**
+   * Update faq.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiFaqUpdatePut$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiFaqUpdatePut$Plain$Response(params?: ApiFaqUpdatePut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiFaqUpdatePut$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Update faq.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiFaqUpdatePut$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiFaqUpdatePut$Plain(params?: ApiFaqUpdatePut$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiFaqUpdatePut$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /**
+   * Update faq.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiFaqUpdatePut$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiFaqUpdatePut$Json$Response(params?: ApiFaqUpdatePut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiFaqUpdatePut$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Update faq.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiFaqUpdatePut$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiFaqUpdatePut$Json(params?: ApiFaqUpdatePut$Json$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiFaqUpdatePut$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
     );
   }
 

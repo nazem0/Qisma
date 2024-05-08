@@ -2,5 +2,6 @@
 /* eslint-disable */
 export interface AddPropertyFacilityViewModel {
   description?: string | null;
-  facilityId?: number;
+  facilityId?: number | null;
+  number?: number | null;
 }

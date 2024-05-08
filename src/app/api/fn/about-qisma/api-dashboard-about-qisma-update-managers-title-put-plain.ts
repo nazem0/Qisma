@@ -8,21 +8,14 @@ import { RequestBuilder } from '../../request-builder';
 
 import { StringApiResult } from '../../models/string-api-result';
 
-export interface ApiDashboardBlogUpdatePut$Plain$Params {
-      body?: {
-'Id': number;
-'Image'?: Blob;
-'ImageLink'?: string;
-'Title'?: string;
-'Description'?: string;
-'Link'?: string;
-}
+export interface ApiDashboardAboutQismaUpdateManagersTitlePut$Plain$Params {
+      body: string
 }
 
-export function apiDashboardBlogUpdatePut$Plain(http: HttpClient, rootUrl: string, params?: ApiDashboardBlogUpdatePut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiDashboardBlogUpdatePut$Plain.PATH, 'put');
+export function apiDashboardAboutQismaUpdateManagersTitlePut$Plain(http: HttpClient, rootUrl: string, params: ApiDashboardAboutQismaUpdateManagersTitlePut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiDashboardAboutQismaUpdateManagersTitlePut$Plain.PATH, 'put');
   if (params) {
-    rb.body(params.body, 'multipart/form-data');
+    rb.body(params.body, 'application/*+json');
   }
 
   return http.request(
@@ -35,4 +28,4 @@ export function apiDashboardBlogUpdatePut$Plain(http: HttpClient, rootUrl: strin
   );
 }
 
-apiDashboardBlogUpdatePut$Plain.PATH = '/api/Dashboard/Blog/Update';
+apiDashboardAboutQismaUpdateManagersTitlePut$Plain.PATH = '/api/Dashboard/AboutQisma/UpdateManagersTitle';

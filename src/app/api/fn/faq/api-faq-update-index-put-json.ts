@@ -7,22 +7,16 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 import { StringApiResult } from '../../models/string-api-result';
+import { UpdateFaqIndexViewModel } from '../../models/update-faq-index-view-model';
 
-export interface ApiDashboardBlogUpdatePut$Json$Params {
-      body?: {
-'Id': number;
-'Image'?: Blob;
-'ImageLink'?: string;
-'Title'?: string;
-'Description'?: string;
-'Link'?: string;
-}
+export interface ApiFaqUpdateIndexPut$Json$Params {
+      body: Array<UpdateFaqIndexViewModel>
 }
 
-export function apiDashboardBlogUpdatePut$Json(http: HttpClient, rootUrl: string, params?: ApiDashboardBlogUpdatePut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiDashboardBlogUpdatePut$Json.PATH, 'put');
+export function apiFaqUpdateIndexPut$Json(http: HttpClient, rootUrl: string, params: ApiFaqUpdateIndexPut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiFaqUpdateIndexPut$Json.PATH, 'put');
   if (params) {
-    rb.body(params.body, 'multipart/form-data');
+    rb.body(params.body, 'application/*+json');
   }
 
   return http.request(
@@ -35,4 +29,4 @@ export function apiDashboardBlogUpdatePut$Json(http: HttpClient, rootUrl: string
   );
 }
 
-apiDashboardBlogUpdatePut$Json.PATH = '/api/Dashboard/Blog/Update';
+apiFaqUpdateIndexPut$Json.PATH = '/api/FAQ/UpdateIndex';

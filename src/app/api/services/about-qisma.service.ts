@@ -38,6 +38,10 @@ import { apiDashboardAboutQismaUpdateAboutUsPut$Json } from '../fn/about-qisma/a
 import { ApiDashboardAboutQismaUpdateAboutUsPut$Json$Params } from '../fn/about-qisma/api-dashboard-about-qisma-update-about-us-put-json';
 import { apiDashboardAboutQismaUpdateAboutUsPut$Plain } from '../fn/about-qisma/api-dashboard-about-qisma-update-about-us-put-plain';
 import { ApiDashboardAboutQismaUpdateAboutUsPut$Plain$Params } from '../fn/about-qisma/api-dashboard-about-qisma-update-about-us-put-plain';
+import { apiDashboardAboutQismaUpdateManagersTitlePut$Json } from '../fn/about-qisma/api-dashboard-about-qisma-update-managers-title-put-json';
+import { ApiDashboardAboutQismaUpdateManagersTitlePut$Json$Params } from '../fn/about-qisma/api-dashboard-about-qisma-update-managers-title-put-json';
+import { apiDashboardAboutQismaUpdateManagersTitlePut$Plain } from '../fn/about-qisma/api-dashboard-about-qisma-update-managers-title-put-plain';
+import { ApiDashboardAboutQismaUpdateManagersTitlePut$Plain$Params } from '../fn/about-qisma/api-dashboard-about-qisma-update-managers-title-put-plain';
 import { apiDashboardAboutQismaUpdateSupportPut$Json } from '../fn/about-qisma/api-dashboard-about-qisma-update-support-put-json';
 import { ApiDashboardAboutQismaUpdateSupportPut$Json$Params } from '../fn/about-qisma/api-dashboard-about-qisma-update-support-put-json';
 import { apiDashboardAboutQismaUpdateSupportPut$Plain } from '../fn/about-qisma/api-dashboard-about-qisma-update-support-put-plain';
@@ -46,9 +50,13 @@ import { apiDashboardAboutQismaUpdateTeamMemberPut$Json } from '../fn/about-qism
 import { ApiDashboardAboutQismaUpdateTeamMemberPut$Json$Params } from '../fn/about-qisma/api-dashboard-about-qisma-update-team-member-put-json';
 import { apiDashboardAboutQismaUpdateTeamMemberPut$Plain } from '../fn/about-qisma/api-dashboard-about-qisma-update-team-member-put-plain';
 import { ApiDashboardAboutQismaUpdateTeamMemberPut$Plain$Params } from '../fn/about-qisma/api-dashboard-about-qisma-update-team-member-put-plain';
+import { apiDashboardAboutQismaUpdateTeamMembersTitlePut$Json } from '../fn/about-qisma/api-dashboard-about-qisma-update-team-members-title-put-json';
+import { ApiDashboardAboutQismaUpdateTeamMembersTitlePut$Json$Params } from '../fn/about-qisma/api-dashboard-about-qisma-update-team-members-title-put-json';
+import { apiDashboardAboutQismaUpdateTeamMembersTitlePut$Plain } from '../fn/about-qisma/api-dashboard-about-qisma-update-team-members-title-put-plain';
+import { ApiDashboardAboutQismaUpdateTeamMembersTitlePut$Plain$Params } from '../fn/about-qisma/api-dashboard-about-qisma-update-team-members-title-put-plain';
 import { StringApiResult } from '../models/string-api-result';
 import { SupportViewModelApiResult } from '../models/support-view-model-api-result';
-import { TeamMemberListApiResult } from '../models/team-member-list-api-result';
+import { TeamViewModelApiResult } from '../models/team-view-model-api-result';
 
 @Injectable({ providedIn: 'root' })
 export class AboutQismaService extends BaseService {
@@ -256,7 +264,7 @@ export class AboutQismaService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiDashboardAboutQismaUpdateAboutUsPut$Plain()` instead.
    *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
   apiDashboardAboutQismaUpdateAboutUsPut$Plain$Response(params?: ApiDashboardAboutQismaUpdateAboutUsPut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
     return apiDashboardAboutQismaUpdateAboutUsPut$Plain(this.http, this.rootUrl, params, context);
@@ -270,7 +278,7 @@ export class AboutQismaService extends BaseService {
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiDashboardAboutQismaUpdateAboutUsPut$Plain$Response()` instead.
    *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
   apiDashboardAboutQismaUpdateAboutUsPut$Plain(params?: ApiDashboardAboutQismaUpdateAboutUsPut$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
     return this.apiDashboardAboutQismaUpdateAboutUsPut$Plain$Response(params, context).pipe(
@@ -286,7 +294,7 @@ export class AboutQismaService extends BaseService {
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiDashboardAboutQismaUpdateAboutUsPut$Json()` instead.
    *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
   apiDashboardAboutQismaUpdateAboutUsPut$Json$Response(params?: ApiDashboardAboutQismaUpdateAboutUsPut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
     return apiDashboardAboutQismaUpdateAboutUsPut$Json(this.http, this.rootUrl, params, context);
@@ -300,7 +308,7 @@ export class AboutQismaService extends BaseService {
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiDashboardAboutQismaUpdateAboutUsPut$Json$Response()` instead.
    *
-   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
   apiDashboardAboutQismaUpdateAboutUsPut$Json(params?: ApiDashboardAboutQismaUpdateAboutUsPut$Json$Params, context?: HttpContext): Observable<StringApiResult> {
     return this.apiDashboardAboutQismaUpdateAboutUsPut$Json$Response(params, context).pipe(
@@ -384,7 +392,7 @@ export class AboutQismaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiAboutQismaGetAllManagersGet$Plain$Response(params?: ApiAboutQismaGetAllManagersGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamMemberListApiResult>> {
+  apiAboutQismaGetAllManagersGet$Plain$Response(params?: ApiAboutQismaGetAllManagersGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamViewModelApiResult>> {
     return apiAboutQismaGetAllManagersGet$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -398,9 +406,9 @@ export class AboutQismaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiAboutQismaGetAllManagersGet$Plain(params?: ApiAboutQismaGetAllManagersGet$Plain$Params, context?: HttpContext): Observable<TeamMemberListApiResult> {
+  apiAboutQismaGetAllManagersGet$Plain(params?: ApiAboutQismaGetAllManagersGet$Plain$Params, context?: HttpContext): Observable<TeamViewModelApiResult> {
     return this.apiAboutQismaGetAllManagersGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<TeamMemberListApiResult>): TeamMemberListApiResult => r.body)
+      map((r: StrictHttpResponse<TeamViewModelApiResult>): TeamViewModelApiResult => r.body)
     );
   }
 
@@ -414,7 +422,7 @@ export class AboutQismaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiAboutQismaGetAllManagersGet$Json$Response(params?: ApiAboutQismaGetAllManagersGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamMemberListApiResult>> {
+  apiAboutQismaGetAllManagersGet$Json$Response(params?: ApiAboutQismaGetAllManagersGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamViewModelApiResult>> {
     return apiAboutQismaGetAllManagersGet$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -428,9 +436,9 @@ export class AboutQismaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiAboutQismaGetAllManagersGet$Json(params?: ApiAboutQismaGetAllManagersGet$Json$Params, context?: HttpContext): Observable<TeamMemberListApiResult> {
+  apiAboutQismaGetAllManagersGet$Json(params?: ApiAboutQismaGetAllManagersGet$Json$Params, context?: HttpContext): Observable<TeamViewModelApiResult> {
     return this.apiAboutQismaGetAllManagersGet$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<TeamMemberListApiResult>): TeamMemberListApiResult => r.body)
+      map((r: StrictHttpResponse<TeamViewModelApiResult>): TeamViewModelApiResult => r.body)
     );
   }
 
@@ -447,7 +455,7 @@ export class AboutQismaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiAboutQismaGetAllMembersGet$Plain$Response(params?: ApiAboutQismaGetAllMembersGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamMemberListApiResult>> {
+  apiAboutQismaGetAllMembersGet$Plain$Response(params?: ApiAboutQismaGetAllMembersGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamViewModelApiResult>> {
     return apiAboutQismaGetAllMembersGet$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -461,9 +469,9 @@ export class AboutQismaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiAboutQismaGetAllMembersGet$Plain(params?: ApiAboutQismaGetAllMembersGet$Plain$Params, context?: HttpContext): Observable<TeamMemberListApiResult> {
+  apiAboutQismaGetAllMembersGet$Plain(params?: ApiAboutQismaGetAllMembersGet$Plain$Params, context?: HttpContext): Observable<TeamViewModelApiResult> {
     return this.apiAboutQismaGetAllMembersGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<TeamMemberListApiResult>): TeamMemberListApiResult => r.body)
+      map((r: StrictHttpResponse<TeamViewModelApiResult>): TeamViewModelApiResult => r.body)
     );
   }
 
@@ -477,7 +485,7 @@ export class AboutQismaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiAboutQismaGetAllMembersGet$Json$Response(params?: ApiAboutQismaGetAllMembersGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamMemberListApiResult>> {
+  apiAboutQismaGetAllMembersGet$Json$Response(params?: ApiAboutQismaGetAllMembersGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamViewModelApiResult>> {
     return apiAboutQismaGetAllMembersGet$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -491,9 +499,9 @@ export class AboutQismaService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiAboutQismaGetAllMembersGet$Json(params?: ApiAboutQismaGetAllMembersGet$Json$Params, context?: HttpContext): Observable<TeamMemberListApiResult> {
+  apiAboutQismaGetAllMembersGet$Json(params?: ApiAboutQismaGetAllMembersGet$Json$Params, context?: HttpContext): Observable<TeamViewModelApiResult> {
     return this.apiAboutQismaGetAllMembersGet$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<TeamMemberListApiResult>): TeamMemberListApiResult => r.body)
+      map((r: StrictHttpResponse<TeamViewModelApiResult>): TeamViewModelApiResult => r.body)
     );
   }
 
@@ -556,6 +564,132 @@ export class AboutQismaService extends BaseService {
    */
   apiDashboardAboutQismaUpdateTeamMemberPut$Json(params?: ApiDashboardAboutQismaUpdateTeamMemberPut$Json$Params, context?: HttpContext): Observable<StringApiResult> {
     return this.apiDashboardAboutQismaUpdateTeamMemberPut$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiDashboardAboutQismaUpdateManagersTitlePut()` */
+  static readonly ApiDashboardAboutQismaUpdateManagersTitlePutPath = '/api/Dashboard/AboutQisma/UpdateManagersTitle';
+
+  /**
+   * Update manager title.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardAboutQismaUpdateManagersTitlePut$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiDashboardAboutQismaUpdateManagersTitlePut$Plain$Response(params: ApiDashboardAboutQismaUpdateManagersTitlePut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardAboutQismaUpdateManagersTitlePut$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Update manager title.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardAboutQismaUpdateManagersTitlePut$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiDashboardAboutQismaUpdateManagersTitlePut$Plain(params: ApiDashboardAboutQismaUpdateManagersTitlePut$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardAboutQismaUpdateManagersTitlePut$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /**
+   * Update manager title.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardAboutQismaUpdateManagersTitlePut$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiDashboardAboutQismaUpdateManagersTitlePut$Json$Response(params: ApiDashboardAboutQismaUpdateManagersTitlePut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardAboutQismaUpdateManagersTitlePut$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Update manager title.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardAboutQismaUpdateManagersTitlePut$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiDashboardAboutQismaUpdateManagersTitlePut$Json(params: ApiDashboardAboutQismaUpdateManagersTitlePut$Json$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardAboutQismaUpdateManagersTitlePut$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /** Path part for operation `apiDashboardAboutQismaUpdateTeamMembersTitlePut()` */
+  static readonly ApiDashboardAboutQismaUpdateTeamMembersTitlePutPath = '/api/Dashboard/AboutQisma/UpdateTeamMembersTitle';
+
+  /**
+   * Update team member title.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardAboutQismaUpdateTeamMembersTitlePut$Plain()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiDashboardAboutQismaUpdateTeamMembersTitlePut$Plain$Response(params: ApiDashboardAboutQismaUpdateTeamMembersTitlePut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardAboutQismaUpdateTeamMembersTitlePut$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Update team member title.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardAboutQismaUpdateTeamMembersTitlePut$Plain$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiDashboardAboutQismaUpdateTeamMembersTitlePut$Plain(params: ApiDashboardAboutQismaUpdateTeamMembersTitlePut$Plain$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardAboutQismaUpdateTeamMembersTitlePut$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
+    );
+  }
+
+  /**
+   * Update team member title.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiDashboardAboutQismaUpdateTeamMembersTitlePut$Json()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiDashboardAboutQismaUpdateTeamMembersTitlePut$Json$Response(params: ApiDashboardAboutQismaUpdateTeamMembersTitlePut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+    return apiDashboardAboutQismaUpdateTeamMembersTitlePut$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Update team member title.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiDashboardAboutQismaUpdateTeamMembersTitlePut$Json$Response()` instead.
+   *
+   * This method sends `application/*+json` and handles request body of type `application/*+json`.
+   */
+  apiDashboardAboutQismaUpdateTeamMembersTitlePut$Json(params: ApiDashboardAboutQismaUpdateTeamMembersTitlePut$Json$Params, context?: HttpContext): Observable<StringApiResult> {
+    return this.apiDashboardAboutQismaUpdateTeamMembersTitlePut$Json$Response(params, context).pipe(
       map((r: StrictHttpResponse<StringApiResult>): StringApiResult => r.body)
     );
   }

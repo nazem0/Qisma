@@ -6,6 +6,5 @@ export interface UserPortfolioViewModel {
   grossMonthlyIncome?: number;
   numberOfProperties?: number;
   protfolioValue?: number;
-  totalAppreciation?: number;
   userStakes?: Array<UserPropertiesInPortfolioViewModel> | null;
 }

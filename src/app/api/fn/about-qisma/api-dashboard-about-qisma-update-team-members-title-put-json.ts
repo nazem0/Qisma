@@ -8,14 +8,14 @@ import { RequestBuilder } from '../../request-builder';
 
 import { StringApiResult } from '../../models/string-api-result';
 
-export interface ApiDashboardPropertyFacilityDeleteDelete$Json$Params {
-  PropertyFacilityId: number;
+export interface ApiDashboardAboutQismaUpdateTeamMembersTitlePut$Json$Params {
+      body: string
 }
 
-export function apiDashboardPropertyFacilityDeleteDelete$Json(http: HttpClient, rootUrl: string, params: ApiDashboardPropertyFacilityDeleteDelete$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiDashboardPropertyFacilityDeleteDelete$Json.PATH, 'delete');
+export function apiDashboardAboutQismaUpdateTeamMembersTitlePut$Json(http: HttpClient, rootUrl: string, params: ApiDashboardAboutQismaUpdateTeamMembersTitlePut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiDashboardAboutQismaUpdateTeamMembersTitlePut$Json.PATH, 'put');
   if (params) {
-    rb.query('PropertyFacilityId', params.PropertyFacilityId, {"style":"form"});
+    rb.body(params.body, 'application/*+json');
   }
 
   return http.request(
@@ -28,4 +28,4 @@ export function apiDashboardPropertyFacilityDeleteDelete$Json(http: HttpClient, 
   );
 }
 
-apiDashboardPropertyFacilityDeleteDelete$Json.PATH = '/api/Dashboard/PropertyFacility/Delete';
+apiDashboardAboutQismaUpdateTeamMembersTitlePut$Json.PATH = '/api/Dashboard/AboutQisma/UpdateTeamMembersTitle';

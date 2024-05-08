@@ -7,15 +7,16 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 import { StringApiResult } from '../../models/string-api-result';
+import { UpdateFaqIndexViewModel } from '../../models/update-faq-index-view-model';
 
-export interface ApiDashboardPropertyFacilityDeleteDelete$Plain$Params {
-  PropertyFacilityId: number;
+export interface ApiFaqUpdateIndexPut$Plain$Params {
+      body: Array<UpdateFaqIndexViewModel>
 }
 
-export function apiDashboardPropertyFacilityDeleteDelete$Plain(http: HttpClient, rootUrl: string, params: ApiDashboardPropertyFacilityDeleteDelete$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiDashboardPropertyFacilityDeleteDelete$Plain.PATH, 'delete');
+export function apiFaqUpdateIndexPut$Plain(http: HttpClient, rootUrl: string, params: ApiFaqUpdateIndexPut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiFaqUpdateIndexPut$Plain.PATH, 'put');
   if (params) {
-    rb.query('PropertyFacilityId', params.PropertyFacilityId, {"style":"form"});
+    rb.body(params.body, 'application/*+json');
   }
 
   return http.request(
@@ -28,4 +29,4 @@ export function apiDashboardPropertyFacilityDeleteDelete$Plain(http: HttpClient,
   );
 }
 
-apiDashboardPropertyFacilityDeleteDelete$Plain.PATH = '/api/Dashboard/PropertyFacility/Delete';
+apiFaqUpdateIndexPut$Plain.PATH = '/api/FAQ/UpdateIndex';

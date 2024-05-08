@@ -7,22 +7,16 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 import { StringApiResult } from '../../models/string-api-result';
+import { UpdateFaqViewModel } from '../../models/update-faq-view-model';
 
-export interface ApiDashboardBlogUpdatePut$Plain$Params {
-      body?: {
-'Id': number;
-'Image'?: Blob;
-'ImageLink'?: string;
-'Title'?: string;
-'Description'?: string;
-'Link'?: string;
-}
+export interface ApiFaqUpdatePut$Plain$Params {
+      body?: UpdateFaqViewModel
 }
 
-export function apiDashboardBlogUpdatePut$Plain(http: HttpClient, rootUrl: string, params?: ApiDashboardBlogUpdatePut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiDashboardBlogUpdatePut$Plain.PATH, 'put');
+export function apiFaqUpdatePut$Plain(http: HttpClient, rootUrl: string, params?: ApiFaqUpdatePut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiFaqUpdatePut$Plain.PATH, 'put');
   if (params) {
-    rb.body(params.body, 'multipart/form-data');
+    rb.body(params.body, 'application/*+json');
   }
 
   return http.request(
@@ -35,4 +29,4 @@ export function apiDashboardBlogUpdatePut$Plain(http: HttpClient, rootUrl: strin
   );
 }
 
-apiDashboardBlogUpdatePut$Plain.PATH = '/api/Dashboard/Blog/Update';
+apiFaqUpdatePut$Plain.PATH = '/api/FAQ/Update';

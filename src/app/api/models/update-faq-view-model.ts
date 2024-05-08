@@ -1,8 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface Faq {
+export interface UpdateFaqViewModel {
   answer?: string | null;
-  id?: number;
-  number?: number;
+  id: number;
   question?: string | null;
 }

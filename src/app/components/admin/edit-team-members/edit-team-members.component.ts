@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TeamMember } from '../../../api/models';
+import { TeamMember, TeamViewModel } from '../../../api/models';
 import { AboutQismaService } from '../../../api/services';
 import { TeamMemberCardComponent } from '../../shared/team-member-card/team-member-card.component';
 import { ButtonModule } from 'primeng/button';
@@ -22,8 +22,7 @@ import { ConfirmComponent } from '../../shared/confirm/confirm.component';
 })
 export class EditTeamMembersComponent implements OnInit {
   addTeamMemberModal = false;
-  teamMembers: TeamMember[] = [];
-
+  team?:TeamViewModel;
   constructor(
     private _aboutService:AboutQismaService
   ) {}
@@ -37,7 +36,7 @@ export class EditTeamMembersComponent implements OnInit {
   getAllMembers() {
     this._aboutService.apiAboutQismaGetAllMembersGet$Json().subscribe({
       next: (next) => {
-        this.teamMembers = next.data ?? [];
+        this.team = next.data;
       },
     });
   }

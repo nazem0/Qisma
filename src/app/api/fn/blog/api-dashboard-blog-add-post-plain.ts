@@ -11,6 +11,7 @@ import { StringApiResult } from '../../models/string-api-result';
 export interface ApiDashboardBlogAddPost$Plain$Params {
       body?: {
 'Image': Blob;
+'ImageLink'?: string;
 'Title': string;
 'Description': string;
 'Link'?: string;

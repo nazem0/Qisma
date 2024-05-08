@@ -6,12 +6,12 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { TeamMemberListApiResult } from '../../models/team-member-list-api-result';
+import { TeamViewModelApiResult } from '../../models/team-view-model-api-result';
 
 export interface ApiAboutQismaGetAllManagersGet$Json$Params {
 }
 
-export function apiAboutQismaGetAllManagersGet$Json(http: HttpClient, rootUrl: string, params?: ApiAboutQismaGetAllManagersGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamMemberListApiResult>> {
+export function apiAboutQismaGetAllManagersGet$Json(http: HttpClient, rootUrl: string, params?: ApiAboutQismaGetAllManagersGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<TeamViewModelApiResult>> {
   const rb = new RequestBuilder(rootUrl, apiAboutQismaGetAllManagersGet$Json.PATH, 'get');
   if (params) {
   }
@@ -21,7 +21,7 @@ export function apiAboutQismaGetAllManagersGet$Json(http: HttpClient, rootUrl: s
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<TeamMemberListApiResult>;
+      return r as StrictHttpResponse<TeamViewModelApiResult>;
     })
   );
 }

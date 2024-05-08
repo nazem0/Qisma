@@ -11,9 +11,9 @@
 
 <div class="text-center">
   <h3>Founding Team</h3>
-  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+  <p>{{managers?.title}}</p>
   <div class="row row-cols-lg-3 justify-content-center g-5">
-    @for (manager of managers; track $index) {
+    @for (manager of managers?.teamMembers; track $index) {
       <div>
         <app-team-member-card [member]="manager">
           <app-confirm

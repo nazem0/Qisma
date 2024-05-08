@@ -9,12 +9,12 @@
   <p class="text-justified" [innerHTML]="aboutUs?.secondFrameDescription"></p>
 </div>
 
-@if(managers.length){
+@if(managers?.teamMembers?.length){
   <div class="text-center">
     <h3>Founding Team</h3>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+    <p>{{managers?.title}}</p>
     <div class="row row-cols-lg-3 row-cols-sm-2 justify-content-center g-5">
-      @for (manager of managers; track $index) {
+      @for (manager of managers?.teamMembers; track $index) {
       <div>
         <app-team-member-card [member]="manager"></app-team-member-card>
       </div>
@@ -26,14 +26,14 @@
   </div>
 }
 
-@if(teamMembers.length){
+@if(team?.teamMembers?.length){
 
   <div class="text-center">
     <h3>Board Of Directors & Advisors</h3>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+    <p>{{team?.title}}</p>
 
     <div class="row row-cols-lg-3 row-cols-sm-2 justify-content-center g-5">
-      @for (member of teamMembers; track $index) {
+      @for (member of team?.teamMembers; track $index) {
       <div>
         <app-team-member-card [member]="member"></app-team-member-card>
       </div>
