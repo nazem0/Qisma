@@ -10,6 +10,7 @@ import {
   FormControl,
   FormsModule,
   ReactiveFormsModule,
+  AbstractControl,
 } from '@angular/forms';
 import {
   AddPropertyFacilityViewModel,
@@ -19,7 +20,6 @@ import {
 } from '../../../api/models';
 import { BusinessHelper } from '../../../helpers/business-helper';
 import { Helper } from '../../../helpers/helper';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { IndexableObject } from 'ng-zorro-antd/core/types';
 import { CurrencyPipe, NgFor, NgIf, PercentPipe } from '@angular/common';
@@ -32,15 +32,15 @@ import { SliderModule } from 'primeng/slider';
 import { InputTextModule } from 'primeng/inputtext';
 import { EditorModule } from 'primeng/editor';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { DialogHelper } from '../../../helpers/dialog.service';
 import { DialogModule } from 'primeng/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-property-actions',
   templateUrl: './property-actions.component.html',
   styleUrl: './property-actions.component.css',
-  standalone:true,
-  imports:[
+  standalone: true,
+  imports: [
     NgIf,
     NgFor,
     FormsModule,
@@ -56,15 +56,15 @@ import { DialogModule } from 'primeng/dialog';
     InputTextModule,
     EditorModule,
     InputNumberModule,
-    DialogModule
-  ]
+    DialogModule,
+  ],
 })
 export class PropertyActionsComponent implements OnInit {
   editPage = false;
   propertyId?: string;
   helper = Helper;
   readers: FileReader[] = [];
-  inputArray: { id?: number, src: string | ArrayBuffer | null }[] = [];
+  inputArray: { id?: number; src: string | ArrayBuffer | null }[] = [];
   validationErros: string[] = [];
   files?: FileList;
   math = Math;
@@ -72,46 +72,51 @@ export class PropertyActionsComponent implements OnInit {
   propertyTypes = BusinessHelper.propertyTypes;
   propertyStatuses = BusinessHelper.propertyStatuses;
   errorsModal = false;
-  text: string = `
-  <h2>Title 1</h2>
-  <ol>
-    <li>element 1</li>
-    <li>element 2</li>
-    <li>element 3</li>
-  </ol>
-  <p><br></p>
-  <h2>Title 2</h2>
-  <ol>
-    <li>element 1</li>
-    <li>element 2</li>
-    <li>element 3</li>
-  </ol>
-  `;
+  text: string;
 
   facilities: FacilityViewModelForAdmin[] = [];
-  selectedFacility?: FacilityViewModelForAdmin;
-  selectedFacilityValue?: string;
+  currentFacility?: FacilityViewModelForAdmin;
   governorates: GovernorateAndCityViewModel[] = [];
   cities: GovernorateAndCityViewModel[] = [];
   selectedGov?: GovernorateAndCityViewModel;
   selectedCity?: GovernorateAndCityViewModel;
   selectedType?: GovernorateAndCityViewModel;
   selectedStatus?: GovernorateAndCityViewModel;
+  selectedFacilityDescription = ''
+  selectedFacilityOrder?: number;
+
+  validIndexes: number[] = []
   constructor(
     private fb: FormBuilder,
     private propertyForAdminService: PropertyForAdminService,
     private customPropertyForAdminService: CustomPropertyForAdminService,
     private governorateAndCityService: GovernorateAndCityService,
-    private dialog: DialogHelper,
-    private snackBar: MatSnackBar,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
+  ) { 
+
+    this.text = `
+    <h2>Title 1</h2>
+    <ol>
+      <li>element 1</li>
+      <li>element 2</li>
+      <li>element 3</li>
+    </ol>
+    <p><br></p>
+    <h2>Title 2</h2>
+    <ol>
+      <li>element 1</li>
+      <li>element 2</li>
+      <li>element 3</li>
+    </ol>
+    `
+  }
   ngOnInit(): void {
     this.initEmptyPropertyForm();
     this.initGovs();
     this.initFacilities();
-    this.getPropertyWithId();
-    // this.propertyForAdminService.apiDashboardPropertyAddPost$Json({body:{}})
+    this.getPropertyById();
+    this.getValidIndexes();
   }
 
   addPhotos($event: Event) {
@@ -120,45 +125,51 @@ export class PropertyActionsComponent implements OnInit {
     for (let index = 0; index < this.files.length; index++) {
       this.readers[index] = new FileReader();
       this.readers[index].readAsDataURL(this.files.item(index) as Blob);
-      this.propertyForm?.get('propertyImages')?.value.push(this.files.item(index) as Blob)
+      this.propertyForm
+        ?.get('propertyImages')
+        ?.value.push(this.files.item(index) as Blob);
       this.readers[index].onload = (_event: any) => {
         this.inputArray!.push({ src: this.readers[index].result });
       };
       if (this.editPage && this.propertyId) {
-        this.propertyForAdminService.apiDashboardPropertyImagesAddPost$Json({
-          body: {
-            Images: [this.files.item(index) as Blob],
-            PropertyId: this.propertyId
-          }
-        }).subscribe();
+        this.propertyForAdminService
+          .apiDashboardPropertyImagesAddPost$Json({
+            body: {
+              Images: [this.files.item(index) as Blob],
+              PropertyId: this.propertyId,
+            },
+          })
+          .subscribe();
       }
     }
-
-
-
   }
 
-  delete(index: number, id?: number) {
+  deletePhoto(index: number, id?: number) {
     this.inputArray.splice(index, 1);
     this.propertyForm?.get('propertyImages')?.value.splice(index, 1);
     if (id && this.editPage && this.propertyId) {
-      this
-        .propertyForAdminService
+      this.propertyForAdminService
         .apiDashboardPropertyImageDeleteDelete$Json({
-          PropertyImageId: id
-        }).subscribe()
+          PropertyImageId: id,
+        })
+        .subscribe();
     }
   }
   initPropertyForm(propertyDetails: PropertyDetailsViewModelForAdmin) {
     //Mapping
     Object.keys(propertyDetails).forEach((key) => {
-      this.propertyForm?.get(key)?.setValue((propertyDetails as IndexableObject)[key]);
-      this.propertyForm?.get(key)?.removeValidators(Validators.required)
+      this.propertyForm
+        ?.get(key)
+        ?.setValue((propertyDetails as IndexableObject)[key]);
+      this.propertyForm?.get(key)?.removeValidators(Validators.required);
     });
-    this.propertyForm?.updateValueAndValidity()
+    this.propertyForm?.updateValueAndValidity();
 
     propertyDetails.propertyImages!.forEach((image) => {
-      this.inputArray.push({ id: image.id, src: this.helper.processFileUrl(image.imageUrl!) });
+      this.inputArray.push({
+        id: image.id,
+        src: this.helper.processFileUrl(image.imageUrl!),
+      });
     });
 
     this.selectedGov = {
@@ -185,7 +196,6 @@ export class PropertyActionsComponent implements OnInit {
     this.calculateTransactionFees();
 
     console.log(this.propertyForm);
-
   }
 
   initEmptyPropertyForm() {
@@ -194,9 +204,14 @@ export class PropertyActionsComponent implements OnInit {
       governorateId: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
-      cityId: new FormControl<number | undefined>(undefined, [Validators.required]),
+      cityId: new FormControl<number | undefined>(undefined, [
+        Validators.required,
+      ]),
       description: new FormControl<string>(this.text, [Validators.required]),
-      unitPrice: new FormControl<number | undefined>(undefined, [Validators.required, Validators.min(1*Math.pow(10,6))]),
+      unitPrice: new FormControl<number | undefined>(undefined, [
+        Validators.required,
+        Validators.min(1 * Math.pow(10, 6)),
+      ]),
       maintenanceCost: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
@@ -209,14 +224,19 @@ export class PropertyActionsComponent implements OnInit {
       minNumberOfShares: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
-      sharePrice: new FormControl<number | undefined>(undefined, [Validators.required, Validators.min(50*Math.pow(10,3))]),
+      sharePrice: new FormControl<number | undefined>(undefined, [
+        Validators.required,
+        Validators.min(50 * Math.pow(10, 3)),
+      ]),
       annualRentalYield: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
       annualPriceAppreciation: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
-      downPayment: new FormControl<number | undefined>(undefined, [Validators.required]),
+      downPayment: new FormControl<number | undefined>(undefined, [
+        Validators.required,
+      ]),
       monthlyInstallment: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
@@ -229,17 +249,17 @@ export class PropertyActionsComponent implements OnInit {
       deliveryInstallment: new FormControl<number | undefined>(undefined, [
         Validators.required,
       ]),
-      type: new FormControl<number | undefined>(undefined, [Validators.required]),
-      status: new FormControl<number | undefined>(undefined, [Validators.required]),
+      type: new FormControl<number | undefined>(undefined, [
+        Validators.required,
+      ]),
+      status: new FormControl<number | undefined>(undefined, [
+        Validators.required,
+      ]),
       facilities: new FormControl<AddPropertyFacilityViewModel[]>([]),
       propertyImages: new FormControl<Blob[]>([]),
     });
 
     console.log(this.propertyForm);
-
-  }
-  check() {
-    console.log(this.propertyForm?.value);
   }
 
   initGovs() {
@@ -271,45 +291,46 @@ export class PropertyActionsComponent implements OnInit {
       });
   }
   get facilitiesFormArray() {
-    return this.propertyForm?.get('facilities') as FormArray;
+    return this.propertyForm?.get('facilities') as FormArray<AbstractControl<AddPropertyFacilityViewModel>>;
   }
-  createFacility() {
-    return {
-      facilityId: this.selectedFacility?.id,
-      description: this.selectedFacilityValue,
-    };
-  }
-  addFacility(): void {
-    if (!this.selectedFacilityValue) {
-      this.snackBar.open('Facility Description is Required', 'X', {
-        duration: 1200,
-      });
-      return;
-    }
-    let addedFacility = this.createFacility();
-    this.facilitiesFormArray.value.push(addedFacility);
-    this.selectedFacility = undefined;
-    this.selectedFacilityValue = '';
-    if (this.editPage && this.propertyId) {
-      this.propertyForAdminService
-        .apiDashboardPropertyFacilityAddPost$Json({
-          Description: addedFacility.description,
-          FacilityId: addedFacility.facilityId,
-          PropertyId: this.propertyId,
-        })
-        .subscribe();
-    }
-  }
-  removeFacility(index: number, id?: number): void {
-    this.facilitiesFormArray.value.splice(index, 1);
-    if (id) {
-      this.propertyForAdminService
-        .apiDashboardPropertyFacilityDeleteDelete$Json({
-          PropertyFacilityId: id,
-        })
-        .subscribe();
-    }
-  }
+  // createFacility() {
+  //   return {
+  //     facilityId: this.selectedFacility?.id,
+  //     description: this.selectedFacilityValue,
+  //   };
+  // }
+
+  // addFacility(): void {
+  //   if (!this.selectedFacilityValue) {
+  //     this.snackBar.open('Facility Description is Required', 'X', {
+  //       duration: 1200,
+  //     });
+  //     return;
+  //   }
+  //   let addedFacility = this.createFacility();
+  //   this.facilitiesFormArray.value.push(addedFacility);
+  //   this.selectedFacility = undefined;
+  //   this.selectedFacilityValue = '';
+  //   if (this.editPage && this.propertyId) {
+  //     this.propertyForAdminService
+  //       .apiDashboardPropertyFacilityAddPost$Json({
+  //         Description: addedFacility.description,
+  //         FacilityId: addedFacility.facilityId,
+  //         PropertyId: this.propertyId,
+  //       })
+  //       .subscribe();
+  //   }
+  // }
+  // removeFacility(index: number, id?: number): void {
+  //   this.facilitiesFormArray.value.splice(index, 1);
+  //   if (id) {
+  //     this.propertyForAdminService
+  //       .apiDashboardPropertyFacilityDeleteDelete$Json({
+  //         PropertyFacilityId: id,
+  //       })
+  //       .subscribe();
+  //   }
+  // }
   fiterFacilities(id: number) {
     return this.facilities.find((e) => e.id == id);
   }
@@ -324,21 +345,16 @@ export class PropertyActionsComponent implements OnInit {
   submitForm() {
     if (!this.checkFormValidity()) return;
     if (this.editPage) {
-      this
-        .propertyForAdminService
+      this.propertyForAdminService
         .apiDashboardPropertyUpdatePut$Json({
-          body: this.getUpdateFormGroup().value
+          body: this.getUpdateFormGroup().value,
         })
-        .subscribe()
-    }
-    else {
-      this
-        .customPropertyForAdminService
+        .subscribe();
+    } else {
+      this.customPropertyForAdminService
         .addPropertyFromForm(this.getFormData())
         .subscribe();
     }
-
-
   }
   getFormData() {
     // Initialize a new FormData object
@@ -373,7 +389,9 @@ export class PropertyActionsComponent implements OnInit {
 
   getUpdateFormGroup() {
     let updateFromGroup: FormGroup = this.fb.group({
-      propertyId: new FormControl<string>(this.propertyId!, [Validators.required])
+      propertyId: new FormControl<string>(this.propertyId!, [
+        Validators.required,
+      ]),
     });
     for (const controlName in this.propertyForm?.controls) {
       if (['facilities', 'propertyImages'].includes(controlName)) continue;
@@ -382,10 +400,6 @@ export class PropertyActionsComponent implements OnInit {
       updateFromGroup.addControl(controlName, control);
     }
     return updateFromGroup;
-  }
-
-  openErrorsDialog() {
-    this.errorsModal = true;
   }
 
   checkFormValidity() {
@@ -399,7 +413,7 @@ export class PropertyActionsComponent implements OnInit {
           );
         }
       });
-      this.openErrorsDialog();
+      this.errorsModal = true;
     }
     return !this.validationErros.length;
   }
@@ -423,7 +437,7 @@ export class PropertyActionsComponent implements OnInit {
     this.maintenanceCost = dollars;
   }
 
-  getPropertyWithId() {
+  getPropertyById() {
     let propertyIdParam = this.route.snapshot.paramMap.get('id');
     if (!propertyIdParam) {
       this.initEmptyPropertyForm();
@@ -439,6 +453,47 @@ export class PropertyActionsComponent implements OnInit {
           this.initPropertyForm(next.data!);
         },
       });
+  }
+
+  addPropertyFacility() {
+    if (typeof this.currentFacility?.id != 'number' || typeof this.selectedFacilityOrder != 'number' || !this.selectedFacilityDescription) {
+      console.log(this.currentFacility?.id, this.selectedFacilityOrder, this.selectedFacilityDescription);
+      this.snackBar.open('Facility Data is invalid', '');
+      return;
+    }
+    else {
+      let addedFacility:AddPropertyFacilityViewModel = {
+        facilityId :this.currentFacility.id,
+        description :this.selectedFacilityDescription,
+        number:this.selectedFacilityOrder
+      };
+      this.facilitiesFormArray.value.push(addedFacility);
+      this.getValidIndexes();
+    }
+  }
+
+  removePropertyFacility(index: number): void {
+    this.facilitiesFormArray.value.splice(index, 1);
+  }
+
+  getValidIndexes() {
+    console.log("Current Indexes", this.facilitiesFormArray.value.map(e => e.number!));
+    
+    let biggestIndex = this.facilitiesFormArray.value.map(e => e.number!).sort((a, b) => b - a)[0] ?? 0;
+    biggestIndex++;
+    
+    // let invalidIndexes = this.facilitiesFormArray.value.map(e => e.number!);
+    //Creating Array From 0 to biggestIndex + 1
+    let allIndexes = Array.from({length: biggestIndex}, (_, i) => i + 1)
+    // let validIndexes = new Array<number>();
+    // allIndexes.forEach((e) => {
+    //   if (!invalidIndexes.includes(e)) {
+    //     validIndexes.push(e)
+    //   }
+    // })
+    
+    this.validIndexes = allIndexes;
+    console.log(this.validIndexes);
   }
 
 }

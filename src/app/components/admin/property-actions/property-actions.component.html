@@ -86,7 +86,7 @@
               <div class="row row-cols-3 g-2 justify-content-center">
                 <div class="position-relative" *ngFor="let item of inputArray; let i = index">
                   <p-button [rounded]="true" severity="danger" styleClass="position-absolute top-0 p-1"
-                    (click)="editPage ? delete(i, item.id) : delete(i)">
+                    (click)="editPage ? deletePhoto(i, item.id) : deletePhoto(i)">
                     <i class="pi pi-times text-white"></i>
                   </p-button>
                   <img style="max-height: 200px;" class="border border-3 w-100 h-100 object-fit-cover" [src]="item.src">
@@ -105,13 +105,16 @@
         <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
           let-index="index">
           <div class="row g-0 align-items-center">
-            <div class="col-sm-4">
-              <p-dropdown [filter]="true" filterBy="name" [options]="facilities" [optionLabel]="'name'"
-                [showClear]="true" [(ngModel)]="selectedFacility" placeholder="Facility Icon" styleClass="w-100"
-                [ngModelOptions]="{standalone: true}">
+            <div class="col-sm-2">
+              <p-dropdown styleClass="w-100" [(ngModel)]="selectedFacilityOrder" [ngModelOptions]="{standalone:true}"
+                [options]="validIndexes" placeholder="Order" [showClear]="true"></p-dropdown>
+            </div>
+            <div class="col-sm-3">
+              <p-dropdown [options]="facilities" [optionLabel]="'name'" [showClear]="true" [(ngModel)]="currentFacility"
+                [ngModelOptions]="{standalone:true}" placeholder="Facility Icon" styleClass="w-100">
                 <ng-template pTemplate="selectedItem">
-                  <div class="d-flex justify-content-center" *ngIf="selectedFacility">
-                    <img style="height: 24px" [src]="helper.processFileUrl(selectedFacility.svg, true)" alt="" />
+                  <div class="d-flex justify-content-center" *ngIf="currentFacility">
+                    <img style="height: 24px" [src]="helper.processFileUrl(currentFacility.svg, true)" alt="" />
                   </div>
                 </ng-template>
                 <ng-template let-option pTemplate="item">
@@ -121,42 +124,44 @@
                 </ng-template>
               </p-dropdown>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-7">
               <p-inputGroup>
-                <input type="text" pInputText placeholder="Description" [(ngModel)]="selectedFacilityValue"
+                <input type="text" pInputText placeholder="Description" [(ngModel)]="selectedFacilityDescription"
                   [ngModelOptions]="{standalone: true}" />
-                <button class="text-white" (click)="addFacility()" type="button" pButton icon="pi pi-plus"></button>
+                <button class="text-white" (click)="addPropertyFacility()" type="button" pButton
+                  icon="pi pi-plus"></button>
               </p-inputGroup>
             </div>
           </div>
           @for (item of this.facilitiesFormArray.value; track $index) {
           <div class="
-              bg-white
-              border
-              border-2
-              rounded-3
-              d-flex
-              flex-nowrap
+              row
               justify-content-between
               align-items-center
               mt-2">
-            <div class="d-flex gap-2">
-              <img class="ms-2" style="height: 24px" [src]="
-                    helper.processFileUrl(fiterFacilities(item.facilityId)?.svg,true)" [alt]="item.description" />
+            <div class="col-sm-2">
+              <p-dropdown styleClass="w-100" [(ngModel)]="selectedFacilityOrder" [ngModelOptions]="{standalone:true}"
+                [options]="validIndexes" placeholder="Order" [showClear]="true"></p-dropdown>
+            </div>
+            <div class="col-sm-3">
+              <div class=" d-flex justify-content-center align-items-center bg-white rounded-3 pt-3 border border-1 w-100">
+                <img style="height: 24px" [src]="helper.processFileUrl(fiterFacilities(item.facilityId!)?.svg,true)"
+                  [alt]="item.description" />
+              </div>
             </div>
 
-            <div class="col-8">
+            <div class="col-sm-7">
               <p-inputGroup>
                 <!-- <span>{{item.description}}</span> -->
                 <input type="text" pInputText placeholder="Description" disabled [ngModel]="item.description"
                   [ngModelOptions]="{standalone: true}" />
                 @if(editPage){
-                <button class="text-white p-button-danger" (click)="removeFacility($index, item.propertyFacilityId)"
-                  type="button" pButton icon="pi pi-minus"></button>
+                <button class="text-white p-button-danger" (click)="removePropertyFacility($index)" type="button"
+                  pButton icon="pi pi-minus"></button>
                 }
                 @else{
-                <button class="text-white p-button-danger" (click)="removeFacility($index)" type="button" pButton
-                  icon="pi pi-minus"></button>
+                <button class="text-white p-button-danger" (click)="removePropertyFacility($index)" type="button"
+                  pButton icon="pi pi-minus"></button>
                 }
               </p-inputGroup>
             </div>
@@ -339,11 +344,11 @@
   </form>
 </div>
 
-<p-dialog header="Validation Errors" [(visible)]="errorsModal" [modal]="true" [responsive]="true" [style]="{width: '75vw', minWidth: '260px'}"
-[maximizable]="true" [baseZIndex]="9000">
-<div class="row row-cols-lg-2 g-3">
-  @for (error of validationErros; track $index) {
+<p-dialog header="Validation Errors" [(visible)]="errorsModal" [modal]="true"
+  [style]="{width: '75vw', minWidth: '260px'}" [maximizable]="true" [baseZIndex]="9000">
+  <div class="row row-cols-lg-2 g-3">
+    @for (error of validationErros; track $index) {
     <span>{{error}}</span>
-  }
-</div>
+    }
+  </div>
 </p-dialog>
