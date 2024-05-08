@@ -7,7 +7,14 @@
 
 <div class="text-center">
   <h3>Founding Team</h3>
-  <p>{{managers?.title}}</p>
+  @if(managers?.title !=null){
+    <div class="d-flex my-3">
+      <input type="text" pInputText [(ngModel)]="managers!.title" required>
+      <button pButton class="text-white" (click)="changeManagersTitle()">
+        <i class="pi pi-check"></i>
+      </button>
+    </div>
+  }
   <div class="row row-cols-lg-3 justify-content-center g-5">
     @for (manager of managers?.teamMembers; track $index) {
     <div>

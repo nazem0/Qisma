@@ -7,7 +7,14 @@
 
 <div class="text-center">
   <h3>Board Of Directors & Advisors</h3>
-  <p>{{ team?.title }}</p>
+  @if(team?.title !=null){
+  <div class="d-flex my-3">
+    <input type="text" pInputText [(ngModel)]="team!.title" required>
+    <button pButton class="text-white" (click)="changeTeamMembersTitle()">
+      <i class="pi pi-check"></i>
+    </button>
+  </div>
+  }
 
   <div class="row row-cols-lg-3 justify-content-center g-5">
     @for (member of team?.teamMembers; track $index) {
@@ -16,17 +23,17 @@
         <div class="row row-cols-2 g-3">
           <div>
             <button pButton severity="warning" class="w-100 text-white"
-            (click)="selectedTeamMember = member; addTeamMemberModal = true">
-            <small class="mx-auto">Edit</small>
-          </button>
+              (click)="selectedTeamMember = member; addTeamMemberModal = true">
+              <small class="mx-auto">Edit</small>
+            </button>
           </div>
           <div>
             <app-confirm (confirmation)="deleteMember(member.id!)" title="Delete"
-            [description]="'Are you sure you want to delete  ' + member.name">
-            <button pButton severity="danger" class="text-white w-100">
-              <small class="mx-auto">Delete</small>
-            </button>
-          </app-confirm>
+              [description]="'Are you sure you want to delete  ' + member.name">
+              <button pButton severity="danger" class="text-white w-100">
+                <small class="mx-auto">Delete</small>
+              </button>
+            </app-confirm>
           </div>
         </div>
       </app-team-member-card>

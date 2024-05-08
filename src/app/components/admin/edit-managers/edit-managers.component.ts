@@ -6,6 +6,8 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmComponent } from '../../shared/confirm/confirm.component';
 import { TeamMemberActionsComponent } from '../team-member-actions/team-member-actions.component';
+import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-edit-managers',
@@ -17,7 +19,9 @@ import { TeamMemberActionsComponent } from '../team-member-actions/team-member-a
     ButtonModule,
     DialogModule,
     TeamMemberActionsComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    FormsModule,
+    InputTextModule
   ]
 })
 export class EditManagersComponent implements OnInit {
@@ -45,5 +49,11 @@ export class EditManagersComponent implements OnInit {
     .subscribe({
       next:()=>this.getAllManagers()
     })
+  }
+
+  changeManagersTitle(){
+    this._aboutService
+    .apiDashboardAboutQismaUpdateManagersTitlePut$Json({body:JSON.stringify(this.managers?.title!)})
+    .subscribe()
   }
 }

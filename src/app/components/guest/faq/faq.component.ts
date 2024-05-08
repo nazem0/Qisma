@@ -1,6 +1,6 @@
 import { AccordionModule } from 'primeng/accordion';
 import { FaqService } from './../../../api/services/faq.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthHelper } from '../../../helpers/auth-helper';
 import { Roles } from '../../../enums/roles.enum';
 import { ConfirmComponent } from '../../shared/confirm/confirm.component';
@@ -28,6 +28,7 @@ import { NgClass } from '@angular/common';
 })
 export class FaqComponent implements OnInit {
   faqList: Faq[] = [];
+  @Input() slice = 0;
   adminRole = Roles.Admin;
   isInAdminPanel = false;
   showCreateFaq = false;

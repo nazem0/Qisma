@@ -6,6 +6,8 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmComponent } from '../../shared/confirm/confirm.component';
 import { TeamMemberActionsComponent } from '../team-member-actions/team-member-actions.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-team-members',
@@ -17,13 +19,16 @@ import { TeamMemberActionsComponent } from '../team-member-actions/team-member-a
     ButtonModule,
     DialogModule,
     TeamMemberActionsComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    InputTextModule,
+    FormsModule
   ]
 })
 export class EditTeamMembersComponent implements OnInit {
   addTeamMemberModal = false;
   team?:TeamViewModel;
   selectedTeamMember?:TeamMember;
+  title:string = ''
   constructor(
     private _aboutService:AboutQismaService
   ) {}
@@ -48,5 +53,11 @@ export class EditTeamMembersComponent implements OnInit {
     .subscribe({
       next:()=>this.getAllMembers()
     })
+  }
+
+  changeTeamMembersTitle(){
+    this._aboutService
+    .apiDashboardAboutQismaUpdateTeamMembersTitlePut$Json({body:JSON.stringify(this.team?.title!)})
+    .subscribe()
   }
 }

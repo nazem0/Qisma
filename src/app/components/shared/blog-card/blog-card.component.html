@@ -4,12 +4,12 @@
       class="blog-image"
       [style.background-image]="getBackgroundImage(blog?.imageUrl!)"
     ></div>
-    <div class="p-2">
+    <div class="p-2 fw-bold">
       @if(blog?.title!.length > 35 ){
-        <h4 dir="auto" class="cursor-pointer" [pTooltip]="blog?.title!" tooltipPosition="left">{{ blog?.title! | truncate
-          : 35 }}</h4>
+        <span dir="auto" class="cursor-pointer fs-5" [pTooltip]="blog?.title!" tooltipPosition="left">{{ blog?.title! | truncate
+          : 35 }}</span>
         } @else {
-        <h4 dir="auto">{{ blog?.title! }}</h4>
+        <span dir="auto" class="fs-5">{{ blog?.title! }}</span>
         }
     </div>
   </div>

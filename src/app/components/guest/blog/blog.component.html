@@ -3,11 +3,7 @@
 </header>
 @if(isInAdminPanel){
 <div class="my-3">
-  <button
-    pButton
-    class="w-100 text-white"
-    (click)="this.createBlogModal = true"
-  >
+  <button pButton class="w-100 text-white" (click)="selectedBlog = undefined;this.createBlogModal = true">
     <span class="mx-auto"> <i class="pi pi-plus"></i> Create Blog </span>
   </button>
 </div>
@@ -17,19 +13,22 @@
   <div class="blog-card">
     <app-blog-card [blog]="blog">
       @if(isInAdminPanel){
-      <app-confirm
-        (confirmation)="deleteBlog(blog.id!)"
-        title="Delete"
-        [description]="'Are you sure you want to delete  ' + blog.title"
-      >
-        <button
-          pButton
-          severity="danger"
-          class="text-white w-100 rounded-top-0"
-        >
-          <small class="mx-auto">Delete Blog</small>
-        </button>
-      </app-confirm>
+      <div class="row row-cols-2 g-3">
+        <div>
+          <button class="text-white w-100" pButton severity="warning"
+            (click)="selectedBlog = blog;createBlogModal = true;">
+            <small class="mx-auto">Edit</small>
+          </button>
+        </div>
+        <div>
+          <app-confirm (confirmation)="deleteBlog(blog.id!)" title="Delete"
+            [description]="'Are you sure you want to delete  ' + blog.title">
+            <button pButton severity="danger" class="text-white w-100 rounded-top-0">
+              <small class="mx-auto">Delete</small>
+            </button>
+          </app-confirm>
+        </div>
+      </div>
       }
     </app-blog-card>
   </div>
@@ -37,18 +36,12 @@
 </div>
 
 @if(isInAdminPanel){
-<p-dialog
-  header="Create Blog"
-  [(visible)]="createBlogModal"
-  [modal]="true"
-  [responsive]="true"
-  [style]="{ width: '75vw', minWidth: '260px' }"
-  [maximizable]="true"
-  [baseZIndex]="9000"
->
-  <app-create-blog
-    (createEvent)="this.createBlogModal = false; getBlogs()"
-  ></app-create-blog>
+<p-dialog header="Create Blog" [(visible)]="createBlogModal" [modal]="true" [responsive]="true"
+  [style]="{ width: '75vw', minWidth: '260px' }" [maximizable]="true" [baseZIndex]="9000">
+  @if(createBlogModal){
+    <app-blog-actions [blogId]="selectedBlog?.id"
+    (createEvent)="selectedBlog = undefined;this.createBlogModal = false; getBlogs()"></app-blog-actions>
+  }
 </p-dialog>
 
 }

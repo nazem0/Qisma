@@ -255,11 +255,6 @@ input,
   }
 }
 
-.p-accordion .p-accordion-content {
-  border: var(--primary-600);
-
-  background: var(--primary-500);
-}
 
 /* Cloned Globals */
 .h1 {
@@ -421,4 +416,9 @@ table td {
   div {
     text-shadow: 1px 2px black;
   }
+}
+
+
+.p-accordion-content{
+  background-color: var(--primary-400) !important;
 }

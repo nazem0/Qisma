@@ -30,13 +30,18 @@
     </section> -->
 
     <section>
-      <app-faq></app-faq>
+      <app-faq [slice]="3"></app-faq>
+      <div class="my-5 d-flex justify-content-center">
+        <button pButton class="text-white rounded-5 px-5" raised="true" [routerLink]="['/faq']">
+            <span class="mx-auto">View FAQ</span>
+          </button>
+      </div>
     </section>
 
     <section>
       <app-blog [slice]="3" [withRouterLink]="true"></app-blog>
-      <div class="my-4 d-flex justify-content-center">
-        <button pButton class="text-white rounded-5 px-5 mt-4" raised="true" [routerLink]="['/blog']">
+      <div class="my-5 d-flex justify-content-center">
+        <button pButton class="text-white rounded-5 px-5" raised="true" [routerLink]="['/blog']">
           <span class="mx-auto">View Blog</span>
         </button>
       </div>

@@ -5,7 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
-import { CreateBlogComponent } from '../../admin/create-blog/create-blog.component';
+import { BlogActionsComponent } from '../../admin/blog-actions/blog-actions.component';
 import { ConfirmComponent } from '../../shared/confirm/confirm.component';
 
 @Component({
@@ -18,12 +18,13 @@ import { ConfirmComponent } from '../../shared/confirm/confirm.component';
     RouterModule,
     ButtonModule,
     DialogModule,
-    CreateBlogComponent,
+    BlogActionsComponent,
     ConfirmComponent,
   ],
 })
 export class BlogComponent implements OnInit {
   blogs: Blog[] = [];
+  selectedBlog?: Blog;
   createBlogModal = false;
   isInAdminPanel: boolean;
   @Input() withRouterLink = true;
