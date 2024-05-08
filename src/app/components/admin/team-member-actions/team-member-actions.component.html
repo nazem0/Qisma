@@ -1,0 +1,60 @@
+<!-- <header class="text-center my-3">
+  <h3>Add Team Member</h3>
+</header> -->
+
+@if(form){
+<form [formGroup]="form" class="d-flex flex-column gap-3 mt-3" (ngSubmit)="teamMember?update():submit()">
+  <div>
+    <input pInputText formControlName="name" type="text" placeholder="Name" />
+    @if(form.get('name')?.touched){
+    @if(form.get('name')?.getError('required')) {
+    <small class="text-danger"> Name is required </small>
+    } }
+  </div>
+  <div>
+    <input pInputText formControlName="jobTitle" type="text" placeholder="Job Title" />
+    @if(form.get('jobTitle')?.touched){
+    @if(form.get('jobTitle')?.getError('required')) {
+    <small class="text-danger"> Job Title is required </small>
+    } }
+  </div>
+  <div>
+    <textarea pInputTextarea formControlName="summary" rows="2" class="w-100" placeholder="Summary"></textarea>
+    @if(form.get('summary')?.touched){
+    @if(form.get('summary')?.getError('required')) {
+    <small class="text-danger"> Summary is required </small>
+    } }
+  </div>
+  <div>
+    <input pInputText formControlName="facebookLink" type="text" placeholder="Facebook Link" />
+  </div>
+  <div>
+    <input pInputText formControlName="xLink" type="text" placeholder="X Link" />
+  </div>
+  <div>
+    <input pInputText formControlName="instagramLink" type="text" placeholder="Instagram Link" />
+  </div>
+  <div>
+    <input pInputText formControlName="linkedInLink" type="text" placeholder="LinkedIn Link" />
+  </div>
+  <!-- <div>
+    <p-checkbox
+      formControlName="isManager"
+      [binary]="true"
+      [label]="'Is Manager'"
+      (onFocus)="form.get('isManager')?.markAsTouched()"
+      (onChange)="form.get('isManager')?.markAsDirty()"
+    ></p-checkbox>
+  </div> -->
+  <div>
+    <label for="image" pButton class="text-white w-100 p-button-raised">
+      <span class="mx-auto"><i class="pi pi-image"></i> Image</span>
+    </label>
+    <input hidden type="file" (change)="setImageFile($event)" id="image" />
+  </div>
+
+  <button pButton type="submit" class="text-white p-button-raised">
+    <span class="mx-auto">Submit</span>
+  </button>
+</form>
+}

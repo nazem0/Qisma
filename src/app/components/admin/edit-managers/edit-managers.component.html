@@ -16,33 +16,38 @@
     @for (manager of managers?.teamMembers; track $index) {
       <div>
         <app-team-member-card [member]="manager">
+          <div class="row row-cols-2 g-3">
+            <div>
+              <button pButton severity="warning" class="w-100 text-white"
+              (click)="selectedTeamMember = manager; addTeamMemberModal = true">
+            <small class="mx-auto">Edit</small>
+          </button>
+        </div>
+        <div>
           <app-confirm
             (confirmation)="deleteManager(manager.id!)"
             title="Delete"
             [description]="'Are you sure you want to delete  ' + manager.name"
-          >
+            >
             <button pButton severity="danger" class="text-white w-100">
               <small class="mx-auto">Delete Manager</small>
             </button>
           </app-confirm>
+        </div>
+        </div>
         </app-team-member-card>
       </div>
     }
   </div>
 </div>
 
-<p-dialog
-  header="Add Team Member"
-  [(visible)]="addTeamMemberModal"
-  [modal]="true"
-  [responsive]="true"
-  [style]="{ width: '75vw', minWidth: '260px' }"
-  [maximizable]="true"
-  [baseZIndex]="9000"
->
-  <app-create-team-member
-    [isManager]="true"
-    (createEvent)="addTeamMemberModal = false; getAllManagers()"
-  >
-  </app-create-team-member>
+<p-dialog [header]="(selectedTeamMember?'Edit' : 'Add')+ ' Team Member'" [(visible)]="addTeamMemberModal" [modal]="true"
+  [responsive]="true" [style]="{ width: '75vw', minWidth: '260px' }" [maximizable]="true" [baseZIndex]="9000">
+  @if(addTeamMemberModal){
+  <app-team-member-actions [teamMember]="selectedTeamMember" [isManager]="true" (createEvent)="
+      addTeamMemberModal = false;
+      getAllManagers();
+      selectedTeamMember = undefined
+    "></app-team-member-actions>
+  }
 </p-dialog>

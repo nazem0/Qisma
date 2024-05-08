@@ -1,43 +1,47 @@
 <div class="my-3">
-  <button class="w-100 text-white" pButton [raised]="true" (click)="addTeamMemberModal = true">
+  <button class="w-100 text-white" pButton [raised]="true"
+    (click)="selectedTeamMember = undefined;addTeamMemberModal = true">
     <span class="mx-auto"> <i class="pi pi-plus"></i> Add Team Member </span>
   </button>
 </div>
 
 <div class="text-center">
   <h3>Board Of Directors & Advisors</h3>
-  <p>{{team?.title}}</p>
+  <p>{{ team?.title }}</p>
 
   <div class="row row-cols-lg-3 justify-content-center g-5">
     @for (member of team?.teamMembers; track $index) {
-      <div>
-        <app-team-member-card [member]="member">
-          <app-confirm
-          (confirmation)="deleteMember(member.id!)"
-          title="Delete"
-          [description]="'Are you sure you want to delete  ' + member.name"
-        >
-        <button pButton severity="danger" class="text-white w-100">
-          <small class="mx-auto">Delete Member</small>
-        </button>
-        </app-confirm>
-
-        </app-team-member-card>
-      </div>
+    <div>
+      <app-team-member-card [member]="member">
+        <div class="row row-cols-2 g-3">
+          <div>
+            <button pButton severity="warning" class="w-100 text-white"
+            (click)="selectedTeamMember = member; addTeamMemberModal = true">
+            <small class="mx-auto">Edit</small>
+          </button>
+          </div>
+          <div>
+            <app-confirm (confirmation)="deleteMember(member.id!)" title="Delete"
+            [description]="'Are you sure you want to delete  ' + member.name">
+            <button pButton severity="danger" class="text-white w-100">
+              <small class="mx-auto">Delete</small>
+            </button>
+          </app-confirm>
+          </div>
+        </div>
+      </app-team-member-card>
+    </div>
     }
   </div>
 </div>
 
-<p-dialog
-  header="Add Team Member"
-  [(visible)]="addTeamMemberModal"
-  [modal]="true"
-  [responsive]="true"
-  [style]="{ width: '75vw', minWidth: '260px' }"
-  [maximizable]="true"
-  [baseZIndex]="9000"
->
-  <app-create-team-member [isManager]="false"
-  (createEvent)="addTeamMemberModal = false; getAllMembers()"
-  ></app-create-team-member>
+<p-dialog [header]="(selectedTeamMember?'Edit' : 'Add')+ ' Team Member'" [(visible)]="addTeamMemberModal" [modal]="true"
+  [responsive]="true" [style]="{ width: '75vw', minWidth: '260px' }" [maximizable]="true" [baseZIndex]="9000">
+  @if(addTeamMemberModal){
+  <app-team-member-actions [teamMember]="selectedTeamMember" [isManager]="false" (createEvent)="
+      addTeamMemberModal = false;
+      getAllMembers();
+      selectedTeamMember = undefined
+    "></app-team-member-actions>
+  }
 </p-dialog>

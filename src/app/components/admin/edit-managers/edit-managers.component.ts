@@ -4,8 +4,8 @@ import { TeamMember, TeamViewModel } from '../../../api/models';
 import { AboutQismaService } from '../../../api/services';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
-import { CreateTeamMemberComponent } from '../create-team-member/create-team-member.component';
 import { ConfirmComponent } from '../../shared/confirm/confirm.component';
+import { TeamMemberActionsComponent } from '../team-member-actions/team-member-actions.component';
 
 @Component({
   selector: 'app-edit-managers',
@@ -16,13 +16,14 @@ import { ConfirmComponent } from '../../shared/confirm/confirm.component';
     TeamMemberCardComponent,
     ButtonModule,
     DialogModule,
-    CreateTeamMemberComponent,
+    TeamMemberActionsComponent,
     ConfirmComponent
   ]
 })
 export class EditManagersComponent implements OnInit {
   managers?: TeamViewModel;
   addTeamMemberModal = false;
+  selectedTeamMember?:TeamMember;
   constructor(
     private _aboutService:AboutQismaService
   ) {}
