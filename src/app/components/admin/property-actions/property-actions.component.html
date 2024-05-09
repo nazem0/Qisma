@@ -340,7 +340,7 @@
 </div>
 
 <p-dialog header="Validation Errors" [(visible)]="errorsModal" [modal]="true" [responsive]="true" [style]="{width: '75vw', minWidth: '260px'}"
-[maximizable]="true" [baseZIndex]="9000">
+[maximizable]="true" [baseZIndex]="100">
 <div class="row row-cols-lg-2 g-3">
   @for (error of validationErros; track $index) {
     <span>{{error}}</span>

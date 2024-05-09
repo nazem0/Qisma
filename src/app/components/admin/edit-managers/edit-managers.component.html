@@ -42,7 +42,7 @@
 </div>
 
 <p-dialog [header]="(selectedTeamMember?'Edit' : 'Add')+ ' Team Member'" [(visible)]="addTeamMemberModal" [modal]="true"
-  [responsive]="true" [style]="{ width: '75vw', minWidth: '260px' }" [maximizable]="true" [baseZIndex]="9000">
+  [responsive]="true" [style]="{ width: '75vw', minWidth: '260px' }" [maximizable]="true" [baseZIndex]="100">
   @if(addTeamMemberModal){
   <app-team-member-actions [teamMember]="selectedTeamMember" [isManager]="true" (createEvent)="
       addTeamMemberModal = false;

@@ -29,7 +29,7 @@
           </div>
         </div>
         <p-dialog header="Preview Current Image" [(visible)]="imageModal" [modal]="true" [style]="{width: '75vw', minWidth: '260px'}"
-        [maximizable]="true" [baseZIndex]="9000">
+        [maximizable]="true" [baseZIndex]="100">
          <div class="d-flex justify-content-center">
           <img class="current-uploaded-image" [src]="helper.processFileUrl(about?.firstFrameImageUrl)" alt="First Frame Image">
          </div>

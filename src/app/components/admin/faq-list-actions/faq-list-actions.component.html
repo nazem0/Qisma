@@ -49,7 +49,7 @@
 </div>
 
 <p-dialog [header]="(selectedFaq?'Edit' : 'Create') + ' FAQ'" [(visible)]="showCreateFaq" [modal]="true"
-  [responsive]="true" [style]="{ width: '75vw', minWidth: '260px' }" [baseZIndex]="9000">
+  [responsive]="true" [style]="{ width: '75vw', minWidth: '260px' }" [baseZIndex]="100">
   @if(showCreateFaq){
   <app-faq-actions [faq]="selectedFaq" (createEvent)="this.showCreateFaq = false; getFaqList()"></app-faq-actions>
   }
