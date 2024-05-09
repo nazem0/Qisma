@@ -7,9 +7,9 @@ import { ConfirmComponent } from '../../shared/confirm/confirm.component';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Faq } from '../../../api/models';
 import { ButtonModule } from 'primeng/button';
-import { CreateFaqComponent } from '../../admin/create-faq/create-faq.component';
 import { DialogModule } from 'primeng/dialog';
 import { NgClass } from '@angular/common';
+import { FaqActionsComponent } from '../../admin/faq-actions/faq-actions.component';
 
 @Component({
   selector: 'app-faq',
@@ -21,7 +21,7 @@ import { NgClass } from '@angular/common';
     ConfirmComponent,
     ButtonModule,
     RouterModule,
-    CreateFaqComponent,
+    FaqActionsComponent,
     DialogModule,
     NgClass
   ],
@@ -29,6 +29,7 @@ import { NgClass } from '@angular/common';
 export class FaqComponent implements OnInit {
   faqList: Faq[] = [];
   @Input() slice = 0;
+  selectedFaq? : Faq;
   adminRole = Roles.Admin;
   isInAdminPanel = false;
   showCreateFaq = false;

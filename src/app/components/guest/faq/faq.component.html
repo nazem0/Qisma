@@ -1,13 +1,10 @@
-<header class="d-flex align-items-center my-3" [ngClass]="{'justify-content-between': isInAdminPanel, 'justify-content-center':!isInAdminPanel}">
+<header class="d-flex align-items-center my-3"
+  [ngClass]="{'justify-content-between': isInAdminPanel, 'justify-content-center':!isInAdminPanel}">
   <h3>FAQ</h3>
 
   @if (isInAdminPanel) {
   <div>
-    <button
-      pButton
-      (click)="this.showCreateFaq = true"
-      class="text-white p-button-raised"
-    >
+    <button pButton (click)="selectedFaq = undefined; this.showCreateFaq = true" class="text-white p-button-raised">
       <span><i class="pi pi-plus"></i> Create</span>
     </button>
   </div>
@@ -24,13 +21,21 @@
             {{ faq.question }}
           </span>
           @if (isInAdminPanel) {
-          <app-confirm
-            (confirmation)="deleteFaq(faq.id!)"
-            title="Delete"
-            [description]="'Are you sure you want to delete'"
-          >
-            <i class="pi pi-trash"></i>
-          </app-confirm>
+          <div class="row row-cols-2 g-2">
+            <div>
+              <button class="text-white" rounded="true" pButton severity="warning" (click)="selectedFaq = faq; showCreateFaq = true;">
+                <i class="pi pi-pencil"></i>
+              </button>
+            </div>
+            <div>
+              <app-confirm (confirmation)="deleteFaq(faq.id!)" title="Delete"
+                [description]="'Are you sure you want to delete'">
+                <button class="text-white" pButton severity="danger" rounded="true">
+                  <i class="pi pi-trash"></i>
+                </button>
+              </app-confirm>
+            </div>
+          </div>
           }
         </div>
       </ng-template>
@@ -43,16 +48,10 @@
 </div>
 
 @if( isInAdminPanel){
-<p-dialog
-  header="Create FAQ"
-  [(visible)]="showCreateFaq"
-  [modal]="true"
-  [responsive]="true"
-  [style]="{ width: '75vw', minWidth: '260px' }"
-  [baseZIndex]="9000"
->
-  <app-create-faq
-    (createEvent)="this.showCreateFaq = false; getFaqList()"
-  ></app-create-faq>
+<p-dialog [header]="(selectedFaq?'Edit' : 'Create') + ' FAQ'" [(visible)]="showCreateFaq" [modal]="true"
+  [responsive]="true" [style]="{ width: '75vw', minWidth: '260px' }" [baseZIndex]="9000">
+  @if(showCreateFaq){
+  <app-faq-actions [faq]="selectedFaq" (createEvent)="this.showCreateFaq = false; getFaqList()"></app-faq-actions>
+  }
 </p-dialog>
 }
