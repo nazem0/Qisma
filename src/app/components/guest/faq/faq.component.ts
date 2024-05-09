@@ -10,6 +10,8 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { NgClass } from '@angular/common';
 import { FaqActionsComponent } from '../../admin/faq-actions/faq-actions.component';
+import { OrderListModule } from 'primeng/orderlist';
+
 
 @Component({
   selector: 'app-faq',
@@ -23,7 +25,8 @@ import { FaqActionsComponent } from '../../admin/faq-actions/faq-actions.compone
     RouterModule,
     FaqActionsComponent,
     DialogModule,
-    NgClass
+    NgClass,
+    OrderListModule
   ],
 })
 export class FaqComponent implements OnInit {
@@ -61,5 +64,10 @@ export class FaqComponent implements OnInit {
     .subscribe({
       next: () => this.getFaqList(),
     });
+  }
+
+  onDrag(e:any){
+    console.log(e);
+    
   }
 }

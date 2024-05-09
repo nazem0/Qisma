@@ -74,11 +74,8 @@ export const adminRoutes: Routes = [
       {
         path: 'faq',
         loadComponent: () =>
-          import('../guest/faq/faq.component').then((c) => c.FaqComponent),
-        title: 'FAQ',
-        resolve: {
-          isAdmin: () => true,
-        },
+          import('./faq-list-actions/faq-list-actions.component').then((c) => c.FaqListActionsComponent),
+        title: 'FAQ List Actions',
       },
       {
         path: 'support',

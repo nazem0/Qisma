@@ -1,0 +1,63 @@
+<header class="d-flex align-items-center my-3 justify-content-between">
+  <h3 class="fw-bold">FAQ</h3>
+
+  <div>
+    <button pButton (click)="selectedFaq = undefined; this.showCreateFaq = true" class="text-white p-button-raised">
+      <span><i class="pi pi-plus"></i> Create</span>
+    </button>
+  </div>
+  
+</header>
+<div class="my-3 d-flex flex-column gap-2">
+
+  <p-orderList [value]="faqList" [dragdrop]="true" [controlsPosition]="'right'" (onReorder)="onDrag($event)">
+    <ng-template let-faq pTemplate="item">
+      <p-accordion>
+        <p-accordionTab tabStyleClass="shadow-sm rounded-2">
+          <ng-template pTemplate="header">
+            <div class="d-flex justify-content-between w-100 align-items-center">
+              <span class="fs-5">
+                {{ faq.question }}
+              </span>
+              @if (isInAdminPanel) {
+              <div class="row row-cols-2 g-2">
+                <div>
+                  <button class="text-white" rounded="true" pButton severity="warning" (click)="selectedFaq = faq; showCreateFaq = true;">
+                    <i class="pi pi-pencil"></i>
+                  </button>
+                </div>
+                <div>
+                  <app-confirm (confirmation)="deleteFaq(faq.id!)" title="Delete"
+                    [description]="'Are you sure you want to delete'">
+                    <button class="text-white" pButton severity="danger" rounded="true">
+                      <i class="pi pi-trash"></i>
+                    </button>
+                  </app-confirm>
+                </div>
+              </div>
+              }
+            </div>
+          </ng-template>
+          <span>
+            {{ faq.answer }}
+          </span>
+        </p-accordionTab>
+      </p-accordion>
+      
+    </ng-template>
+  </p-orderList>
+</div>
+
+<p-dialog [header]="(selectedFaq?'Edit' : 'Create') + ' FAQ'" [(visible)]="showCreateFaq" [modal]="true"
+  [responsive]="true" [style]="{ width: '75vw', minWidth: '260px' }" [baseZIndex]="9000">
+  @if(showCreateFaq){
+  <app-faq-actions [faq]="selectedFaq" (createEvent)="this.showCreateFaq = false; getFaqList()"></app-faq-actions>
+  }
+</p-dialog>
+
+<div>
+  <button pButton class="w-100 text-white" (click)="order()">
+    <span class="mx-auto">Order</span>
+  </button>
+</div>
+

@@ -283,3 +283,6 @@ table td {
 .p-accordion-content {
   background-color: var(--primary-400) !important;
 }
+.p-orderlist-controls {
+  display: none !important;
+}
