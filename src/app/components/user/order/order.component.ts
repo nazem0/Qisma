@@ -4,7 +4,6 @@ import { OrderService, PropertyService } from '../../../api/services';
 import { OrderingPageViewModel } from '../../../api/models';
 import { PaymentPlanComponent } from '../../shared/payment-plan/payment-plan.component';
 import { CurrencyPipe } from '@angular/common';
-import { MatDividerModule } from '@angular/material/divider';
 import { SliderModule } from 'primeng/slider';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -13,6 +12,7 @@ import { OrderPreviewComponent } from '../order-preview/order-preview.component'
 import { OrderConfirmationComponent } from '../order-confirmation/order-confirmation.component';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { DividerModule } from 'primeng/divider';
 
 
 @Component({
@@ -23,7 +23,6 @@ import { InputNumberModule } from 'primeng/inputnumber';
   imports: [
     PaymentPlanComponent,
     CurrencyPipe,
-    MatDividerModule,
     SliderModule,
     FormsModule,
     ButtonModule,
@@ -31,7 +30,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     OrderPreviewComponent,
     OrderConfirmationComponent,
     CheckboxModule,
-    InputNumberModule
+    InputNumberModule,
+    DividerModule
   ]
 })
 export class OrderComponent implements OnInit {

@@ -1,12 +1,11 @@
 import { AbstractControl, FormControl, FormGroup } from "@angular/forms";
-import { DialogHelper } from "./dialog.service";
 import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
 @Injectable({
     providedIn: 'root'
 })
 export class Helper {
-    constructor(private dialog: DialogHelper) { }
+    constructor() { }
     public static onFileUpload(file: File, formControl: FormControl | AbstractControl): void {
         formControl.setValue(file);
     }
@@ -40,9 +39,9 @@ export class Helper {
         return this.formControlIsTouched(form, formControlName) && form.get(formControlName)?.invalid
     }
 
-    public openImagePreview(image: string, external: boolean = false) {
-        this.dialog.open("Image Preview", [], external ? Helper.processFileUrl(image)! : image)
-    }
+    // public openImagePreview(image: string, external: boolean = false) {
+    //     this.dialog.open("Image Preview", [], external ? Helper.processFileUrl(image)! : image)
+    // }
 
     public static ascendingNumbersArray(param: ascendingNumbersArrayParams) {
         let array: number[] = new Array(param.n ?? 30)

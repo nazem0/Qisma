@@ -7,8 +7,6 @@ import { CardModule } from 'primeng/card';
 import { UserFullInformationViewModel } from '../../../api/models';
 import { DialogModule } from 'primeng/dialog';
 import { EditProfileInfoComponent } from './edit-profile-info/edit-profile-info.component';
-import { DialogHelper } from '../../../helpers/dialog.service';
-import { AboutQismaService } from '../../../api/services';
 import { SupportDialogComponent } from './support-dialog/support-dialog.component';
 
 @Component({
@@ -34,9 +32,6 @@ export class ProfileInfoComponent implements OnInit {
   showSupportDialog = false;
   constructor(
     private _userAccountService: UserAccountService,
-    private _dialog:DialogHelper,
-    private _aboutQismaService:AboutQismaService
-    // private
   ) {}
 
   ngOnInit() {

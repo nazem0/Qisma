@@ -59,7 +59,7 @@ body {
   background-color: var(--primary-50);
   overflow-x: hidden;
   scroll-behavior: smooth;
-  font-family: "Cairo", Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Cairo", "Helvetica Neue", sans-serif;
 }
 body p, body span, body h1, body h2, body h3, body h4, body h5, body h6, body label, body a, body small, body button {
   color: var(--primary-900);

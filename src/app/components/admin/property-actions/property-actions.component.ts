@@ -32,7 +32,6 @@ import { SliderModule } from 'primeng/slider';
 import { InputTextModule } from 'primeng/inputtext';
 import { EditorModule } from 'primeng/editor';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { DialogHelper } from '../../../helpers/dialog.service';
 import { DialogModule } from 'primeng/dialog';
 
 @Component({
@@ -102,7 +101,6 @@ export class PropertyActionsComponent implements OnInit {
     private propertyForAdminService: PropertyForAdminService,
     private customPropertyForAdminService: CustomPropertyForAdminService,
     private governorateAndCityService: GovernorateAndCityService,
-    private dialog: DialogHelper,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute
   ) { }

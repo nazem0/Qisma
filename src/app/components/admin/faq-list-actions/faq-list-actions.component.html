@@ -10,7 +10,7 @@
 </header>
 <div class="my-3 d-flex flex-column gap-2">
 
-  <p-orderList [value]="faqList" [dragdrop]="true" [controlsPosition]="'right'" (onReorder)="onDrag($event)">
+  <p-orderList [value]="faqList" [dragdrop]="true" (onReorder)="onDrag($event)">
     <ng-template let-faq pTemplate="item">
       <p-accordion>
         <p-accordionTab tabStyleClass="shadow-sm rounded-2">

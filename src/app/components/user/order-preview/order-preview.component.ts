@@ -2,10 +2,9 @@ import { PropertyService } from './../../../api/services/property.service';
 import { Component, OnInit, Input, input } from '@angular/core';
 import { OrderPreviewPageViewModel } from '../../../api/models';
 import { CurrencyPipe } from '@angular/common';
-import { MatDividerModule } from '@angular/material/divider';
+
 import { ButtonModule } from 'primeng/button';
-import { CheckboxModule } from 'primeng/checkbox';
-import { FormsModule } from '@angular/forms';
+import { DividerModule } from 'primeng/divider';
 
 
 @Component({
@@ -15,8 +14,8 @@ import { FormsModule } from '@angular/forms';
   standalone:true,
   imports:[
     CurrencyPipe,
-    MatDividerModule,
     ButtonModule,
+    DividerModule
   ]
 })
 export class OrderPreviewComponent implements OnInit {

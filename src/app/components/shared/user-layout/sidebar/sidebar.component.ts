@@ -3,12 +3,11 @@ import { Component, EventEmitter, Input, Output, ViewEncapsulation, output } fro
 import {  Router, RouterModule } from '@angular/router';
 import { AsyncPipe, NgClass, NgIf } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
-import { MatDividerModule } from '@angular/material/divider';
 import { TooltipModule } from 'primeng/tooltip';
 import { AuthHelper } from '../../../../helpers/auth-helper';
 import { Helper } from '../../../../helpers/helper';
 import { Roles } from '../../../../enums/roles.enum';
-import { Title } from 'chart.js';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-sidebar',
@@ -21,9 +20,9 @@ import { Title } from 'chart.js';
     AccordionModule,
     AsyncPipe,
     ButtonModule,
-    MatDividerModule,
     TooltipModule,
-    NgClass
+    NgClass,
+    DividerModule
   ]
 })
 export class SidebarComponent {

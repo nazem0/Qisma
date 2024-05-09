@@ -3,16 +3,16 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Blog } from '../../../api/models';
 import { Helper } from '../../../helpers/helper';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { MatDividerModule } from '@angular/material/divider';
 import { ConfirmComponent } from '../../shared/confirm/confirm.component';
 import { ButtonModule } from 'primeng/button';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-blog-details',
   templateUrl: './blog-details.component.html',
   styleUrls: ['./blog-details.component.css'],
   standalone: true,
-  imports:[MatDividerModule, RouterModule, ConfirmComponent, ButtonModule]
+  imports:[DividerModule, RouterModule, ConfirmComponent, ButtonModule]
 })
 export class BlogDetailsComponent implements OnInit {
   blog?: Blog;

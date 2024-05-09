@@ -10,13 +10,13 @@ import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
 import { GalleriaModule } from 'primeng/galleria';
 import { TabViewModule } from 'primeng/tabview';
-import { MatDividerModule } from '@angular/material/divider';
 import { SliderModule } from 'primeng/slider';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule } from 'primeng/tooltip';
 import { AuthHelper } from '../../../helpers/auth-helper';
 import { ConfirmComponent } from '../../shared/confirm/confirm.component';
 import { PaymentPlanComponent } from '../../shared/payment-plan/payment-plan.component';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-property-details',
@@ -29,14 +29,13 @@ import { PaymentPlanComponent } from '../../shared/payment-plan/payment-plan.com
     ButtonModule,
     RouterModule,
     TabViewModule,
-    MatDividerModule,
     SliderModule,
     FormsModule,
     ChartModule,
     TooltipModule,
     ConfirmComponent,
     PaymentPlanComponent,
-
+    DividerModule
   ],
   providers: [CurrencyPipe],
   encapsulation: ViewEncapsulation.None

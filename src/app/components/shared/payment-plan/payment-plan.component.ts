@@ -1,7 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDividerModule } from '@angular/material/divider';
 import { PropertyPaymentPlan } from '../../../models/property-payment-plan';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-payment-plan',
@@ -9,8 +9,8 @@ import { PropertyPaymentPlan } from '../../../models/property-payment-plan';
   styleUrls: ['./payment-plan.component.css'],
   standalone:true,
   imports:[
-    MatDividerModule,
-    CurrencyPipe
+    CurrencyPipe,
+    DividerModule
   ]
 })
 export class PaymentPlanComponent implements OnInit {
