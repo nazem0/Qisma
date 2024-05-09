@@ -19,7 +19,7 @@
               <span class="fs-5">
                 {{ faq.question }}
               </span>
-              @if (isInAdminPanel) {
+              
               <div class="row row-cols-2 g-2">
                 <div>
                   <button class="text-white" rounded="true" pButton severity="warning" (click)="selectedFaq = faq; showCreateFaq = true;">
@@ -35,7 +35,7 @@
                   </app-confirm>
                 </div>
               </div>
-              }
+              
             </div>
           </ng-template>
           <span>
