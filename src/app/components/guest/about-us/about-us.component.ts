@@ -3,6 +3,7 @@ import { AboutQismaService } from '../../../api/services';
 import { AboutUsViewModel, TeamMember, TeamViewModel } from '../../../api/models';
 import { TeamMemberCardComponent } from '../../shared/team-member-card/team-member-card.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { Helper } from '../../../helpers/helper';
 
 @Component({
   selector: 'app-about-us',
@@ -15,6 +16,7 @@ export class AboutUsComponent implements OnInit {
   aboutUs?: AboutUsViewModel;
   managers?: TeamViewModel;
   team?:TeamViewModel;
+  helper = Helper;
   constructor(private _aboutService: AboutQismaService) {}
 
   ngOnInit() {

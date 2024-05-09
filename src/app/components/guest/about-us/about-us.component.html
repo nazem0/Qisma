@@ -1,17 +1,52 @@
-<h1>
-  {{ aboutUs?.firstFrame }}
-</h1>
+@if(aboutUs){
+    <section class="my-3">
+      <div class="row align-items-center g-2">
+        <h1 class="col-md-8 fw-bold">
+          {{ aboutUs.firstFrame }}
+        </h1>
+        <div class="col-md-4 d-flex justify-content-center">
+          <img class="first-frame-image" [src]="helper.processFileUrl(aboutUs.firstFrameImageUrl)" [alt]="aboutUs.firstFrame">
+        </div>
+      </div>
+    </section>
+    <section class="my-3 bg-primary bg-opacity-25 rounded-3 p-3 shadow-sm">
+      <h2 class="text-center fw-bold">
+        {{ aboutUs.secondFrameTitle }}
+      </h2>
+      <p class="text-justified" [innerHTML]="aboutUs.secondFrameDescription"></p>
+    </section>
+    <section class="my-3 bg-primary bg-opacity-10 rounded-3 p-3 shadow-sm">
+      <h2 class="text-center fw-bold">
+        {{ aboutUs.thirdFrameTitle }}
+      </h2>
+      <div class="row row-cols-4">
+        <div>
+          <h3>{{aboutUs.firstSectionTitle}}</h3>
+          <div [innerHTML]="aboutUs.firstSectionDescription"></div>
+        </div>
+        <div>
+          <h3>{{aboutUs.secondSectionTitle}}</h3>
+          <div [innerHTML]="aboutUs.secondSectionDescription"></div>
+        </div>
+        <div>
+          <h3>{{aboutUs.thirdSectionTitle}}</h3>
+          <div [innerHTML]="aboutUs.thirdSectionDescription"></div>
+        </div>
+        <div>
+          <h3>{{aboutUs.fourthSectionTitle}}</h3>
+          <div [innerHTML]="aboutUs.fourthSectionDescription"></div>
+        </div>
+      </div>
+    </section>
 
-<div>
-  <h2>
-    {{ aboutUs?.secondFrameTitle }}
-  </h2>
-  <p class="text-justified" [innerHTML]="aboutUs?.secondFrameDescription"></p>
-</div>
+    <div class="my-5">
+      <mat-divider></mat-divider>
+    </div>
+}
 
 @if(managers?.teamMembers?.length){
   <div class="text-center">
-    <h3>Founding Team</h3>
+    <h2 class="fw-bold">Founding Team</h2>
     <p>{{managers?.title}}</p>
     <div class="row row-cols-lg-3 row-cols-sm-2 justify-content-center g-5">
       @for (manager of managers?.teamMembers; track $index) {
@@ -29,7 +64,7 @@
 @if(team?.teamMembers?.length){
 
   <div class="text-center">
-    <h3>Board Of Directors & Advisors</h3>
+    <h2 class="fw-bold">Board Of Directors & Advisors</h2>
     <p>{{team?.title}}</p>
 
     <div class="row row-cols-lg-3 row-cols-sm-2 justify-content-center g-5">

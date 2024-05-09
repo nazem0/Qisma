@@ -3,57 +3,197 @@
 </header>
 @if(form){
 <form class="d-flex flex-column gap-3" [formGroup]="form" (ngSubmit)="sumbit()">
-  <div>
-    <label for="first-frame" class="fs-6">First Frame</label>
-    <textarea
-      type="text"
-      formControlName="firstFrame"
-      pInputTextarea
-      placeholder="First Frame"
-      class="w-100"
-      id="first-frame"
-    ></textarea>
+  <div class="text-center">
+    <span>Main Frames</span>
   </div>
+  <!-- First Frame -->
 
-  <div>
-    <label for="second-frame-title" class="fs-6">Second Frame Title</label>
-    <textarea
-      type="text"
-      formControlName="secondFrameTitle"
-      pInputTextarea
-      placeholder="Second Frame Title"
-      class="w-100"
-      id="second-frame-title"
-    ></textarea>
+  <section>
+    <div>
+      <label for="first-frame" class="fs-6">First Frame</label>
+      <textarea type="text" formControlName="firstFrame" pInputTextarea placeholder="First Frame" class="w-100"
+        id="first-frame"></textarea>
+    </div>
 
-  </div>
-  <div>
-    <label for="second-frame-description" class="fs-6">Second Frame Description</label>
-    <p-editor
-      formControlName="secondFrameDescription"
-      [style]="{ height: '320px' }"
-      placeholder="Second Section"
-      id="second-frame-description"
-    >
-      <ng-template pTemplate="header">
-        <span class="ql-formats">
-          <button type="button" class="ql-bold" aria-label="Bold"></button>
-          <button type="button" class="ql-italic" aria-label="Italic"></button>
-          <button
-            type="button"
-            class="ql-underline"
-            aria-label="Underline"
-          ></button>
-          <button type="button" class="ql-link" aria-label="Link"></button>
-          <button
-            type="button"
-            class="ql-blockquote"
-            aria-label="Block Quote"
-          ></button>
-        </span>
-      </ng-template>
-    </p-editor>
-  </div>
+    <div class="row g-2">
+      <div class="col">
+        <label for="first-frame-image" pButton class="w-100 text-white">
+          <span class="mx-auto">First Frame Image</span>
+        </label>
+        <input hidden type="file" id="first-frame-image" (change)="setImage($event)">
+      </div>
+      <!-- @if(about?.firstFrameImageUrl){
+        <div class="col">
+          <div pButton class="text-white w-100" (click)="imageModal = true">
+            <span class="mx-auto">Current Uploaded Image</span>
+          </div>
+        </div>
+        <p-dialog header="Preview Current Image" [(visible)]="imageModal" [modal]="true" [style]="{width: '75vw', minWidth: '260px'}"
+        [maximizable]="true" [baseZIndex]="9000">
+         <div class="d-flex justify-content-center">
+          <img class="current-uploaded-image" [src]="helper.processFileUrl(about?.firstFrameImageUrl)" alt="First Frame Image">
+         </div>
+        </p-dialog>
+      } -->
+    </div>
+  </section>
+
+  <!-- Second Frame -->
+
+  <section>
+    <div>
+      <label for="second-frame-title" class="fs-6">Second Frame Title</label>
+      <textarea type="text" formControlName="secondFrameTitle" pInputTextarea placeholder="Second Frame Title"
+        class="w-100" id="second-frame-title"></textarea>
+
+    </div>
+    <div>
+      <label for="second-frame-description" class="fs-6">Second Frame Description</label>
+      <p-editor formControlName="secondFrameDescription" [style]="{ height: '320px' }"
+        placeholder="Second Frame Description" id="second-frame-description">
+        <ng-template pTemplate="header">
+          <span class="ql-formats">
+            <button type="button" class="ql-bold" aria-label="Bold"></button>
+            <button type="button" class="ql-italic" aria-label="Italic"></button>
+            <button type="button" class="ql-underline" aria-label="Underline"></button>
+            <button type="button" class="ql-link" aria-label="Link"></button>
+            <button type="button" class="ql-blockquote" aria-label="Block Quote"></button>
+          </span>
+        </ng-template>
+      </p-editor>
+    </div>
+  </section>
+  <!-- Third Frame -->
+
+  <section>
+    <div>
+      <label for="third-frame-title" class="fs-6">Third Frame Title</label>
+      <textarea type="text" formControlName="thirdFrameTitle" pInputTextarea placeholder="Third Frame Title"
+        class="w-100" id="third-frame-title"></textarea>
+
+    </div>
+    <div class="text-center mt-2">
+      <span>Third Frame Sections</span>
+    </div>
+
+    <!-- First Section -->
+
+    <div>
+
+      <div>
+        <label for="first-section-title" class="fs-6">First Section Title</label>
+        <textarea type="text" formControlName="firstSectionTitle" pInputTextarea placeholder="First Section Title"
+          class="w-100" id="first-section-title"></textarea>
+
+      </div>
+
+      <div>
+        <label for="first-section-description" class="fs-6">First Section Description</label>
+        <p-editor formControlName="firstSectionDescription" [style]="{ height: '320px' }"
+          placeholder="First Section Description" id="first-section-description">
+          <ng-template pTemplate="header">
+            <span class="ql-formats">
+              <button type="button" class="ql-bold" aria-label="Bold"></button>
+              <button type="button" class="ql-italic" aria-label="Italic"></button>
+              <button type="button" class="ql-underline" aria-label="Underline"></button>
+              <button type="button" class="ql-link" aria-label="Link"></button>
+              <button type="button" class="ql-blockquote" aria-label="Block Quote"></button>
+            </span>
+          </ng-template>
+        </p-editor>
+      </div>
+
+    </div>
+
+    <!-- Second Section -->
+
+    <div>
+
+      <div>
+        <label for="second-section-title" class="fs-6">Second Section Title</label>
+        <textarea type="text" formControlName="secondSectionTitle" pInputTextarea placeholder="Second Section Title"
+          class="w-100" id="second-section-title"></textarea>
+
+      </div>
+
+      <div>
+        <label for="second-section-description" class="fs-6">Second Section Description</label>
+        <p-editor formControlName="secondSectionDescription" [style]="{ height: '320px' }"
+          placeholder="Second Section Description" id="second-section-description">
+          <ng-template pTemplate="header">
+            <span class="ql-formats">
+              <button type="button" class="ql-bold" aria-label="Bold"></button>
+              <button type="button" class="ql-italic" aria-label="Italic"></button>
+              <button type="button" class="ql-underline" aria-label="Underline"></button>
+              <button type="button" class="ql-link" aria-label="Link"></button>
+              <button type="button" class="ql-blockquote" aria-label="Block Quote"></button>
+            </span>
+          </ng-template>
+        </p-editor>
+      </div>
+
+    </div>
+
+    <!-- Third Section -->
+
+    <div>
+
+      <div>
+        <label for="third-section-title" class="fs-6">Third Section Title</label>
+        <textarea type="text" formControlName="thirdSectionTitle" pInputTextarea placeholder="Third Section Title"
+          class="w-100" id="third-section-title"></textarea>
+
+      </div>
+
+      <div>
+        <label for="third-section-description" class="fs-6">Third Section Description</label>
+        <p-editor formControlName="thirdSectionDescription" [style]="{ height: '320px' }"
+          placeholder="Third Section Description" id="third-section-description">
+          <ng-template pTemplate="header">
+            <span class="ql-formats">
+              <button type="button" class="ql-bold" aria-label="Bold"></button>
+              <button type="button" class="ql-italic" aria-label="Italic"></button>
+              <button type="button" class="ql-underline" aria-label="Underline"></button>
+              <button type="button" class="ql-link" aria-label="Link"></button>
+              <button type="button" class="ql-blockquote" aria-label="Block Quote"></button>
+            </span>
+          </ng-template>
+        </p-editor>
+      </div>
+
+    </div>
+
+
+    <!-- Fourth Section -->
+
+    <div>
+
+      <div>
+        <label for="fourth-section-title" class="fs-6">Fourth Section Title</label>
+        <textarea type="text" formControlName="fourthSectionTitle" pInputTextarea placeholder="Fourth Section Title"
+          class="w-100" id="fourth-section-title"></textarea>
+
+      </div>
+
+      <div>
+        <label for="fourth-section-description" class="fs-6">Fourth Section Description</label>
+        <p-editor formControlName="fourthSectionDescription" [style]="{ height: '320px' }"
+          placeholder="Fourth Section Description" id="fourth-section-description">
+          <ng-template pTemplate="header">
+            <span class="ql-formats">
+              <button type="button" class="ql-bold" aria-label="Bold"></button>
+              <button type="button" class="ql-italic" aria-label="Italic"></button>
+              <button type="button" class="ql-underline" aria-label="Underline"></button>
+              <button type="button" class="ql-link" aria-label="Link"></button>
+              <button type="button" class="ql-blockquote" aria-label="Block Quote"></button>
+            </span>
+          </ng-template>
+        </p-editor>
+      </div>
+
+    </div>
+
+  </section>
   <div>
     <button class="w-100 text-white" pButton [raised]="true">
       <span class="mx-auto">Sumbit</span>

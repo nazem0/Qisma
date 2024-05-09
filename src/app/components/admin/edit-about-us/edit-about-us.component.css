@@ -1,0 +1,4 @@
+.current-uploaded-image{
+    max-height: 75vh;
+    object-fit: contain;
+}

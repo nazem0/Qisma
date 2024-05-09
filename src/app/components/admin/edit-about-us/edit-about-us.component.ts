@@ -13,6 +13,8 @@ import { AboutUsViewModel } from '../../../api/models';
 import { ButtonModule } from 'primeng/button';
 import { EditorModule } from 'primeng/editor';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { Helper } from '../../../helpers/helper';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-edit-about-us',
@@ -25,12 +27,15 @@ import { FloatLabelModule } from 'primeng/floatlabel';
     InputTextareaModule,
     ButtonModule,
     EditorModule,
-    FloatLabelModule
+    FloatLabelModule,
+    DialogModule
   ],
 })
 export class EditAboutUsComponent implements OnInit {
   form?: FormGroup;
+  helper = Helper;
   about?:AboutUsViewModel;
+  imageModal = false;
   constructor(
     private _fb: FormBuilder,
     private _aboutService:AboutQismaService
@@ -43,11 +48,19 @@ export class EditAboutUsComponent implements OnInit {
 
   initForm() {
     this.form = this._fb.group({
-      firstFrame: new FormControl<string>(this.about?.firstFrame!, [Validators.required]),
-      secondFrameTitle: new FormControl<string>(this.about?.secondFrameTitle!, [Validators.required]),
-      secondFrameDescription: new FormControl<string>(this.about?.secondFrameDescription!, [
-        Validators.required,
-      ]),
+      firstFrame: new FormControl<string>(this.about?.firstFrame!),
+      firstFrameImage: new FormControl<File|null>(null),
+      secondFrameTitle: new FormControl<string>(this.about?.secondFrameTitle!),
+      secondFrameDescription: new FormControl<string>(this.about?.secondFrameDescription!),
+      thirdFrameTitle: new FormControl<string>(this.about?.thirdFrameTitle!),
+      firstSectionTitle: new FormControl<string>(this.about?.firstSectionTitle!),
+      firstSectionDescription: new FormControl<string>(this.about?.firstSectionDescription!),
+      secondSectionTitle: new FormControl<string>(this.about?.secondSectionTitle!),
+      secondSectionDescription: new FormControl<string>(this.about?.secondSectionDescription!),
+      thirdSectionTitle: new FormControl<string>(this.about?.thirdSectionTitle!),
+      thirdSectionDescription: new FormControl<string>(this.about?.thirdSectionDescription!),
+      fourthSectionTitle: new FormControl<string>(this.about?.fourthSectionTitle!),
+      fourthSectionDescription: new FormControl<string>(this.about?.fourthSectionDescription!),
     });
   }
 
@@ -69,6 +82,15 @@ export class EditAboutUsComponent implements OnInit {
     }
     this._aboutService
     .apiDashboardAboutQismaUpdateAboutUsPut$Json({body:this.form?.value})
-    .subscribe()
+    .subscribe({
+      next:()=>this.initData()
+    })
+  }
+
+  setImage(event:Event){
+    let file = (event.target as HTMLInputElement).files?.item(0)
+    let control = this.form?.get('firstFrameImage');
+    control?.setValue(file);
+    this.form?.get('firstFrameImage')?.markAsDirty();
   }
 }
