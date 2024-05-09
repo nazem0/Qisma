@@ -370,10 +370,11 @@
             {{ property.annualRentalYield | percent }}
           </span>
         </div>
-
-        <button pButton class="w-100" (click)="buy(property.propertyId!)">
-          <span class="mx-auto text-white">Buy</span>
-        </button>
+@if (!authHelper.hasRole(adminRole)) {
+  <button pButton class="w-100" (click)="buy(property.propertyId!)">
+    <span class="mx-auto text-white">Buy</span>
+  </button>
+}
       </div>
     </div>
   </div>

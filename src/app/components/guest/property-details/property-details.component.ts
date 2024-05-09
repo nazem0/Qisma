@@ -1,3 +1,4 @@
+import { Roles } from './../../../enums/roles.enum';
 import { BusinessHelper } from '../../../helpers/business-helper';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Helper } from '../../../helpers/helper';
@@ -45,6 +46,7 @@ export class PropertyDetailsComponent implements OnInit {
   helper = Helper;
   businessHelperStatic = BusinessHelper;
   isInAdminPanel = false;
+  adminRole = Roles.Admin
   @ViewChild("chartElement") chartElement!: UIChart;
   propertyId?: string;
   chart: {
