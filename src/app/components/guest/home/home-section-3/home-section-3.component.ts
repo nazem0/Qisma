@@ -11,24 +11,24 @@ export class HomeSection3Component {
  constructor(){
   this.contentSections=[
     {
-      title:"Skip the down payment",
-      description:"Acquire fractional ownership of rental properties.",
-      img:"/assets/page-resources/skip-downpayment.webp"
+      title:"Breaking Down Barriers",
+      description:"Share-based ownership. Lower down-payments. Affordable installments.",
+      img:"/assets/page-resources/home-section-3-icons/breaking-down-barriers.png"
     },
     {
-      title:"Earn rent today, appreciation tomorrow",
-      description:"Get daily rent payouts (not monthly or quarterly) and collect property appreciation when you cash out.",
-      img:"/assets/page-resources/get-rent.webp"
+      title:"High Liquidity",
+      description:"Seamless trading of shares on our platform. Easy to buy & sell.",
+      img:"/assets/page-resources/home-section-3-icons/high-liquidity.svg"
     },
     {
-      title:"Own multiple properties without the landlord headaches",
-      description:"Diversify your portfolio without multiplying your workload. Vote on key property decisions, and professional property managers handle the rest.",
-      img:"/assets/page-resources/multiple.webp"
+      title:"Passive Income",
+      description:"Hassle free property management. Improve your asset performance.",
+      img:"/assets/page-resources/home-section-3-icons/passive-income.png"
     },
     {
-      title:"Keep full control of your investments",
-      description:"Forget expensive brokers and lock-in periods. Easily reinvest your rental income for the long term, or list your holdings for sale whenever you like.",
-      img:"/assets/page-resources/full-control.webp"
+      title:"Diversified Portfolio",
+      description:"Spread investment among different assets.",
+      img:"/assets/page-resources/home-section-3-icons/diversified-portfolio.svg"
     },
   ]
  }
