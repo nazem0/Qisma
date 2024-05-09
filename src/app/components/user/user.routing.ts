@@ -16,7 +16,6 @@ export const userRoutes: Routes = [
         title: 'Place Order',
       },
     ],
-    canActivate: [UserGuard],
   },
   {
     path: 'profile',
