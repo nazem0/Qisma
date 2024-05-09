@@ -1,41 +1,28 @@
-import {
-  CanActivate,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  CanActivateChild,
-  Router,
-} from '@angular/router';
-import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { inject } from '@angular/core';
+import { Router, type CanActivateFn } from '@angular/router';
 import { AuthHelper } from '../helpers/auth-helper';
+import { Roles } from '../enums/roles.enum';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { IndexableObject } from 'ng-zorro-antd/core/types';
-@Injectable()
-export class UserAuthGuard implements CanActivate, CanActivateChild {
-  constructor(
-    private router: Router,
-    private _authHelper: AuthHelper,
-    private _snackbar: MatSnackBar) { }
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean {
-    console.log(route, state);
+export const UserGuard: CanActivateFn = (route, state) => {
+  
+  let _authHelper = inject(AuthHelper);
+  let _snackbar = inject(MatSnackBar);
+  let _router = inject(Router)
 
-    if (this._authHelper.getAuth()) {
-      return true;
-    } else {
-      this._snackbar.open("You are not allowed to view this page, please login first.", 'ok', { duration: 10000 })
-      this.router.navigate(['/login'])
-      return false;
-    }
+  if (_authHelper.hasRole(Roles.Customer)) {
+    return true;
   }
 
-  canActivateChild(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> | Promise<boolean> | boolean {
-    return this.canActivate(route, state);
+  else if (_authHelper.isLoggedIn) {
+    _snackbar.open("You are unauthorized to view this page.", 'ok', { duration: 10000 })
+    _router.navigate(['/home'])
+    return false;
   }
-}
+  
+  else {
+    _snackbar.open("You are not allowed to view this page, please login first.", 'ok', { duration: 10000 })
+    _router.navigate(['/login'])
+    return false;
+  }
+};

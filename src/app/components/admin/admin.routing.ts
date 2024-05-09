@@ -1,15 +1,10 @@
-import { BlogActionsComponent } from './blog-actions/blog-actions.component';
-import { Routes, mapToResolve } from '@angular/router';
-import { AdminAuthGuard } from '../../guards/admin.guard';
-import { PropertyDetailsComponent } from '../guest/property-details/property-details.component';
-import { UserLayoutComponent } from '../shared/user-layout/user-layout.component';
-import { EditImagesComponent } from './edit-images/edit-images.component';
-import { PropertyActionsComponent } from './property-actions/property-actions.component';
+import { Routes } from '@angular/router';
+import { AdminGuard } from '../../guards/admin.guard';
 
 export const adminRoutes: Routes = [
   {
     path: 'admin',
-    component: UserLayoutComponent,
+    loadComponent: () => import('../shared/user-layout/user-layout.component').then(c => c.UserLayoutComponent),
     children: [
       { path: '', redirectTo: 'marketplace', pathMatch: 'full' },
       {
@@ -136,9 +131,9 @@ export const adminRoutes: Routes = [
           },
           {
             path: 'actions',
-            children:[
+            children: [
               {
-                path:'',
+                path: '',
 
                 loadComponent: () =>
                   import('./blog-actions/blog-actions.component').then(
@@ -147,7 +142,7 @@ export const adminRoutes: Routes = [
                 title: 'Create Blog',
               },
               {
-                path:':id',
+                path: ':id',
 
                 loadComponent: () =>
                   import('./blog-actions/blog-actions.component').then(
@@ -160,6 +155,6 @@ export const adminRoutes: Routes = [
         ],
       },
     ],
-    canActivate: [AdminAuthGuard],
+    canActivate: [AdminGuard],
   },
 ];
