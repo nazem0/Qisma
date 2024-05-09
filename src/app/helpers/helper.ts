@@ -11,27 +11,20 @@ export class Helper {
         formControl.setValue(file);
     }
 
-    public static processFileUrl(fileUrl?: string | null, isFacility=false) {
+    public static processFileUrl(fileUrl?: string | null, isFacility = false) {
         return fileUrl ? `${isFacility ? environment.Facilities : environment.staticFiles}/${fileUrl}` : "";
     }
 
-    public static processOrderPdfFileUrl(fileUrl:string){
+    public static processOrderPdfFileUrl(fileUrl: string) {
         return `${environment.OrdersPdf}/${fileUrl}`
     }
 
     public static readonly passwordRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
 
 
-    public static generateGuid(): string {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            const r = (Math.random() * 16) | 0;
-            const v = c === 'x' ? r : (r & 0x3) | 0x8;
-            return v.toString(16);
-        });
+    public static generateAvatar(name: string, bgColor: string | null = null, color: string | null = null) {
+        return `https://ui-avatars.com/api/?name=${name}&background=${bgColor ?? '0a6855'}&color=${color ?? 'fff'}`
     }
-    public static generateAvatar(name:string, bgColor:string|null=null, color:string|null=null){
-        return `https://ui-avatars.com/api/?name=${name}&background=${bgColor??'0a6855'}&color=${color??'fff'}`
-      }
 
     public static getDateByYears(years: number): Date {
         let currentDate = new Date()
@@ -47,22 +40,10 @@ export class Helper {
         return this.formControlIsTouched(form, formControlName) && form.get(formControlName)?.invalid
     }
 
-    public static checkAge(birthDate: Date) {
-        let currentDate = new Date();
-        const diffInMilliseconds = currentDate.getTime() - birthDate.getTime();
-        const ageDate = new Date(diffInMilliseconds);
-        return Math.abs(ageDate.getUTCFullYear() - 1970) >= 16;
-    }
-
     public openImagePreview(image: string, external: boolean = false) {
         this.dialog.open("Image Preview", [], external ? Helper.processFileUrl(image) : image)
     }
 
-    public static handleChange(event: Event) {
-        const target = event.target as HTMLInputElement;
-        const value = target.value;
-        return value;
-    }
     public static ascendingNumbersArray(param: ascendingNumbersArrayParams) {
         let array: number[] = new Array(param.n ?? 30)
         for (let i = 0; i < (param.n ?? 30); i++) {
@@ -80,7 +61,18 @@ export class Helper {
     }
 
     public static getBackgroundImage(imageUrl: string) {
-      return `url('${Helper.processFileUrl(imageUrl)}')`;
+        return `url('${Helper.processFileUrl(imageUrl)}')`;
+    }
+
+    public static returnCorrectedExternalUrl(url: string) {
+        let httpProtocol = "http://";
+        let httpsProtocol = "https://";
+        if (url.startsWith(httpProtocol) || url.startsWith(httpsProtocol)) {
+            return url;
+        }
+        else{
+            return '//' + url
+        }
     }
 }
 

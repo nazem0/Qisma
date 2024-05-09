@@ -16,17 +16,23 @@
     <h2>{{ blog?.title }}</h2>
     @if(blog?.link){
 
-    <a class="d-none d-lg-block" [href]="blog?.link" target="_blank">Click here for more information</a>
+    <a class="d-none d-lg-block" [href]="helper.returnCorrectedExternalUrl(blog?.link!)" target="_blank">Click here for more information</a>
     }
   </div>
   <div class="mb-3 d-flex justify-content-center">
-    <a [href]="blog?.link" target="_blank"><img class="blog-image" [src]="helper.processFileUrl(blog?.imageUrl!)"
-        [alt]="blog?.title" /></a>
+    @if (blog?.link) {
+    <a [href]="helper.returnCorrectedExternalUrl(blog?.link!)" target="_blank">
+      <img class="blog-image" [src]="helper.processFileUrl(blog?.imageUrl!)" [alt]="blog?.title" />
+    </a>
+    }
+    @else {
+    <img class="blog-image" [src]="helper.processFileUrl(blog?.imageUrl!)" [alt]="blog?.title" />
 
+    }
   </div>
   @if(blog?.link){
 
-  <a class="d-block d-lg-none text-center" [href]="blog?.link" target="_blank">Click here for more information</a>
+  <a class="d-block d-lg-none text-center" [href]="helper.returnCorrectedExternalUrl(blog?.link!)" target="_blank">Click here for more information</a>
   }
 </div>
 

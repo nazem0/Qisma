@@ -3,12 +3,14 @@ import { Observable, catchError, tap, throwError } from "rxjs";
 import { Injectable } from "@angular/core";
 import { AuthHelper } from "../helpers/auth-helper";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class Http implements HttpInterceptor {
     constructor(
         private _snackbar: MatSnackBar,
         private _authHelper: AuthHelper,
+        private _router:Router
     ) { }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         req = req.clone({
@@ -31,6 +33,7 @@ export class Http implements HttpInterceptor {
                 if (error.status === 401) {
                     this._snackbar.open("Unauthorized", 'ok', { duration: 5000 })
                     this._authHelper.logout();
+                    this._router.navigate(['/login'])
                 } else if (error.error != null) {
                     {
                         this._snackbar.open(error.error.message, 'ok', { duration: 5000})
