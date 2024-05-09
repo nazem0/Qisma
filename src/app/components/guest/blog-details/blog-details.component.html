@@ -1,43 +1,58 @@
-<div class="d-flex justify-content-between">
+<div class="d-flex justify-content-between my-3">
   <a [routerLink]="['../../']" routerLinkActive="router-link-active">
     <span><i class="pi pi-arrow-circle-left"></i> All Blogs</span>
   </a>
-  @if(isInAdminPanel){
-  <app-confirm (confirmation)="deleteBlog(blog?.id!)" title="Delete"
-    [description]="'Are you sure you want to delete  ' + blog?.title">
-    <button pButton severity="danger" class="text-white w-100">
-      <small class="mx-auto">Delete Blog</small>
-    </button>
-  </app-confirm>
+  @if(blog && isInAdminPanel){
+  <div class="row row-cols-2">
+    <div>
+      <button class="text-white w-100" pButton severity="warning" [routerLink]="['../../actions/'+blog.id]">
+        <i class="mx-auto pi pi-pencil"></i>
+      </button>
+    </div>
+    <div>
+      <app-confirm (confirmation)="deleteBlog(blog.id!)" title="Delete"
+        [description]="'Are you sure you want to delete  ' + blog.title">
+        <button pButton severity="danger" class="text-white w-100">
+          <i class="mx-auto pi pi-trash"></i>
+        </button>
+      </app-confirm>
+    </div>
+  </div>
   }
 </div>
+@if(blog){
 <div class="row row-cols-lg-2 align-items-center">
   <div class="text-center">
-    <h2>{{ blog?.title }}</h2>
-    @if(blog?.link){
+    <h2>{{ blog.title }}</h2>
+    @if(blog.link){
 
-    <a class="d-none d-lg-block" [href]="helper.returnCorrectedExternalUrl(blog?.link!)" target="_blank">Click here for more information</a>
+    <a class="d-none d-lg-block" [href]="helper.returnCorrectedExternalUrl(blog.link!)" target="_blank">Click here for
+      more information</a>
     }
   </div>
   <div class="mb-3 d-flex justify-content-center">
-    @if (blog?.link) {
-    <a [href]="helper.returnCorrectedExternalUrl(blog?.link!)" target="_blank">
-      <img class="blog-image" [src]="helper.processFileUrl(blog?.imageUrl!)" [alt]="blog?.title" />
+    @if (blog.link) {
+    <a [href]="helper.returnCorrectedExternalUrl(blog.link!)" target="_blank">
+      <img class="blog-image" [src]="helper.processFileUrl(blog.imageUrl!)" [alt]="blog.title" />
     </a>
     }
     @else {
-    <img class="blog-image" [src]="helper.processFileUrl(blog?.imageUrl!)" [alt]="blog?.title" />
+    <img class="blog-image" [src]="helper.processFileUrl(blog.imageUrl!)" [alt]="blog.title" />
 
     }
   </div>
-  @if(blog?.link){
+  @if(blog.link){
 
-  <a class="d-block d-lg-none text-center" [href]="helper.returnCorrectedExternalUrl(blog?.link!)" target="_blank">Click here for more information</a>
+  <a class="d-block d-lg-none text-center" [href]="helper.returnCorrectedExternalUrl(blog.link!)" target="_blank">Click
+    here for more information</a>
   }
 </div>
+}
 
 <div class="my-5">
   <mat-divider></mat-divider>
 </div>
 
-<div dir="auto" [innerHTML]="blog?.description"></div>
+@if(blog){
+<div dir="auto" [innerHTML]="blog.description"></div>
+}

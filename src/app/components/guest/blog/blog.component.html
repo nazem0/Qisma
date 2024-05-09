@@ -1,9 +1,9 @@
 <header class="text-center my-3">
-  <h3>Blog</h3>
+  <h3 class="fw-bold">Blog</h3>
 </header>
 @if(isInAdminPanel){
 <div class="my-3">
-  <button pButton class="w-100 text-white" (click)="selectedBlog = undefined;this.createBlogModal = true">
+  <button pButton class="w-100 text-white" [routerLink]="['./actions']">
     <span class="mx-auto"> <i class="pi pi-plus"></i> Create Blog </span>
   </button>
 </div>
@@ -13,18 +13,17 @@
   <div class="blog-card">
     <app-blog-card [blog]="blog">
       @if(isInAdminPanel){
-      <div class="row row-cols-2 g-3">
+      <div class="row row-cols-2 g-3 m-2">
         <div>
-          <button class="text-white w-100" pButton severity="warning"
-            (click)="selectedBlog = blog;createBlogModal = true;">
-            <small class="mx-auto">Edit</small>
+          <button class="text-white w-100" pButton severity="warning" [routerLink]="['./actions/'+blog.id]">
+            <i class="mx-auto pi pi-pencil"></i>
           </button>
         </div>
         <div>
           <app-confirm (confirmation)="deleteBlog(blog.id!)" title="Delete"
             [description]="'Are you sure you want to delete  ' + blog.title">
-            <button pButton severity="danger" class="text-white w-100 rounded-top-0">
-              <small class="mx-auto">Delete</small>
+            <button pButton severity="danger" class="text-white w-100">
+              <i class="mx-auto pi pi-trash"></i>
             </button>
           </app-confirm>
         </div>
@@ -34,14 +33,3 @@
   </div>
   }
 </div>
-
-@if(isInAdminPanel){
-<p-dialog header="Create Blog" [(visible)]="createBlogModal" [modal]="true" [responsive]="true"
-  [style]="{ width: '75vw', minWidth: '260px' }" [maximizable]="true" [baseZIndex]="9000">
-  @if(createBlogModal){
-    <app-blog-actions [blogId]="selectedBlog?.id"
-    (createEvent)="selectedBlog = undefined;this.createBlogModal = false; getBlogs()"></app-blog-actions>
-  }
-</p-dialog>
-
-}

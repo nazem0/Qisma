@@ -1,13 +1,15 @@
 @if (form) {
-<form [formGroup]="form" class="mt-3 d-flex flex-column gap-3" (ngSubmit)="blog ? update() : sumbit()">
+<form
+  [formGroup]="form"
+  class="mt-3 d-flex flex-column gap-3"
+  (ngSubmit)="blog ? update() : sumbit()"
+>
   <div>
     <input type="text" formControlName="title" pInputText placeholder="Title" />
-    @if(form.get('title')?.touched){
-
-    @if (form.get('title')?.getError('required')) {
+    @if(form.get('title')?.touched){ @if
+    (form.get('title')?.getError('required')) {
     <small class="text-danger">Title is required</small>
-    }
-    }
+    } }
   </div>
   <div>
     <input type="url" formControlName="link" pInputText placeholder="Link" />
@@ -22,35 +24,53 @@
     <label class="w-100 text-white" for="image" pButton raised="true">
       <span class="mx-auto">Image</span>
     </label>
-    <input hidden type="file" id="image" (click)="form.get('image')?.markAsTouched()" (change)="setImageFile($event)" (click)="form.get('image')?.markAsTouched()" />
+    <input
+      hidden
+      type="file"
+      id="image"
+      (click)="form.get('image')?.markAsTouched()"
+      (change)="fileChangeEvent($event); setImageFile($event)"
+    />
 
-    @if(form.get('image')?.touched){
-
-    @if (form.get('image')?.getError('required')) {
+    @if(form.get('image')?.touched){ @if
+    (form.get('image')?.getError('required')) {
     <small class="text-danger">Image is required</small>
-    }
-    }
+    } }
+
+    <div class="my-2 d-flex justify-content-center">
+      <img class="preview-image" [src]="croppedImageUrl??helper.processFileUrl(blog?.imageUrl)" />
+    </div>
+
   </div>
 
   <div>
-    <p-editor formControlName="description" [style]="{ height: '320px' }" placeholder="Description">
+    <p-editor
+      formControlName="description"
+      [style]="{ height: '320px' }"
+      placeholder="Description"
+    >
       <ng-template pTemplate="header">
         <span class="ql-formats">
           <button type="button" class="ql-bold" aria-label="Bold"></button>
           <button type="button" class="ql-italic" aria-label="Italic"></button>
-          <button type="button" class="ql-underline" aria-label="Underline"></button>
+          <button
+            type="button"
+            class="ql-underline"
+            aria-label="Underline"
+          ></button>
           <button type="button" class="ql-link" aria-label="Link"></button>
-          <button type="button" class="ql-blockquote" aria-label="Block Quote"></button>
+          <button
+            type="button"
+            class="ql-blockquote"
+            aria-label="Block Quote"
+          ></button>
         </span>
       </ng-template>
     </p-editor>
-    @if(form.get('description')?.touched){
-
-
-    @if (form.get('description')?.getError('required')) {
+    @if(form.get('description')?.touched){ @if
+    (form.get('description')?.getError('required')) {
     <small class="text-danger">Description is required</small>
-    }
-    }
+    } }
   </div>
 
   <div>
@@ -60,3 +80,27 @@
   </div>
 </form>
 }
+
+<p-dialog
+  header="Crop Image"
+  [(visible)]="cropperModal"
+  [modal]="true"
+  [style]="{ width: '75vw', minWidth: '260px' }"
+  [maximizable]="false"
+  [baseZIndex]="9000"
+>
+  <image-cropper
+   class="image-cropper"
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="6 / 3"
+    [resizeToHeight]="240"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+  ></image-cropper>
+  <p-footer>
+    <button class="w-100 text-white" pButton (click)="cropperModal = false;">
+      <i class="pi pi-check mx-auto"></i>
+    </button>
+  </p-footer>
+</p-dialog>

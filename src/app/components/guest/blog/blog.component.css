@@ -4,5 +4,5 @@ app-blog-card {
   transition: top ease 0.5s;
 }
 app-blog-card:hover {
-  top: -10px;
+  top: -5px;
 }

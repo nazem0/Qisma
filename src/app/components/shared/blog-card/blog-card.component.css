@@ -1,11 +1,7 @@
-.blog-card {
-  min-height: 340px;
-}
-
 .blog-image {
   background-position: center;
-  height: 15rem;
   width: 100%;
-  background-repeat: no-repeat;
+  aspect-ratio: 6/3;
+  /* background-repeat: no-repeat; */
   background-size: cover;
 }

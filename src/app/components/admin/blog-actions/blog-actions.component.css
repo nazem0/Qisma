@@ -1,0 +1,7 @@
+.preview-image{
+    max-height: 240px;
+}
+
+.image-cropper{
+    max-height: 75vh;
+}

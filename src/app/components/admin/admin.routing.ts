@@ -1,3 +1,4 @@
+import { BlogActionsComponent } from './blog-actions/blog-actions.component';
 import { Routes, mapToResolve } from '@angular/router';
 import { AdminAuthGuard } from '../../guards/admin.guard';
 import { PropertyDetailsComponent } from '../guest/property-details/property-details.component';
@@ -135,6 +136,29 @@ export const adminRoutes: Routes = [
             resolve: {
               isAdmin: () => true,
             },
+          },
+          {
+            path: 'actions',
+            children:[
+              {
+                path:'',
+
+                loadComponent: () =>
+                  import('./blog-actions/blog-actions.component').then(
+                    (c) => c.BlogActionsComponent
+                  ),
+                title: 'Create Blog',
+              },
+              {
+                path:':id',
+
+                loadComponent: () =>
+                  import('./blog-actions/blog-actions.component').then(
+                    (c) => c.BlogActionsComponent
+                  ),
+                title: 'Edit Blog',
+              }
+            ]
           },
         ],
       },

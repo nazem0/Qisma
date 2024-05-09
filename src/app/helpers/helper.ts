@@ -12,7 +12,7 @@ export class Helper {
     }
 
     public static processFileUrl(fileUrl?: string | null, isFacility = false) {
-        return fileUrl ? `${isFacility ? environment.Facilities : environment.staticFiles}/${fileUrl}` : "";
+        return fileUrl ? `${isFacility ? environment.Facilities : environment.staticFiles}/${fileUrl}` : null;
     }
 
     public static processOrderPdfFileUrl(fileUrl: string) {
@@ -41,7 +41,7 @@ export class Helper {
     }
 
     public openImagePreview(image: string, external: boolean = false) {
-        this.dialog.open("Image Preview", [], external ? Helper.processFileUrl(image) : image)
+        this.dialog.open("Image Preview", [], external ? Helper.processFileUrl(image)! : image)
     }
 
     public static ascendingNumbersArray(param: ascendingNumbersArrayParams) {

@@ -24,7 +24,6 @@ import { ConfirmComponent } from '../../shared/confirm/confirm.component';
 })
 export class BlogComponent implements OnInit {
   blogs: Blog[] = [];
-  selectedBlog?: Blog;
   createBlogModal = false;
   isInAdminPanel: boolean;
   @Input() withRouterLink = true;
