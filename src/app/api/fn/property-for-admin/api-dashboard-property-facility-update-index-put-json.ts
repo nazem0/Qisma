@@ -6,21 +6,20 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { AddNewPropertyViewModel } from '../../models/add-new-property-view-model';
 import { StringApiResult } from '../../models/string-api-result';
 
-export interface ApiDashboardPropertyAddPost$Plain$Params {
-      body?: AddNewPropertyViewModel
+export interface ApiDashboardPropertyFacilityUpdateIndexPut$Json$Params {
+      body?: Array<number>
 }
 
-export function apiDashboardPropertyAddPost$Plain(http: HttpClient, rootUrl: string, params?: ApiDashboardPropertyAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiDashboardPropertyAddPost$Plain.PATH, 'post');
+export function apiDashboardPropertyFacilityUpdateIndexPut$Json(http: HttpClient, rootUrl: string, params?: ApiDashboardPropertyFacilityUpdateIndexPut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiDashboardPropertyFacilityUpdateIndexPut$Json.PATH, 'put');
   if (params) {
     rb.body(params.body, 'application/*+json');
   }
 
   return http.request(
-    rb.build({ responseType: 'text', accept: 'text/plain', context })
+    rb.build({ responseType: 'json', accept: 'text/json', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
@@ -29,4 +28,4 @@ export function apiDashboardPropertyAddPost$Plain(http: HttpClient, rootUrl: str
   );
 }
 
-apiDashboardPropertyAddPost$Plain.PATH = '/api/Dashboard/Property/Add';
+apiDashboardPropertyFacilityUpdateIndexPut$Json.PATH = '/api/Dashboard/PropertyFacility/UpdateIndex';

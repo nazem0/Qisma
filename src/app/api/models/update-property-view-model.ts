@@ -1,6 +1,5 @@
 /* tslint:disable */
 /* eslint-disable */
-import { AddPropertyFacilityViewModel } from '../models/add-property-facility-view-model';
 import { Status } from '../models/status';
 import { Type } from '../models/type';
 export interface UpdatePropertyViewModel {
@@ -10,7 +9,6 @@ export interface UpdatePropertyViewModel {
   deliveryInstallment?: number | null;
   description?: string | null;
   downPayment?: number | null;
-  facilities?: Array<AddPropertyFacilityViewModel> | null;
   governorateId?: number | null;
   location?: string | null;
   maintenaceInstallment?: number | null;

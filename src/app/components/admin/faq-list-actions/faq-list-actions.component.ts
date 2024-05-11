@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Faq, UpdateFaqIndexViewModel } from '../../../api/models';
+import { Faq } from '../../../api/models';
 import { FaqService } from '../../../api/services';
 import { Roles } from '../../../enums/roles.enum';
 import { AuthHelper } from '../../../helpers/auth-helper';
@@ -65,26 +65,14 @@ export class FaqListActionsComponent implements OnInit {
       });
   }
 
-  onDrag(e: any) {
-    console.log(e);
-
-  }
 
   order() {
-    let orderList = this.faqList.map(e => this.mapFaqToOrderFaq(e))
+    let orderList = this.faqList.map(e => e.id!)
     this._faqService
     .apiFaqUpdateIndexPut$Json({body: orderList})
     .subscribe()
 
   }
 
-  mapFaqToOrderFaq(faq: Faq):UpdateFaqIndexViewModel {
-    let result : UpdateFaqIndexViewModel;
-    result = {
-      id:faq.id,
-      number:this.faqList.indexOf(faq)
-    };
-    return result;
-  }
 
 }

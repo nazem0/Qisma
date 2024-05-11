@@ -7,10 +7,9 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 import { StringApiResult } from '../../models/string-api-result';
-import { UpdateFaqIndexViewModel } from '../../models/update-faq-index-view-model';
 
 export interface ApiFaqUpdateIndexPut$Json$Params {
-      body: Array<UpdateFaqIndexViewModel>
+      body: Array<number>
 }
 
 export function apiFaqUpdateIndexPut$Json(http: HttpClient, rootUrl: string, params: ApiFaqUpdateIndexPut$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {

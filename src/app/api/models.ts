@@ -3,7 +3,6 @@
 export { AboutUsViewModel } from './models/about-us-view-model';
 export { AboutUsViewModelApiResult } from './models/about-us-view-model-api-result';
 export { AddFaqViewModel } from './models/add-faq-view-model';
-export { AddNewPropertyViewModel } from './models/add-new-property-view-model';
 export { AddPropertyFacilityViewModel } from './models/add-property-facility-view-model';
 export { Blog } from './models/blog';
 export { BlogApiResult } from './models/blog-api-result';
@@ -33,6 +32,7 @@ export { PropertyDetailsViewModelForAdminApiResult } from './models/property-det
 export { PropertyDetailsViewModelForUser } from './models/property-details-view-model-for-user';
 export { PropertyDetailsViewModelForUserApiResult } from './models/property-details-view-model-for-user-api-result';
 export { PropertyFacilityViewModelForAdmin } from './models/property-facility-view-model-for-admin';
+export { PropertyFacilityViewModelForAdminApiResult } from './models/property-facility-view-model-for-admin-api-result';
 export { PropertyFacilityViewModelForUser } from './models/property-facility-view-model-for-user';
 export { PropertyImageViewModelforAdmin } from './models/property-image-view-modelfor-admin';
 export { PropertyImageViewModelforAdminApiResult } from './models/property-image-view-modelfor-admin-api-result';
@@ -48,7 +48,6 @@ export { TeamMember } from './models/team-member';
 export { TeamViewModel } from './models/team-view-model';
 export { TeamViewModelApiResult } from './models/team-view-model-api-result';
 export { Type } from './models/type';
-export { UpdateFaqIndexViewModel } from './models/update-faq-index-view-model';
 export { UpdateFaqViewModel } from './models/update-faq-view-model';
 export { UpdatePropertyViewModel } from './models/update-property-view-model';
 export { UserDataViewModel } from './models/user-data-view-model';

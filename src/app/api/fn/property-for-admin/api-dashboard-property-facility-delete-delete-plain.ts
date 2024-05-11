@@ -8,16 +8,14 @@ import { RequestBuilder } from '../../request-builder';
 
 import { StringApiResult } from '../../models/string-api-result';
 
-export interface ApiDashboardFacilityAddPost$Plain$Params {
-      body?: {
-'File'?: Blob;
-}
+export interface ApiDashboardPropertyFacilityDeleteDelete$Plain$Params {
+  PropertyFacilityId: number;
 }
 
-export function apiDashboardFacilityAddPost$Plain(http: HttpClient, rootUrl: string, params?: ApiDashboardFacilityAddPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
-  const rb = new RequestBuilder(rootUrl, apiDashboardFacilityAddPost$Plain.PATH, 'post');
+export function apiDashboardPropertyFacilityDeleteDelete$Plain(http: HttpClient, rootUrl: string, params: ApiDashboardPropertyFacilityDeleteDelete$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<StringApiResult>> {
+  const rb = new RequestBuilder(rootUrl, apiDashboardPropertyFacilityDeleteDelete$Plain.PATH, 'delete');
   if (params) {
-    rb.body(params.body, 'multipart/form-data');
+    rb.query('PropertyFacilityId', params.PropertyFacilityId, {"style":"form"});
   }
 
   return http.request(
@@ -30,4 +28,4 @@ export function apiDashboardFacilityAddPost$Plain(http: HttpClient, rootUrl: str
   );
 }
 
-apiDashboardFacilityAddPost$Plain.PATH = '/api/Dashboard/Facility/Add';
+apiDashboardPropertyFacilityDeleteDelete$Plain.PATH = '/api/Dashboard/PropertyFacility/Delete';

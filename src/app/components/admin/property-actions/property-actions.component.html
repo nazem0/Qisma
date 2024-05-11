@@ -86,7 +86,7 @@
               <div class="row row-cols-3 g-2 justify-content-center">
                 <div class="position-relative" *ngFor="let item of inputArray; let i = index">
                   <p-button [rounded]="true" severity="danger" styleClass="position-absolute top-0 p-1"
-                    (click)="editPage ? delete(i, item.id) : delete(i)">
+                    (click)="editPage ? deletePhotos(i, item.id) : deletePhotos(i)">
                     <i class="pi pi-times text-white"></i>
                   </p-button>
                   <img style="max-height: 200px;" class="border border-3 w-100 h-100 object-fit-cover" [src]="item.src">
@@ -129,8 +129,9 @@
               </p-inputGroup>
             </div>
           </div>
-          @for (item of this.facilitiesFormArray.value; track $index) {
-          <div class="
+          <p-orderList [value]="this.facilitiesFormArray.value" dragdrop="true">
+            <ng-template let-item pTemplate="item">
+              <div class="
               bg-white
               border
               border-2
@@ -140,33 +141,42 @@
               justify-content-between
               align-items-center
               mt-2">
-            <div class="d-flex gap-2">
-              <img class="ms-2" style="height: 24px" [src]="
+                <div class="d-flex gap-2">
+                  <img class="ms-2" style="height: 24px" [src]="
                     helper.processFileUrl(fiterFacilities(item.facilityId)?.svg,true)" [alt]="item.description" />
-            </div>
+                </div>
 
-            <div class="col-8">
-              <p-inputGroup>
-                <!-- <span>{{item.description}}</span> -->
-                <input type="text" pInputText placeholder="Description" disabled [ngModel]="item.description"
-                  [ngModelOptions]="{standalone: true}" />
-                @if(editPage){
-                <button class="text-white p-button-danger" (click)="removeFacility($index, item.propertyFacilityId)"
-                  type="button" pButton icon="pi pi-minus"></button>
-                }
-                @else{
-                <button class="text-white p-button-danger" (click)="removeFacility($index)" type="button" pButton
-                  icon="pi pi-minus"></button>
-                }
-              </p-inputGroup>
-            </div>
-            <!-- <div>
+                <div class="col-8">
+                  <p-inputGroup>
+                    <!-- <span>{{item.description}}</span> -->
+                    <input type="text" pInputText placeholder="Description" disabled [ngModel]="item.description"
+                      [ngModelOptions]="{standalone: true}" />
+                    @if(editPage){
+                    <button class="text-white p-button-danger" (click)="removeFacility(index, item.propertyFacilityId)"
+                      type="button" pButton icon="pi pi-minus"></button>
+                    }
+                    @else{
+                    <button class="text-white p-button-danger" (click)="removeFacility(index)" type="button" pButton
+                      icon="pi pi-minus"></button>
+                    }
+                  </p-inputGroup>
+                </div>
+                <!-- <div>
                 <p-inputGroup>
                   <input [disabled]="true" type="text" pInputText [value]="item.description" />
                 </p-inputGroup>
               </div> -->
-          </div>
+              </div>
+            </ng-template>
+          </p-orderList>
+          @if(editPage){
+            <div class="my-2">
+              <button pButton class="w-100 text-white" (click)="orderFacilities()">
+                <span class="mx-auto">Update Facilities Order</span>
+              </button>
+            </div>
           }
+
           <div class="row row-cols-sm-2 g-2 mt-3">
             <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
             <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
@@ -339,11 +349,17 @@
   </form>
 </div>
 
-<p-dialog header="Validation Errors" [(visible)]="errorsModal" [modal]="true" [responsive]="true" [style]="{width: '75vw', minWidth: '260px'}"
-[maximizable]="true" [baseZIndex]="100">
-<div class="row row-cols-lg-2 g-3">
-  @for (error of validationErros; track $index) {
+<p-dialog header="Validation Errors" [(visible)]="errorsModal" [modal]="true" [responsive]="true"
+  [style]="{width: '75vw', minWidth: '260px'}" [maximizable]="true" [baseZIndex]="100">
+  <div class="row row-cols-lg-2 g-3">
+    @for (error of validationErros; track $index) {
     <span>{{error}}</span>
+    }
+  </div>
+</p-dialog>
+
+<div>
+  @for (item of facilitiesFormArray.value; track $index) {
+    <em>{{item.facilityId}}</em>
   }
 </div>
-</p-dialog>
