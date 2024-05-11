@@ -3,19 +3,36 @@
   <form *ngIf="propertyForm" [formGroup]="propertyForm">
     <p-stepper orientation="vertical">
       <p-stepperPanel header="Details">
-        <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
+        <ng-template
+          pTemplate="content"
+          let-nextCallback="nextCallback"
+          let-index="index"
+        >
           <div class="d-flex flex-column gap-3">
             <div>
               <p-inputGroup>
                 <p-inputGroupAddon>
                   <i class="pi pi-compass"></i>
                 </p-inputGroupAddon>
-                <p-dropdown [filter]="true" filterBy="name" [options]="governorates" [optionLabel]="'name'"
-                  [showClear]="true" (onChange)="
-                  setControlValue('governorateId', $event.value?.id);
-                  $event.value?.id ? initCity() : null" [ngModel]="selectedGov" [ngModelOptions]="{'standalone':true}"
-                  (onClear)="setControlValue('cityId', undefined); this.propertyForm.controls['cityId'].disable()"
-                  placeholder="Governorate" styleClass="w-100">
+                <p-dropdown
+                  [filter]="true"
+                  filterBy="name"
+                  [options]="governorates"
+                  [optionLabel]="'name'"
+                  [showClear]="true"
+                  (onChange)="
+                    setControlValue('governorateId', $event.value?.id);
+                    $event.value?.id ? initCity() : null
+                  "
+                  [ngModel]="selectedGov"
+                  [ngModelOptions]="{ standalone: true }"
+                  (onClear)="
+                    setControlValue('cityId', undefined);
+                    this.propertyForm.controls['cityId'].disable()
+                  "
+                  placeholder="Governorate"
+                  styleClass="w-100"
+                >
                 </p-dropdown>
               </p-inputGroup>
             </div>
@@ -24,9 +41,18 @@
                 <p-inputGroupAddon>
                   <i class="pi pi-map-marker"></i>
                 </p-inputGroupAddon>
-                <p-dropdown [filter]="true" filterBy="name" [options]="cities" [optionLabel]="'name'" [showClear]="true"
-                  [ngModel]="selectedCity" [ngModelOptions]="{'standalone':true}" (onChange)="
-                  setControlValue('cityId', $event.value?.id)" placeholder="City" styleClass="w-100"></p-dropdown>
+                <p-dropdown
+                  [filter]="true"
+                  filterBy="name"
+                  [options]="cities"
+                  [optionLabel]="'name'"
+                  [showClear]="true"
+                  [ngModel]="selectedCity"
+                  [ngModelOptions]="{ standalone: true }"
+                  (onChange)="setControlValue('cityId', $event.value?.id)"
+                  placeholder="City"
+                  styleClass="w-100"
+                ></p-dropdown>
               </p-inputGroup>
             </div>
             <div>
@@ -34,7 +60,11 @@
                 <p-inputGroupAddon>
                   <i class="pi pi-building"></i>
                 </p-inputGroupAddon>
-                <input formControlName="location" pInputText placeholder="Title" />
+                <input
+                  formControlName="location"
+                  pInputText
+                  placeholder="Title"
+                />
               </p-inputGroup>
             </div>
             <div>
@@ -42,9 +72,16 @@
                 <p-inputGroupAddon>
                   <i class="pi pi-th-large"></i>
                 </p-inputGroupAddon>
-                <p-dropdown [showClear]="true" placeholder="Property Type" styleClass="w-100" [options]="propertyTypes"
-                  optionLabel="name" [ngModel]="selectedType" [ngModelOptions]="{'standalone':true}" (onChange)="
-                  setControlValue('type', $event.value?.id)">
+                <p-dropdown
+                  [showClear]="true"
+                  placeholder="Property Type"
+                  styleClass="w-100"
+                  [options]="propertyTypes"
+                  optionLabel="name"
+                  [ngModel]="selectedType"
+                  [ngModelOptions]="{ standalone: true }"
+                  (onChange)="setControlValue('type', $event.value?.id)"
+                >
                 </p-dropdown>
               </p-inputGroup>
             </div>
@@ -54,23 +91,36 @@
                 <p-inputGroupAddon>
                   <i class="pi pi-th-large"></i>
                 </p-inputGroupAddon>
-                <p-dropdown [showClear]="true" placeholder="Property Status" styleClass="w-100"
-                  [options]="propertyStatuses" optionLabel="name" [ngModel]="selectedStatus"
-                  [ngModelOptions]="{'standalone':true}" (onChange)="
-                  setControlValue('status', $event.value?.id)">
+                <p-dropdown
+                  [showClear]="true"
+                  placeholder="Property Status"
+                  styleClass="w-100"
+                  [options]="propertyStatuses"
+                  optionLabel="name"
+                  [ngModel]="selectedStatus"
+                  [ngModelOptions]="{ standalone: true }"
+                  (onChange)="setControlValue('status', $event.value?.id)"
+                >
                 </p-dropdown>
               </p-inputGroup>
             </div>
-
           </div>
           <div class="flex py-4">
-            <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
+            <p-button
+              styleClass="text-white w-100"
+              label="Next"
+              (onClick)="nextCallback.emit()"
+            />
           </div>
         </ng-template>
       </p-stepperPanel>
       <p-stepperPanel header="Photos">
-        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
-          let-index="index">
+        <ng-template
+          pTemplate="content"
+          let-prevCallback="prevCallback"
+          let-nextCallback="nextCallback"
+          let-index="index"
+        >
           <!-- @for (image of propertyForm.get('propertyImages')?.value; track $index) {
             <img [src]="image.url" alt="">
           } -->
@@ -80,159 +130,303 @@
                 <i class="pi pi-plus text-white"></i>
               </label>
             </div>
-            <input (change)="addPhotos($event)" class="d-none" type="file" id="upload-files" #uploadedPhotos
-              accept="image/*" multiple>
+            <input
+              (change)="addPhotos($event)"
+              class="d-none"
+              type="file"
+              id="upload-files"
+              #uploadedPhotos
+              accept="image/*"
+              multiple
+            />
             <ng-container *ngIf="inputArray">
               <div class="row row-cols-3 g-2 justify-content-center">
-                <div class="position-relative" *ngFor="let item of inputArray; let i = index">
-                  <p-button [rounded]="true" severity="danger" styleClass="position-absolute top-0 p-1"
-                    (click)="editPage ? deletePhotos(i, item.id) : deletePhotos(i)">
+                <div
+                  class="position-relative"
+                  *ngFor="let item of inputArray; let i = index"
+                >
+                  <p-button
+                    [rounded]="true"
+                    severity="danger"
+                    styleClass="position-absolute top-0 p-1"
+                    (click)="
+                      editPage ? deletePhotos(i, item.id) : deletePhotos(i)
+                    "
+                  >
                     <i class="pi pi-times text-white"></i>
                   </p-button>
-                  <img style="max-height: 200px;" class="border border-3 w-100 h-100 object-fit-cover" [src]="item.src">
-
+                  <img
+                    style="max-height: 200px"
+                    class="border border-3 w-100 h-100 object-fit-cover"
+                    [src]="item.src"
+                  />
                 </div>
               </div>
             </ng-container>
           </div>
           <div class="row row-cols-sm-2 g-2 mt-3">
-            <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
-            <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
+            <p-button
+              styleClass="text-white w-100"
+              label="Back"
+              severity="secondary"
+              (onClick)="prevCallback.emit()"
+            />
+            <p-button
+              styleClass="text-white w-100"
+              label="Next"
+              (onClick)="nextCallback.emit()"
+            />
           </div>
         </ng-template>
       </p-stepperPanel>
       <p-stepperPanel header="Facilities">
-        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
-          let-index="index">
+        <ng-template
+          pTemplate="content"
+          let-prevCallback="prevCallback"
+          let-nextCallback="nextCallback"
+          let-index="index"
+        >
           <div class="row g-0 align-items-center">
             <div class="col-sm-4">
-              <p-dropdown [filter]="true" filterBy="name" [options]="facilities" [optionLabel]="'name'"
-                [showClear]="true" [(ngModel)]="selectedFacility" placeholder="Facility Icon" styleClass="w-100"
-                [ngModelOptions]="{standalone: true}">
+              <p-dropdown
+                [filter]="true"
+                filterBy="name"
+                [options]="facilities"
+                [optionLabel]="'name'"
+                [showClear]="true"
+                [(ngModel)]="selectedFacility"
+                placeholder="Facility Icon"
+                styleClass="w-100"
+                [ngModelOptions]="{ standalone: true }"
+              >
                 <ng-template pTemplate="selectedItem">
-                  <div class="d-flex justify-content-center" *ngIf="selectedFacility">
-                    <img style="height: 24px" [src]="helper.processFileUrl(selectedFacility.svg, true)" alt="" />
+                  <div
+                    class="d-flex justify-content-center"
+                    *ngIf="selectedFacility"
+                  >
+                    <img
+                      style="height: 24px"
+                      [src]="helper.processFileUrl(selectedFacility.svg, true)"
+                      alt=""
+                    />
                   </div>
                 </ng-template>
                 <ng-template let-option pTemplate="item">
                   <div class="d-flex justify-content-center">
-                    <img style="width: 40px" [src]="helper.processFileUrl(option.svg, true)" alt="" />
+                    <img
+                      style="width: 40px"
+                      [src]="helper.processFileUrl(option.svg, true)"
+                      alt=""
+                    />
                   </div>
                 </ng-template>
               </p-dropdown>
             </div>
             <div class="col-sm-8">
               <p-inputGroup>
-                <input type="text" pInputText placeholder="Description" [(ngModel)]="selectedFacilityValue"
-                  [ngModelOptions]="{standalone: true}" />
-                <button class="text-white" (click)="addFacility()" type="button" pButton icon="pi pi-plus"></button>
+                <input
+                  type="text"
+                  pInputText
+                  placeholder="Description"
+                  [(ngModel)]="selectedFacilityValue"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+                <button
+                  class="text-white"
+                  (click)="addFacility()"
+                  type="button"
+                  pButton
+                  icon="pi pi-plus"
+                ></button>
               </p-inputGroup>
             </div>
           </div>
-          <p-orderList [value]="this.facilitiesFormArray.value" dragdrop="true">
-            <ng-template let-item pTemplate="item">
-              <div class="
-              bg-white
-              border
-              border-2
-              rounded-3
-              d-flex
-              flex-nowrap
-              justify-content-between
-              align-items-center
-              mt-2">
-                <div class="d-flex gap-2">
-                  <img class="ms-2" style="height: 24px" [src]="
-                    helper.processFileUrl(fiterFacilities(item.facilityId)?.svg,true)" [alt]="item.description" />
+
+          @if(this.facilitiesFormArray.value?.length){
+          <p-orderList
+            #orderList
+            [listStyle]="{ 'min-height': '0px' }"
+            [value]="this.facilitiesFormArray.value"
+            dragdrop="true"
+          >
+            <ng-template let-item pTemplate="item" let-i="index">
+              <div
+                class="bg-white border border-2 rounded-3 d-flex flex-nowrap justify-content-between align-items-center mt-2"
+              >
+                <div class="d-flex gap-2 w-100 justify-content-center">
+                  <img
+                    class="ms-2"
+                    style="height: 24px"
+                    [src]="
+                      helper.processFileUrl(
+                        fiterFacilities(item.facilityId)?.svg,
+                        true
+                      )
+                    "
+                    [alt]="item.description"
+                  />
                 </div>
 
                 <div class="col-8">
                   <p-inputGroup>
                     <!-- <span>{{item.description}}</span> -->
-                    <input type="text" pInputText placeholder="Description" disabled [ngModel]="item.description"
-                      [ngModelOptions]="{standalone: true}" />
+                    <input
+                      type="text"
+                      pInputText
+                      placeholder="Description"
+                      disabled
+                      [ngModel]="item.description"
+                      [ngModelOptions]="{ standalone: true }"
+                    />
                     @if(editPage){
-                    <button class="text-white p-button-danger" (click)="removeFacility(index, item.propertyFacilityId)"
-                      type="button" pButton icon="pi pi-minus"></button>
-                    }
-                    @else{
-                    <button class="text-white p-button-danger" (click)="removeFacility(index)" type="button" pButton
-                      icon="pi pi-minus"></button>
+                    <button
+                      class="text-white p-button-danger"
+                      (click)="removeFacility(i, item.propertyFacilityId)"
+                      type="button"
+                      pButton
+                      icon="pi pi-minus"
+                    ></button>
+                    } @else{
+                    <button
+                      class="text-white p-button-danger"
+                      (click)="removeFacility(i)"
+                      type="button"
+                      pButton
+                      icon="pi pi-minus"
+                    ></button>
                     }
                   </p-inputGroup>
                 </div>
                 <!-- <div>
-                <p-inputGroup>
-                  <input [disabled]="true" type="text" pInputText [value]="item.description" />
-                </p-inputGroup>
-              </div> -->
+                  <p-inputGroup>
+                    <input [disabled]="true" type="text" pInputText [value]="item.description" />
+                  </p-inputGroup>
+                </div> -->
               </div>
             </ng-template>
           </p-orderList>
-          @if(editPage){
-            <div class="my-2">
-              <button pButton class="w-100 text-white" (click)="orderFacilities()">
-                <span class="mx-auto">Update Facilities Order</span>
-              </button>
-            </div>
-          }
 
+          @if(editPage){
+          <div class="my-2">
+            <button
+              pButton
+              class="w-100 text-white"
+              (click)="orderFacilities()"
+            >
+              <span class="mx-auto">Update Facilities Order</span>
+            </button>
+          </div>
+          } }
           <div class="row row-cols-sm-2 g-2 mt-3">
-            <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
-            <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
+            <p-button
+              styleClass="text-white w-100"
+              label="Back"
+              severity="secondary"
+              (onClick)="prevCallback.emit()"
+            />
+            <p-button
+              styleClass="text-white w-100"
+              label="Next"
+              (onClick)="nextCallback.emit()"
+            />
           </div>
         </ng-template>
       </p-stepperPanel>
 
       <p-stepperPanel header="Description">
-        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
-          let-index="index">
+        <ng-template
+          pTemplate="content"
+          let-prevCallback="prevCallback"
+          let-nextCallback="nextCallback"
+          let-index="index"
+        >
           <div>
             <p-editor formControlName="description"></p-editor>
           </div>
           <div class="row row-cols-sm-2 g-2">
-            <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
-            <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
+            <p-button
+              styleClass="text-white w-100"
+              label="Back"
+              severity="secondary"
+              (onClick)="prevCallback.emit()"
+            />
+            <p-button
+              styleClass="text-white w-100"
+              label="Next"
+              (onClick)="nextCallback.emit()"
+            />
           </div>
         </ng-template>
       </p-stepperPanel>
 
       <p-stepperPanel header="Financials">
-        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
-          let-index="index">
+        <ng-template
+          pTemplate="content"
+          let-prevCallback="prevCallback"
+          let-nextCallback="nextCallback"
+          let-index="index"
+        >
           <div class="d-flex flex-column gap-3">
             <div>
               <p-inputGroup>
                 <p-inputGroupAddon>
                   <span>Unit Price</span>
                 </p-inputGroupAddon>
-                <p-inputNumber (onInput)="calculateMaintenanceCost();calculateTransactionFees();"
-                  formControlName="unitPrice" mode="currency" currency="EGP"></p-inputNumber>
+                <p-inputNumber
+                  (onInput)="
+                    calculateMaintenanceCost(); calculateTransactionFees()
+                  "
+                  formControlName="unitPrice"
+                  mode="currency"
+                  currency="EGP"
+                ></p-inputNumber>
               </p-inputGroup>
             </div>
             <div>
               <div class="d-flex flex-column gap-2">
                 <span>Maintenance Cost Percentage</span>
-                <p-slider [animate]="true" [ngModel]="0" [min]="0" [step]="0.01" [max]="1"
-                  formControlName="maintenanceCost" (onChange)="calculateMaintenanceCost()"></p-slider>
-                <span class="text-end">{{this.propertyForm.controls['maintenanceCost'].value | percent}}</span>
+                <p-slider
+                  [animate]="true"
+                  [ngModel]="0"
+                  [min]="0"
+                  [step]="0.01"
+                  [max]="1"
+                  formControlName="maintenanceCost"
+                  (onChange)="calculateMaintenanceCost()"
+                ></p-slider>
+                <span class="text-end">{{
+                  this.propertyForm.controls["maintenanceCost"].value | percent
+                }}</span>
               </div>
               <div>
                 <div class="text-end">
-                  <span>{{maintenanceCost | currency : "EGP" : "symbol-narrow"}}</span>
+                  <span>{{
+                    maintenanceCost | currency : "EGP" : "symbol-narrow"
+                  }}</span>
                 </div>
               </div>
             </div>
             <div>
               <div class="d-flex flex-column gap-2">
                 <span>Transaction Fees</span>
-                <p-slider [animate]="true" [ngModel]="0" [min]="0" [step]="0.01" [max]="1"
-                  formControlName="transactionFees" (onChange)="calculateTransactionFees()"></p-slider>
-                <span class="text-end">{{this.propertyForm.controls['transactionFees'].value | percent}}</span>
+                <p-slider
+                  [animate]="true"
+                  [ngModel]="0"
+                  [min]="0"
+                  [step]="0.01"
+                  [max]="1"
+                  formControlName="transactionFees"
+                  (onChange)="calculateTransactionFees()"
+                ></p-slider>
+                <span class="text-end">{{
+                  this.propertyForm.controls["transactionFees"].value | percent
+                }}</span>
               </div>
               <div>
                 <div class="text-end">
-                  <span>{{transactionFees | currency : "EGP" : "symbol-narrow"}}</span>
+                  <span>{{
+                    transactionFees | currency : "EGP" : "symbol-narrow"
+                  }}</span>
                 </div>
               </div>
             </div>
@@ -249,7 +443,9 @@
                 <p-inputGroupAddon>
                   <span>Minimum Number Of Shares</span>
                 </p-inputGroupAddon>
-                <p-inputNumber formControlName="minNumberOfShares"></p-inputNumber>
+                <p-inputNumber
+                  formControlName="minNumberOfShares"
+                ></p-inputNumber>
               </p-inputGroup>
             </div>
             <div>
@@ -257,27 +453,48 @@
                 <p-inputGroupAddon>
                   <span>Share Price</span>
                 </p-inputGroupAddon>
-                <p-inputNumber formControlName="sharePrice" mode="currency" currency="EGP"></p-inputNumber>
+                <p-inputNumber
+                  formControlName="sharePrice"
+                  mode="currency"
+                  currency="EGP"
+                ></p-inputNumber>
               </p-inputGroup>
             </div>
           </div>
           <div class="row row-cols-sm-2 g-2 mt-3">
-            <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
-            <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
+            <p-button
+              styleClass="text-white w-100"
+              label="Back"
+              severity="secondary"
+              (onClick)="prevCallback.emit()"
+            />
+            <p-button
+              styleClass="text-white w-100"
+              label="Next"
+              (onClick)="nextCallback.emit()"
+            />
           </div>
         </ng-template>
       </p-stepperPanel>
 
       <p-stepperPanel header="Payment Plan">
-        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
-          let-index="index">
+        <ng-template
+          pTemplate="content"
+          let-prevCallback="prevCallback"
+          let-nextCallback="nextCallback"
+          let-index="index"
+        >
           <div class="d-flex flex-column gap-3">
             <div>
               <p-inputGroup>
                 <p-inputGroupAddon>
                   <span>Down Payment</span>
                 </p-inputGroupAddon>
-                <p-inputNumber formControlName="downPayment" mode="currency" currency="EGP"></p-inputNumber>
+                <p-inputNumber
+                  formControlName="downPayment"
+                  mode="currency"
+                  currency="EGP"
+                ></p-inputNumber>
               </p-inputGroup>
             </div>
             <div>
@@ -285,7 +502,11 @@
                 <p-inputGroupAddon>
                   <span>Monthly Installment</span>
                 </p-inputGroupAddon>
-                <p-inputNumber formControlName="monthlyInstallment" mode="currency" currency="EGP"></p-inputNumber>
+                <p-inputNumber
+                  formControlName="monthlyInstallment"
+                  mode="currency"
+                  currency="EGP"
+                ></p-inputNumber>
               </p-inputGroup>
             </div>
             <div>
@@ -294,7 +515,10 @@
                   <span>Number of Years</span>
                 </p-inputGroupAddon>
                 <!-- Year Or Years based on the entered number -->
-                <p-inputNumber formControlName="numberOfYears" suffix=" Years"></p-inputNumber>
+                <p-inputNumber
+                  formControlName="numberOfYears"
+                  suffix=" Years"
+                ></p-inputNumber>
               </p-inputGroup>
             </div>
             <div>
@@ -302,7 +526,11 @@
                 <p-inputGroupAddon>
                   <span>Maintenance Installment</span>
                 </p-inputGroupAddon>
-                <p-inputNumber formControlName="maintenaceInstallment" mode="currency" currency="EGP"></p-inputNumber>
+                <p-inputNumber
+                  formControlName="maintenaceInstallment"
+                  mode="currency"
+                  currency="EGP"
+                ></p-inputNumber>
               </p-inputGroup>
             </div>
             <div>
@@ -310,38 +538,81 @@
                 <p-inputGroupAddon>
                   <span>Delivery Installment</span>
                 </p-inputGroupAddon>
-                <p-inputNumber formControlName="deliveryInstallment" mode="currency" currency="EGP"></p-inputNumber>
+                <p-inputNumber
+                  formControlName="deliveryInstallment"
+                  mode="currency"
+                  currency="EGP"
+                ></p-inputNumber>
               </p-inputGroup>
             </div>
           </div>
           <div class="row row-cols-sm-2 g-2 mt-3">
-            <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
-            <p-button styleClass="text-white w-100" label="Next" (onClick)="nextCallback.emit()" />
+            <p-button
+              styleClass="text-white w-100"
+              label="Back"
+              severity="secondary"
+              (onClick)="prevCallback.emit()"
+            />
+            <p-button
+              styleClass="text-white w-100"
+              label="Next"
+              (onClick)="nextCallback.emit()"
+            />
           </div>
         </ng-template>
       </p-stepperPanel>
 
       <p-stepperPanel header="Return">
-        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
-          let-index="index">
+        <ng-template
+          pTemplate="content"
+          let-prevCallback="prevCallback"
+          let-nextCallback="nextCallback"
+          let-index="index"
+        >
           <div class="d-flex flex-column gap-3">
             <div class="d-flex flex-column gap-2">
               <span>Annual Rental Yield</span>
-              <p-slider [animate]="true" [ngModel]="0" [min]="0" [step]="0.01" [max]="1"
-                formControlName="annualRentalYield"></p-slider>
-              <span class="text-end">{{this.propertyForm.controls['annualRentalYield'].value | percent}}</span>
+              <p-slider
+                [animate]="true"
+                [ngModel]="0"
+                [min]="0"
+                [step]="0.01"
+                [max]="1"
+                formControlName="annualRentalYield"
+              ></p-slider>
+              <span class="text-end">{{
+                this.propertyForm.controls["annualRentalYield"].value | percent
+              }}</span>
             </div>
             <div class="d-flex flex-column gap-2">
               <span>Annual Price Appreciation</span>
-              <p-slider [animate]="true" [ngModel]="0" [min]="0" [step]="0.01" [max]="1"
-                formControlName="annualPriceAppreciation"></p-slider>
-              <span class="text-end">{{this.propertyForm.controls['annualPriceAppreciation'].value | percent}}</span>
+              <p-slider
+                [animate]="true"
+                [ngModel]="0"
+                [min]="0"
+                [step]="0.01"
+                [max]="1"
+                formControlName="annualPriceAppreciation"
+              ></p-slider>
+              <span class="text-end">{{
+                this.propertyForm.controls["annualPriceAppreciation"].value
+                  | percent
+              }}</span>
             </div>
           </div>
           <div class="row row-cols-sm-2 g-2 mt-3">
-            <p-button styleClass="text-white w-100" label="Back" severity="secondary" (onClick)="prevCallback.emit()" />
-            <p-button [raised]="propertyForm.valid" styleClass="text-white w-100"
-              [label]="editPage?'Update Property':'Add Property'" (onClick)="submitForm()" />
+            <p-button
+              styleClass="text-white w-100"
+              label="Back"
+              severity="secondary"
+              (onClick)="prevCallback.emit()"
+            />
+            <p-button
+              [raised]="propertyForm.valid"
+              styleClass="text-white w-100"
+              [label]="editPage ? 'Update Property' : 'Add Property'"
+              (onClick)="submitForm()"
+            />
           </div>
         </ng-template>
       </p-stepperPanel>
@@ -349,17 +620,18 @@
   </form>
 </div>
 
-<p-dialog header="Validation Errors" [(visible)]="errorsModal" [modal]="true" [responsive]="true"
-  [style]="{width: '75vw', minWidth: '260px'}" [maximizable]="true" [baseZIndex]="100">
+<p-dialog
+  header="Validation Errors"
+  [(visible)]="errorsModal"
+  [modal]="true"
+  [responsive]="true"
+  [style]="{ width: '75vw', minWidth: '260px' }"
+  [maximizable]="true"
+  [baseZIndex]="100"
+>
   <div class="row row-cols-lg-2 g-3">
     @for (error of validationErros; track $index) {
-    <span>{{error}}</span>
+    <span>{{ error }}</span>
     }
   </div>
 </p-dialog>
-
-<div>
-  @for (item of facilitiesFormArray.value; track $index) {
-    <em>{{item.facilityId}}</em>
-  }
-</div>

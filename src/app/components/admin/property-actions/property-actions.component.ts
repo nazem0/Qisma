@@ -1,7 +1,7 @@
 import { CustomPropertyForAdminService } from './../../../services/custom-property-for-admin.service';
 import { GovernorateAndCityService } from './../../../api/services/governorate-and-city.service';
 import { PropertyForAdminService } from './../../../api/services/property-for-admin.service';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, Renderer2, ViewChild, viewChild } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -34,7 +34,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { EditorModule } from 'primeng/editor';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
-import { OrderListModule } from 'primeng/orderlist';
+import { OrderList, OrderListModule } from 'primeng/orderlist';
 
 @Component({
   selector: 'app-property-actions',
@@ -62,6 +62,7 @@ import { OrderListModule } from 'primeng/orderlist';
   ]
 })
 export class PropertyActionsComponent implements OnInit {
+  @ViewChild('orderList') orderList? : OrderList;
   editPage = false;
   propertyId?: string;
   helper = Helper;
@@ -106,7 +107,6 @@ export class PropertyActionsComponent implements OnInit {
     private governorateAndCityService: GovernorateAndCityService,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef
   ) { }
   ngOnInit(): void {
     this.initEmptyPropertyForm();
@@ -197,7 +197,7 @@ export class PropertyActionsComponent implements OnInit {
       ]),
       type: new FormControl<number | undefined>(undefined, [Validators.required]),
       status: new FormControl<number | undefined>(undefined, [Validators.required]),
-      facilities: new FormControl<AddPropertyFacilityViewModel[]|PropertyFacilityViewModelForAdmin[]>([]),
+      facilities: new FormControl<AddPropertyFacilityViewModel[] | PropertyFacilityViewModelForAdmin[]>([]),
       propertyImages: new FormControl<Blob[]>([]),
     });
 
@@ -292,6 +292,11 @@ export class PropertyActionsComponent implements OnInit {
     }
     let addedFacility = this.createFacility();
     this.facilitiesFormArray.value.push(addedFacility);
+    let insertedFacilityIndex = this.facilitiesFormArray.value.length - 1
+    if(this.orderList){
+      this.orderList.value = this.facilitiesFormArray.value;
+      this.orderList.cd.detectChanges()
+    }
     this.selectedFacility = undefined;
     this.selectedFacilityValue = '';
     if (this.editPage && this.propertyId) {
@@ -301,11 +306,20 @@ export class PropertyActionsComponent implements OnInit {
           FacilityId: addedFacility.facilityId!,
           PropertyId: this.propertyId,
         })
-        .subscribe();
+        .subscribe({
+          next:next=>{
+            (this.facilitiesFormArray.value as PropertyFacilityViewModelForAdmin[])[insertedFacilityIndex].propertyFacilityId = next.data?.propertyFacilityId
+          }
+        });
     }
   }
   removeFacility(index: number, id?: number): void {
     this.facilitiesFormArray.value.splice(index, 1);
+    if(this.orderList){
+      this.orderList.value = this.facilitiesFormArray.value;
+      this.orderList.cd.detectChanges()
+    }
+
     if (id) {
       this.propertyForAdminService
         .apiDashboardPropertyFacilityDeleteDelete$Json({
@@ -319,9 +333,10 @@ export class PropertyActionsComponent implements OnInit {
   }
 
   orderFacilities() {
+    let result = (this.facilitiesFormArray.value as PropertyFacilityViewModelForAdmin[]).map((e: PropertyFacilityViewModelForAdmin) => e.propertyFacilityId!)
     this.propertyForAdminService
       .apiDashboardPropertyFacilityUpdateIndexPut$Json({
-        body: this.facilitiesFormArray.value.map((e: PropertyFacilityViewModelForAdmin) => e.propertyFacilityId)
+        body: result ?? []
       })
       .subscribe()
   }
