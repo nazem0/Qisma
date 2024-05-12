@@ -6,9 +6,7 @@
           <div>
             <ng-content></ng-content>
           </div>
-          <a [routerLink]="['/home']">
-            <img src="/assets/logos/qisma.png" class="logo ms-2 me-auto" />
-          </a>
+            <img [routerLink]="['/home']" src="/assets/logos/qisma.png" class="cursor-pointer logo" />
         </div>
         <img
           [src]="helper.generateAvatar(authHelper.getUserName()??'')"
