@@ -8,6 +8,7 @@ export class Helper {
     constructor() { }
     public static onFileUpload(file: File, formControl: FormControl | AbstractControl): void {
         formControl.setValue(file);
+        formControl.markAsDirty();
     }
 
     public static processFileUrl(fileUrl?: string | null, isFacility = false) {

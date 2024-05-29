@@ -1,32 +1,39 @@
 @import "bootstrap/dist/css/bootstrap-utilities.min.css" layer(bootstrap-utilities);
 @import "bootstrap/dist/css/bootstrap-grid.min.css" layer(bootstrap-grid);
+
 @font-face {
   font-family: "Cairo";
   src: url("/assets/fonts/cairo.ttf");
 }
+
 /* Set a base font size for the body */
 body {
   font-size: clamp(1rem, 2vw, 1.2rem);
   /* Adjusted the maximum value to 2vw for better readability */
 }
+
 /* Set a range for h1 font size */
 h1 {
   font-size: clamp(2rem, 4vw, 3.6rem);
   /* Adjusted the maximum value to 3.6rem for better readability */
 }
+
 /* Set a range for h2 font size */
 h2 {
   font-size: clamp(1.8rem, 3vw, 2.4rem);
   /* Adjusted the minimum and maximum values for better hierarchy and readability */
 }
+
 /* Set a range for paragraph font size */
 p {
   font-size: clamp(1rem, 2vw, 1.2rem);
   /* Adjusted the maximum value to 2vw for better readability */
 }
+
 img {
   max-width: 100%;
 }
+
 /* You can add global styles to this file, and also import other style files */
 :root {
   /* --purple : rgb(140,25,235);
@@ -61,103 +68,150 @@ body {
   scroll-behavior: smooth;
   font-family: "Cairo", "Helvetica Neue", sans-serif;
 }
-body p, body span, body h1, body h2, body h3, body h4, body h5, body h6, body label, body a, body small, body button {
+
+body p,
+body span,
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+body label,
+body a,
+body small,
+body button {
   color: var(--primary-900);
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
+
 .p-fileupload .p-fileupload-buttonbar {
   background-color: #1e1e1e;
 }
+
 .p-fileupload .p-fileupload-content {
   background-color: #0a0a0a;
 }
+
 .mat-horizontal-content-container {
   overflow: hidden;
   padding: 0 24px !important;
 }
+
 .transition {
   transition: all 0.8s ease;
 }
+
 .w-0 {
   width: 0;
 }
-a, .p-menuitem-text {
+
+a,
+.p-menuitem-text {
   text-decoration: none;
   cursor: pointer;
 }
-a:hover, .p-menuitem-text:hover, .purble-link:hover {
+
+a:hover,
+.p-menuitem-text:hover,
+.purble-link:hover {
   color: var(--primary-500) !important;
 }
+
 .bg-primary {
   background: var(--primary-600) !important;
 }
+
 .bg-dark-blue {
   background-color: var(--primary-900);
 }
+
 .border-primary {
   border-color: var(--primary-700) !important;
 }
+
 .text-gray {
   color: var(--gray-300);
 }
+
 .input-w-icon {
   position: relative;
   display: inline-block;
 }
-.input-w-icon > :nth-child(1) {
+
+.input-w-icon> :nth-child(1) {
   position: absolute;
   left: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
   z-index: 3;
 }
+
 .input-w-icon .p-dropdown.p-dropdown-clearable .p-dropdown-label {
   padding-left: 2.5rem;
 }
+
 .input-w-icon input:not(.p-dropdown-filter) {
   padding-left: 2.5rem;
 }
-input, .p-inputNumber, .p-inputMask, .p-calendar {
+
+input,
+.p-inputNumber,
+.p-inputMask,
+.p-calendar {
   width: 100%;
 }
+
 .image-preview-container {
   max-width: 300px;
 }
+
 .image-preview {
   max-width: 200px;
 }
+
 .mdc-list-item__primary-text {
   color: white !important;
 }
+
 .bottom-10 {
   bottom: 10%;
 }
+
 /* Toaster */
 .p-message.p-message-info {
   background: #dbeafe;
 }
+
 .p-message.p-message-success {
   background: #e4f8f0;
 }
+
 .p-message.p-message-warn {
   background: #fff2e2;
 }
+
 .p-message.p-message-error {
   background: #ffe7e6;
 }
+
 .small-text {
   font-size: 8.65px;
 }
+
 .p-accordion a {
   border: var(--primary-700);
   background: var(--primary-600);
 }
+
 .p-accordion :not(p-dialog *, app-confirm *) {
   color: white;
 }
+
 /* Cloned Globals */
 .h1 {
   color: rgba(51, 51, 51, 0);
@@ -167,59 +221,78 @@ input, .p-inputNumber, .p-inputMask, .p-calendar {
   font-weight: 600;
   line-height: 110%;
 }
+
 .gradient-background-dark {
   -webkit-text-fill-color: transparent;
   background-image: linear-gradient(131deg, var(--primary-400) 25%, var(--primary-800) 66%);
   -webkit-background-clip: text;
   background-clip: text;
 }
+
 .gradient-background-light {
   -webkit-text-fill-color: transparent;
   background-image: linear-gradient(110deg, var(--primary-400), #fff);
   -webkit-background-clip: text;
   background-clip: text;
 }
+
 .text-white {
   color: white;
 }
+
 .text-white * {
   color: white;
 }
+
 button {
   color: white;
 }
+
 .multi-line-paragraph {
   white-space: pre-line;
 }
+
 .contained {
   width: 75%;
   min-width: 16rem;
   margin: 0 auto;
 }
+
 .text-primary-subtle {
   color: var(--primary-400) !important;
 }
+
 .text-primary-subtle * {
   color: var(--primary-400) !important;
 }
-.p-stepper .p-stepper-header .p-stepper-action, .p-tabview .p-tabview-nav, .p-tabview .p-tabview-panels {
+
+.p-stepper .p-stepper-header .p-stepper-action,
+.p-tabview .p-tabview-nav,
+.p-tabview .p-tabview-panels {
   background-color: unset;
 }
-.p-galleria-item-nav, .p-galleria-close-icon {
+
+.p-galleria-item-nav,
+.p-galleria-close-icon {
   color: white;
 }
+
 .p-stepper.p-stepper-vertical .p-stepper-toggleable-content {
   background: unset;
 }
+
 .p-tabview-panels {
   padding: 0;
 }
+
 ngx-intl-tel-input {
   padding: 0.75rem 0;
 }
-ngx-intl-tel-input > div:first-of-type {
+
+ngx-intl-tel-input>div:first-of-type {
   width: 100%;
 }
+
 ngx-intl-tel-input input {
   padding: 0;
   width: 100%;
@@ -228,14 +301,17 @@ ngx-intl-tel-input input {
   background: white;
   width: 100%;
 }
+
 .h-0 {
   height: 0;
 }
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
   background: var(--primary-200);
 }
+
 /* Track
  ::-webkit-scrollbar-track {
  } */
@@ -243,46 +319,63 @@ ngx-intl-tel-input input {
 ::-webkit-scrollbar-thumb {
   background: var(--primary-500);
 }
+
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-700);
 }
+
 table td {
   vertical-align: top;
 }
+
 .sticky-top {
-  z-index: 1000;
+  z-index: 10;
 }
+
 .text-justify {
   text-align: justify;
 }
+
 .td-min-width-15 {
   min-width: 15rem;
 }
+
 .cursor-pointer {
   cursor: pointer;
 }
+
 .property-image-preview {
   aspect-ratio: 1;
   object-fit: cover;
   height: 70px;
 }
+
 .cursor-pointer {
   cursor: pointer;
 }
+
 .text-justified {
   text-align: justify;
 }
+
 .p-tooltip :nth-child(2) {
   min-width: 260px !important;
   background-color: rgba(0, 0, 0, 0.75);
 }
+
 .p-tooltip div {
   text-shadow: 1px 2px black;
 }
+
 .p-accordion-content {
   background-color: var(--primary-400) !important;
 }
+
 .p-orderlist-controls {
   display: none !important;
+}
+
+.p-dialog-mask .p-component-overlay {
+  z-index: 800 !important;
 }

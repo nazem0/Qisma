@@ -260,16 +260,12 @@
             >
           </label>
           <input
-            #nationalIdImageInputElement
             hidden
             id="national-id-image"
             type="file"
             (change)="nationalIdImageInput($event)"
             accept="image/*"
-            (click)="
-              nationalIdImageInputElement.value = ''; nationalIdImage = ''
-            "
-          />
+            (click)="nationalIdImage = ''; this.form.get('identityImage')?.markAsTouched()"/>
         </div>
         <!-- <div>
           <button
