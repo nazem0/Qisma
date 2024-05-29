@@ -102,7 +102,10 @@ export class RegisterComponent {
   }
 
   submit() {
-    if(this.form.invalid) return;
+    this.form.markAllAsTouched();
+    if(this.form.invalid){
+      return;
+    } 
     this
     ._userAccountService
     .apiSignUpForCustomerPost$Json({body:this.form.value})

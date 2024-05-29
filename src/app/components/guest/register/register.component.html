@@ -156,16 +156,16 @@
           <i class="pi pi-id-card"></i>
           Upload ID Image</span>
       </label>
-      <input #nationalIdImageInputElement hidden id="national-id-image" type="file"
+      <input hidden id="national-id-image" type="file"
         (change)="nationalIdImageInput($event)" accept="image/*"
-        (click)="nationalIdImageInputElement.value = ''; nationalIdImage = ''" />
+        (click)="nationalIdImage = '';form.get('identityImage')?.markAsTouched()" />
     </div>
 
     <small *ngIf="
-        form.get('identityNumber')?.invalid &&
-        form.get('identityNumber')?.touched
-      " class="my-2 text-danger">Identity Number is required.</small>
-    <p-button styleClass="w-100" [raised]="this.form.valid" [disabled]="this.form.invalid" (click)="submit()"
+        form.get('identityImage')?.invalid &&
+        form.get('identityImage')?.touched
+      " class="my-2 text-danger">Identity Image is required.</small>
+    <p-button styleClass="w-100" [raised]="this.form.valid" (click)="submit()"
       type="submit">
       <span class="text-white mx-auto">Register</span>
     </p-button>
