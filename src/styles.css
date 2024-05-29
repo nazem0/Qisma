@@ -376,6 +376,6 @@ table td {
   display: none !important;
 }
 
-.p-dialog-mask .p-component-overlay {
+.p-dialog-mask.p-component-overlay {
   z-index: 800 !important;
 }
