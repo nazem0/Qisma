@@ -2,3 +2,7 @@
     display: flex;
     justify-content: center;
 }
+
+.hero-img{
+    border-radius: 46% 54% 47% 53% / 64% 35% 65% 36% ;
+}
