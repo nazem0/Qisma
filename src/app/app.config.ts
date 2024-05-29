@@ -32,7 +32,7 @@ export const appConfig: ApplicationConfig = {
     },
     { provide: NZ_I18N, useValue: en_US },
     {
-      provide: DEFAULT_CURRENCY_CODE , useValue: 'EGP'
+      provide: DEFAULT_CURRENCY_CODE , useValue: 'EGP '
     },
     {
       provide : MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue:{

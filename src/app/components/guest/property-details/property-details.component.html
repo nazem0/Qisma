@@ -81,7 +81,7 @@
               <label>Unit Price:</label>
               <span>
                 {{
-                property.unitPrice | currency : "EGP" : "symbol" : "1.0-0"
+                property.unitPrice | currency : "EGP " : "symbol" : "1.0-0"
                 }}</span>
             </div>
             <p-divider />
@@ -89,7 +89,7 @@
               <label>Maintenance Cost:</label>
               <span>{{
                 property.maintenanceCostNumerical
-                | currency : "EGP" : "symbol" : "1.0-0"
+                | currency : "EGP " : "symbol" : "1.0-0"
                 }}</span>
             </div>
             <p-divider />
@@ -98,7 +98,7 @@
               <span>
                 {{
                 property.transactionFeesNumerical
-                | currency : "EGP" : "symbol" : "1.0-0"
+                | currency : "EGP " : "symbol" : "1.0-0"
                 }}</span>
             </div>
             <p-divider />
@@ -110,7 +110,7 @@
             <div class="field">
               <label>Price per Share:</label>
               <span>{{
-                property.sharePrice | currency : "EGP" : "symbol" : "1.0-0"
+                property.sharePrice | currency : "EGP " : "symbol" : "1.0-0"
                 }}</span>
             </div>
           </div>
@@ -148,7 +148,7 @@
                     <span>
                       {{
                       property.sharePrice! * estimationData.tokensPurchased
-                      | currency : "EGP" : "symbol" : "1.0-0"
+                      | currency : "EGP " : "symbol" : "1.0-0"
                       }}
                     </span>
                   </h5>
@@ -206,25 +206,25 @@
                 <div class="col-2 text-center">
                   {{
                   chart.data.datasets[0].data[1]
-                  | currency : "EGP" : "symbol-narrow"
+                  | currency : "EGP " : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
                   chart.data.datasets[0].data[4]
-                  | currency : "EGP" : "symbol-narrow"
+                  | currency : "EGP " : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
                   chart.data.datasets[0].data[9]
-                  | currency : "EGP" : "symbol-narrow"
+                  | currency : "EGP " : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
                   chart.data.datasets[0].data[14]
-                  | currency : "EGP" : "symbol-narrow"
+                  | currency : "EGP " : "symbol-narrow"
                   }}
                 </div>
               </div>
@@ -234,25 +234,25 @@
                 <div class="col-2 text-center">
                   {{
                   chart.data.datasets[1].data[1]
-                  | currency : "EGP" : "symbol-narrow"
+                  | currency : "EGP " : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
                   chart.data.datasets[1].data[4]
-                  | currency : "EGP" : "symbol-narrow"
+                  | currency : "EGP " : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
                   chart.data.datasets[1].data[9]
-                  | currency : "EGP" : "symbol-narrow"
+                  | currency : "EGP " : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
                   chart.data.datasets[1].data[14]
-                  | currency : "EGP" : "symbol-narrow"
+                  | currency : "EGP " : "symbol-narrow"
                   }}
                 </div>
               </div>
@@ -262,25 +262,25 @@
                 <div class="col-2 text-center">
                   {{
                   chart.data.datasets[2].data[1]
-                  | currency : "EGP" : "symbol-narrow"
+                  | currency : "EGP " : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
                   chart.data.datasets[2].data[4]
-                  | currency : "EGP" : "symbol-narrow"
+                  | currency : "EGP " : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
                   chart.data.datasets[2].data[9]
-                  | currency : "EGP" : "symbol-narrow"
+                  | currency : "EGP " : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
                   {{
                   chart.data.datasets[2].data[14]
-                  | currency : "EGP" : "symbol-narrow"
+                  | currency : "EGP " : "symbol-narrow"
                   }}
                 </div>
               </div>
@@ -292,7 +292,7 @@
                   chart.data.datasets[0].data[1] +
                   chart.data.datasets[1].data[1] +
                   chart.data.datasets[2].data[1]
-                  | currency : "EGP" : "symbol-narrow"
+                  | currency : "EGP " : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
@@ -300,7 +300,7 @@
                   chart.data.datasets[0].data[4] +
                   chart.data.datasets[1].data[4] +
                   chart.data.datasets[2].data[4]
-                  | currency : "EGP" : "symbol-narrow"
+                  | currency : "EGP " : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
@@ -308,7 +308,7 @@
                   chart.data.datasets[0].data[9] +
                   chart.data.datasets[1].data[9] +
                   chart.data.datasets[2].data[9]
-                  | currency : "EGP" : "symbol-narrow"
+                  | currency : "EGP " : "symbol-narrow"
                   }}
                 </div>
                 <div class="col-2 text-center">
@@ -316,7 +316,7 @@
                   chart.data.datasets[0].data[14] +
                   chart.data.datasets[1].data[14] +
                   chart.data.datasets[2].data[14]
-                  | currency : "EGP" : "symbol-narrow"
+                  | currency : "EGP " : "symbol-narrow"
                   }}
                 </div>
               </div>
@@ -334,7 +334,7 @@
             Share Price
           </h3>
           <p>
-            {{ property.sharePrice | currency : "EGP" : "symbol" : "1.0-0" }}
+            {{ property.sharePrice | currency : "EGP " : "symbol" : "1.0-0" }}
           </p>
         </div>
         <p-divider />

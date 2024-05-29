@@ -69,7 +69,7 @@
       <small class="mat-small">Property Price Range In EGP</small>
       <div>
         <p class="mb-1 text-end mat-small">
-          {{ filters.propertyPriceRange | currency : "EGP" : "" : "1.0-0" }}
+          {{ filters.propertyPriceRange | currency : "EGP " : "" : "1.0-0" }}
         </p>
 
         <p-slider
@@ -88,7 +88,7 @@
       <small class="mat-small">Share Price Range In EGP</small>
       <div>
         <p class="mb-1 text-end mat-small">
-          {{ filters.sharePriceRange | currency : "EGP" : "" : "1.0-0" }}
+          {{ filters.sharePriceRange | currency : "EGP " : "" : "1.0-0" }}
         </p>
         <p-slider
           [min]="this.sharePriceRange.min"
