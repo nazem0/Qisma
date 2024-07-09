@@ -1,6 +1,6 @@
 export const environment = {
-    api:"https://qisma.runasp.net",
-    staticFiles:"https://qisma.runasp.net/Content/Images",
-    Facilities:"https://qisma.runasp.net/Content/Facilities",
-    OrdersPdf:"https://qisma.runasp.net/Content/Orders_PDF"
+    api:"https://qisma.co",
+    staticFiles:"https://qisma.co/Content/Images",
+    Facilities:"https://qisma.co/Content/Facilities",
+    OrdersPdf:"https://qisma.co/Content/Orders_PDF"
 }
